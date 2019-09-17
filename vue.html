@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://www.352328759a.site/lin/l.php -->
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>vue</title>
+		<!--<link rel="stylesheet" href="https://keepfool.github.io/vue-tutorials/01.GettingStarted/styles/demo.css" />-->
+		<!--<link rel="stylesheet" href="./js/element-ui.2.4.0/element-ui.2.4.0.css">-->
+		<link rel="stylesheet" href="./jvw/antd/antd.min.css">
+		<style>
+
+		</style>
+		<!--<meta http-equiv="refresh" content="30" />-->
+	</head>
+
+	<body>
+
+		<div id="swq">
+
+			<!---->
+			<a target="_blank" href="https://github.com/vueComponent/ant-design-vue/tree/1.3.9">https://github.com/vueComponent/ant-design-vue/tree/1.3.9</a>
+			<br />
+			<a target="_blank" href="https://vue.ant.design/components/affix-cn/">https://vue.ant.design/components/affix-cn/</a>
+			<br />
+			<a target="_blank" href="https://pro.loacg.com/docs/getting-started">https://pro.loacg.com/docs/getting-started</a>
+			<br />
+			<a target="_blank" href="https://github.com/sendya/ant-design-pro-vue/blob/master/README.zh-CN.md">https://github.com/sendya/ant-design-pro-vue/blob/master/README.zh-CN.md</a>
+			<br />
+			<!---->
+			<swq></swq>
+			<!---->
+
+		</div>
+
+		<script type="text/x-template" id="swq-template">
+			<div>
+
+				<c1 />
+				<c2 />
+
+			</div>
+		</script>
+		<script type="text/x-template" id="c1-template">
+			<div id="components-form-demo-vuex">
+				<a-form :form="form" @submit="handleSubmit">
+					<a-form-item label="Username">
+						<a-input v-decorator="['username',{rules: [{ required: true, message: 'Username is required!'}],}]"></a-input>
+					</a-form-item>
+					<a-button type="primary" html-type="submit"> Submit </a-button>
+				</a-form>
+			</div>
+		</script>
+		<script type="text/x-template" id="c2-template">
+			<a-form :form="form" @submit="handleSubmit">
+				<a-form-item label="Note" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
+					<a-input v-decorator="['note', {rules: [{ required: true, message: 'Please input your note!' }]}]" />
+				</a-form-item>
+				<a-form-item label="Gender" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
+					<a-select v-decorator="['gender', {rules: [{ required: true, message: 'Please select your gender!' }]}]" placeholder="Select a option and change input text above" @change="handleSelectChange">
+						<a-select-option value="male"> male </a-select-option>
+						<a-select-option value="female"> female </a-select-option>
+					</a-select>
+				</a-form-item>
+				<a-form-item :wrapper-col="{ span: 12, offset: 5 }">
+					<a-button type="primary" html-type="submit"> Submit </a-button>
+				</a-form-item>
+			</a-form>
+		</script>
+
+		<!--<script src="./js/vue/vue.js"></script>-->
+		<script src="./jvw/vue/vue.2.5.16.js"></script>
+		<script src="./jvw/antd/antd.js"></script>
+		<!--<script src="./js/element-ui.2.4.0/element-ui.2.4.0.js"></script>-->
+		<!--<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>-->
+		<!--<script src="./js/jquery.min.js"></script>-->
+
+		<script type="text/javascript">
+			var c1 = {
+				template: "#c1-template",
+				props: [],
+				data: function() {
+					return {
+						username: "dcv",
+						//						form: this.$form.createForm(this),
+					}
+				},
+				computed: {
+					//					username() {
+					//						return this.$store.state.username;
+					//					},
+				},
+				components: {},
+				watch: {
+					username(val) {
+						console.log("this.$store.state.username: ", val);
+						//						this.form.setFieldsValue({
+						//							username: val
+						//						});
+					},
+				},
+				methods: {
+					handleSubmit(e) {
+						e.preventDefault();
+						this.form.validateFields((err, values) => {
+							if(!err) {
+								console.log("Received values of form: ", values);
+								//								this.$store.commit("update", values);
+							}
+						});
+					},
+				},
+				created() {
+					this.form = this.$form.createForm(this, {
+						onFieldsChange: (_, changedFields) => {
+							this.$emit("change", changedFields);
+						},
+						mapPropsToFields: () => {
+							return {
+								username: this.$form.createFormField({
+									value: this.username,
+								}),
+							};
+						},
+						onValuesChange: (_, values) => {
+							console.log(values);
+							// 实时同步到Vuex存储
+							// this.$store.commit("update", values)
+						},
+					});
+				},
+				mounted() {},
+			}
+			var c2 = {
+				template: "#c2-template",
+				props: [],
+				data() {
+					return {
+						//						formLayout: 'horizontal',
+						form: this.$form.createForm(this),
+					};
+				},
+				computed: {},
+				components: {},
+				watch: {},
+				methods: {
+					handleSubmit(e) {
+						e.preventDefault();
+						this.form.validateFields((err, values) => {
+							if(!err) {
+								console.log('Received values of form: ', values);
+							}
+						});
+					},
+					handleSelectChange(value) {
+						console.log(value);
+						this.form.setFieldsValue({
+							note: `Hi, ${value === 'male' ? 'man' : 'lady'}!`,
+						});
+					},
+				},
+				created() {},
+				mounted() {},
+			}
+			var swq = {
+				template: "#swq-template",
+				props: [],
+				data: function() {
+					return {}
+				},
+				computed: {},
+				components: {
+					c1,
+					c2,
+				},
+				watch: {},
+				methods: {},
+				created() {},
+				mounted() {},
+			};
+			var vu = new Vue({
+				el: "#swq",
+				data: {},
+				methods: {},
+				components: {
+					swq: swq,
+				},
+				watch: {},
+				computed: {},
+				created() {},
+				mounted() {},
+			})
+		</script>
+	</body>
+
+</html>
