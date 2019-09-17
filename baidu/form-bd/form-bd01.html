@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Animated Opening Type</title>
+		<meta name="description" content="Animated Opening Type: Animated letters with pseudo-elements" />
+		<meta name="keywords" content="pseudo-elements, letters, css, animated, transition, opening, cut-out, inspiration" />
+	</head>
+
+	<body>
+		<input type="text" id="swq" value="" placeholder="输入中文or英文" />
+		<button type="button" id="btn">检查</button>
+		<p>检查结果:<span id="ps"></span></p>
+		<script>
+			'use strict';
+
+			function getStrLen(str) {
+				var enLen = 0;
+				var zhLen = 0;
+				for(let ch of str) {
+					if(isASCII(ch))
+						enLen++;
+					else
+						zhLen++;
+				}
+				return enLen + zhLen * 2;
+			}
+
+			function isASCII(c) {
+				return c.codePointAt(0) <= 0x4E00;
+			}
+
+			document.getElementById("btn").onclick = function() {
+				var t = document.getElementById("swq").value,
+					l = getStrLen(t),
+					ps = "";
+
+				if(l >= 4 && l <= 16) {
+					ps = "合法,字符长" + l + "字节";
+				} else {
+					ps = "不合法,字符长" + l + "字节";
+				}
+				document.getElementById("ps").innerText = ps;
+			};
+		</script>
+	</body>
+
+</html>
