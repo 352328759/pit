@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>slot 应该注意的细节</title>
+		<style>
+			.outline,
+			.outline * {
+				outline: 1px solid red;
+				margin: 0;
+				padding: 10px 5px;
+			}
+			
+			.slot__default,
+			.slot__default * {
+				outline: 1px solid green;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="swq">
+			<a href="https://juejin.im/post/5c64e11151882562e4726d98">https://juejin.im/post/5c64e11151882562e4726d98</a>
+			<swq></swq>
+		</div>
+
+		<script type="text/x-template" id="swq-template">
+			<div class="outline">父节点
+
+				<c1>
+					<div slot="slot1">div.slot1 常规用法</div>
+					<slot slot="slot2">slot.slot2 &lt;slot&gt; 不会解析成节点</slot>
+					<div slot="slot3">div.slot3 1</div>
+					<div slot="slot3">div.slot3 2</div>
+
+					<template v-slot:header>
+						<h1>Here might be a page title</h1>
+					</template>
+
+					4
+				</c1>
+
+			</div>
+		</script>
+		<script type="text/x-template" id="c1-template">
+			<div class="c1">子节点
+				<slot name="slot1"></slot>
+				<slot name="slot2"></slot>
+				<slot name="slot3"></slot>
+
+				<slot name="header"></slot>
+
+				<header>
+					<slot name="header"></slot>
+				</header>
+
+				<div>1</div>
+				<div>3</div>
+				<div class="slot__default">
+					默认插槽的内容
+					<slot></slot>
+				</div>
+				<div>5</div>
+			</div>
+		</script>
+		<script src="./jvw/vue/vue.2.5.16.js"></script>
+		<script type="text/javascript">
+			var c1 = {
+				template: "#c1-template",
+				props: [],
+				data() {
+					return {};
+				},
+				computed: {},
+				components: {},
+				watch: {},
+				methods: {},
+				created() {},
+				mounted() {
+					console.log(this.$slots)
+				},
+			}
+			var swq = {
+				template: "#swq-template",
+				props: [],
+				data: function() {
+					return {}
+				},
+				computed: {},
+				components: {
+					c1,
+				},
+				watch: {},
+				methods: {},
+				created() {},
+				mounted() {},
+			};
+			var vu = new Vue({
+				el: "#swq",
+				data: {},
+				methods: {},
+				components: {
+					swq: swq,
+				},
+				watch: {},
+				computed: {},
+				created() {},
+				mounted() {},
+			})
+		</script>
+	</body>
+
+</html>
