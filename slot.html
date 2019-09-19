@@ -11,7 +11,7 @@
 			.outline * {
 				outline: 1px solid red;
 				margin: 0;
-				padding: 10px 5px;
+				padding: 10px 7px;
 			}
 			
 			.slot__default,
@@ -26,48 +26,96 @@
 		<div id="swq">
 			<a href="https://juejin.im/post/5c64e11151882562e4726d98">https://juejin.im/post/5c64e11151882562e4726d98</a>
 			<swq></swq>
+
 		</div>
 
 		<script type="text/x-template" id="swq-template">
 			<div class="outline">父节点
 
 				<c1>
+					<div>txt.slot1</div>
 					<div slot="slot1">div.slot1 常规用法</div>
+					<div>txt.slot2</div>
 					<slot slot="slot2">slot.slot2 &lt;slot&gt; 不会解析成节点</slot>
-					<div slot="slot3">div.slot3 1</div>
-					<div slot="slot3">div.slot3 2</div>
-
-					<template v-slot:header>
-						<h1>Here might be a page title</h1>
+					<div>txt.slot3</div>
+					<slot slot="slot3">div.slot3-1; </slot>
+					<slot slot="slot3">div.slot3-2 同名插槽可以提供多个内容</slot>
+					<div>txt.slot4</div>
+					<div slot="slot4">div.slot4 同名插槽可以多次使用(2.6.0- 只能用一次)</div>
+					<div>txt.slot4_1</div>
+					<!--<slot slot="slot4_1">div.slot4_1 没有提供内容 或 内容为空</slot>-->
+					
+					<div>txt.slot5</div>
+					<template v-slot:slot5>template.v-slot5 2.6.0+ 的玩法;v-slot 只能添加到 &lt;template&gt; 或自定义组件上</template>
+					<div>txt.slot6</div>
+					<template v-slot:slot6>template.v-slot6 slot 在2.6.0+中已弃用, v-slot 跟 slot 是冲突的, v-slot 会覆盖 slot 的内容</template>
+					<slot slot="slot6">slot.slot6 被覆盖的内容</slot>
+					<div>txt.slot7</div>
+					<template v-slot:slot7>template.v-slot7-1 被覆盖的内容</template>
+					<template v-slot:slot7>template.v-slot7-2 v-slot 同名插槽不可以提供多个内容, 后者会覆盖前者</template>
+					<div>txt.slot8</div>
+					<template v-slot:slot8>
+						<div>template.v-slot8 同名插槽可以多次使用</div>
 					</template>
+					<div>txt.slot9</div>
+					<template v-slot:slot9>
+						<div>template.v-slot9 template.v-slot 不会解析出节点(跟 slot.slot 类似); 要想解析出节点, 可以在 &lt;template&gt; 中使用子节点</div>
+					</template>
+					<div>txt.slot10</div>
+					<!--<template v-slot:slot10>template.v-slot10 没有提供内容 或 内容为空</template>-->
 
-					4
 				</c1>
 
 			</div>
 		</script>
 		<script type="text/x-template" id="c1-template">
 			<div class="c1">子节点
-				<slot name="slot1"></slot>
-				<slot name="slot2"></slot>
-				<slot name="slot3"></slot>
+				<div>
+					<slot name="slot1"></slot>
+				</div>
+				<div>
+					<slot name="slot2"></slot>
+				</div>
+				<div>
+					<slot name="slot3"></slot>
+				</div>
+				<div>
+					<slot name="slot4"></slot>
+					<slot name="slot4"></slot>
+				</div>
+				<div>
+					<slot name="slot4_1">div.slot4_1 默认内容 [没有提供内容 或 内容为空 时显示]</slot>
+				</div>
+				
+				<div>
+					<slot name="slot5"></slot>
+				</div>
+				<div>
+					<slot name="slot6"></slot>
+				</div>
+				<div>
+					<slot name="slot7"></slot>
+				</div>
+				<div>
+					<slot name="slot8"></slot>
+					<slot name="slot8"></slot>
+				</div>
+				<div>
+					<slot name="slot9"></slot>
+				</div>
+				<div>
+					<slot name="slot10">template.v-slot10 默认内容 [没有提供内容 或 内容为空 时显示]</slot>
+				</div>
 
-				<slot name="header"></slot>
-
-				<header>
-					<slot name="header"></slot>
-				</header>
-
-				<div>1</div>
-				<div>3</div>
 				<div class="slot__default">
 					默认插槽的内容
 					<slot></slot>
 				</div>
-				<div>5</div>
+				<div>end</div>
 			</div>
 		</script>
-		<script src="./jvw/vue/vue.2.5.16.js"></script>
+		<!--<script src="./jvw/vue/vue.2.5.16.js"></script>-->
+		<script src="./jvw/vue/vue.2.6.10.js"></script>
 		<script type="text/javascript">
 			var c1 = {
 				template: "#c1-template",
