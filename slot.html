@@ -33,36 +33,36 @@
 			<div class="outline">父节点
 
 				<c1>
-					<div>txt.slot1</div>
-					<div slot="slot1">div.slot1 常规用法</div>
-					<div>txt.slot2</div>
-					<slot slot="slot2">slot.slot2 &lt;slot&gt; 不会解析成节点</slot>
-					<div>txt.slot3</div>
-					<slot slot="slot3">div.slot3-1; </slot>
-					<slot slot="slot3">div.slot3-2 同名插槽可以提供多个内容</slot>
-					<div>txt.slot4</div>
-					<div slot="slot4">div.slot4 同名插槽可以多次使用(2.6.0- 只能用一次)</div>
-					<div>txt.slot4_1</div>
-					<!--<slot slot="slot4_1">div.slot4_1 没有提供内容 或 内容为空</slot>-->
+					<div>txt.oSlot1</div>
+					<div slot="oSlot1">div.oSlot1 常规用法</div>
+					<div>txt.oSlot2</div>
+					<slot slot="oSlot2">slot.oSlot2 &lt;slot&gt; 不会解析成节点</slot>
+					<div>txt.oSlot3</div>
+					<slot slot="oSlot3">div.oSlot3-1; </slot>
+					<slot slot="oSlot3">div.oSlot3-2 同名插槽可以提供多个内容</slot>
+					<div>txt.oSlot4</div>
+					<div slot="oSlot4">div.oSlot4 同名插槽可以多次使用(2.6.0- 只能用一次)</div>
+					<div>txt.oSlot5</div>
+					<!--<slot slot="oSlot5">div.oSlot5 没有提供内容 或 内容为空</slot>-->
 					
-					<div>txt.slot5</div>
-					<template v-slot:slot5>template.v-slot5 2.6.0+ 的玩法;v-slot 只能添加到 &lt;template&gt; 或自定义组件上</template>
-					<div>txt.slot6</div>
-					<template v-slot:slot6>template.v-slot6 slot 在2.6.0+中已弃用, v-slot 跟 slot 是冲突的, v-slot 会覆盖 slot 的内容</template>
-					<slot slot="slot6">slot.slot6 被覆盖的内容</slot>
-					<div>txt.slot7</div>
-					<template v-slot:slot7>template.v-slot7-1 被覆盖的内容</template>
-					<template v-slot:slot7>template.v-slot7-2 v-slot 同名插槽不可以提供多个内容, 后者会覆盖前者</template>
-					<div>txt.slot8</div>
-					<template v-slot:slot8>
-						<div>template.v-slot8 同名插槽可以多次使用</div>
+					<div>txt.vSlot1</div>
+					<template v-slot:vSlot1>template.v-slot1 2.6.0+ 的玩法;v-slot 只能添加到 &lt;template&gt; 或自定义组件上</template>
+					<div>txt.vSlot2</div>
+					<template v-slot:vSlot2>template.v-slot2 slot 在2.6.0+中已弃用, v-slot 跟 slot 是冲突的, v-slot 会覆盖 slot 的内容</template>
+					<slot slot="vSlot2">slot.vSlot2 被覆盖的内容</slot>
+					<div>txt.vSlot3</div>
+					<template v-slot:vSlot3>template.v-slot3-1 被覆盖的内容</template>
+					<template v-slot:vSlot3>template.v-slot3-2 v-slot 同名插槽不可以提供多个内容, 后者会覆盖前者</template>
+					<div>txt.vSlot4</div>
+					<template v-slot:vSlot4>
+						<div>template.v-slot4 同名插槽可以多次使用</div>
 					</template>
-					<div>txt.slot9</div>
-					<template v-slot:slot9>
-						<div>template.v-slot9 template.v-slot 不会解析出节点(跟 slot.slot 类似); 要想解析出节点, 可以在 &lt;template&gt; 中使用子节点</div>
+					<div>txt.vSlot5</div>
+					<template v-slot:vSlot5>
+						<div>template.v-slot5 template.v-slot 不会解析出节点(跟 slot.slot 类似); 要想解析出节点, 可以在 &lt;template&gt; 中使用子节点</div>
 					</template>
-					<div>txt.slot10</div>
-					<!--<template v-slot:slot10>template.v-slot10 没有提供内容 或 内容为空</template>-->
+					<div>txt.vSlot6</div>
+					<!--<template v-slot:vSlot6>template.v-slot6 没有提供内容 或 内容为空</template>-->
 
 				</c1>
 
@@ -71,40 +71,40 @@
 		<script type="text/x-template" id="c1-template">
 			<div class="c1">子节点
 				<div>
-					<slot name="slot1"></slot>
+					<slot name="oSlot1"></slot>
 				</div>
 				<div>
-					<slot name="slot2"></slot>
+					<slot name="oSlot2"></slot>
 				</div>
 				<div>
-					<slot name="slot3"></slot>
+					<slot name="oSlot3"></slot>
 				</div>
 				<div>
-					<slot name="slot4"></slot>
-					<slot name="slot4"></slot>
+					<slot name="oSlot4"></slot>
+					<slot name="oSlot4"></slot>
 				</div>
 				<div>
-					<slot name="slot4_1">div.slot4_1 默认内容 [没有提供内容 或 内容为空 时显示]</slot>
+					<slot name="oSlot5">div.oSlot5 默认内容 [没有提供内容 或 内容为空 时显示]</slot>
 				</div>
 				
 				<div>
-					<slot name="slot5"></slot>
+					<slot name="vSlot1"></slot>
 				</div>
 				<div>
-					<slot name="slot6"></slot>
+					<slot name="vSlot2"></slot>
 				</div>
 				<div>
-					<slot name="slot7"></slot>
+					<slot name="vSlot3"></slot>
 				</div>
 				<div>
-					<slot name="slot8"></slot>
-					<slot name="slot8"></slot>
+					<slot name="vSlot4"></slot>
+					<slot name="vSlot4"></slot>
 				</div>
 				<div>
-					<slot name="slot9"></slot>
+					<slot name="vSlot5"></slot>
 				</div>
 				<div>
-					<slot name="slot10">template.v-slot10 默认内容 [没有提供内容 或 内容为空 时显示]</slot>
+					<slot name="vSlot6">template.v-slot6 默认内容 [没有提供内容 或 内容为空 时显示]</slot>
 				</div>
 
 				<div class="slot__default">
