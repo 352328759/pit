@@ -24,7 +24,7 @@
 	<body>
 
 		<div id="swq">
-			<a href="https://juejin.im/post/5c64e11151882562e4726d98">https://juejin.im/post/5c64e11151882562e4726d98</a>
+
 			<swq></swq>
 
 		</div>
@@ -33,38 +33,71 @@
 			<div class="outline">父节点
 
 				<c1>
-					<div>txt.oSlot1</div>
+					<!--txt.oSlot1-->
 					<div slot="oSlot1">div.oSlot1 常规用法</div>
-					<div>txt.oSlot2</div>
+
+					<!--txt.oSlot2-->
 					<slot slot="oSlot2">slot.oSlot2 &lt;slot&gt; 不会解析成节点</slot>
-					<div>txt.oSlot3</div>
-					<slot slot="oSlot3">div.oSlot3-1; </slot>
-					<slot slot="oSlot3">div.oSlot3-2 同名插槽可以提供多个内容</slot>
-					<div>txt.oSlot4</div>
-					<div slot="oSlot4">div.oSlot4 同名插槽可以多次使用(2.6.0- 只能用一次)</div>
-					<div>txt.oSlot5</div>
+
+					<!--txt.oSlot3-->
+					<slot slot="oSlot3">slot.oSlot3-1; </slot>
+					<slot slot="oSlot3">slot.oSlot3-2 同名插槽可以提供多个内容</slot>
+
+					<!--txt.oSlot4-->
+					<div slot="oSlot4">div.oSlot4 同名插槽可以多次使用(同v-slot; 2.6.0- 只能用一次)</div>
+
+					<!--txt.oSlot5-->
 					<!--<slot slot="oSlot5">div.oSlot5 没有提供内容 或 内容为空</slot>-->
-					
-					<div>txt.vSlot1</div>
+
+					<!--txt.oSlot6-->
+					<slot slot="oSlot6">slot.oSlot6 提供内容的节点, 必须是其组件的一级子节点; 二级节点提供内容的话, 将不被视为插槽内容(同 v-slot)</slot>
+					<div>
+						<div slot="oSlot6">div.oSlot6 另外, 普通标签将以普通节点解析; &lt;slot&gt; 则内容标签均不解析</div>
+						<slot slot="oSlot6">slot.oSlot6 被抛弃的内容</slot>
+					</div>
+
+					<!------------ slot 与 v-slot 的分界线 ------------>
+
+					<!--txt.vSlot1-->
 					<template v-slot:vSlot1>template.v-slot1 2.6.0+ 的玩法;v-slot 只能添加到 &lt;template&gt; 或自定义组件上</template>
-					<div>txt.vSlot2</div>
-					<template v-slot:vSlot2>template.v-slot2 slot 在2.6.0+中已弃用, v-slot 跟 slot 是冲突的, v-slot 会覆盖 slot 的内容</template>
+
+					<!--txt.vSlot2-->
+					<template v-slot:vSlot2>template.v-slot2 slot 在2.6.0+中已弃用, v-slot 跟 slot 是冲突的, 同名 v-slot 会覆盖 slot 的内容</template>
 					<slot slot="vSlot2">slot.vSlot2 被覆盖的内容</slot>
-					<div>txt.vSlot3</div>
+
+					<!--txt.vSlot3-->
 					<template v-slot:vSlot3>template.v-slot3-1 被覆盖的内容</template>
 					<template v-slot:vSlot3>template.v-slot3-2 v-slot 同名插槽不可以提供多个内容, 后者会覆盖前者</template>
-					<div>txt.vSlot4</div>
+
+					<!--txt.vSlot4-->
 					<template v-slot:vSlot4>
-						<div>template.v-slot4 同名插槽可以多次使用</div>
+						<div>template.v-slot4 同名插槽可以多次使用(同 slot)</div>
 					</template>
-					<div>txt.vSlot5</div>
+
+					<!--txt.vSlot5-->
 					<template v-slot:vSlot5>
-						<div>template.v-slot5 template.v-slot 不会解析出节点(跟 slot.slot 类似); 要想解析出节点, 可以在 &lt;template&gt; 中使用子节点</div>
+						<div>template.v-slot5 template.v-slot 不会解析出节点(跟 slot.slot 类似); 要想解析出节点, 可以在 &lt;template&gt; 中使用可解析的子节点</div>
 					</template>
-					<div>txt.vSlot6</div>
+
+					<!--txt.vSlot6-->
 					<!--<template v-slot:vSlot6>template.v-slot6 没有提供内容 或 内容为空</template>-->
 
+					<!--txt.vSlot7-->
+					<div>
+						template.v-slot7 被抛弃的内容
+						<!--<template v-slot:vSlot7>template.v-slot7 被抛弃的内容</template>-->
+					</div>
+
+					<!--txt.vSlot8-->
+					<template v-slot:vSlot8="vSlot8">template.v-slot8 作用域插槽 {{ vSlot8.user.firstName }}</template>
+
 				</c1>
+				<c2>
+					被抛弃的内容
+					<!--<slot slot="default">slot.default</slot>-->
+					<template v-slot:default>v-slot:default 可以定义默认插槽内容; slot="default" 则不可以, 或者根本没这个用法(反正是弃用的内容)</template>
+					被抛弃的内容
+				</c2>
 
 			</div>
 		</script>
@@ -86,7 +119,12 @@
 				<div>
 					<slot name="oSlot5">div.oSlot5 默认内容 [没有提供内容 或 内容为空 时显示]</slot>
 				</div>
-				
+				<div>
+					<slot name="oSlot6"></slot>
+				</div>
+
+				<div>---------- slot 与 v-slot 的分界线 ----------</div>
+
 				<div>
 					<slot name="vSlot1"></slot>
 				</div>
@@ -106,58 +144,69 @@
 				<div>
 					<slot name="vSlot6">template.v-slot6 默认内容 [没有提供内容 或 内容为空 时显示]</slot>
 				</div>
+				<div>
+					<slot name="vSlot7">template.v-slot7 必须是其组件的一级子节点; 二级节点提供内容的话, 将不被视为插槽内容(同 slot; template 标签内容不被解析, 组件未验证), 而且会报错</slot>
+				</div>
+				<div>
+					<slot name="vSlot8" v-bind:user="user">{{ user.lastName }}</slot>
+				</div>
 
 				<div class="slot__default">
 					默认插槽的内容
-					<slot></slot>
+					<div>
+						<slot></slot>
+					</div>
 				</div>
 				<div>end</div>
 			</div>
 		</script>
-		<!--<script src="./jvw/vue/vue.2.5.16.js"></script>-->
-		<script src="./jvw/vue/vue.2.6.10.js"></script>
+		<script type="text/x-template" id="c2-template">
+			<div>
+				<slot name="default"></slot>
+			</div>
+		</script>
+		<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
 		<script type="text/javascript">
 			var c1 = {
 				template: "#c1-template",
-				props: [],
 				data() {
-					return {};
+					return {
+						user: {
+							firstName: "firstName c1",
+							lastName: "lastName c1"
+						}
+					};
 				},
-				computed: {},
-				components: {},
-				watch: {},
-				methods: {},
-				created() {},
+				mounted() {
+					console.log(this.$slots)
+				},
+			}
+			var c2 = {
+				template: "#c2-template",
 				mounted() {
 					console.log(this.$slots)
 				},
 			}
 			var swq = {
 				template: "#swq-template",
-				props: [],
 				data: function() {
-					return {}
+					return {
+						user: {
+							firstName: "firstName swq",
+							lastName: "lastName swq"
+						}
+					}
 				},
-				computed: {},
 				components: {
 					c1,
+					c2,
 				},
-				watch: {},
-				methods: {},
-				created() {},
-				mounted() {},
 			};
 			var vu = new Vue({
 				el: "#swq",
-				data: {},
-				methods: {},
 				components: {
 					swq: swq,
 				},
-				watch: {},
-				computed: {},
-				created() {},
-				mounted() {},
 			})
 		</script>
 	</body>
