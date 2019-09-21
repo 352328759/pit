@@ -56,6 +56,9 @@
 						<slot slot="oSlot6">slot.oSlot6 被抛弃的内容</slot>
 					</div>
 
+					<!--txt.oSlot7-->
+					<c3 slot="oSlot7">c3.oSlot7 slot 可以直接作用在子组件上, 但不可以作用于父组件(不同v-slot)</c3>
+
 					<!------------ slot 与 v-slot 的分界线 ------------>
 
 					<!--txt.vSlot1-->
@@ -91,6 +94,11 @@
 					<!--txt.vSlot8-->
 					<template v-slot:vSlot8="vSlot8">template.v-slot8 作用域插槽 {{ vSlot8.user.firstName }}</template>
 
+					<!--txt.vSlot9-->
+					<template v-slot:vSlot9>
+						<c3>c3.v-vSlot9 v-slot 可以直接作用在父组件上, 但不可以作用于子组件(不同slot); 或者说 [子组件 + v-slot] 不会解读为父组件的插槽, 而是子组件自己的插槽</c3>
+					</template>
+
 				</c1>
 				<c2>
 					被抛弃的内容
@@ -98,6 +106,8 @@
 					<template v-slot:default>v-slot:default 可以定义默认插槽内容; slot="default" 则不可以, 或者根本没这个用法(反正是弃用的内容)</template>
 					被抛弃的内容
 				</c2>
+
+				<c3 v-slot:vSlot9>c3.v-vSlot9 v-slot 不可以直接作用在子组件(c3)上; 只能作用于父组件, 此例就是不能作 c1 的插槽, 却可以作 c3 自己的插槽, 而且前提是 c3 仅有一个插槽</c3>
 
 			</div>
 		</script>
@@ -121,6 +131,9 @@
 				</div>
 				<div>
 					<slot name="oSlot6"></slot>
+				</div>
+				<div>
+					<slot name="oSlot7"></slot>
 				</div>
 
 				<div>---------- slot 与 v-slot 的分界线 ----------</div>
@@ -150,6 +163,9 @@
 				<div>
 					<slot name="vSlot8" v-bind:user="user">{{ user.lastName }}</slot>
 				</div>
+				<div>
+					<slot name="vSlot9"></slot>
+				</div>
 
 				<div class="slot__default">
 					默认插槽的内容
@@ -157,12 +173,18 @@
 						<slot></slot>
 					</div>
 				</div>
-				<div>end</div>
+				<div>c1 end</div>
 			</div>
 		</script>
 		<script type="text/x-template" id="c2-template">
 			<div>
 				<slot name="default"></slot>
+			</div>
+		</script>
+		<script type="text/x-template" id="c3-template">
+			<div>
+				<slot name="vSlot9" v-if="$slots.vSlot9"></slot>
+				<slot name="default" v-else=""></slot>
 			</div>
 		</script>
 		<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
@@ -178,12 +200,21 @@
 					};
 				},
 				mounted() {
+					console.log("c1")
 					console.log(this.$slots)
 				},
 			}
 			var c2 = {
 				template: "#c2-template",
 				mounted() {
+					console.log("c2")
+					console.log(this.$slots)
+				},
+			}
+			var c3 = {
+				template: "#c3-template",
+				mounted() {
+					console.log("c3")
 					console.log(this.$slots)
 				},
 			}
@@ -200,6 +231,7 @@
 				components: {
 					c1,
 					c2,
+					c3,
 				},
 			};
 			var vu = new Vue({
