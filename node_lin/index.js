@@ -6,8 +6,9 @@ var handle = {}
 handle["/"] = requestHandlers.start;
 handle["/start"] = requestHandlers.start;
 handle["/upload"] = requestHandlers.upload;
+handle["/show"] = requestHandlers.show;
 
 server.start(router.route, handle);
 
-//阻塞与非阻塞
-//p43
+//p73
+//我们从server.js开始
