@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>vant</title>
+		<link rel="stylesheet" href="./jvw/vant/vant@1.6.min.css" />
+		<style></style>
+	</head>
+
+	<body>
+
+		<div id="swq" class="swq-page">
+			<swq></swq>
+		</div>
+
+		<script src="./jvw/mock/mock-min.js"></script>
+		<script src="./jvw/vue/vue.2.6.10.js"></script>
+		<script src="./jvw/vant/vant@2.2.min.js"></script>
+		<script src="http://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
+
+		<script type="text/x-template" id="swq-template">
+			<div>
+
+				<!--<van-image-preview v-model="show" :images="images" :startPosition="2" @change="onChange">
+					<template v-slot:index>第{{ index }}页</template>
+				</van-image-preview>-->
+
+				<van-button type="primary" @click="open">主要按钮</van-button>
+
+			</div>
+		</script>
+		<script type="text/javascript">
+			var _mock2 = {
+				"imageDatas|8": ["@image('200x100', '#ffcc33', '#FFF', 'png', '@ctitle')"],
+				//				"imageDatas|8": [{
+				//					"title": "@ctitle",
+				//					"src": "@image('200x100', '#ffcc33', '#FFF', 'png', '@ctitle')"
+				//				}],
+			}
+			Mock.mock("/products/", _mock2);
+		</script>
+		<script type="text/javascript">
+			var swq = {
+				template: "#swq-template",
+				props: [],
+				data: function() {
+					return {
+						show: false,
+						index: 0,
+						images: []
+					}
+				},
+				computed: {},
+				components: {},
+				watch: {},
+				methods: {
+					onChange(index) {
+						this.index = index;
+					},
+					open() {
+						var _this = this
+						//						_this.show = true;
+						vant.ImagePreview({
+							images: _this.images,
+						})
+					}
+				},
+				created() {},
+				mounted() {
+					var _this = this
+					axios.get("/products/").then(function(response) {
+						_this.images = response.data.imageDatas
+						console.log(response.data);
+					}).catch(function(error) {
+						console.log(error);
+					});
+				},
+			};
+			var vu = new Vue({
+				el: "#swq",
+				data: {},
+				methods: {},
+				components: {
+					swq: swq,
+				},
+				watch: {},
+				computed: {},
+				mounted: function() {
+					var _this = this
+				}
+			})
+		</script>
+	</body>
+
+</html>
