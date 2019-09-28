@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title>vant</title>
-		<link rel="stylesheet" href="./jvw/vant/vant@1.6.min.css" />
+		<link rel="stylesheet" href="./jvw/vant/vant@2.2.min.css" />
 		<style></style>
 	</head>
 
@@ -28,7 +28,13 @@
 					<template v-slot:index>第{{ index }}页</template>
 				</van-image-preview>-->
 
-				<van-button type="primary" @click="open">主要按钮</van-button>
+				<template v-for="(item, index) in images">
+					<van-image width="30vw" height="30vw" fit="cover" :src="item" @click="previewThis(index, images)"></van-image>
+				</template>
+
+				<div>
+					<van-button type="primary" @click="open">主要按钮</van-button>
+				</div>
 
 			</div>
 		</script>
@@ -65,6 +71,13 @@
 						//						_this.show = true;
 						vant.ImagePreview({
 							images: _this.images,
+						})
+					},
+					previewThis(index, images) {
+						var _this = this
+						vant.ImagePreview({
+							images: images,
+							startPosition: index,
 						})
 					}
 				},
