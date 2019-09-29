@@ -24,10 +24,6 @@
 		<script type="text/x-template" id="swq-template">
 			<div>
 
-				<!--<van-image-preview v-model="show" :images="images" :startPosition="2" @change="onChange">
-					<template v-slot:index>第{{ index }}页</template>
-				</van-image-preview>-->
-
 				<template v-for="(item, index) in images">
 					<van-image width="30vw" height="30vw" fit="cover" :src="item" @click="previewThis(index, images)"></van-image>
 				</template>
@@ -54,21 +50,16 @@
 				props: [],
 				data: function() {
 					return {
-						show: false,
-						index: 0,
-						images: []
+
+						images: [],
 					}
 				},
 				computed: {},
 				components: {},
 				watch: {},
 				methods: {
-					onChange(index) {
-						this.index = index;
-					},
 					open() {
 						var _this = this
-						//						_this.show = true;
 						vant.ImagePreview({
 							images: _this.images,
 						})
@@ -86,9 +77,16 @@
 					var _this = this
 					axios.get("/products/").then(function(response) {
 						_this.images = response.data.imageDatas
+						_this.images.push("./img/1.jpg")
 						console.log(response.data);
 					}).catch(function(error) {
 						console.log(error);
+					});
+
+					vant.Toast.loading({
+						duration: 0, 
+						forbidClick: true,
+						loadingType: 'spinner',
 					});
 				},
 			};
