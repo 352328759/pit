@@ -1,0 +1,29 @@
+express 可以本地或全局安装
+
+如果要在命令行使用 express 命令（express -V 或 键 express 项目）的话，就需要全局安装
+
+v4.x以上，还需要安装 express-generator 模块
+
+
+必须全局安装的可能原因
+node_global\node_modules\.bin 目录下的 express、express.cmd文件
+node_global 目录下的 express、express.cmd文件
+环境变量 path 没指向本地项目的 node_modules\.bin
+
+
+
+不知道怎么讲，module 可能跟浏览器里的 window 差不多
+module 可以在app.js中打印出来
+
+
+除了改PC的环境变量，在文件开头加入也可以
+module.paths.push("D:\\node\\node_global\\node_modules")
+
+
+
+
+
+
+
+
+end
