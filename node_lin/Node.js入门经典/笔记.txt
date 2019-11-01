@@ -3,7 +3,7 @@ https://github.com/shapeshed/nodejsbook.io.examples
 
 express 可以本地或全局安装
 
-如果要在命令行使用 express 命令（express -V 或 键 express 项目）的话，就需要全局安装
+如果要在命令行使用 express 命令（express -V 或 建 express 项目）的话，就需要全局安装
 
 v4.x以上，还需要安装 express-generator 模块
 
