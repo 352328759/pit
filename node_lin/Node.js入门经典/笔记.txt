@@ -24,7 +24,17 @@ module.paths.push("D:\\node\\node_global\\node_modules")
 
 
 
+***************************************
 
+
+express遇到的问题
+[https://www.cnblogs.com/zhuzhenwei918/p/6749502.html]
+很长,多看几次
+
+
+***************************************
+
+adobe acrobat reader dc
 
 
 
