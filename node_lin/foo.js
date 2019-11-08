@@ -5,8 +5,13 @@
 
 // var _ = require('underscore');
 // var express = require('express');
-var fs = require('fs');
+// var fs = require('fs');
+var mongoose = require('mongoose');
 
-var something = process.env
-console.log(something)
-
+mongoose.connect("mongodb://127.0.0.1:27017/test", function (err) {
+    if (!err) {
+        console.log('connected to MongoDB');
+    } else {
+        throw err;
+    }
+});
