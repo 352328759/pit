@@ -1,25 +1,25 @@
-Ê¾ÀıµØÖ·
+ç¤ºä¾‹åœ°å€
 https://github.com/shapeshed/nodejsbook.io.examples
 
-express ¿ÉÒÔ±¾µØ»òÈ«¾Ö°²×°
+express å¯ä»¥æœ¬åœ°æˆ–å…¨å±€å®‰è£…
 
-Èç¹ûÒªÔÚÃüÁîĞĞÊ¹ÓÃ express ÃüÁî£¨express -V »ò ½¨ express ÏîÄ¿£©µÄ»°£¬¾ÍĞèÒªÈ«¾Ö°²×°
+å¦‚æœè¦åœ¨å‘½ä»¤è¡Œä½¿ç”¨ express å‘½ä»¤ï¼ˆexpress -V æˆ– å»º express é¡¹ç›®ï¼‰çš„è¯ï¼Œå°±éœ€è¦å…¨å±€å®‰è£…
 
-v4.xÒÔÉÏ£¬»¹ĞèÒª°²×° express-generator Ä£¿é
-
-
-±ØĞëÈ«¾Ö°²×°µÄ¿ÉÄÜÔ­Òò
-node_global\node_modules\.bin Ä¿Â¼ÏÂµÄ express¡¢express.cmdÎÄ¼ş
-node_global Ä¿Â¼ÏÂµÄ express¡¢express.cmdÎÄ¼ş
-»·¾³±äÁ¿ path Ã»Ö¸Ïò±¾µØÏîÄ¿µÄ node_modules\.bin
+v4.xä»¥ä¸Šï¼Œè¿˜éœ€è¦å®‰è£… express-generator æ¨¡å—
 
 
+å¿…é¡»å…¨å±€å®‰è£…çš„å¯èƒ½åŸå› 
+node_global\node_modules\.bin ç›®å½•ä¸‹çš„ expressã€express.cmdæ–‡ä»¶
+node_global ç›®å½•ä¸‹çš„ expressã€express.cmdæ–‡ä»¶
+ç¯å¢ƒå˜é‡ path æ²¡æŒ‡å‘æœ¬åœ°é¡¹ç›®çš„ node_modules\.bin
 
-²»ÖªµÀÔõÃ´½²£¬module ¿ÉÄÜ¸úä¯ÀÀÆ÷ÀïµÄ window ²î²»¶à
-module ¿ÉÒÔÔÚapp.jsÖĞ´òÓ¡³öÀ´
 
 
-³ıÁË¸ÄPCµÄ»·¾³±äÁ¿£¬ÔÚÎÄ¼ş¿ªÍ·¼ÓÈëÒ²¿ÉÒÔ
+ä¸çŸ¥é“æ€ä¹ˆè®²ï¼Œmodule å¯èƒ½è·Ÿæµè§ˆå™¨é‡Œçš„ window å·®ä¸å¤š
+module å¯ä»¥åœ¨app.jsä¸­æ‰“å°å‡ºæ¥
+
+
+é™¤äº†æ”¹PCçš„ç¯å¢ƒå˜é‡ï¼Œåœ¨æ–‡ä»¶å¼€å¤´åŠ å…¥ä¹Ÿå¯ä»¥
 module.paths.push("D:\\node\\node_global\\node_modules")
 
 
@@ -27,25 +27,25 @@ module.paths.push("D:\\node\\node_global\\node_modules")
 ***************************************
 
 
-expressÓöµ½µÄÎÊÌâ
+expressé‡åˆ°çš„é—®é¢˜
 [https://www.cnblogs.com/zhuzhenwei918/p/6749502.html]
-ºÜ³¤,¶à¿´¼¸´Î
+å¾ˆé•¿,å¤šçœ‹å‡ æ¬¡
 
 
 ***************************************
 
 adobe acrobat reader dc
-pdfÈí¼ş
+pdfè½¯ä»¶
 
 ***************************************
 
 extends block
-Î¨Ò» ºóÕß¸²¸ÇÇ°Õß
-ÕÒÄ¿±ê,°Ñ×Ô¼º²åÈëÄ¿±êÎ»ÖÃ
+å”¯ä¸€ åè€…è¦†ç›–å‰è€…
+æ‰¾ç›®æ ‡,æŠŠè‡ªå·±æ’å…¥ç›®æ ‡ä½ç½®
 
 
 include
-¶à¸ö ÕÒÄÚÈİ²åÈëµ½×Ô¼ºÀïÃæ
+å¤šä¸ª æ‰¾å†…å®¹æ’å…¥åˆ°è‡ªå·±é‡Œé¢
 
 
 
