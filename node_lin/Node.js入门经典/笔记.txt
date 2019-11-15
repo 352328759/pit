@@ -1,6 +1,24 @@
 示例地址
 https://github.com/shapeshed/nodejsbook.io.examples
 
+
+
+***************************************
+
+http.createServer(app).listen()与app.listen()的区别
+
+写法一：
+var app = require('express')();
+app.listen(port)
+
+写法二：
+var app = require('express')();
+var http = require('http').createServer(app);
+http.listen(port);
+
+
+***************************************
+
 express 可以本地或全局安装
 
 如果要在命令行使用 express 命令（express -V 或 建 express 项目）的话，就需要全局安装

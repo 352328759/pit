@@ -6,40 +6,6 @@ D:.
 │  LICENSE
 │  README.md
 │  
-├─hour10
-│  ├─example01
-│  │      test.js
-│  │      
-│  ├─example02
-│  │      test.js
-│  │      
-│  ├─example03
-│  │      package.json
-│  │      test.js
-│  │      
-│  ├─example04
-│  │      package.json
-│  │      test.js
-│  │      test.txt
-│  │      
-│  ├─example05
-│  │      package.json
-│  │      test.js
-│  │      
-│  ├─example06
-│  │      package.json
-│  │      test.js
-│  │      test.txt
-│  │      
-│  ├─example07
-│  │      package.json
-│  │      test.js
-│  │      
-│  └─example08
-│          package.json
-│          test.js
-│          test.txt
-│          
 ├─hour11
 │  ├─example01
 │  │  │  app.js
