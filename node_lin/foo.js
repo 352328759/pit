@@ -11,7 +11,6 @@
 
 var http = require('http');
 var fs = require('fs');
-var count = 0;
 
 var server = http.createServer(function (req, res) {
     fs.readFile('./index.html', function (error, data) {
@@ -24,15 +23,22 @@ console.log('Server running at http://127.0.0.1:3000/');
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
-    count++;
-    console.log('User connected. ' + count + ' user(s) present.');
-    socket.emit('users', { number: count });
-    socket.broadcast.emit('users', { number: count });
-    socket.on('disconnect', function () {
-        count--;
-        console.log('User disconnected. ' + count + ' user(s) present.');
-        socket.broadcast.emit('users', { number: count });
+    socket.on('ping1', function (data) {
+        console.log('Received PING. Sending PONG..');
+        socket.emit('pong', { text: 'PONG' });
     });
+    socket.on('pong', function (data) {
+        console.log('Received PONG response. PONG!');
+    });
+    socket.on('message', function (data) {
+        socket.broadcast.emit('push message', data);
+        console.log("message")
+        socket.emit('push message', data);
+    });
+    setInterval(function () {
+        console.log('Sending PING to client..');
+        socket.emit('ping', { text: 'PING' });
+    }, 10000);
 });
 
 

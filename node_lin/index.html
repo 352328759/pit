@@ -8,16 +8,27 @@
 
 <body>
   <h1>Socket.IO Example</h1>
-  <h2>How many users are here?</h2>
-  <p id="count"></p>
+  <button id="ping">Send PING to server</button>
+  <button id="ping2">ping2</button>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script>
     var socket = io.connect('http://127.0.0.1:3000');
-    var count = document.getElementById('count');
-    socket.on('users', function (data) {
-      console.log('Got udpate from the server');
-      console.log('There are ' + data.number + ' users');
-      count.innerHTML = data.number
+    socket.on('ping', function (data) {
+      console.log('Received PING. Sending PONG..');
+      socket.emit('pong', { text: 'PONG' });
+    });
+    socket.on('pong', function (data) {
+      console.log('Received PONG response. PONG!');
+    });
+    socket.on('push message', function (data) {
+      console.log(data)
+    });
+    $('#ping').click(function () {
+      socket.emit('ping1', { text: 'PING' });
+    });
+    $('#ping2').click(function () {
+      socket.emit('message', { text: "message.value" });
     });
   </script>
 
