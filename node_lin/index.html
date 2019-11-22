@@ -1,20 +1,38 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <title>Socket.IO Express Example</title>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<title>Socket.IO Express Example</title>
+	</head>
 
-<body>
-  <h1>Socket.IO Express Example</h1>
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    var socket = io.connect();
-    socket.on('welcome', function (data) {
-      console.log(data.text);
-    });
-  </script>
-</body>
+	<body>
+		<h1>Socket.IO Express Example</h1>
+		<form id="set-nickname">
+			<label for="nickname">Nickname:</label>
+			<input type="text" id="nickname" />
+			<input type="submit" />
+		</form>
+		<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			var socket = io.connect();
+			jQuery(function($) {
+				var nickName = $('#nickname');
+				var setNicknameForm = $('#set-nickname');
+				setNicknameForm.submit(function(event) {
+					event.preventDefault();
+					socket.emit('nickname', nickName.val(), function(data) {
+						if(data) {
+							console.log('Nickname set successfully');
+							setNicknameForm.hide();
+						} else {
+							setNicknameForm.prepend('<p>Sorry - that nickname is already taken.');
+						}
+					});
+				});
+			});
+		</script>
+	</body>
 
 </html>
