@@ -5,7 +5,6 @@
 // var assert = require('assert');
 // var http = require('http');
 // var io = require('socket.io');
-// var portfinder = require('portfinder')
 
 var express = require('express');
 var errorhandler = require('errorhandler')();
