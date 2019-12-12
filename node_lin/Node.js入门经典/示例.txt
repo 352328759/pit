@@ -8,61 +8,6 @@ D:.
 │  tree.txt
 │  tree.txt.bat
 │  
-├─hour15
-│  ├─example01
-│  │      app.js
-│  │      
-│  ├─example02
-│  │      app.js
-│  │      
-│  ├─example03
-│  │      app.js
-│  │      
-│  ├─example04
-│  │      app.js
-│  │      
-│  ├─example05
-│  │      app.js
-│  │      package.json
-│  │      
-│  ├─example06
-│  │  │  app.js
-│  │  │  package.json
-│  │  │  
-│  │  └─test
-│  │          .gitkeep
-│  │          
-│  ├─example07
-│  │  │  app.js
-│  │  │  package.json
-│  │  │  
-│  │  └─test
-│  │          tasks.js
-│  │          
-│  └─example08
-│      │  app.js
-│      │  package.json
-│      │  
-│      └─test
-│              tasks.js
-│              
-├─hour16
-│  ├─example01
-│  │      process.js
-│  │      
-│  ├─example02
-│  │      process.js
-│  │      
-│  ├─example03
-│  │      process.js
-│  │      
-│  ├─example04
-│  │      script
-│  │      
-│  └─example05
-│          README.md
-│          script
-│          
 ├─hour17
 │  ├─example01
 │  │      app.js
