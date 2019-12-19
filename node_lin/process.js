@@ -1,16 +1,9 @@
-process.on('SIGINT', function() {
-  console.log('Got a SIGINT. Exiting');
-  process.exit(0);
+var spawn = require('child_process').spawn;
+var	ping = spawn('tree');
+// var	ping = spawn('ping', ['bbc.co.uk']);
+
+ping.stdout.setEncoding('utf8');
+ping.stdout.on('data', function (data) {
+	console.log(data);
 });
 
-process.on('SIGTERM', function() {
-  console.log('Got a SIGTERM. Exiting');
-  process.exit(0);
-});
-
-setInterval(function() {
-  // This keeps the process running
-}, 10000);
-
-console.log('Run `kill ' + process.pid + '` to send a SIGTERM')
-console.log('Run `kill -s SIGINT ' + process.pid + '` to send a SIGINT')
