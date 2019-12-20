@@ -8,20 +8,6 @@ D:.
 │  tree.txt
 │  tree.txt.bat
 │  
-├─hour17
-│  ├─example01
-│  │      app.js
-│  │      
-│  ├─example02
-│  │      app.js
-│  │      
-│  ├─example03
-│  │      child.js
-│  │      parent.js
-│  │      
-│  └─example04
-│          app.js
-│          
 ├─hour18
 │  ├─example01
 │  │      index.html
