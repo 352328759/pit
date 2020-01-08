@@ -1,14 +1,13 @@
 <script>
 	// import ElUpload from 'element-ui/packages/upload';
 
-	import UploadList from 'element-ui/packages/upload/src/upload-list';
-	import Upload from 'element-ui/packages/upload/src/upload';
+	// import UploadList from 'element-ui/packages/upload/src/upload-list';
+	import UploadList from './upload-list.vue';
+	// import Upload from 'element-ui/packages/upload/src/upload';
+	import Upload from './upload.vue';
 	import ElProgress from 'element-ui/packages/progress';
 
-
 	function noop() { }
-
-
 
 	export default {
 		name: 'DUpload',
@@ -258,6 +257,7 @@
 			fileList: {
 				immediate: true,
 				handler(fileList) {
+					console.log("watch-fileList")
 					this.uploadFiles = fileList.map(item => {
 						item.uid = item.uid || (Date.now() + this.tempIndex++);
 						item.status = item.status || 'success';
@@ -270,8 +270,13 @@
 		mounted() {
 			if (process.env.NODE_ENV === 'production') return;
 			if (!this.$vnode) return;
-			const { props = {}, events = {} } = this.getMigratingConfig();
-			const { data, componentOptions } = this.$vnode;
+			const {
+				props = {}, events = {}
+			} = this.getMigratingConfig();
+			const {
+				data,
+				componentOptions
+			} = this.$vnode;
 			const definedProps = data.attrs || {};
 			const definedEvents = componentOptions.listeners || {};
 
