@@ -3,9 +3,10 @@ var name = 'Josh Perez';
 class Game extends React.Component {
 
 	render() {
-		return (<a href="https://react.docschina.org/docs/handling-events.html">Hello, {name} {this.props.swq}</a>)
+		return (<a href="https://react.docschina.org/docs/conditional-rendering.html">Hello, {name} {this.props.swq}</a>)
 	}
 }
+
 
 // ========================================
 
