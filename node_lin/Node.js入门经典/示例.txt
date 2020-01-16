@@ -1,4 +1,4 @@
-文件夹 PATH 列表
+﻿文件夹 PATH 列表
 卷序列号为 029E-1216
 D:.
 │  .gitignore
@@ -8,22 +8,6 @@ D:.
 │  tree.txt
 │  tree.txt.bat
 │  
-├─hour18
-│  ├─example01
-│  │      index.html
-│  │      
-│  ├─example02
-│  │      app.js
-│  │      
-│  ├─example03
-│  │      app.js
-│  │      
-│  ├─example04
-│  │      app.js
-│  │      
-│  └─example05
-│          app.js
-│          
 ├─hour19
 │  ├─example01
 │  │      app.js
