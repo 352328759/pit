@@ -1,103 +1,12 @@
 ﻿文件夹 PATH 列表
 卷序列号为 029E-1216
 D:.
-│  .gitignore
-│  ERRATA.md
-│  LICENSE
-│  README.md
-│  tree.txt
-│  tree.txt.bat
-│  
-├─hour23
-│  ├─example01
-│  │      app.js
-│  │      package.json
-│  │      
-│  ├─example02
-│  │      app.js
-│  │      package.json
-│  │      
-│  ├─example03
-│  │      app.js
-│  │      package.json
-│  │      
-│  ├─example04
-│  │      app.js
-│  │      package.json
-│  │      
-│  └─example05
-│          app.js
-│          package.json
-│          
-└─hour24
-    ├─example01
-    │  │  app.js
-    │  │  package.json
-    │  │  
-    │  ├─public
-    │  │  │  ._.DS_Store
-    │  │  │  
-    │  │  ├─javascripts
-    │  │  │      ._.DS_Store
-    │  │  │      application.js
-    │  │  │      
-    │  │  └─stylesheets
-    │  │          style.css
-    │  │          
-    │  └─views
-    │          index.jade
-    │          
-    ├─example02
-    │  │  app.js
-    │  │  package.json
-    │  │  
-    │  ├─public
-    │  │  │  ._.DS_Store
-    │  │  │  
-    │  │  ├─javascripts
-    │  │  │      ._.DS_Store
-    │  │  │      application.js
-    │  │  │      
-    │  │  └─stylesheets
-    │  │          style.css
-    │  │          
-    │  └─views
-    │          index.jade
-    │          
-    ├─example03
-    │  │  app.js
-    │  │  package.json
-    │  │  
-    │  ├─public
-    │  │  │  ._.DS_Store
-    │  │  │  
-    │  │  ├─javascripts
-    │  │  │      .application.js.swp
-    │  │  │      ._.DS_Store
-    │  │  │      application.js
-    │  │  │      
-    │  │  └─stylesheets
-    │  │          style.css
-    │  │          
-    │  └─views
-    │          .index.jade.swp
-    │          index.jade
-    │          
-    └─example04
-        │  app.js
-        │  package.json
-        │  
-        ├─public
-        │  │  ._.DS_Store
-        │  │  
-        │  ├─javascripts
-        │  │      .application.js.swp
-        │  │      ._.DS_Store
-        │  │      application.js
-        │  │      
-        │  └─stylesheets
-        │          style.css
-        │          
-        └─views
-                index.jade
-                
+    .gitignore
+    ERRATA.md
+    LICENSE
+    README.md
+    tree.txt
+    tree.txt.bat
+    
+没有子文件夹 
+
