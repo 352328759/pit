@@ -1,0 +1,24 @@
+﻿replace
+stringObj.search(rgExp, 替换文本)
+/.../g 全局匹配
+
+search
+stringObj.search(rgExp)
+只匹配第一個,+g,反复调用都一样
+
+match
+stringObj.match(rgExp)
+/.../g 全局匹配
+
+exec
+rgExp.exec(stringObj)
+/.../g 全局匹配
+在同一个rgExp上调用exec,每次往后一位匹配,再也找不到匹配的文本时返回null并重头匹配
+rgExp.lastIndex指定开始检索位置,每次匹配后rgExp.lastIndex设置为匹配文本的最后一个字符的下一个位置,再也找不到匹配的文本时rgExp.lastIndex重置为 0
+循环调用时,g是必要的
+
+test
+rgexp.test(stringObj)
+返回一个 Boolean 值,表示是否匹配成功
+
+end
