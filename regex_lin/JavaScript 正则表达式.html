@@ -25,6 +25,7 @@
 			.hl {
 				background-color: red;
 				color: white;
+				border: 1px solid #aff;
 			}
 		</style>
 	</head>
@@ -33,17 +34,12 @@
 		<pre id="swq"></pre>
 
 		<script>
-			var text = `<ul class="footer mainNav js-main-nav">
-	<li class="mainNav__list act">
-		<a class="mainNav__list__icon" href="#" style="background-image: url(./images/public/mainNav-1.png);"></a>
-	</li>
-	<li class="mainNav__list">
-		<a class="mainNav__list__icon" href="#" style="background-image: url(./images/public/mainNav-2.png);"></a>
-	</li>
-	<li class="mainNav__list">
-		<a class="mainNav__list__icon" href="#" style="background-image: url(./images/public/mainNav-3.png);"></a>
-	</li>
-</ul>`
+			var text = `aaaabaaaaaaaaaabaaaaaaaaa
+aaaabaaaaaaaaaabaaaaaaaaa
+aaaabaaaaaaaaaabaaaaaaaaa
+aaaabaaaaaaaaaabaaaaaaaaa
+babbaaaabvaaaaaaaaaabaaaaaaaaa
+bcdcdcdcdcd464546873156764`
 			var text2 = `Harry Potter and the Sorcerer's Stone
 CHAPTER ONE
 THE BOY WHO LIVED
@@ -59,8 +55,8 @@ Mr. Dursley always sat with his back to the window in his office on the ninth fl
 He'd forgotten all about the people in cloaks until he passed a group of them next to the baker's. He eyed them angrily as he passed. He didn't know why, but they made him uneasy. This bunch were whispering excitedly, too, and he couldn't see a single collecting tin. It was on his way back past them, clutching a large doughnut in a bag, that he caught a few words of what they were saying.
  "The Potters, that's right, that's what I heard yes, their son, Harry"`
 
-			var str = text2
-			var patt = /h[ie]/g
+			var str = text
+			var patt = /b(cd){1,3}/g
 			var result;
 			var _i = 0
 			var sIndex = 0
