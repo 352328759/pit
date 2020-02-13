@@ -55,15 +55,16 @@ Mr. Dursley always sat with his back to the window in his office on the ninth fl
 He'd forgotten all about the people in cloaks until he passed a group of them next to the baker's. He eyed them angrily as he passed. He didn't know why, but they made him uneasy. This bunch were whispering excitedly, too, and he couldn't see a single collecting tin. It was on his way back past them, clutching a large doughnut in a bag, that he caught a few words of what they were saying.
  "The Potters, that's right, that's what I heard yes, their son, Harry"`
 
-			var str = text
-			var patt = /b(cd){1,3}/g
+			var str = text2
+			var patt = /([a-zA-Z])\1/g
 			var result;
 			var _i = 0
 			var sIndex = 0
 			var _html = ""
 
 			while(_i < 1000 && (result = patt.exec(str)) != null) {
-				console.log(result[0])
+				console.log(RegExp.$1)
+				// console.log(result[0])
 				// console.log(result.index)
 				// console.log(patt.lastIndex)
 

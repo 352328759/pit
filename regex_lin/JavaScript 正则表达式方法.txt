@@ -21,4 +21,30 @@ test
 rgexp.test(stringObj)
 返回一个 Boolean 值,表示是否匹配成功
 
+RegExp 对象
+通常正则表达式写法: /pattern/attributes
+RegExp正则表达式写法: new RegExp(pattern, attributes)
++
+text.replace(/([Hh])/g, "($1)");
+等价于
+var _reg = new RegExp("([Hh])", "g");
+text2.replace(_reg, "($1)");
++
+replace 里,$[1-9]表示正则表达式中()捕获到的内容, $与()顺序对应, 若正则表达式中没有(), $1视为一般字符"$1"
+replace 外,可以用 RegExp.$1 获取捕获结果; RegExp 是对象名,不是变量名,如上例 _reg.$1 是错误用法; RegExp只能取到最近一次的匹配结果
++
+RegExp.$1 对[replace, search, match, exec, test] 有效
++
+(...)分组+捕获;(?:...)只分组不捕获
+text.replace(/([Aa](?:[Rr]))/g, "($1)");
+
+反向引用
+text.search(/(r)\1/g)
+正则表达式里‘\1’可以取到捕获的内容
+好像不支持 RegExp正则表达式写法, ‘new RegExp("(r)\1", "g")’ 无效
+
+
+
+
+
 end
