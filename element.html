@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>vue</title>
+		<!--<link rel="stylesheet" href="https://keepfool.github.io/vue-tutorials/01.GettingStarted/styles/demo.css" />-->
+		<!--<link rel="stylesheet" href="./js/element-ui.2.4.0/element-ui.2.4.0.css">-->
+		<link rel="stylesheet" href="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.css">
+		<style>
+
+		</style>
+		<!--<meta http-equiv="refresh" content="30" />-->
+	</head>
+
+	<body>
+
+		<div id="swq">
+
+			<swq></swq>
+
+		</div>
+
+		<script type="text/x-template" id="swq-template">
+			<div>
+				<!--<c1></c1>-->
+				<!--<c2></c2>-->
+
+				<el-button type="text" v-popover:delePopover>删除</el-button>
+
+				<el-popover ref="delePopover" placement="right" v-model="visible">
+					<p>确定删除吗？</p>
+					<div style="text-align: right; margin: 0">
+						<el-button type="text" @click="visible = false">取消</el-button>
+						<el-button type="primary" size="mini" @click="handleDelete('scope','scope.$index','scope.row')">确定</el-button>
+					</div>
+				</el-popover>
+
+			</div>
+		</script>
+		<script type="text/x-template" id="c1-template">
+			<div>c1-template</div>
+		</script>
+		<script type="text/x-template" id="c2-template">
+			<div>c2-template</div>
+		</script>
+
+		<!--<script src="./js/vue/vue.js"></script>-->
+		<script src="./jvw/vue/vue.2.5.16.js"></script>
+		<script src="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.js"></script>
+		<!--<script src="./js/element-ui.2.4.0/element-ui.2.4.0.js"></script>-->
+		<!--<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>-->
+		<!--<script src="./js/jquery.min.js"></script>-->
+
+		<script type="text/javascript">
+			var c1 = {
+				template: "#c1-template",
+				props: [],
+				data: function() {
+					return {}
+				},
+				computed: {},
+				components: {},
+				watch: {},
+				methods: {},
+				created() {},
+				mounted() {},
+			}
+			var c2 = {
+				template: "#c2-template",
+				props: [],
+				data() {
+					return {};
+				},
+				computed: {},
+				components: {},
+				watch: {},
+				methods: {},
+				created() {},
+				mounted() {},
+			}
+			var swq = {
+				template: "#swq-template",
+				props: [],
+				data: function() {
+					return {
+						visible:false
+					}
+				},
+				computed: {},
+				components: {
+					c1,
+					c2,
+				},
+				watch: {},
+				methods: {
+					handleDelete(scope, index, row){
+						console.log(scope, index, row)
+					}
+				},
+				created() {},
+				mounted() {},
+			};
+			var vu = new Vue({
+				el: "#swq",
+				data: {},
+				methods: {},
+				components: {
+					swq: swq,
+				},
+				watch: {},
+				computed: {},
+				created() {},
+				mounted() {},
+			})
+		</script>
+	</body>
+
+</html>
