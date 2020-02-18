@@ -37,12 +37,14 @@ RegExp.$1 对[replace, search, match, exec, test] 有效
 +
 (...)分组+捕获;(?:...)只分组不捕获
 text.replace(/([Aa](?:[Rr]))/g, "($1)");
++
+RegExp.leftContext 获取捕获结果左边的内容,包括换行内容
+RegExp.rightContext 获取捕获结果右边的内容,包括换行内容
 
 反向引用
 text.search(/(r)\1/g)
 正则表达式里‘\1’可以取到捕获的内容
 好像不支持 RegExp正则表达式写法, ‘new RegExp("(r)\1", "g")’ 无效
-
 
 
 
