@@ -1,40 +1,4 @@
-<html>
-
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title></title>
-		<style>
-			html,
-			body {
-				margin: 0;
-				padding: 0;
-				width: 100%;
-			}
-			
-			#swq {
-				/* display: block; */
-				/* width: 100%; */
-				white-space: pre-wrap;
-				white-space: -moz-pre-wrap;
-				white-space: -pre-wrap;
-				white-space: -o-pre-wrap;
-				word-wrap: break-word;
-			}
-			
-			.hl {
-				background-color: red;
-				color: white;
-				border: 1px solid #aff;
-			}
-		</style>
-	</head>
-
-	<body>
-		<pre id="swq"></pre>
-
-		<script>
-			var text = `A Fine Frenzy - Almost Lover.mp3
+A Fine Frenzy - Almost Lover.mp3
 A-Lin - 给我一个理由忘记.mp3
 A2A - 回家.mp3
 Adele - Rolling in The Deep.mp3
@@ -67,7 +31,6 @@ at17 - Girls Girls Girls.mp3
 avril lavigne - my happy ending.mp3
 avril lavigne - when you re gone.mp3
 Avril Lavigne - Wish You Were Here.mp3
-baby boy 永远永远手牵手.mp3
 Babyface - Seven Seas.mp3
 Bandari - 安妮的仙境.mp3
 Bandari - 寂静之音.mp3
@@ -79,7 +42,6 @@ Bandari - 蓝色天际.mp3
 Bandari - 雪之梦.mp3
 Bandari、喜多郎 - 宋家王朝.mp3
 Bgm - 改 - 沙古牙兽进化时的.mp3
-big4 爱莫能助.mp3
 bon jovi - it's my life.mp3
 britney spears - hold it against me.mp3
 C Allstar - 薄情歌.mp3
@@ -95,12 +57,9 @@ Clean Bandit - Stronger.mp3
 Clean Bandit、Jess Glynne - Rather Be.mp3
 Clean Bandit、Louisa - Tears.mp3
 Clean Bandit、Zara Larsson - Symphony.mp3
-clover - 怪医黑杰克.mp3
 Club 8 - Love In December.mp3
 Craig David - Days.mp3
 craig david - key to my heart.mp3
-cyber 守护星结尾歌 legolgel.mp3
-cyber 守护星结尾歌 彩月.mp3
 Czarina - I Miss You.mp3
 D 大调小提琴协奏曲.mp3
 DANCE☆MAN - アフロ军曹.mp3
@@ -118,7 +77,6 @@ Dear John - K.O.L.mp3
 Dear John - Lovesick.mp3
 Dear John - Over Over.mp3
 deep side - booty music.mp3
-destiny 太阳之花 岛谷瞳.mp3
 Dido - End Of Night.mp3
 Dido - Life For Rent.mp3
 Dusty Bottle - You Don’t Know Me.mp3
@@ -133,10 +91,7 @@ Fictionjunction - 焔の扉.mp3
 Fictionjunction - 神隐之狼.mp3
 Fictionjunction - 花守の丘.mp3
 Fictionjunction - 荒野流転.mp3
-fire - 数码暴龙 - 4主题曲 粤语 op.mp3
-Fly、数码暴龙 - Butter.mp3
 frankmusik - wrecking ball.mp3
-friend 蓝龙主题曲 output.mp3
 G.E.M.邓紫棋 - 我的秘密.mp3
 G.E.M.邓紫棋 - 睡皇后.mp3
 Greg Laswell - And Then You.mp3
@@ -270,7 +225,6 @@ P!nk - I Don't Believe You.mp3
 Per Se - Wonderline.mp3
 per se - 庆祝无意义.mp3
 pharrell williams - happy.mp3
-piece of love 神风怪盗贞德.mp3
 Punch - Done For Me.mp3
 Punch、CHEN - Everytime.mp3
 Queensberry - Sorry.mp3
@@ -296,7 +250,6 @@ sarah connor - just one last dance.mp3
 SCANDAL - 瞬间センチメンタル.mp3
 Season(アニメ『七つの大罪』のエンディング#テーマ) - 瀧川ありさ.mp3
 Sia - I Go To Sleep.mp3
-slash - 数码暴龙 - 3驯兽师之王.mp3
 Sophie Zelmani - Precious Burden.mp3
 Sukie S - 动态回顾.mp3
 Sukie S - 后两步.mp3
@@ -318,7 +271,6 @@ The Piano Guys - Let It Go.mp3
 The Weeknd、Daft Punk - I Feel It Coming.mp3
 The Weepies - Gotta Have You.mp3
 Timbaland - Apologize(feat. Onerepublic).mp3
-track07 - anime - tv 动画 蓝龙 ed - fly so high.mp3
 Twins - 朋友仔.mp3
 Two Steps From Hell - Star Sky.mp3
 Two Steps From Hell - Victory.mp3
@@ -340,17 +292,10 @@ Zia - 小提琴.mp3
 シド - レイン.mp3
 スキマスイッチ - ゴールデンタイムラバー.mp3
 丁当 - 猜不透.mp3
-七龙珠 - 罗曼蒂克的婚礼.mp3
-七龙珠 we gotta power.mp3
-万物初始之风 彩云国物语 片头曲.mp3
 万芳 - 新不了情.mp3
-上户彩 魔法小神童加旋 片尾曲.wma
-中华一番 超级好听片尾曲.mp3
-中华小当家 中华一番 经典插曲美食の境界钢琴曲.wma
 中岛美嘉 - 月夜 - 朦胧 祈愿.mp3
 中島美嘉 - 雪の華.mp3
 中川翔子 - RAY OF LIGHT.mp3
-主题曲 - 龙珠 - gt 原唱.mp3
 任剑辉、白雪仙 - 香夭 - 粤剧版.mp3
 伊东えり - Endlessly.mp3
 伊东えり - I Talk To The Rain.mp3
@@ -394,7 +339,6 @@ Zia - 小提琴.mp3
 傅颖 - 花吃了这女孩.mp3
 傅颖 - 谁羡慕像我这样强的人.mp3
 儿童歌曲 - 猪八戒背媳妇 - 纯音乐版.mp3
-光冈昌美 hana 蓝龙 ed.mp3
 关心妍 - 你有心.mp3
 关心妍 - 如何离开你.mp3
 关心妍 - 负担不起.mp3
@@ -403,13 +347,9 @@ Zia - 小提琴.mp3
 冯允谦 - 纸笔墨.mp3
 刘德华 - My Love.mp3
 刘德华 - 世界第一等.mp3
-刘德华 - 为我鼓掌 - 卡通 数码暴龙 主题曲.mp3
 刘德华 - 悟 - 新少林寺主题曲.mp3
 刘德华 - 笨小孩.mp3
 前小白 - 说散就散.mp3
-动漫歌曲 外星 Bb 撞地球 Da!da!da! 主题曲.mp3
-动漫音乐 - 翼之奇幻旅程.wma
-动画片 数码暴龙 2结尾曲.mp3
 区文诗 - 不只爱情.mp3
 南里侑香 - Aikoi.mp3
 卡式带乐团 - 染色体.mp3
@@ -560,13 +500,10 @@ Zia - 小提琴.mp3
 周柏豪 - 自由意志.mp3
 周柏豪、连诗雅 - 日落日出.mp3
 周美欣 - 后知后觉.mp3
-和田光司 数码暴龙.mp3
 唐剑康、姜丽文 - 裸跑.mp3
 坂本真绫 - tsubasa - 翼 ed - loop.mp3
-外星BB.mp3
 大塚愛 - 黒毛和牛上塩タン焼680円.mp3
 大提琴、马友友 - 雨中的故事.mp3
-好朋友 张娜拉.mp3
 姜丽文 - Forever.mp3
 姜丽文 - Until We Meet Again.mp3
 孙燕姿 - Leave.mp3
@@ -587,8 +524,6 @@ Zia - 小提琴.mp3
 小肥、陈慧敏 - 自拍（对唱版）.mp3
 岑宁儿 - 追光者.mp3
 岑日珈 - 容我自救.mp3
-工藤静香 - 卡通 - 七龙珠 gt - blue velvet.mp3
-帚云 日式面包王 第一季片头曲.mp3
 庄心妍 - 好自为之.mp3
 张卫健 - 至情至圣.mp3
 张卫健 - 西游记 - tvb 剧集 i 主题曲.mp3
@@ -639,31 +574,19 @@ Zia - 小提琴.mp3
 弦子 - 沿海地带.mp3
 弦子 - 舍不得.mp3
 弦子 - 醉清风.mp3
-彩云国物语角色歌 紫刘辉 永远の麟ぃ.mp3
 徐佳莹 - 身骑白马.mp3
 徐加晴 - HUG.mp3
 徐加晴 - 大概大概.mp3
 徐加晴 - 封箱.mp3
 徐加晴 - 我的时代曲.mp3
-怪医黑杰克 careless breath.mp3
-怪医黑杰克 片尾曲.mp3
 怪物猎人 2村落.mp3
 成龙 - 男儿当自强.mp3
 成龙 - 男子汉.mp3
 成龙 - 英雄故事.mp3
 成龙 - 醉拳(粤语版).mp3
-我在那一角落患过破伤风 6.02.mp3
 戴恩玲 - 爱心一百次 - 香港儿歌 飞天少女猪事丁.mp3
 戴辛尉 - 凶手.mp3
-数码宝贝 数码暴龙 1进化.mp3
 数码暴龙 - Keep On.mp3
-数码暴龙 3粤语主题曲.mp3
-数码暴龙 3进化插曲.mp3
-数码暴龙 my tomorrow 尾片曲.mp3
-数码暴龙 无限地带结尾曲.mp3
-数码暴龙 究极进化.mp3
-数码暴龙 红莲骑士兽战斗进行曲.mp3
-数码暴龙 里动听的背景音乐.mp3
 方力申 - 月全蚀.mp3
 方力申、傅颖 - 自欺欺人.mp3
 方力申、邓丽欣 - 十分.爱.mp3
@@ -679,7 +602,6 @@ Zia - 小提琴.mp3
 曾若华 - 他他他.mp3
 曾若华 - 密室谋杀事件.mp3
 曾若华 - 格拉斯哥流浪.mp3
-月光花 怪医黑杰克主题曲.mp3
 李克勤 - 今夕是何年 - moov cd version.mp3
 李克勤 - 公主太子.mp3
 李克勤 - 单身狗.mp3
@@ -729,7 +651,6 @@ Zia - 小提琴.mp3
 杜汶泽 - 谁教我.mp3
 杨丞琳 - 带我走.mp3
 杨丞琳 - 暧昧.mp3
-杨千华 勇.mp3
 杨千嬅 - 再见二丁目.mp3
 杨千嬅 - 出埃及记.mp3
 杨千嬅 - 初见.mp3
@@ -746,8 +667,6 @@ Zia - 小提琴.mp3
 杨千嬅 - 狼来了.mp3
 杨千嬅 - 男女关系科 - 新扎师妹的主题曲.mp3
 杨千嬅 - 稀客.mp3
-杨千桦 - 可惜我是水瓶座.mp3
-杨千桦 - 野孩子.mp3
 杨坤 - 空城.mp3
 杨宗纬 张碧晨 - 凉凉.mp3
 林二汶 - 守破离.mp3
@@ -780,7 +699,6 @@ Zia - 小提琴.mp3
 梅艳芳、张国荣 - 芳华绝代.mp3
 梅艳芳、张学友 - 相爱很难.mp3
 梅艳芳、许志安 - 女人之苦.mp3
-棋魂 ost 棋魂钢琴曲.mp3
 欧阳耀莹 - 戒不掉 (原声版).mp3
 欧阳耀莹 - 遇见你 (粤语版).mp3
 江若琳 - 伤情路.mp3
@@ -797,7 +715,6 @@ Zia - 小提琴.mp3
 泳儿 - 深白色.mp3
 泳儿 - 花心.mp3
 泳儿 - 野木兰.mp3
-洛克人网络保卫战 op.mp3
 洪卓立 - 一夜城.mp3
 洪卓立 - 弥敦道.mp3
 洪卓立 - 独活.mp3
@@ -832,11 +749,6 @@ Zia - 小提琴.mp3
 田井中彩智 - 云のかけら.mp3
 田井中彩智 - 好きだよ.mp3
 田井中彩智 - 运命人.mp3
-甲虫王者 2季片尾曲.mp3
-甲虫王者片头曲 正因为活着.wma
-神风怪盗贞德 2片尾曲.mp3
-神风怪盗贞德 cry ハ トが泣いてる.mp3
-神风怪盗贞德 ハルカ.mp3
 福耳 - 守护星 - cyber - op 永远という场所.mp3
 秦馨敏 - 分过手请举手.mp3
 秦馨敏 - 我的灿烂.mp3
@@ -861,14 +773,6 @@ Zia - 小提琴.mp3
 罗震环 - 别害怕.mp3
 罗震环 - 靠近.mp3
 群星 - 消失的光阴.mp3
-翼 年代记 a song of storm and fire.mp3
-翼 年代记 ova 鸟笼之国的公主 op - amrita.mp3
-翼之奇幻旅程 op it s.wma
-翼之奇幻旅程 对雨倾诉.mp3
-翼之奇幻旅程 片头曲.mp3
-翼之奇幻旅程 等风的飞机.mp3
-翼之奇幻旅程 茉莉花.mp3
-翼年代记 ova 东京默示录 op.mp3
 胡琳 - 冬至.mp3
 胡琳 - 春眠不觉晓.mp3
 胡琳 - 真相.mp3
@@ -884,19 +788,12 @@ Zia - 小提琴.mp3
 苏永康 - 老死.mp3
 苏永康 - 那谁.mp3
 苏永康 - 黑色礼服.mp3
-苏生龙王传说 空色の指先.mp3
-英文歌曲 我心永恒 铁达尼号主题曲.mp3
 草蜢 - ba ba ba - 三国版.wma
 草蜢 - 失恋阵线联盟.mp3
 草蜢 - 我们 - 靓音版.mp3
 菊梓乔 - 七岁.mp3
 萧邦 - 幻想即兴曲.mp3
 蓝奕邦 - 你伦敦我纽约.mp3
-蓝龙 sepia.mp3
-蓝龙 天界七龙 ed 不挺好么.mp3
-蓝龙 天界七龙 ed4 蕾 tsubomi.mp3
-蓝龙 粤语主题曲.mp3
-蓝龙第二季 ed.mp3
 蔚雨芯 - 后来沒有你.mp3
 蔚雨芯 - 复制人.mp3
 蔚雨芯 - 无话可说.mp3
@@ -919,7 +816,6 @@ Zia - 小提琴.mp3
 西野カナ - 手をつなぐ理由.mp3
 西野加奈 - Story.mp3
 西野加奈 - トリセツ.mp3
-讨厌深不见底 彩云国物语 片尾曲.mp3
 许冠杰 - 宇宙无限.mp3
 许廷铿 - 恐怖情人.mp3
 许廷铿 - 痛醒.mp3
@@ -965,7 +861,6 @@ Zia - 小提琴.mp3
 谷娅溦 - 安守本份.mp3
 赵颂茹 - 大孩子.mp3
 赵颂茹 - 情急自禁.mp3
-足球小将 梦想之路 dragon screamer.mp3
 轻音乐 - 大地之歌.mp3
 轻音乐 - 天地孤影任我行.mp3
 轻音乐 - 悲情城市.mp3
@@ -1095,7 +990,6 @@ Zia - 小提琴.mp3
 钢琴曲 - 致爱丽丝 - 贝多芬 世界名曲.mp3
 锺舒漫 - 好好拥抱 - 乖女仔.mp3
 阎奕格 - 优雅道别.mp3
-阴阳大战记 Ed3.mp3
 陈僖仪 - 蜚蜚.mp3
 陈凯彤 - 第一眼.mp3
 陈凯彤 - 肆无忌惮.mp3
@@ -1204,13 +1098,9 @@ Zia - 小提琴.mp3
 雷琛瑜 - 每一次都是你.mp3
 雷琛瑜 - 第一志愿.mp3
 雷琛瑜 - 道别说爱你.mp3
-青い未来.mp3
 颜卓灵 - Baby Stop.mp3
 颜卓灵 - 沒有人是孤岛.mp3
 颜卓灵 - 逆成长.mp3
-风之街 翼之奇幻旅程插曲.mp3
-驭龙少年 主题曲.mp3
-高潮版 O Come O Come Emmanuel 富贵门 英文插曲.mp3
 麦家瑜 - 不方便的真相.mp3
 麦家瑜 - 听到的神话.mp3
 麦家瑜 - 好得很.mp3
@@ -1223,59 +1113,101 @@ Zia - 小提琴.mp3
 麦浚龙、莫文蔚 - 瑕疵.mp3
 麦浚龙、谢安琪 - 废话.mp3
 麦浚龙、黎明 - 忘记和记.mp3
-黄伊汶 - 外星 - Bb - Bb 撞地球主题曲.mp3
 黄伊汶 - 自己.mp3
 黄子华 - 做马仔.mp3
 黄贯中 - 红黑红红黑.mp3
 黄霑 - 道.mp3
 黎明 - 爱是傻得起.mp3
 龙小菌 - 毒酒.mp3
-龙王传说 片尾曲.mp3
-龙珠 z 尾曲 不再是天使.mp3
-龙珠 悟饭变超 2插曲.wma
-`
-			var text2 = `Harry Potter and the Sorcerer's Stone
-CHAPTER ONE
-THE BOY WHO LIVED
-Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you very much. They were the last people you'd expect to be involved in anything strange or mysterious, because they just didn't hold with such nonsense.
-Mr. Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, although he did have a very large mustache. Mrs. Dursley was thin and blonde and had nearly twice the usual amount of neck, which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbors. The Dursleys had a small son called Dudley and in their opinion there was no finer boy anywhere.
-The Dursleys had everything they wanted, but they also had a secret, and their greatest fear was that somebody would discover it. They didn't think they could bear it if anyone found out about the Potters. Mrs. Potter was Mrs. Dursley's sister, but they hadn't met for several years; in fact, Mrs. Dursley pretended she didn't have a sister, because her sister and her good-for-nothing husband were as unDursleyish as it was possible to be. The Dursleys shuddered to think what the neighbors would say if the Potters arrived in the street. The Dursleys knew that the Potters had a small son, too, but they had never even seen him. This boy was another good reason for keeping the Potters away; they didn't want Dudley mixing with a child like that.
-When Mr. and Mrs. Dursley woke up on the dull, gray Tuesday our story starts, there was nothing about the cloudy sky outside to suggest that strange and mysterious things would soon be happening all over the country. Mr. Dursley hummed as he picked out his most boring tie for work, and Mrs. Dursley gossiped away happily as she wrestled a screaming Dudley into his high chair.
-None of them noticed a large, tawny owl flutter past the window.
-At half past eight, Mr. Dursley picked up his briefcase, pecked Mrs. Dursley on the cheek, and tried to kiss Dudley good-bye but missed, because Dudley was now having a tantrum and throwing his cereal at the walls. "Little tyke," chortled Mr. Dursley as he left the house. He got into his car and backed out of number four's drive.
-It was on the corner of the street that he noticed the first sign of something peculiar -- a cat reading a map. For a second, Mr. Dursley didn't realize what he had seen -- then he jerked his head around to look again. There was a tabby cat standing on the corner of Privet Drive, but there wasn't a map in sight. What could he have been thinking of? It must have been a trick of the light. Mr. Dursley blinked and stared at the cat. It stared back. As Mr. Dursley drove around the corner and up the road, he watched the cat in his mirror. It was now reading the sign that said Privet Drive -- no, looking at the sign; cats couldn't read maps or signs. Mr. Dursley gave himself a little shake and put the cat out of his mind. As he drove toward town he thought of nothing except a large order of drills he was hoping to get that day.
-But on the edge of town, drills were driven out of his mind by something else. As he sat in the usual morning traffic jam, he couldn't help noticing that there seemed to be a lot of strangely dressed people about. People in cloaks. Mr. Dursley couldn't bear people who dressed in funny clothes -- the getups you saw on young people! He supposed this was some stupid new fashion. He drummed his fingers on the steering wheel and his eyes fell on a huddle of these weirdos standing quite close by. They were whispering excitedly together. Mr. Dursley was enraged to see that a couple of them weren't young at all; why, that man had to be older than he was, and wearing an emerald-green cloak! The nerve of him! But then it struck Mr. Dursley that this was probably some silly stunt -- these people were obviously collecting for something... yes, that would be it. The traffic moved on and a few minutes later, Mr. Dursley arrived in the Grunnings parking lot, his mind back on drills.
-Mr. Dursley always sat with his back to the window in his office on the ninth floor. If he hadn't, he might have found it harder to concentrate on drills that morning. He didn't see the owls swoop ing past in broad daylight, though people down in the street did; they pointed and gazed open- mouthed as owl after owl sped overhead. Most of them had never seen an owl even at nighttime. Mr. Dursley, however, had a perfectly normal, owl-free morning. He yelled at five different people. He made several important telephone calls and shouted a bit more. He was in a very good mood until lunchtime, when he thought he'd stretch his legs and walk across the road to buy himself a bun from the bakery.
-He'd forgotten all about the people in cloaks until he passed a group of them next to the baker's. He eyed them angrily as he passed. He didn't know why, but they made him uneasy. This bunch were whispering excitedly, too, and he couldn't see a single collecting tin. It was on his way back past them, clutching a large doughnut in a bag, that he caught a few words of what they were saying.
- "The Potters, that's right, that's what I heard yes, their son, Harry"`
-
-			var str = text
-			var patt = /^([^-]+)$/mg
-			var result;
-			var _i = 0
-			var sIndex = 0
-			var _html = ""
-
-			while(_i < 1000 && (result = patt.exec(str)) != null) {
-				console.log(RegExp.$1)
-				//				console.log(RegExp.leftContext)
-				//				console.log(RegExp.rightContext)
-				// console.log(result[0])
-				// console.log(result.index)
-				// console.log(patt.lastIndex)
-
-				_html += str.slice(sIndex, result.index) + "<span class='hl'>" + result[0] + "</span>"
-
-				sIndex = patt.lastIndex
-				_i++
-			}
-
-			_html += str.slice(sIndex)
-
-			document.getElementById("swq").innerHTML = _html;
-			// document.write(_html)
-
-		</script>
-	</body>
-
-</html>
+2 R - 变出我精彩 - 七小花.mp3
+Big4 - 爱莫能助.mp3
+Celine Dion - My Heart Will Go On.mp3
+cyber 守护星结尾歌 - legolgel.mp3
+cyber 守护星结尾歌 - 彩月.mp3
+Enya - O Come O Come Emmanuel 富贵门 英文插曲.mp3
+JW - 战胜服从.mp3
+JW - 敢抱未敢爱 - 高质量.mp3
+JW - 氹我.mp3
+JW - 矛盾一生.mp3
+JW - 飘浮女孩.mp3
+Kiroro - 生きてこそ 正因为活着 甲虫王者.wma
+KOKIA - tell tell 坊主（踢出我天地ED2）.mp3
+Michael Jackson - Breaking News.mp3
+七龙珠 - gt 原唱.mp3
+七龙珠 - we gotta power.mp3
+七龙珠 - 不再是天使.mp3
+七龙珠 - 悟饭变超2插曲.wma
+七龙珠 - 罗曼蒂克的婚礼.mp3
+上户彩 - PERSONAL 魔法小神童加旋 片尾曲.wma
+中华一番 - 经典插曲美食の境界钢琴曲.wma
+中华一番 - 超级好听片尾曲.mp3
+光冈昌美 - Hana 蓝龙 ed.mp3
+冯曦妤 - 我在那一角落患过破伤风.mp3
+刘德华 - 为我鼓掌 数码暴龙2.mp3
+卫兰 - 男人信什么 - JW.mp3
+古巨基 - 任天堂流泪.mp3
+和田光司 - Butter-fly.mp3
+和田光司 - 数码暴龙2.mp3
+外星BB撞地球 - Da!da!da! 主题曲.mp3
+大嘴巴 - 永远在身边.mp3
+岛谷瞳 - destiny 太阳之花.mp3
+工藤静香 - blue velvet 七龙珠gt.mp3
+平原绫香 - 万物初始之风 彩云国物语 片头曲.mp3
+张娜拉 - 好朋友.mp3
+彩云国物语 - 角色歌 紫刘辉 永远の麟ぃ.mp3
+怪医黑杰克 - careless breath.mp3
+怪医黑杰克 - clover.mp3
+怪医黑杰克 - 月光花.mp3
+怪医黑杰克 - 片尾曲.mp3
+数码暴龙 - my tomorrow 尾片曲.mp3
+数码暴龙 - slash 数码暴龙3.mp3
+数码暴龙 - 无限地带结尾曲.mp3
+数码暴龙 - 究极进化.mp3
+数码暴龙 - 红莲骑士兽战斗进行曲.mp3
+数码暴龙 - 里动听的背景音乐.mp3
+数码暴龙1 - 进化.mp3
+数码暴龙2 - 结尾曲.mp3
+数码暴龙3 - 进化插曲.mp3
+日式面包王 - 帚云 第一季片头曲.mp3
+杨千嬅 - 勇.mp3
+杨千嬅 - 可惜我是水瓶座.mp3
+杨千嬅 - 野孩子.mp3
+林峯 - 驯兽师之王 数码暴龙3.mp3
+棋魂 - ost 棋魂钢琴曲.mp3
+洛克人 - 网络保卫战op.mp3
+田井中彩智 - 最高の片想い 彩云国物语 片尾曲.mp3
+甲虫王者2 - 片尾曲.mp3
+百变小樱魔术卡 - 扉をあけて.mp3
+神风怪盗贞德 - 2片尾曲.mp3
+神风怪盗贞德 - cry ハ トが泣いてる.mp3
+神风怪盗贞德 - piece of love.mp3
+神风怪盗贞德 - ハルカ.mp3
+翼之奇幻旅程 - a song of storm and fire.mp3
+翼之奇幻旅程 - op it s.wma
+翼之奇幻旅程 - ova 东京默示录 op.mp3
+翼之奇幻旅程 - ova 鸟笼之国的公主 op - amrita.mp3
+翼之奇幻旅程 - 动漫音乐.wma
+翼之奇幻旅程 - 对雨倾诉.mp3
+翼之奇幻旅程 - 片头曲.mp3
+翼之奇幻旅程 - 等风的飞机.mp3
+翼之奇幻旅程 - 茉莉花.mp3
+翼之奇幻旅程 - 风の街へ.mp3
+苏生龙王传说 - 片尾曲.mp3
+苏生龙王传说 - 空色の指先.mp3
+蒋嘉莹 - 假如真的再有约会.mp3
+蓝龙 - fly so high.mp3
+蓝龙 - friend 主题曲 output.mp3
+蓝龙 - sepia.mp3
+蓝龙 - 天界七龙 ed 不挺好么.mp3
+蓝龙 - 天界七龙 ed 蕾 tsubomi.mp3
+蓝龙 - 第二季ed.mp3
+蓝龙 - 青い未来.mp3
+西野加奈 - No.1.mp3
+足球小将 - 梦想之路 dragon screamer.mp3
+郑融 - 还.mp3
+阴阳大战记 - ed3.mp3
+雷琛瑜 - 神奇女侠.mp3
+雷琛瑜 - 风雨花.mp3
+驭龙少年 - 主题曲.mp3
+麦浚龙 - Fire!! 数码暴龙.mp3
+黄伊汶 - 外星BB撞地球主题曲.mp3

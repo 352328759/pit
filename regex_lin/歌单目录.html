@@ -7,6 +7,8 @@
 	</head>
 
 	<body>
+		<pre id="swq"></pre>
+
 		<!--<script src="../jvw/jquery.min.js"></script>-->
 		<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
 		<script>
@@ -30,6 +32,37 @@
 			//						console.log(arguments)
 			//					}
 			//				});
+
+			function getTreeT(resolve, reject) {
+				$.ajax({
+					url: "treeT.txt",
+					success: function(data, status) {
+						var datas = data.split("\n")
+						var _html = ""
+						datas.forEach(function(a, b, c) {
+							let _h = ""
+							if(/^[^│]/.test(a)) {
+								console.log(a)
+								_h = ""
+							} else if(/[├└]/.test(a)) {
+								console.log(a)
+								_h = ""
+							} else if(/(│ *)+$/m.test(a)) {
+								console.log(a)
+								_h = ""
+							} else {
+								_h = a.replace(/(?:│ +)(.+)/g, "$1");
+							}
+
+							_html += _h
+						})
+						document.getElementById("swq").innerHTML = _html;
+					},
+					error: function(data, status) {
+						console.log(arguments)
+					}
+				});
+			}
 
 			function getTreeA(resolve, reject) {
 				$.ajax({
@@ -113,6 +146,7 @@
 			}
 
 			new Promise(getTreeA).then(getTreeB).then(contrast)
+//			getTreeT(getTreeT)
 		</script>
 	</body>
 
