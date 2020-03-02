@@ -8,11 +8,6 @@
 	},
 	"author": "",
 	"license": "ISC",
-	"dependencies": {
-		"errorhandler": "^1.5.1",
-		"express": "^4.17.1",
-		"portfinder": "^1.0.25",
-		"socket.io": "^2.3.0"
-	},
+	"dependencies": {},
 	"devDependencies": {}
 }
