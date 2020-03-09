@@ -16561,10 +16561,8 @@
 			created: function() {
 				var e = this;
 				this.$on("el.form.addField", function(t) {
-					console.log("el.form.addField")
 					t && e.fields.push(t)
 				}), this.$on("el.form.removeField", function(t) {
-					console.log("el.form.removeField")
 					t.prop && e.fields.splice(e.fields.indexOf(t), 1)
 				})
 			},
@@ -16595,6 +16593,7 @@
 					var a = {};
 					return this.fields.forEach(function(i) {
 						i.validate("", function(i, o) {
+							console.log(i, o)
 							i && (n = !1), a = (0, s.default)({}, a, o), "function" == typeof e && ++r === t.fields.length && e(n, a)
 						})
 					}), i || void 0
@@ -16727,8 +16726,13 @@
 					return i && (e.marginLeft = i), e
 				},
 				form: function() {
-					for(var e = this.$parent, t = e.$options.componentName;
-						"ElForm" !== t;) "ElFormItem" === t && (this.isNested = !0), e = e.$parent, t = e.$options.componentName;
+					var e = this.$parent,
+						t = e.$options.componentName;
+					for(; t !== "ElForm";) {
+						"ElFormItem" === t && (this.isNested = !0);
+						e = e.$parent;
+						t = e.$options.componentName;
+					}
 					return e
 				},
 				fieldValue: {
@@ -16769,10 +16773,9 @@
 			},
 			methods: {
 				validate: function(e) {
-					console.log("1",this.prop)
-					console.log("2",n)
 					var t = this,
-					i = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : c.noop;
+						i = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : c.noop;
+
 					this.validateDisabled = !1;
 					var n = this.getFilteredRule(e);
 					if((!n || 0 === n.length) && void 0 === this.required) return i(), !0;
@@ -16781,13 +16784,14 @@
 					n && n.length > 0 && n.forEach(function(e) {
 						delete e.trigger
 					}), s[this.prop] = n;
-					console.log("3",this.prop)
-					console.log("4",n)
+					console.log(JSON.stringify(s))
 					var a = new r.default(s),
 						o = {};
+					console.log(this.fieldValue)
 					o[this.prop] = this.fieldValue, a.validate(o, {
 						firstFields: !0
 					}, function(e, n) {
+						console.log(e, n)
 						t.validateState = e ? "error" : "success", t.validateMessage = e ? e[0].message : "", i(t.validateMessage, n), t.elForm && t.elForm.$emit("validate", t.prop, !e)
 					})
 				},
@@ -16803,7 +16807,6 @@
 					this.validateDisabled = !0, Array.isArray(t) ? n.o[n.k] = [].concat(this.initialValue) : n.o[n.k] = this.initialValue, this.broadcast("ElSelect", "fieldReset"), this.broadcast("ElTimeSelect", "fieldReset", this.initialValue)
 				},
 				getRules: function() {
-					console.log(this.form.rules)
 					var e = this.form.rules,
 						t = this.rules,
 						i = void 0 !== this.required ? {
@@ -16881,6 +16884,7 @@
 					if(n.length)
 						for(t = 0; t < n.length; t++) i = n[t].field, s[i] = s[i] || [], s[i].push(n[t]);
 					else n = null, s = null;
+					console.log(n, s)
 					h(n, s)
 				}
 				var i = this,
