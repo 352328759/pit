@@ -28,7 +28,7 @@
 				<!--<c1></c1>-->
 				<!--<c2></c2>-->
 
-				<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+				<el-form :model="ruleForm" :rules="rules2" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 					<el-form-item label="活动名称" prop="name">
 						<el-input v-model="ruleForm.name"></el-input>
 					</el-form-item>
@@ -134,6 +134,17 @@
 							type: [],
 							resource: '',
 							desc: ''
+						},
+						rules2: {
+							name: [{
+								required: true,
+								message: '请输入活动名称',
+								trigger: 'blur'
+							}, {
+								type: 'email',
+								message: '请输入正确的邮箱地址',
+								trigger: 'blur',
+							}],
 						},
 						rules: {
 							name: [{

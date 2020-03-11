@@ -16773,6 +16773,7 @@
 			},
 			methods: {
 				validate: function(e) {
+					console.log("validate")
 					var t = this,
 						i = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : c.noop;
 
