@@ -1,0 +1,34 @@
+https://www.tslang.cn/docs/home.html
+
+
+5分钟上手TypeScript
+https://www.tslang.cn/docs/handbook/typescript-in-5-minutes.html
+
+
+https://ts.xcatliu.com/basics/primitive-data-types
+
+Symbol
+
+
+
+
+全局安装
+npm install -g typescript
+
+
+
+
+
+tsc greeter.ts
+
+
+
+
+
+
+
+
+
+
+
+end
