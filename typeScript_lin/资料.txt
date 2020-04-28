@@ -5,7 +5,8 @@ https://www.tslang.cn/docs/home.html
 https://www.tslang.cn/docs/handbook/typescript-in-5-minutes.html
 
 
-https://ts.xcatliu.com/basics/primitive-data-types
+
+https://ts.xcatliu.com/basics/type-assertion
 
 Symbol
 
