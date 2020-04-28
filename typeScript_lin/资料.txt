@@ -1,14 +1,15 @@
-https://www.tslang.cn/docs/home.html
+﻿TypeScript——JavaScript的超集
+
+把弱类型的 JavaScript 变成强类型的 TypeScript 有什么意义?
+没想明白这个问题前不会学习使用 TypeScript
 
 
 5分钟上手TypeScript
 https://www.tslang.cn/docs/handbook/typescript-in-5-minutes.html
-
-
+https://www.tslang.cn/docs/home.html
 
 https://ts.xcatliu.com/basics/type-assertion
 
-Symbol
 
 
 
@@ -16,15 +17,8 @@ Symbol
 全局安装
 npm install -g typescript
 
-
-
-
-
+编译
 tsc greeter.ts
-
-
-
-
 
 
 
