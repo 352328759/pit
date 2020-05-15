@@ -3,95 +3,127 @@
 
 <head>
   <meta charset="utf-8">
-  <title>5-1 JSX+Babel</title>
-  <!-- P93 -->
+  <title>React组件 设置</title>
+  <!--  -->
+  <style>
+    html,
+    body,
+    #react-container {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #react-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .star-rating {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .star {
+      cursor: pointer;
+      width: 2em;
+      height: 2em;
+      background-color: grey;
+      -webkit-clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%);
+      clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%);
+    }
+
+    .star.selected {
+      background-color: red;
+    }
+
+    p {
+      flex-basis: 100%;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Target Container -->
   <div id="react-container"></div>
-  <!-- React Library & React DOM-->
-
+  <script src="https://unpkg.com/prop-types/prop-types.js"></script>
   <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
   <script type="text/babel">
 
-    // Babel 需要引入 babel
-    // Babel 需要服务器支持
-    // swq
-    // 猪头素
+    // P124 ES6类和无状态函数式组件
+    // 无状态函数式组件中,在函数参数中设置默认属性
+    const Star1 = ({ selected = false, onClick = f => f }) =>
+      <div className={(selected) ? "star selected" : "star"}
+        onClick={onClick}>
+      </div>
+    const Star = ({ selected, onClick, swq }) =>
+      <div className={(selected) ? "star selected" : "star"}
+        onClick={onClick}>{swq}
+      </div>
 
-    const data = [{
-      "name": "Baked Salmon",
-      "ingredients": [
-        { "name": "Salmon", "amount": 1, "measurement": "l lb" },
-        { "name": "Pine Nuts", "amount": 1, "measurement": "cup" },
-        { "name": "Butter Lettuce", "amount": 2, "measurement": "cups" },
-        { "name": "Yellow Squash", "amount": 1, "measurement": "med" },
-        { "name": "Olive Oil", "amount": 0.5, "measurement": "cup" },
-        { "name": "Garlic", "amount": 3, "measurement": "cloves" }
-      ],
-      "steps": [
-        "Preheat the oven to 350 degrees.",
-        "Spread the olive oil around a glass baking dish.",
-        "Add the salmon, garlic, and pine nuts to the dish.",
-        "Bake for 15 minutes.",
-        "Add the yellow squash and put back in the oven for 30 mins.",
-        "Remove from oven and let cool for 15 minutes. Add the lettuce and serve."
-      ]
-    }, {
-      "name": "Fish Tacos",
-      "ingredients": [
-        { "name": "Whitefish", "amount": 1, "measurement": "l lb" },
-        { "name": "Cheese", "amount": 1, "measurement": "cup" },
-        { "name": "Iceberg Lettuce", "amount": 2, "measurement": "cups" },
-        { "name": "Tomatoes", "amount": 2, "measurement": "large" },
-        { "name": "Tortillas", "amount": 3, "measurement": "med" }
-      ],
-      "steps": [
-        "Cook the fish on the grill until hot.",
-        "Place the fish on the 3 tortillas.",
-        "Top them with lettuce, tomatoes, and cheese"
-      ]
-    }]
+    // 自定义属性验证
+    Star.propTypes = {
+      selected: PropTypes.bool,
+      onClick: PropTypes.func
+    }
+    Star.defaultProps = {
+      selected: false,
+      swq: 1,
+      onClick: f => f,
+    }
 
-    const Recipe = ({ name, ingredients, steps }) =>
-      <section id={name.toLowerCase().replace(/ /g, "-")}>
-        <h1>{name}</h1>
-        <ul className="ingredients">
-          {ingredients.map((ingredient, i) =>
-            <li key={i}>{ingredient.name}</li>
-          )}
-        </ul>
-        <section className="instructions">
-          <h2>Cooking Instructions</h2>
-          {steps.map((step, i) =>
-            <p key={i}>{step}</p>
-          )}
-        </section>
-      </section>
+    class StarRating extends React.Component {
 
-    const Menu = ({ title, recipes }) =>
-      <article>
-        <header>
-          <h1>{title}</h1>
-        </header>
-        <div className="recipes">
-          {recipes.map((recipe, i) =>
-            <Recipe key={i} {...recipe} />
-          )}
-        </div>
-      </article>
+      static propTypes = {
+        totalStars: PropTypes.number
+      }
+
+      static defaultProps = {
+        totalStars: 5
+      }
+
+      constructor(props) {
+        super(props)
+        this.state = {
+          starsSelected: props.starsSelected || 0
+        }
+        this.change = this.change.bind(this)
+      }
+
+      change(starsSelected) {
+        this.setState({ starsSelected })
+      }
+
+      render() {
+        const { totalStars } = this.props
+        const { starsSelected } = this.state
+        return (
+          <div className="star-rating">
+            {[...Array(totalStars)].map((n, i) =>
+              <Star key={i}
+                selected={i < starsSelected}
+                onClick={() => this.change(i + 1)}
+              />
+            )}
+            <p>{starsSelected} of {totalStars} stars</p>
+          </div>
+        )
+      }
+
+    }
 
     ReactDOM.render(
-      <Menu recipes={data}
-        title="Delicious Recipes" />,
-      document.getElementById("react-container")
+      <StarRating totalStars={7} starsSelected={3} />,
+      document.getElementById('react-container')
     )
 
-
   </script>
+
 </body>
 
 </html>
