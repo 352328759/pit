@@ -2,197 +2,236 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>6-5 React的State管理</title>
-    <!-- P131 React的State管理 -->
+	<meta charset="utf-8">
+	<title>6-5 React的State管理</title>
+	<!-- P131 React的State管理 -->
+	<!-- learning-react-master\chapter-06\color-organizer -->
 </head>
 
 <body>
-    <div id="react-container"></div>
-    <script src="https://unpkg.com/prop-types/prop-types.js"></script>
-    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+	<div id="react-container"></div>
+	<script src="https://unpkg.com/prop-types/prop-types.js"></script>
+	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 
-    <script type="text/babel">
+	<script type="text/babel">
 
-        const Star = ({ selected = false, onClick = f => f }) =>
-            <div className={(selected) ? "star selected" : "star"}
-                onClick={onClick}>Star
-            </div>
+		const Star = ({ selected = false, onClick = f => f }) =>
+			<div className={(selected) ? "star selected" : "star"}
+				onClick={onClick}>Star
+			</div>
 
-        Star.propTypes = {
-            selected: PropTypes.bool,
-            onClick: PropTypes.func
-        }
+		Star.propTypes = {
+			selected: PropTypes.bool,
+			onClick: PropTypes.func
+		}
 
-        const StarRating = ({ starsSelected = 0, totalStars = 5, onRate = f => f }) =>
-            <div className="star-rating">
-                {[...Array(totalStars)].map((n, i) =>
-                    <Star key={i}
-                        selected={i < starsSelected}
-                        onClick={() => onRate(i + 1)} />
-                )}
-                <p>{starsSelected} of {totalStars} stars</p>
-            </div>
+		const StarRating = ({ starsSelected = 0, totalStars = 5, onRate = f => f }) =>
+			<div className="star-rating">
+				{[...Array(totalStars)].map((n, i) =>
+					<Star key={i}
+						selected={i < starsSelected}
+						onClick={() => onRate(i + 1)} />
+				)}
+				<p>{starsSelected} of {totalStars} stars</p>
+			</div>
 
-        StarRating.propTypes = {
-            starsSelected: PropTypes.number,
-            totalStars: PropTypes.number,
-            onRate: PropTypes.func
-        }
-
-
-        const Color = ({ title, color, rating = 0, onRemove = f => f, onRate = f => f }) =>
-            <section className="color">
-                <h1>{title}</h1>
-                <button onClick={onRemove}>X</button>
-                <div className="color"
-                    style={{ backgroundColor: color }}>
-                </div>
-                <div>
-                    <StarRating starsSelected={rating} onRate={onRate} />
-                </div>
-            </section>
-
-        Color.propTypes = {
-            title: PropTypes.string.isRequired,
-            color: PropTypes.string.isRequired,
-            rating: PropTypes.number,
-            onRemove: PropTypes.func,
-            onRate: PropTypes.func
-        }
+		StarRating.propTypes = {
+			starsSelected: PropTypes.number,
+			totalStars: PropTypes.number,
+			onRate: PropTypes.func
+		}
 
 
-        const ColorList = ({ colors = [], onRate = f => f, onRemove = f => f }) =>
-            <div className="color-list">
-                {(colors.length === 0) ?
-                    <p>No Colors Listed. (Add a Color)</p> :
-                    colors.map(color =>
-                        <Color key={color.id}
-                            {...color}
-                            onRate={(rating) => onRate(color.id, rating)}
-                            onRemove={() => onRemove(color.id)} />
-                    )
-                }
-            </div>
+		const Color = ({ title, color, rating = 0, onRemove = f => f, onRate = f => f }) =>
+			<section className="color">
+				<h1>{title}</h1>
+				<button onClick={onRemove}>X</button>
+				<div className="color"
+					style={{ backgroundColor: color }}>
+				</div>
+				<div>
+					<StarRating starsSelected={rating} onRate={onRate} />
+				</div>
+			</section>
 
-        ColorList.propTypes = {
-            colors: PropTypes.array,
-            onRate: PropTypes.func,
-            onRemove: PropTypes.func
-        }
-
-
-        const AddColorForm = ({ onNewColor = f => f }) => {
-
-            let _title, _color
-
-            const submit = e => {
-                e.preventDefault()
-                onNewColor(_title.value, _color.value)
-                // _title.value = ''
-                // _color.value = '#000000'
-                // _title.focus()
-            }
-
-            return (
-                <form className="add-color" onSubmit={submit}>
-                    <input ref={input => _title = input}
-                        type="text"
-                        placeholder="color title..." required />
-                    <input ref={input => _color = input}
-                        type="color" required />
-                    <button>ADD</button>
-                </form>
-            )
-
-        }
-
-        AddColorForm.propTypes = {
-            onNewColor: PropTypes.func
-        }
+		Color.propTypes = {
+			title: PropTypes.string.isRequired,
+			color: PropTypes.string.isRequired,
+			rating: PropTypes.number,
+			onRemove: PropTypes.func,
+			onRate: PropTypes.func
+		}
 
 
-        class App extends React.Component {
+		const ColorList = ({ colors = [], onRate = f => f, onRemove = f => f }) =>
+			<div className="color-list">
+				{(colors.length === 0) ?
+					<p>No Colors Listed. (Add a Color)</p> :
+					colors.map(color =>
+						<Color key={color.id}
+							{...color}
+							onRate={(rating) => onRate(color.id, rating)}
+							onRemove={() => onRemove(color.id)} />
+					)
+				}
+			</div>
 
-            constructor(props) {
-                super(props)
-                this.state = {
-                    colors: []
-                }
-                this.addColor = this.addColor.bind(this)
-                this.rateColor = this.rateColor.bind(this)
-                this.removeColor = this.removeColor.bind(this)
-            }
-
-
-            addColor(title, color) {
-                function getUuid() {
-                    return new Date() * 1
-                }
-                this.setState(prevState => ({
-                    colors: [
-                        ...prevState.colors,
-                        {
-                            // id: v4(),
-                            id: getUuid(),
-                            title,
-                            color,
-                            rating: 0
-                        }
-                    ]
-                }))
-            }
-
-            rateColor(id, rating) {
-                this.setState(prevState => ({
-                    colors: prevState.colors.map(color =>
-                        (color.id !== id) ?
-                            color :
-                            {
-                                ...color,
-                                rating
-                            }
-                    )
-                }))
-            }
-
-            removeColor(id) {
-                // this.setState(prevState => ({
-                //     colors: prevState.colors.filter(color => color.id !== id)
-                // }))
-
-                this.setState(function (prevState, props) {
-                    console.log(prevState, props)
-                    return {
-                        colors: prevState.colors.filter(color => color.id !== id)
-                    }
-                })
-            }
-
-            render() {
-                const { addColor, rateColor, removeColor } = this
-                const { colors } = this.state
-                return (
-                    <div className="app">
-                        <AddColorForm onNewColor={addColor} />
-                        <ColorList colors={colors}
-                            onRate={rateColor}
-                            onRemove={removeColor} />
-                    </div>
-                )
-            }
-
-        }
+		ColorList.propTypes = {
+			colors: PropTypes.array,
+			onRate: PropTypes.func,
+			onRemove: PropTypes.func
+		}
 
 
-        ReactDOM.render(
-            <App />,
-            document.getElementById('react-container')
-        )
+		const AddColorForm = ({ onNewColor = f => f }) => {
 
-    </script>
+			let _title, _color
+
+			const submit = e => {
+				e.preventDefault()
+				onNewColor(_title.value, _color.value)
+				// _title.value = ''
+				// _color.value = '#000000'
+				// _title.focus()
+			}
+
+			return (
+				<form className="add-color" onSubmit={submit}>
+					<input ref={input => _title = input}
+						type="text"
+						placeholder="color title..." required />
+					<input ref={input => _color = input}
+						type="color" required />
+					<button>ADD</button>
+				</form>
+			)
+
+		}
+
+		AddColorForm.propTypes = {
+			onNewColor: PropTypes.func
+		}
+
+
+		class App extends React.Component {
+
+			constructor(props) {
+				super(props)
+				this.state = {
+					colors: []
+				}
+				this.addColor = this.addColor.bind(this)
+				this.rateColor = this.rateColor.bind(this)
+				this.removeColor = this.removeColor.bind(this)
+			}
+
+
+			addColor(title, color) {
+				function getUuid() {
+					return new Date() * 1
+				}
+				this.setState(prevState => ({
+					colors: [
+						...prevState.colors,
+						{
+							// id: v4(),
+							id: getUuid(),
+							title,
+							color,
+							rating: 0
+						}
+					]
+				}))
+			}
+
+			rateColor(id, rating) {
+				this.setState(prevState => ({
+					colors: prevState.colors.map(color =>
+						(color.id !== id) ?
+							color :
+							{
+								...color,
+								rating
+							}
+					)
+				}))
+			}
+
+			removeColor(id) {
+				// this.setState(prevState => ({
+				//     colors: prevState.colors.filter(color => color.id !== id)
+				// }))
+
+				this.setState(function (prevState, props) {
+					console.log(prevState, props)
+					return {
+						colors: prevState.colors.filter(color => color.id !== id)
+					}
+				})
+			}
+
+			render() {
+				const { addColor, rateColor, removeColor } = this
+				const { colors } = this.state
+				return (
+					<div className="app">
+						<AddColorForm onNewColor={addColor} />
+						<ColorList colors={colors}
+							onRate={rateColor}
+							onRemove={removeColor} />
+						<h3>据我理解的React组件规则</h3>
+						<ul>
+							<li>ES6组件作为根组件</li>
+							<li>只有根组件可以分配this.state, 在根组件的 constructor</li>
+							<li>唯一可以分配 this.state 的地方是构造函数(<a href="https://www.jianshu.com/p/a883552c67de">https://www.jianshu.com/p/a883552c67de</a>)</li>
+							<li>根组件下可以有若干个无状态组件(无状态函数式组件)</li>
+							<li>这里的无状态组件 作为 表现层组件, 表现层组件只关心应用程序的外观</li>
+							<li>根组件里定义调用 setState 的 function(如: addColor, rateColor, removeColor)</li>
+							<li>根组件将调用 setState 的 function 作为回调函数传递给任意子组件({"如: onRate={rateColor}, onRate={onRate}"})</li>
+							<li>根组件的 constructor 里, 为回调函数绑定 this (this.addColor = this.addColor.bind(this))</li>
+							<li>子组件将用户操作后得到的数据, 传入回调函数, 这一系列行为叫 回传数据到组件树</li>
+							<li>回传数据到组件树, 可以每层都加工数据, 也可以不修改, 将数据照搬上传</li>
+						</ul>
+						<h3>setState 用法</h3>
+						<ul>
+							<li>this.setState(object)</li>
+							<li>常规用法, 传什么改什么, 不保证是同步还是异步. 异步下对同一数据的修改, 可能被视为重复或者覆盖, 反正就是失效</li>
+							<li>this.setState(function(prevState, props)&#123;&#125;)</li>
+							<li>这个函数将接收前一个状态 prevState 作为第一个参数, 应用更新时的 props 作为第二个参数, 函数 return 对象作为修改内容(参考removeColor)</li>
+							<li>this.setState(object, function()&#123;&#125;)</li>
+							<li>这个 function 是回调函数, 在里面可以保证修改操作已完成</li>
+						</ul>
+						<h3>上例中可以重点研究 rateColor 方法</h3>
+						<ul>
+							<li>App组件中定义了方法 rateColor</li>
+							<li>{"App: rateColor => ColorList"}</li>
+							<li>code: {"<ColorList onRate={rateColor} />"}</li>
+							<li>{"ColorList: onRate => Color"}</li>
+							<li>code: {"<Color onRate={(rating) => onRate(color.id, rating)} />"} Color 将自己提供的 color.id 和原有的参数 rating 一并传入给 onRate</li>
+							<li>{"Color: onRate => StarRating"}</li>
+							<li>code: {"<StarRating onRate={onRate} />"}</li>
+							<li>{"StarRating: onRate => Star"}</li>
+							<li>code: {"<Star onClick1={() => onRate(i + 1)} />"} Star 将自己提供的序号 i 传入给 onRate</li>
+							<li>{"Star: onClick1 => div"}</li>
+							<li>code: {"<div onClick={onClick1}></div>"}</li>
+							<li>鼠标点击div, 触发原生的onClick, 继而调用一系列的函数, 把数据一步步向上传递</li>
+							<li>Star.onClick1, StarRating.onRate, Color.onRate, ColorList.onRate, App.rateColor</li>
+						</ul>
+					</div>
+				)
+			}
+
+		}
+
+
+		ReactDOM.render(
+			<App />,
+			document.getElementById('react-container')
+		)
+
+	</script>
 
 </body>
 
