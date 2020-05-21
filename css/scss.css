@@ -1,0 +1,18 @@
+.s {
+  list-style: none;
+}
+.s .swq {
+  width: 400px;
+  border-width: 100px;
+}
+.s .swq__r__l {
+  width: 100px;
+}
+.s .swq__r__l__a {
+  width: 100px;
+}
+.s__li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 10px;
+}

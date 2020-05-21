@@ -1,0 +1,19 @@
+$s: 400px !default;
+
+.swq {
+    width: $s;
+
+    border: {
+        width: 100px;
+    }
+
+    &__r {
+        &__l {
+            width: 100px;
+
+            &__a {
+                width: 100px;
+            }
+        }
+    }
+}

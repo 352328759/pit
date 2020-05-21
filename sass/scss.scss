@@ -1,0 +1,14 @@
+@mixin w {
+    list-style: none;
+
+    &__li {
+        list-style-image: none;
+        list-style-type : none;
+        margin-left     : 10px; 
+    }
+}
+
+.s {
+    @import "_scss";
+    @include w;
+}
