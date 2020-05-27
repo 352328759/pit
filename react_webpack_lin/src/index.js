@@ -5,6 +5,6 @@ import App from './components/App'
 window.React = React
 
 render(
-    <App></App>,
-    document.getElementById('react-container')
+	<App></App>,
+	document.getElementById('react-container')
 )
