@@ -4,9 +4,14 @@
 <head>
 	<meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" />
 	<meta charset="utf-8">
-	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<!-- <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
 	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script> -->
+
+	<script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.development.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+
 	<title>Updating Lifecycle</title>
 </head>
 
@@ -14,17 +19,20 @@
 	<div id="react-container"></div>
 	<script type="text/babel">
 
-		const { Component } = React
-		const { render } = ReactDOM
-
-		class HiddenMessage extends Component {
+		class HiddenMessage extends React.Component {
 
 			constructor(props) {
 				super(props)
 				this.state = {
-					hidden: (props.hide) ? props.hide : true
+					hidden: props.hide
 				}
+				console.log(props)
 			}
+
+			componentWillReceiveProps(nextProps) {
+				this.setState({ hidden: nextProps.hide })
+			}
+
 
 			render() {
 				const { children } = this.props
@@ -33,6 +41,7 @@
 					<p>
 						{(hidden) ?
 							children.replace(/[a-zA-Z0-9]/g, "x") :
+							// children :
 							children
 						}
 					</p>
@@ -41,7 +50,7 @@
 
 		}
 
-		class HiddenMessages extends Component {
+		class HiddenMessages extends React.Component {
 
 			constructor(props) {
 				super(props)
@@ -58,6 +67,8 @@
 			//
 			//  Problem: we should a message every second
 			//
+
+
 
 			componentWillMount() {
 				this.interval = setInterval(() => {
@@ -79,8 +90,7 @@
 				return (
 					<div className="hidden-messages">
 						{messages.map((message, i) =>
-							<HiddenMessage key={i}
-								hide={(i !== showing)}>
+							<HiddenMessage key={i} hide={(i !== showing)}>
 								{message}
 							</HiddenMessage>
 						)}
@@ -89,12 +99,10 @@
 			}
 		}
 
-		render(
+		ReactDOM.render(
 			<HiddenMessages />,
 			document.getElementById('react-container')
 		)
-
-
 
 	</script>
 </body>
