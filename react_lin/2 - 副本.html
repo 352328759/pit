@@ -12,97 +12,39 @@
 	<script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
 	<script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
 
-	<title>Updating Lifecycle</title>
+	<title>Children</title>
 </head>
 
 <body>
 	<div id="react-container"></div>
 	<script type="text/babel">
 
-		class HiddenMessage extends React.Component {
 
-			constructor(props) {
-				super(props)
-				this.state = {
-					hidden: props.hide
-				}
-				console.log(props)
-			}
+		const List = ({ items }) =>
+			<div className="list">
+				{items.map((x, i) => <li key={i}>{x}</li>)}
+			</div>
 
-			componentWillReceiveProps(nextProps) {
-				this.setState({ hidden: nextProps.hide })
-			}
+		const render = items =>
+			ReactDOM.render(
+				<List items={items} />,
+				document.getElementById('react-container')
+			)
 
+		fetch('https://restcountries.eu/rest/v1/all')
+			.then(function (response) {
+				var data = response.json()
+				console.log(data)
+				return data
+			})
+			.then(function (json) {
+				console.log(json)
+				return json.map(country => country.name)
+			})
+			// .then(response => response.json())
+			// .then(json => json.map(country => country.name))
+			.then(countryNames => render(countryNames))
 
-			render() {
-				const { children } = this.props
-				const { hidden } = this.state
-				return (
-					<p>
-						{(hidden) ?
-							children.replace(/[a-zA-Z0-9]/g, "x") :
-							// children :
-							children
-						}
-					</p>
-				)
-			}
-
-		}
-
-		class HiddenMessages extends React.Component {
-
-			constructor(props) {
-				super(props)
-				this.state = {
-					messages: [
-						"The crow crows after midnight",
-						"Bring a watch and dark clothes to the spot",
-						"Jericho Jericho Go"
-					],
-					showing: -1
-				}
-			}
-
-			//
-			//  Problem: we should a message every second
-			//
-
-
-
-			componentWillMount() {
-				this.interval = setInterval(() => {
-					this.setState(prevState => {
-						let { showing, messages } = prevState
-						showing = (++showing >= messages.length) ?
-							-1 : showing
-						return { showing }
-					})
-				}, 1000)
-			}
-
-			componentWillUnmount() {
-				clearInterval(this.interval)
-			}
-
-			render() {
-				const { messages, showing } = this.state
-				return (
-					<div className="hidden-messages">
-						{messages.map((message, i) =>
-							<HiddenMessage key={i} hide={(i !== showing)}>
-								{message}
-							</HiddenMessage>
-						)}
-					</div>
-				)
-			}
-		}
-
-		ReactDOM.render(
-			<HiddenMessages />,
-			document.getElementById('react-container')
-		)
 
 	</script>
 </body>
