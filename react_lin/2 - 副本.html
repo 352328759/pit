@@ -8,166 +8,166 @@
 	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script> -->
 
-	<script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.development.js"></script>
-	<script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
-	<script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
 
 	<style media="screen">
-		body,
-		html {
+		@import url(https://fonts.googleapis.com/css?family=Knewave);
+
+		html,
+		body {
+			padding: 0;
+			margin: 0;
 			height: 100%;
+			overflow: hidden;
 		}
 
-		body {
-			margin: 0;
-			padding: 0;
-			font-family: "Keania One", verdana;
-			background-color: black;
-			color: #008209;
+		#react-container {
+			height: calc(100% - 2.5em);
+			margin: 1em;
+			border: 0.25em double orange;
+			color: blue;
+			border-radius: 0.5em;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			font-family: "Knewave", fantasy, Arial;
+			font-size: 5em;
 		}
 
-		div.clock {
-			width: 339px;
-			border: solid 1px;
-			height: 80px;
-			position: relative;
-			display: flex;
-			justify-content: space-around;
-			align-items: flex-end;
-		}
-
-		div.clock span {
-			font-size: 3em;
-		}
-
-		div.clock button {
-			position: absolute;
-			top: .2em;
-			right: .2em;
-			padding: .4em;
-			font-size: .8em;
-			line-height: .8em;
-			font-weight: bold;
-			color: #008209;
-			background-color: black;
-			border: solid 1px #008209;
-		}
-
-		div.clock button:hover {
-			background-color: #008209;
-			color: black;
-			border: none;
+		#react-container span {
+			display: block;
+			text-align: center;
 			cursor: pointer;
+			font-size: 0.5em;
+		}
+
+		#react-container span:last-child {
+			color: grey;
+			font-size: 0.5em;
 		}
 	</style>
 
-	<title>Higher Order Components</title>
+	<title>Flux</title>
 </head>
 
 <body>
 	<div id="react-container"></div>
 
+	<script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.development.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flux/2.1.1/Flux.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/EventEmitter/5.0.0/EventEmitter.min.js"></script>
+
+
 	<script type="text/babel">
 
-		const startTicking = () =>
-			setInterval(
-				compose(
-					getCurrentTime,
-					abstractClockTime,
-					convertToCivilianTime,
-					doubleDigits,
-					render(AlarmClockDisplay)
-				),
-				oneSecond()
-			)
+		//
+		// Simple Flux Sample, with Facebook's Flux Dispatcher
+		//
 
-		const AlarmClockDisplay = ({ hours, minutes, seconds, ampm }) =>
-			<div className="clock">
-				<span>{hours}</span>
-				<span>:</span>
-				<span>{minutes}</span>
-				<span>:</span>
-				<span>{seconds}</span>
-				<span>{ampm}</span>
-			</div>
+		const { Component } = React
+		const { Dispatcher } = Flux
 
-		const render = function (Component) {
-			return function (civilianTime) {
-				return ReactDOM.render(
-					<Component {...civilianTime} />,
-					document.getElementById('react-container')
-				)
+		/* View : React Countdown Component
+		************************************************************/
+
+		const Countdown = ({ count, tick, reset }) => {
+
+			if (count) {
+				setTimeout(() => tick(count), 1000)
 			}
-		}
-		// const render = Component => civilianTime =>
-		// 	ReactDOM.render(
-		// 		<Component {...civilianTime} />,
-		// 		document.getElementById('react-container')
-		// 	)
 
-		const oneSecond = () => 1000
-		const getCurrentTime = () => new Date()
+			return (count) ?
+				<h1>{count}</h1> :
+				<div onClick={() => reset(10)}>
+					<span>CELEBRATE!!!</span>
+					<span>(click to start over)</span>
+				</div>
 
-		const clear = () => console.clear()
-		const log = message => console.log(message)
-
-		const abstractClockTime = date =>
-			({
-				hours: date.getHours(),
-				minutes: date.getMinutes(),
-				seconds: date.getSeconds()
-			})
-
-		const civilianHours = clockTime =>
-			({
-				...clockTime,
-				hours: (clockTime.hours > 12) ? clockTime.hours - 12 : clockTime.hours
-			})
-
-		const appendAMPM = clockTime =>
-			({
-				...clockTime,
-				ampm: (clockTime.hours >= 12) ? "PM" : "AM"
-			})
-
-		const display = target => time => target(time)
-		const formatClock = format =>
-			time =>
-				format.replace("hh", time.hours)
-					.replace("mm", time.minutes)
-					.replace("ss", time.seconds)
-					.replace("tt", time.ampm)
-
-		const compose = (...fns) => {
-			console.log("P145: what is reduce?")
-			return (arg) => {
-				return fns.reduce((composed, f) => f(composed), arg)
-			}
 		}
 
-		const convertToCivilianTime = clockTime =>
-			compose(
-				appendAMPM,
-				civilianHours
-			)(clockTime)
+		/* Action Creators : Create Action Objects
+		************************************************************/
 
-		const prependZero = key => clockTime =>
+		const countdownActions = dispatcher =>
 			({
-				...clockTime,
-				[key]: (clockTime[key] < 10) ? "0" + clockTime[key] : clockTime[key]
+				tick(count) {
+					dispatcher.handleAction({
+						type: 'TICK',
+						count: count - 1
+					})
+				},
+				reset(count) {
+					dispatcher.handleAction({
+						type: 'RESET',
+						count
+					})
+				}
 			})
 
-		const doubleDigits = civilianTime =>
-			compose(
-				prependZero("hours"),
-				prependZero("minutes")
-			)(civilianTime)
+		/* CountDispatcher : Dispatches actions for the Countodown
+		************************************************************/
 
-		startTicking()
+		class CountdownDispatcher extends Dispatcher {
 
+			handleAction(action) {
+				console.log('dispatching action:', action)
+				this.dispatch({
+					source: 'VIEW_ACTION',
+					action
+				})
+			}
+
+		}
+
+		/* The Store : Holds the Countdown Info
+		************************************************************/
+
+		class CountdownStore extends EventEmitter {
+
+			constructor(count = 5, dispatcher) {
+				super()
+				this._count = count
+				this.dispatcherIndex = dispatcher.register(this.dispatch.bind(this))
+			}
+
+			get count() {
+				return this._count
+			}
+
+			dispatch(payload) {
+				const { type, count } = payload.action
+				switch (type) {
+
+					case "TICK":
+						this._count = count
+						this.emit("TICK")
+						return true
+
+					case "RESET":
+						this._count = count
+						this.emit("RESET")
+						return true
+
+				}
+			}
+
+		}
+
+		/* Flux App : Put it all together
+		************************************************************/
+		const appDispatcher = new CountdownDispatcher()
+		const actions = countdownActions(appDispatcher)
+		const store = new CountdownStore(10, appDispatcher)
+
+		const render = count => ReactDOM.render(
+			<Countdown count={count} {...actions} />,
+			document.getElementById('react-container')
+		)
+
+		store.on("TICK", () => render(store.count))
+		store.on("RESET", () => render(store.count))
+		render(store.count)
 
 	</script>
 </body>
