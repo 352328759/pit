@@ -2,172 +2,141 @@
 <html>
 
 <head>
-	<meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" />
 	<meta charset="utf-8">
-	<!-- <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script> -->
-
-
-	<style media="screen">
-		@import url(https://fonts.googleapis.com/css?family=Knewave);
-
-		html,
-		body {
-			padding: 0;
-			margin: 0;
-			height: 100%;
-			overflow: hidden;
-		}
-
-		#react-container {
-			height: calc(100% - 2.5em);
-			margin: 1em;
-			border: 0.25em double orange;
-			color: blue;
-			border-radius: 0.5em;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			font-family: "Knewave", fantasy, Arial;
-			font-size: 5em;
-		}
-
-		#react-container span {
-			display: block;
-			text-align: center;
-			cursor: pointer;
-			font-size: 0.5em;
-		}
-
-		#react-container span:last-child {
-			color: grey;
-			font-size: 0.5em;
-		}
-	</style>
-
-	<title>Flux</title>
+	<title>6-5 React的State管理</title>
+	<!-- P147 组件生命周期 -->
 </head>
 
 <body>
 	<div id="react-container"></div>
-
+	<!-- <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script> -->
 	<script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.development.js"></script>
 	<script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
 	<script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/flux/2.1.1/Flux.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/EventEmitter/5.0.0/EventEmitter.min.js"></script>
-
 
 	<script type="text/babel">
 
-		//
-		// Simple Flux Sample, with Facebook's Flux Dispatcher
-		//
+		const getFakeMembers = count => new Promise((resolves, rejects) => {
+			const api = `https://api.randomuser.me/?nat=US&results=${count}`
+			const request = new XMLHttpRequest()
+			request.open('GET', api)
+			request.onload = () => (request.status == 200) ?
+				resolves(JSON.parse(request.response).results) :
+				reject(Error(request.statusText))
+			request.onerror = (err) => rejects(err)
+			request.send()
+		})
 
-		const { Component } = React
-		const { Dispatcher } = Flux
+		const Member = ({ email, picture, name, location }) =>
+			<div className="member">
+				<img src={picture.thumbnail} alt="" />
+				<h1>{name.first} {name.last}</h1>
+				<p><a href={"mailto:" + email}>{email}</a></p>
+				<p>{location.city}, {location.state}</p>
+			</div>
 
-		/* View : React Countdown Component
-		************************************************************/
 
-		const Countdown = ({ count, tick, reset }) => {
+		class MemberList extends React.Component {
 
-			if (count) {
-				setTimeout(() => tick(count), 1000)
-			}
-
-			return (count) ?
-				<h1>{count}</h1> :
-				<div onClick={() => reset(10)}>
-					<span>CELEBRATE!!!</span>
-					<span>(click to start over)</span>
-				</div>
-
-		}
-
-		/* Action Creators : Create Action Objects
-		************************************************************/
-
-		const countdownActions = dispatcher =>
-			({
-				tick(count) {
-					dispatcher.handleAction({
-						type: 'TICK',
-						count: count - 1
-					})
-				},
-				reset(count) {
-					dispatcher.handleAction({
-						type: 'RESET',
-						count
-					})
-				}
-			})
-
-		/* CountDispatcher : Dispatches actions for the Countodown
-		************************************************************/
-
-		class CountdownDispatcher extends Dispatcher {
-
-			handleAction(action) {
-				console.log('dispatching action:', action)
-				this.dispatch({
-					source: 'VIEW_ACTION',
-					action
-				})
-			}
-
-		}
-
-		/* The Store : Holds the Countdown Info
-		************************************************************/
-
-		class CountdownStore extends EventEmitter {
-
-			constructor(count = 5, dispatcher) {
+			constructor() {
 				super()
-				this._count = count
-				this.dispatcherIndex = dispatcher.register(this.dispatch.bind(this))
-			}
-
-			get count() {
-				return this._count
-			}
-
-			dispatch(payload) {
-				const { type, count } = payload.action
-				switch (type) {
-
-					case "TICK":
-						this._count = count
-						this.emit("TICK")
-						return true
-
-					case "RESET":
-						this._count = count
-						this.emit("RESET")
-						return true
-
+				// 挂载生命周期 - 初始化组件
+				// 类构造函数
+				console.log("挂载周期 - 1")
+				this.state = {
+					members: [],
+					loading: false,
+					error: null
 				}
 			}
 
+			componentWillMount() {
+				// 挂载生命周期 - 组件将要挂载
+				// 同步 setState 触发一次 render; 且不涉及更新周期
+				// 异步 setState 多次触发 render; 涉及更新周期
+				console.log("挂载周期 - 2")
+				this.setState({ loading: true })
+				getFakeMembers(this.props.count).then(
+					members => {
+						this.setState({ members, loading: false })
+					},
+					error => {
+						this.setState({ error, loading: false })
+					}
+				)
+			}
+
+			componentDidMount() {
+				// 挂载生命周期 - 组件挂载完成
+				console.log("挂载周期 - 4")
+			}
+
+			componentWillUnmount() {
+				// 挂载生命周期 - 组件将要销毁
+				console.log("挂载周期 - 5")
+			}
+
+			shouldComponentUpdate(nextProps, nextState) {
+				// 更新生命周期 - 是否要更新数据
+				// 限制更新
+				// return true 更新; false 阻拦; 不return 报错
+				// nextProps 父组件传给子组件的值
+				// nextState 数据更新之后值
+				console.log("更新周期 - 1")
+				return true
+			}
+
+
+			componentWillReceiveProps(nextProps) {
+				// 更新生命周期 - 组件将拿到props
+				// 父组件中改变了props传值
+				// 更新生命周期中唯一可以调用setState方法的地方, 在属性被父组件修改时被触发
+				// nextProps 父组件传给子组件的值
+				// 更新周期不一定有这个环节, 只有 props 改变了才会触发
+				console.log("更新周期 - 2")
+			}
+
+
+
+			componentWillUpdate() {
+				// 更新生命周期 - 将要更新数据
+				console.log("更新周期 - 3")
+			}
+
+			componentDidUpdate() {
+				// 更新生命周期 - 数据更新完成
+				console.log("更新周期 - 5")
+			}
+
+
+			render() {
+				// 挂载生命周期 - 渲染组件
+				// 更新生命周期 - 重绘组件
+				console.log("挂载周期 - 3")
+				console.log("更新周期 - 4")
+				const { members, loading, error } = this.state
+				return (
+					<div className="member-list">
+						{(loading) ?
+							<span>Loading Members</span> :
+							(members.length) ?
+								members.map((user, i) =>
+									<Member key={i} {...user} />
+								) :
+								<span>0 members loaded...</span>
+						}
+						{(error) ? <p>Error Loading Members: {error.message}</p> : ""}
+					</div>
+				)
+			}
 		}
 
-		/* Flux App : Put it all together
-		************************************************************/
-		const appDispatcher = new CountdownDispatcher()
-		const actions = countdownActions(appDispatcher)
-		const store = new CountdownStore(10, appDispatcher)
-
-		const render = count => ReactDOM.render(
-			<Countdown count={count} {...actions} />,
+		ReactDOM.render(
+			<MemberList count={5} />,
 			document.getElementById('react-container')
 		)
-
-		store.on("TICK", () => render(store.count))
-		store.on("RESET", () => render(store.count))
-		render(store.count)
 
 	</script>
 </body>
