@@ -19,17 +19,22 @@
 	<script type="text/babel">
 
 		const getFakeMembers = count => new Promise((resolves, rejects) => {
-			const api = `https://api.randomuser.me/?nat=US&results=${count}`
-			const request = new XMLHttpRequest()
-			request.open('GET', api)
-			request.onload = () => (request.status == 200) ?
-				resolves(JSON.parse(request.response).results) :
-				reject(Error(request.statusText))
-			request.onerror = (err) => rejects(err)
-			request.send()
+			// const api = `https://api.randomuser.me/?nat=US&results=${count}`
+			// const request = new XMLHttpRequest()
+			// request.open('GET', api)
+			// request.onload = () => (request.status == 200) ?
+			// 	resolves(JSON.parse(request.response).results) :
+			// 	reject(Error(request.statusText))
+			// request.onerror = (err) => rejects(err)
+			// request.send()
+
+			var data = [{ "gender": "female", "name": { "title": "Mrs", "first": "Tracy", "last": "Morales" }, "location": { "street": { "number": 1763, "name": "Bruce St" }, "city": "Lexington", "state": "Montana", "country": "United States", "postcode": 84916, "coordinates": { "latitude": "-61.7048", "longitude": "64.6702" }, "timezone": { "offset": "-11:00", "description": "Midway Island, Samoa" } }, "email": "tracy.morales@example.com", "login": { "uuid": "f9802078-d22a-4a61-8218-a3be58b95b38", "username": "lazymouse273", "password": "aquarius", "salt": "lkNNyhbk", "md5": "066c2c37ee9802ca6ab72038793d9c88", "sha1": "f7fe535d18dcc5ef9d340086372090c87c2cc79b", "sha256": "4d12ca96f274676848c99ce54b0597524fc406c862a670a115d6dd0b8510f742" }, "dob": { "date": "1982-03-03T05:12:55.112Z", "age": 38 }, "registered": { "date": "2018-05-20T15:06:00.579Z", "age": 2 }, "phone": "(575)-372-5061", "cell": "(755)-011-4804", "id": { "name": "SSN", "value": "542-50-5933" }, "picture": { "large": "https://randomuser.me/api/portraits/women/31.jpg", "medium": "https://randomuser.me/api/portraits/med/women/31.jpg", "thumbnail": "https://randomuser.me/api/portraits/thumb/women/31.jpg" }, "nat": "US" }, { "gender": "female", "name": { "title": "Ms", "first": "Danielle", "last": "Carlson" }, "location": { "street": { "number": 8196, "name": "W Sherman Dr" }, "city": "Stamford", "state": "Oregon", "country": "United States", "postcode": 24718, "coordinates": { "latitude": "-81.2284", "longitude": "57.1765" }, "timezone": { "offset": "+7:00", "description": "Bangkok, Hanoi, Jakarta" } }, "email": "danielle.carlson@example.com", "login": { "uuid": "2b981226-d169-4738-99f5-59c31ccdedb2", "username": "browngoose398", "password": "extra", "salt": "U3Z0s01i", "md5": "507fb100dba0fcd6a0b93e5e46e80abb", "sha1": "847870fa6c234d2775856285c839538def4a19b6", "sha256": "80e719c5c336e34a1e86326274bb562393ec0b98c493cdbf21455e3d9c116a31" }, "dob": { "date": "1993-03-07T19:55:47.364Z", "age": 27 }, "registered": { "date": "2003-09-07T16:36:59.534Z", "age": 17 }, "phone": "(863)-177-2375", "cell": "(348)-621-3699", "id": { "name": "SSN", "value": "448-29-9212" }, "picture": { "large": "https://randomuser.me/api/portraits/women/34.jpg", "medium": "https://randomuser.me/api/portraits/med/women/34.jpg", "thumbnail": "https://randomuser.me/api/portraits/thumb/women/34.jpg" }, "nat": "US" }, { "gender": "female", "name": { "title": "Miss", "first": "Loretta", "last": "Jackson" }, "location": { "street": { "number": 8215, "name": "N Stelling Rd" }, "city": "Austin", "state": "New Hampshire", "country": "United States", "postcode": 21226, "coordinates": { "latitude": "45.8138", "longitude": "135.6456" }, "timezone": { "offset": "+2:00", "description": "Kaliningrad, South Africa" } }, "email": "loretta.jackson@example.com", "login": { "uuid": "df4fd254-55e1-45da-92cc-45b867ca326b", "username": "blackswan901", "password": "dolemite", "salt": "xs75Lel1", "md5": "cd340666aaf8876f1df7dc7a98b7472c", "sha1": "91fbd5ec5c4cb9fa195cf9bf266bab5192bde8f8", "sha256": "460d05b914e82aa9b9b355a8bde6a3d602c191f3ce6826c721c9d3760c31ad30" }, "dob": { "date": "1998-02-20T09:41:58.535Z", "age": 22 }, "registered": { "date": "2007-12-18T05:05:18.281Z", "age": 13 }, "phone": "(021)-171-5407", "cell": "(680)-141-2944", "id": { "name": "SSN", "value": "682-97-0366" }, "picture": { "large": "https://randomuser.me/api/portraits/women/31.jpg", "medium": "https://randomuser.me/api/portraits/med/women/31.jpg", "thumbnail": "https://randomuser.me/api/portraits/thumb/women/31.jpg" }, "nat": "US" }, { "gender": "female", "name": { "title": "Ms", "first": "Georgia", "last": "Hoffman" }, "location": { "street": { "number": 8425, "name": "Prospect Rd" }, "city": "Stanley", "state": "New Hampshire", "country": "United States", "postcode": 46047, "coordinates": { "latitude": "81.3464", "longitude": "163.4673" }, "timezone": { "offset": "-2:00", "description": "Mid-Atlantic" } }, "email": "georgia.hoffman@example.com", "login": { "uuid": "77d4fe32-3089-4728-9809-164fe912d42d", "username": "redbird743", "password": "diamond", "salt": "bjRfSBe1", "md5": "9740e8f46913bf987dd2852d8cd3391e", "sha1": "7780941c7c019bfb6039d73cd8b55ef5febc5b01", "sha256": "2aaeb0f2bd2fdb5a6ea03af0c3624f9313a4f136e095b65eaaca05a5707aef67" }, "dob": { "date": "1983-07-21T12:57:03.228Z", "age": 37 }, "registered": { "date": "2017-09-08T06:47:12.644Z", "age": 3 }, "phone": "(671)-504-0205", "cell": "(082)-092-3061", "id": { "name": "SSN", "value": "207-42-0484" }, "picture": { "large": "https://randomuser.me/api/portraits/women/53.jpg", "medium": "https://randomuser.me/api/portraits/med/women/53.jpg", "thumbnail": "https://randomuser.me/api/portraits/thumb/women/53.jpg" }, "nat": "US" }, { "gender": "female", "name": { "title": "Ms", "first": "Colleen", "last": "Neal" }, "location": { "street": { "number": 6497, "name": "Lone Wolf Trail" }, "city": "West Palm Beach", "state": "Pennsylvania", "country": "United States", "postcode": 15294, "coordinates": { "latitude": "70.3339", "longitude": "175.9459" }, "timezone": { "offset": "-1:00", "description": "Azores, Cape Verde Islands" } }, "email": "colleen.neal@example.com", "login": { "uuid": "550321b3-870b-4ad1-a733-f679d3fb05aa", "username": "blackbutterfly609", "password": "gore", "salt": "Qp400f94", "md5": "11a5f6921a7f9e640b8a03a33f3577f6", "sha1": "b7e065f4b2de409463d47b24151a3212f141335b", "sha256": "8882064891d75290edd42b04abb4a9b6e36f49111eb12bf3db7b72197749da98" }, "dob": { "date": "1966-08-16T09:29:42.153Z", "age": 54 }, "registered": { "date": "2019-01-20T04:18:42.629Z", "age": 1 }, "phone": "(769)-247-2368", "cell": "(785)-900-0984", "id": { "name": "SSN", "value": "239-28-4987" }, "picture": { "large": "https://randomuser.me/api/portraits/women/18.jpg", "medium": "https://randomuser.me/api/portraits/med/women/18.jpg", "thumbnail": "https://randomuser.me/api/portraits/thumb/women/18.jpg" }, "nat": "US" }];
+			setTimeout(function () {
+				resolves(data)
+			}, 0)
 		})
 
-		const Member = ({ email, picture, name, location }) =>
+		const Member1 = ({ email, picture, name, location }) =>
 			<div className="member">
 				<img src={picture.thumbnail} alt="" />
 				<h1>{name.first} {name.last}</h1>
@@ -37,6 +42,34 @@
 				<p>{location.city}, {location.state}</p>
 			</div>
 
+
+		class Member extends React.Component {
+
+			static defaultProps = {
+				email: null,
+				picture: null,
+				name: null,
+				location: null,
+			}
+
+			componentWillUnmount() {
+				// 挂载生命周期 - 组件将要销毁
+				// 匹配 ReactDOM.unmountComponentAtNode 使用?
+				console.log("挂载周期 - 5")
+			}
+
+			render() {
+				const { email, picture, name, location } = this.props
+				return (
+					<div className="member">
+						<img src={picture.thumbnail} alt="" />
+						<h1>{name.first} {name.last}</h1>
+						<p><a href={"mailto:" + email}>{email}</a></p>
+						<p>{location.city}, {location.state}</p>
+					</div>
+				)
+			}
+		}
 
 		class MemberList extends React.Component {
 
@@ -71,10 +104,19 @@
 			componentDidMount() {
 				// 挂载生命周期 - 组件挂载完成
 				console.log("挂载周期 - 4")
+				var _this = this
+				// setTimeout(function () {
+				// 	_this.state.members.splice(0, 1)
+				// 	var l4 = _this.state.members
+				// 	_this.setState({
+				// 		members: l4
+				// 	})
+				// }, 400)
 			}
 
 			componentWillUnmount() {
 				// 挂载生命周期 - 组件将要销毁
+				// 匹配 ReactDOM.unmountComponentAtNode 使用?
 				console.log("挂载周期 - 5")
 			}
 
