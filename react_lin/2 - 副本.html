@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>6-5 React的State管理</title>
+	<title>7-1 组件生命周期</title>
 	<!-- P147 组件生命周期 -->
 </head>
 
@@ -42,7 +42,6 @@
 				<p>{location.city}, {location.state}</p>
 			</div>
 
-
 		class Member extends React.Component {
 
 			static defaultProps = {
@@ -55,7 +54,7 @@
 			componentWillUnmount() {
 				// 挂载生命周期 - 组件将要销毁
 				// 匹配 ReactDOM.unmountComponentAtNode 使用?
-				console.log("挂载周期 - 5")
+				console.log("Member - 挂载周期 - 5")
 			}
 
 			render() {
@@ -83,6 +82,13 @@
 					loading: false,
 					error: null
 				}
+
+				this.close = this.close.bind(this)
+			}
+
+			close() {
+				this.setState({ loading: true })
+				// ReactDOM.unmountComponentAtNode(document.getElementById('react-container'))
 			}
 
 			componentWillMount() {
@@ -116,7 +122,8 @@
 
 			componentWillUnmount() {
 				// 挂载生命周期 - 组件将要销毁
-				// 匹配 ReactDOM.unmountComponentAtNode 使用?
+				// 匹配 ReactDOM.unmountComponentAtNode 使用
+				// 组件从 if-true 变成 if-false 也会触发卸载
 				console.log("挂载周期 - 5")
 			}
 
@@ -130,7 +137,6 @@
 				return true
 			}
 
-
 			componentWillReceiveProps(nextProps) {
 				// 更新生命周期 - 组件将拿到props
 				// 父组件中改变了props传值
@@ -139,8 +145,6 @@
 				// 更新周期不一定有这个环节, 只有 props 改变了才会触发
 				console.log("更新周期 - 2")
 			}
-
-
 
 			componentWillUpdate() {
 				// 更新生命周期 - 将要更新数据
@@ -152,7 +156,6 @@
 				console.log("更新周期 - 5")
 			}
 
-
 			render() {
 				// 挂载生命周期 - 渲染组件
 				// 更新生命周期 - 重绘组件
@@ -161,6 +164,7 @@
 				const { members, loading, error } = this.state
 				return (
 					<div className="member-list">
+						<button onClick={this.close}>卸载</button>
 						{(loading) ?
 							<span>Loading Members</span> :
 							(members.length) ?

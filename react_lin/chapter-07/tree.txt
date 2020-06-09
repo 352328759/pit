@@ -30,39 +30,7 @@ E:.
 ©¦      01-state.html
 ©¦      02-flux.html
 ©¦      
-©À©¤color-organizer
-©¦  ©¦  package-lock.json
-©¦  ©¦  package.json
-©¦  ©¦  readme.md
-©¦  ©¦  webpack.config.js
-©¦  ©¦  
-©¦  ©À©¤dist
-©¦  ©¦  ©¦  index.html
-©¦  ©¦  ©¦  
-©¦  ©¦  ©¸©¤assets
-©¦  ©¦          bundle.js
-©¦  ©¦          bundle.map
-©¦  ©¦          
-©¦  ©À©¤src
-©¦  ©¦  ©¦  index.js
-©¦  ©¦  ©¦  
-©¦  ©¦  ©¸©¤components
-©¦  ©¦          AddColorForm.js
-©¦  ©¦          App.js
-©¦  ©¦          Color.js
-©¦  ©¦          ColorList.js
-©¦  ©¦          Star.js
-©¦  ©¦          StarRating.js
-©¦  ©¦          
-©¦  ©¸©¤stylesheets
-©¦          AddColorForm.scss
-©¦          APP.scss
-©¦          Color.scss
-©¦          ColorList.scss
-©¦          globals.scss
-©¦          Star.scss
-©¦          
-©¸©¤mounting-lifecycle-clock
+©¸©¤color-organizer
     ©¦  package-lock.json
     ©¦  package.json
     ©¦  readme.md
@@ -73,9 +41,24 @@ E:.
     ©¦  ©¦  
     ©¦  ©¸©¤assets
     ©¦          bundle.js
+    ©¦          bundle.map
     ©¦          
-    ©¸©¤src
-            clock.js
-            index.js
-            lib.js
+    ©À©¤src
+    ©¦  ©¦  index.js
+    ©¦  ©¦  
+    ©¦  ©¸©¤components
+    ©¦          AddColorForm.js
+    ©¦          App.js
+    ©¦          Color.js
+    ©¦          ColorList.js
+    ©¦          Star.js
+    ©¦          StarRating.js
+    ©¦          
+    ©¸©¤stylesheets
+            AddColorForm.scss
+            APP.scss
+            Color.scss
+            ColorList.scss
+            globals.scss
+            Star.scss
             
