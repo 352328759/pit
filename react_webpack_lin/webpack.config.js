@@ -28,4 +28,10 @@ module.exports = {
 			use: ['style-loader', 'css-loader']
 		}]
 	},
+	resolve: {
+		extensions: ['.js', '.vue', '.json'],
+		alias: {
+			'@': path.join(__dirname, ".", "src")
+		}
+	}
 }

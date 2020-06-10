@@ -1,6 +1,6 @@
-import { Component } from 'react'
-import PropTypes from 'prop-types'
-import '../../stylesheets/AddColorForm.css'
+import { Component } from "react"
+import PropTypes from "prop-types"
+import "../../stylesheets/AddColorForm.css"
 
 const AddColorForm = ({ onNewColor = f => f }) => {
 
@@ -9,8 +9,8 @@ const AddColorForm = ({ onNewColor = f => f }) => {
 	const submit = e => {
 		e.preventDefault()
 		onNewColor(_title.value, _color.value)
-		_title.value = ''
-		_color.value = '#000000'
+		_title.value = ""
+		_color.value = "#000000"
 		_title.focus()
 	}
 

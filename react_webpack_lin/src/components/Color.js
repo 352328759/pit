@@ -1,23 +1,42 @@
-import { Component } from 'react'
-import PropTypes from 'prop-types'
-import StarRating from './StarRating'
-import '../../stylesheets/Color.css'
+import { Component } from "react"
+import PropTypes from "prop-types"
+import StarRating from "./StarRating"
+import getLifecycle from "@/utils/getLifecycle.js"
+import "../../stylesheets/Color.css"
 
 class Color extends Component {
 
+	// constructor() {
+	// 	super()
+	// 	getLifecycle("Color", "constructor")
+	// }
+
 	componentWillMount() {
-		console.log("componentWillMount")
+		getLifecycle("Color", "componentWillMount")
 		this.style = { backgroundColor: "#CCC" }
 	}
 
+	// componentDidMount() {
+	// 	getLifecycle("Color", "componentDidMount")
+	// }
+
+	// componentWillUnmount() {
+	// 	getLifecycle("Color", "componentWillUnmount")
+	// }
+
+
 	shouldComponentUpdate(nextProps) {
-		console.log("shouldComponentUpdate")
+		getLifecycle("Color", "shouldComponentUpdate")
 		const { rating } = this.props
 		return rating !== nextProps.rating
 	}
 
+	// componentWillReceiveProps() {
+	// 	getLifecycle("Color", "componentWillReceiveProps")
+	// }
+
 	componentWillUpdate(nextProps) {
-		console.log("componentWillUpdate")
+		getLifecycle("Color", "componentWillUpdate")
 		const { title, rating } = this.props
 		this.style = null
 		this.refs.title.style.backgroundColor = "red"
@@ -26,16 +45,16 @@ class Color extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		console.log("componentDidUpdate")
+		getLifecycle("Color", "componentDidUpdate")
 		const { title, rating } = this.props
-		const status = (rating > prevProps.rating) ? 'better' : 'worse'
+		const status = (rating > prevProps.rating) ? "better" : "worse"
 		console.log(`${title} is getting ${status}`)
 		this.refs.title.style.backgroundColor = ""
 		this.refs.title.style.color = "black"
 	}
 
 	render() {
-		console.log("render")
+		getLifecycle("Color", "render")
 		const { title, color, rating, onRemove, onRate } = this.props
 		return (
 			<section className="color" style={this.style}>
@@ -50,7 +69,6 @@ class Color extends Component {
 			</section>
 		)
 	}
-
 }
 
 Color.propTypes = {
