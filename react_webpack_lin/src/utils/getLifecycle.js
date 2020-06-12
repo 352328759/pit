@@ -35,17 +35,8 @@ export default function getLifecycle(componentName, cycle) {
 					"组件从 if-true 变成 if-false 也会触发卸载"
 				])
 				break;
-			case "shouldComponentUpdate":
-				consoleMsg("更新周期 - 1", [
-					"更新生命周期 - 是否要更新数据",
-					"限制更新",
-					"return true 更新; false 阻拦; 不return 报错",
-					"nextProps 父组件传给子组件的值",
-					"nextState 数据更新之后值"
-				])
-				break;
 			case "componentWillReceiveProps":
-				consoleMsg("更新周期 - 2", [
+				consoleMsg("更新周期 - 1", [
 					"更新生命周期 - 组件将拿到props",
 					"父组件中改变了props传值",
 					"更新生命周期中唯一可以调用setState方法的地方, 在属性被父组件修改时被触发",
@@ -53,9 +44,19 @@ export default function getLifecycle(componentName, cycle) {
 					"更新周期不一定有这个环节, 只有 props 改变了才会触发"
 				])
 				break;
+			case "shouldComponentUpdate":
+				consoleMsg("更新周期 - 2", [
+					"更新生命周期 - 是否要更新数据",
+					"限制更新",
+					"return true 更新; false 阻拦; 不return 报错",
+					"nextProps 父组件传给子组件的值",
+					"nextState 数据更新之后值"
+				])
+				break;
 			case "componentWillUpdate":
 				consoleMsg("更新周期 - 3", [
-					"更新生命周期 - 将要更新数据"
+					"更新生命周期 - 将要更新数据",
+					"更新周期不一定有这个环节, 只有 shouldComponentUpdate() return true 才会触发"
 				])
 				break;
 			case "componentDidUpdate":

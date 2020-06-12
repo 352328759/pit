@@ -11,7 +11,8 @@ export default class App extends Component {
 		super(props)
 		getLifecycle("App", "constructor")
 		this.state = {
-			colors: []
+			colors: [],
+			swq: 0,
 		}
 		this.addColor = this.addColor.bind(this)
 		this.rateColor = this.rateColor.bind(this)
@@ -30,10 +31,12 @@ export default class App extends Component {
 	}
 
 	rateColor(id, rating) {
+		console.log("setState 数组, 不能针对一项修改, 必须用新数组替换旧数组, 也就是说数组所有项都更新了, 无论值是否改变")
 		this.setState(prevState => ({
 			colors: prevState.colors.map(color =>
 				(color.id !== id) ?
-					color : {
+					color :
+					{
 						...color,
 						rating
 					}
@@ -77,12 +80,21 @@ export default class App extends Component {
 		}, 1000)
 	}
 
-	// componentDidMount() {
-	// 	getLifecycle("App", "componentDidMount")
-	// }
+	componentDidMount() {
+		getLifecycle("App", "componentDidMount")
+		// setInterval(() => {
+		// 	this.setState({
+		// 		swq: Math.random()
+		// 	})
+		// }, 3000);
+	}
 
 	// componentWillUnmount() {
 	// 	getLifecycle("App", "componentWillUnmount")
+	// }
+
+	// componentWillReceiveProps() {
+	// 	getLifecycle("App", "componentWillReceiveProps")
 	// }
 
 	// shouldComponentUpdate() {
@@ -90,10 +102,6 @@ export default class App extends Component {
 	// 	return true
 	// }
 
-	// componentWillReceiveProps() {
-	// 	getLifecycle("App", "componentWillReceiveProps")
-	// }
-	
 	// componentWillUpdate() {
 	// 	getLifecycle("App", "componentWillUpdate")
 	// }
@@ -110,11 +118,12 @@ export default class App extends Component {
 			removeColor
 		} = this
 		const {
-			colors
+			colors,
+			swq
 		} = this.state
 		return (
 			<div className="app">
-				<AddColorForm onNewColor={addColor} />
+				<AddColorForm onNewColor={addColor} swq={swq} />
 				<ColorList colors={colors}
 					onRate={rateColor}
 					onRemove={removeColor} />

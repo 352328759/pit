@@ -6,34 +6,39 @@ import "../../stylesheets/Color.css"
 
 class Color extends Component {
 
-	// constructor() {
-	// 	super()
-	// 	getLifecycle("Color", "constructor")
-	// }
+	constructor() {
+		super()
+		getLifecycle("Color", "constructor")
+	}
 
 	componentWillMount() {
 		getLifecycle("Color", "componentWillMount")
 		this.style = { backgroundColor: "#CCC" }
 	}
 
-	// componentDidMount() {
-	// 	getLifecycle("Color", "componentDidMount")
-	// }
+	componentDidMount() {
+		getLifecycle("Color", "componentDidMount")
+	}
 
-	// componentWillUnmount() {
-	// 	getLifecycle("Color", "componentWillUnmount")
-	// }
+	componentWillUnmount() {
+		getLifecycle("Color", "componentWillUnmount")
+	}
 
+	componentWillReceiveProps() {
+		getLifecycle("Color", "componentWillReceiveProps")
+	}
 
 	shouldComponentUpdate(nextProps) {
 		getLifecycle("Color", "shouldComponentUpdate")
 		const { rating } = this.props
-		return rating !== nextProps.rating
+		if (rating !== nextProps.rating) {
+			console.log("当其属性值没有发生变化时阻止程序更新这些颜色")
+			return true
+		} else {
+			return false
+		}
+		// return rating !== nextProps.rating
 	}
-
-	// componentWillReceiveProps() {
-	// 	getLifecycle("Color", "componentWillReceiveProps")
-	// }
 
 	componentWillUpdate(nextProps) {
 		getLifecycle("Color", "componentWillUpdate")
@@ -60,9 +65,7 @@ class Color extends Component {
 			<section className="color" style={this.style}>
 				<h1 ref="title">{title}</h1>
 				<button onClick={onRemove}>X</button>
-				<div className="color"
-					style={{ backgroundColor: color }}>
-				</div>
+				<div className="color" style={{ backgroundColor: color }}></div>
 				<div>
 					<StarRating starsSelected={rating} onRate={onRate} />
 				</div>
