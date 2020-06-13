@@ -16,17 +16,15 @@ class Color extends Component {
 		this.style = { backgroundColor: "#CCC" }
 	}
 
-	componentDidMount() {
-		getLifecycle("Color", "componentDidMount")
-	}
-
-	componentWillUnmount() {
-		getLifecycle("Color", "componentWillUnmount")
-	}
-
-	componentWillReceiveProps() {
-		getLifecycle("Color", "componentWillReceiveProps")
-	}
+	// componentDidMount() {
+	// 	getLifecycle("Color", "componentDidMount")
+	// }
+	// componentWillUnmount() {
+	// 	getLifecycle("Color", "componentWillUnmount")
+	// }
+	// componentWillReceiveProps() {
+	// 	getLifecycle("Color", "componentWillReceiveProps")
+	// }
 
 	shouldComponentUpdate(nextProps) {
 		getLifecycle("Color", "shouldComponentUpdate")

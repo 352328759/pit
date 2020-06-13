@@ -37,18 +37,19 @@ export default function getLifecycle(componentName, cycle) {
 				break;
 			case "componentWillReceiveProps":
 				consoleMsg("更新周期 - 1", [
-					"更新生命周期 - 组件将拿到props",
-					"父组件中改变了props传值",
-					"更新生命周期中唯一可以调用setState方法的地方, 在属性被父组件修改时被触发",
+					"更新生命周期 - 组件将拿到 props",
+					"父组件中改变了 props 值",
+					"更新生命周期中唯一可以调用 setState 方法的地方, 在属性被父组件修改时被触发",
 					"nextProps 父组件传给子组件的值",
-					"更新周期不一定有这个环节, 只有 props 改变了才会触发"
+					"更新周期不一定有这个环节, 只有 props 改变了才会触发",
+					"自己调用自己的 setState 不会触发, 直接进入 shouldComponentUpdate"
 				])
 				break;
 			case "shouldComponentUpdate":
 				consoleMsg("更新周期 - 2", [
 					"更新生命周期 - 是否要更新数据",
 					"限制更新",
-					"return true 更新; false 阻拦; 不return 报错",
+					"return true 更新; false 阻拦; 不 return 报错",
 					"nextProps 父组件传给子组件的值",
 					"nextState 数据更新之后值"
 				])
@@ -71,12 +72,10 @@ export default function getLifecycle(componentName, cycle) {
 				])
 				break;
 			default:
+				console.warn("不是有效生命周期方法")
 				break;
 		}
 	} else {
+		console.warn("不是有效生命周期方法")
 	}
-
-
-
-	// console.log(componentName + ": " + cycle)
 }

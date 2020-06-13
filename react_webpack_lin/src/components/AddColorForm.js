@@ -33,11 +33,10 @@ class AddColorForm extends Component {
 		super(props)
 		getLifecycle("AddColorForm", "constructor")
 		this.state = {
-			swq: props.swq,
+			randomNum: props.randomNum,
 		}
-		// this.addColor = this.addColor.bind(this)
-		// this.rateColor = this.rateColor.bind(this)
 		this.submit = this.submit.bind(this)
+		console.log("挂载周期只执行一次, props 的改变也不会影响挂载, 响应 props 的操作只能在更新周期里执行")
 	}
 
 	submit(e) {
@@ -51,21 +50,27 @@ class AddColorForm extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		getLifecycle("AddColorForm", "componentWillReceiveProps")
-		this.setState({ swq: nextProps.swq })
+		this.setState({
+			randomNum: nextProps.randomNum
+		})
 	}
 
-	componentWillUpdate() {
-		getLifecycle("AddColorForm", "componentWillUpdate")
-	}
+	// shouldComponentUpdate() {
+	// 	getLifecycle("AddColorForm", "shouldComponentUpdate")
+	// 	return true
+	// }
+	// componentWillUpdate() {
+	// 	getLifecycle("AddColorForm", "componentWillUpdate")
+	// }
+	// componentDidUpdate() {
+	// 	getLifecycle("AddColorForm", "componentDidUpdate")
+	// }
 
 	render() {
 		getLifecycle("AddColorForm", "render")
-		var {
-			swq
-		} = this.state
 		return (
 			<div>
-				<div>{swq}</div>
+				<div>{this.state.randomNum}</div>
 				<form className="add-color" onSubmit={this.submit}>
 					<input ref="_title"
 						type="text"
@@ -77,7 +82,6 @@ class AddColorForm extends Component {
 			</div>
 		)
 	}
-
 }
 
 AddColorForm.propTypes = {

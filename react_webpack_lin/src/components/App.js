@@ -12,7 +12,7 @@ export default class App extends Component {
 		getLifecycle("App", "constructor")
 		this.state = {
 			colors: [],
-			swq: 0,
+			randomNum: 0,
 		}
 		this.addColor = this.addColor.bind(this)
 		this.rateColor = this.rateColor.bind(this)
@@ -84,31 +84,27 @@ export default class App extends Component {
 		getLifecycle("App", "componentDidMount")
 		// setInterval(() => {
 		// 	this.setState({
-		// 		swq: Math.random()
+		// 		randomNum: Math.random()
 		// 	})
 		// }, 3000);
 	}
 
-	// componentWillUnmount() {
-	// 	getLifecycle("App", "componentWillUnmount")
-	// }
-
-	// componentWillReceiveProps() {
-	// 	getLifecycle("App", "componentWillReceiveProps")
-	// }
-
-	// shouldComponentUpdate() {
-	// 	getLifecycle("App", "shouldComponentUpdate")
-	// 	return true
-	// }
-
-	// componentWillUpdate() {
-	// 	getLifecycle("App", "componentWillUpdate")
-	// }
-
-	// componentDidUpdate() {
-	// 	getLifecycle("App", "componentDidUpdate")
-	// }
+	componentWillUnmount() {
+		getLifecycle("App", "componentWillUnmount")
+	}
+	componentWillReceiveProps() {
+		getLifecycle("App", "componentWillReceiveProps")
+	}
+	shouldComponentUpdate() {
+		getLifecycle("App", "shouldComponentUpdate")
+		return true
+	}
+	componentWillUpdate() {
+		getLifecycle("App", "componentWillUpdate")
+	}
+	componentDidUpdate() {
+		getLifecycle("App", "componentDidUpdate")
+	}
 
 	render() {
 		getLifecycle("App", "render")
@@ -119,11 +115,11 @@ export default class App extends Component {
 		} = this
 		const {
 			colors,
-			swq
+			randomNum
 		} = this.state
 		return (
 			<div className="app">
-				<AddColorForm onNewColor={addColor} swq={swq} />
+				<AddColorForm onNewColor={addColor} randomNum={randomNum} />
 				<ColorList colors={colors}
 					onRate={rateColor}
 					onRemove={removeColor} />
