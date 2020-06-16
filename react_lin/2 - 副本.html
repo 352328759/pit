@@ -57,13 +57,36 @@
 				}
 			}
 
-		const PeopleList = ({ data }) =>
-			<ol className="people-list">
-				{data.results.map((person, i) => {
-					const { first, last } = person.name
-					return <li key={i}>{first} {last}</li>
-				})}
-			</ol>
+		class PeopleList extends Component {
+			render() {
+				const { data } = this.props
+				return (
+					<ol className="people-list">
+						{data.results.map((person, i) => {
+							const { first, last } = person.name
+							return <li key={i}>{first} {last}</li>
+						})}
+					</ol>
+				)
+			}
+		}
+
+		// const PeopleList = (props) =>
+		// 	<ol className="people-list">
+		// 		{console.log(props)}
+		// 		{props.data.results.map((person, i) => {
+		// 			const { first, last } = person.name
+		// 			return <li key={i}>{first} {last}</li>
+		// 		})}
+		// 	</ol>
+
+		// const PeopleList = ({ data }) =>
+		// 	<ol className="people-list">
+		// 		{data.results.map((person, i) => {
+		// 			const { first, last } = person.name
+		// 			return <li key={i}>{first} {last}</li>
+		// 		})}
+		// 	</ol>
 
 		const RandomMeUsers = DataComponent(
 			PeopleList,

@@ -4,9 +4,14 @@
 <head>
 	<meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" />
 	<meta charset="utf-8">
-	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<!-- <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
 	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script> -->
+
+	<script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.development.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+
 	<title>Libraries</title>
 </head>
 
@@ -43,13 +48,21 @@
 
 		class MenuButton extends Component {
 
+			constructor(props) {
+				super(props)
+				this.state = {
+					collapsed: props.hidden
+				}
+			}
+
 			componentWillReceiveProps(nextProps) {
 				const collapsed = (nextProps.collapsed && nextProps.collapsed === true) ? true : false
 				this.setState({ collapsed })
 			}
 
 			render() {
-				const { children, collapsed, txt, expandCollapse } = this.props
+				const { children, txt, expandCollapse } = this.props
+				const { collapsed } = this.state
 				return (
 					<div className="pop-button">
 						<button onClick={expandCollapse}>{txt}</button>
@@ -67,7 +80,7 @@
 		const PopUpButton = Expandable(MenuButton)
 
 		render(
-			<PopUpButton hidden={true} txt="toggle popup">
+			<PopUpButton hidden={false} txt="toggle popup">
 				<h1>Hidden Content</h1>
 				<p>This content will start off hidden</p>
 			</PopUpButton>,
