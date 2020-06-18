@@ -21,8 +21,8 @@
 		const { Component } = React
 		const { render } = ReactDOM
 
-		const DataComponent = (ComposedComponent, url) =>
-			class DataComponent extends Component {
+		const HOC = (ComposedComponent, url) =>
+			class HOC extends Component {
 
 				constructor(props) {
 					super(props)
@@ -51,27 +51,28 @@
 							{(this.state.loading) ?
 								<div>Loading...</div> :
 								<ComposedComponent {...this.state} {...this.props} />
+								// state 和 props 都作为 props 传入子组件
 							}
 						</div>
 					)
 				}
 			}
 
-		class PeopleList extends Component {
-			render() {
-				const { data } = this.props
-				return (
-					<ol className="people-list">
-						{data.results.map((person, i) => {
-							const { first, last } = person.name
-							return <li key={i}>{first} {last}</li>
-						})}
-					</ol>
-				)
-			}
-		}
+		// class Component1 extends Component {
+		// 	render() {
+		// 		const { data } = this.props
+		// 		return (
+		// 			<ol className="people-list">
+		// 				{data.results.map((person, i) => {
+		// 					const { first, last } = person.name
+		// 					return <li key={i}>{first} {last}</li>
+		// 				})}
+		// 			</ol>
+		// 		)
+		// 	}
+		// }
 
-		// const PeopleList = (props) =>
+		// const Component1 = (props) =>
 		// 	<ol className="people-list">
 		// 		{console.log(props)}
 		// 		{props.data.results.map((person, i) => {
@@ -80,30 +81,24 @@
 		// 		})}
 		// 	</ol>
 
-		// const PeopleList = ({ data }) =>
-		// 	<ol className="people-list">
-		// 		{data.results.map((person, i) => {
-		// 			const { first, last } = person.name
-		// 			return <li key={i}>{first} {last}</li>
-		// 		})}
-		// 	</ol>
+		const Component1 = ({ data }) =>
+			<ol className="people-list">
+				{data.results.map((person, i) => {
+					const { first, last } = person.name
+					return <li key={i}>{first} {last}</li>
+				})}
+			</ol>
 
-		const RandomMeUsers = DataComponent(
-			PeopleList,
-			"https://randomuser.me/api?results=10"
-		)
+		const Com1 = HOC(Component1, "https://randomuser.me/api?results=10")
 
-		const CountryNames = ({ data, selected = "" }) =>
+		const Component2 = ({ data, selected = "" }) =>
 			<select className="people-list" defaultValue={selected}>
 				{data.map(({ name }, i) =>
 					<option key={i} value={name}>{name}</option>
 				)}
 			</select>
 
-		const CountryDropDown = DataComponent(
-			CountryNames,
-			"https://restcountries.eu/rest/v1/all"
-		)
+		const Com2 = HOC(Component2, "https://restcountries.eu/rest/v1/all")
 
 		render(
 			<div>
@@ -112,8 +107,11 @@
 					<li>高阶组件是一种编程技巧, 不是react的语法</li>
 				</ul>
 
-				<RandomMeUsers count={20} />
-				<CountryDropDown selected="United States" />
+				<h1>基本用法</h1>
+				<Com1 />
+
+				<h1>HOC 不处理,直接将 props 往下传递</h1>
+				<Com2 selected="United States" />
 			</div>,
 			document.getElementById('react-container')
 		)
