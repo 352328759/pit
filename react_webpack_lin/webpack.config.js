@@ -18,20 +18,20 @@ module.exports = {
 			test: /\.js$/,
 			exclude: /(node_modules|bower_components)/,
 			use: {
-				loader: 'babel-loader',
+				loader: "babel-loader",
 				options: {
-					presets: ['@babel/preset-env']
+					presets: ["@babel/preset-env"]
 				}
 			}
 		}, {
 			test: /\.css$/,
-			use: ['style-loader', 'css-loader']
+			use: ["style-loader", "css-loader"]
 		}]
 	},
 	resolve: {
-		extensions: ['.js', '.vue', '.json'],
+		extensions: [".js", ".vue", ".json"],
 		alias: {
-			'@': path.join(__dirname, ".", "src")
+			"@": path.join(__dirname, ".", "src")
 		}
 	}
 }
