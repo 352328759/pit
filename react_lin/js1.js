@@ -10,11 +10,11 @@ class OuterClickExample extends React.Component {
 	}
 
 	componentDidMount() {
-		window.addEventListener('click', this.onClickOutsideHandler);
+		window.addEventListener("click", this.onClickOutsideHandler);
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('click', this.onClickOutsideHandler);
+		window.removeEventListener("click", this.onClickOutsideHandler);
 	}
 
 	onClickHandler() {
@@ -106,5 +106,5 @@ class BlurExample extends React.Component {
 
 ReactDOM.render(
 	<BlurExample />,
-	document.getElementById('root')
+	document.getElementById("root")
 );
