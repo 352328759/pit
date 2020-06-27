@@ -16,169 +16,88 @@
 	<script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
 	<script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
 
-	<script type="text/babel">
+	<!-- <script type="text/babel"> -->
+	<script>
 
-		const { Component } = React
-		const { render } = ReactDOM
-
-		const HOC1 = (ComposedComponent, url) =>
-			class HOC1 extends Component {
-
-				constructor(props) {
-					super(props)
-					console.log(props)
-					this.state = {
-						data: [],
-						loading: false,
-						loaded: false
+		const color = (state = {}, action) => {
+			switch (action.type) {
+				case "ADD_COLOR":
+					return {
+						id: action.id,
+						title: action.title,
+						color: action.color,
+						timestamp: action.timestamp,
+						rating: 0
 					}
-				}
-
-				componentWillMount() {
-					this.setState({ loading: true })
-					fetch(url)
-						.then(response => response.json())
-						.then(data => this.setState({
-							loaded: true,
-							loading: false,
-							data
-						}))
-				}
-
-				render() {
-					return (
-						<div className="data-component">
-							{(this.state.loading) ?
-								<div>Loading...</div> :
-								<ComposedComponent
-									{...this.state}
-									{...this.props} />
-								// state 和 props 都作为 props 传入子组件
-							}
-						</div>
-					)
-				}
-			}
-
-		const HOC2 = ComposedComponent =>
-			class HOC2 extends Component {
-
-				constructor(props) {
-					super(props)
-					const collapsed = (props.hidden && props.hidden === true) ? true : false
-					this.state = { collapsed }
-					this.expandCollapse = this.expandCollapse.bind(this)
-				}
-
-				expandCollapse() {
-					this.setState(prevState => ({
-						collapsed: !prevState.collapsed
-					}))
-				}
-
-				render() {
-					return <ComposedComponent
-						expandCollapse={this.expandCollapse}
-						{...this.state}
-						{...this.props} />
-				}
-			}
-
-		const Component1 = ({ data }) =>
-			<ol className="people-list">
-				{data.results.map((person, i) => {
-					const { first, last } = person.name
-					return <li key={i}>{first} {last}</li>
-				})}
-			</ol>
-
-		//
-
-		const Component2 = ({ data, selected = "" }) =>
-			<select className="people-list" defaultValue={selected}>
-				{data.map(({ name }, i) =>
-					<option key={i} value={name}>{name}</option>
-				)}
-			</select>
-
-		//
-
-		const Component3 = ({ children, collapsed, expandCollapse }) =>
-			<p onClick={expandCollapse}>
-				{(collapsed) ?
-					children.replace(/[a-zA-Z0-9]/g, "x") :
-					children}
-			</p>
-
-		//
-
-		class Component4 extends Component {
-
-			constructor(props) {
-				super(props)
-				this.state = {
-					collapsed: props.hidden
-				}
-			}
-
-			componentWillReceiveProps(nextProps) {
-				const collapsed = (nextProps.collapsed && nextProps.collapsed === true) ? true : false
-				this.setState({ collapsed })
-			}
-
-			render() {
-				const { children, txt, expandCollapse } = this.props
-				const { collapsed } = this.state
-				return (
-					<div className="pop-button">
-						<button onClick={expandCollapse}>{txt}</button>
-						{(!collapsed) ?
-							<div className="pop-up">
-								{children}
-							</div> :
-							""
+				case "RATE_COLOR":
+					return (state.id !== action.id) ?
+						state :
+						{
+							...state,
+							rating: action.rating
 						}
-					</div>
-				)
+				default:
+					return state
 			}
 		}
 
-		//
+		const colors = (state = [], action) => {
+			switch (action.type) {
+				case "ADD_COLOR":
+					return [
+						...state,
+						color({}, action)
+					]
+				case "RATE_COLOR":
+					return state.map(
+						c => color(c, action)
+					)
+				case "REMOVE_COLOR":
+					return state.filter(
+						c => c.id !== action.id
+					)
+				default:
+					return state
+			}
+		}
 
-		const Com1 = HOC1(Component1, "https://randomuser.me/api?results=10")
-		const Com2 = HOC1(Component2, "https://restcountries.eu/rest/v1/all")
-		const Com3 = HOC2(Component3)
-		const Com4 = HOC2(Component4)
+		let currentColors = [{
+			id: 1,
+			title: "Berry Blue",
+			color: "#000066",
+			rating: 0,
+			timestamp: "Thu Mar 10 2016 01:11:12 GMT-0800 (PST)"
+		}]
+		console.log(currentColors)
 
-		render(
-			<div>
-				<ul>
-					<li>高阶组件是一个函数, 它接收一个组件, 包装成另一个组件并返回</li>
-					<li>高阶组件是一种编程技巧, 不是 react 的语法</li>
-					<li>HOC 不在乎传入组件是否无状态组件</li>
-				</ul>
-				<ul>
-					<li>HOC 提供的是功能?</li>
-					<li>HOC 是否适合做路由?</li>
-				</ul>
+		let action = {
+			type: "ADD_COLOR",
+			id: 2,
+			title: "Party Pink",
+			color: "#F142FF",
+			timestamp: "Thu Mar 10 2016 01:11:12 GMT-0800 (PST)"
+		}
 
-				<h1>基本用法</h1>
-				<Com1 />
+		let newColors = colors(currentColors, action)
 
-				<h1>HOC 不处理, 直接将 props 往下传递</h1>
-				<Com2 selected="United States" />
+		console.log(newColors)
 
-				<h1>HOC 根据 props 处理了 state</h1>
-				<Com3 hidden={true}>This is a hidden message</Com3>
+		action = {
+			type: "RATE_COLOR",
+			id: 1,
+			rating: 5
+		}
 
-				<h1>传入组件是 ES6 组件, 有自己的 state</h1>
-				<Com4 hidden={false} txt="toggle popup">
-					<span>Hidden Content</span>
-					<p>This content will start off hidden</p>
-				</Com4>
-			</div>,
-			document.getElementById("react-container")
-		)
+		newColors = colors(newColors, action)
+
+		console.log(newColors)
+
+		action = {
+			type: "REMOVE_COLOR",
+			id: 2
+		}
+		newColors = colors(newColors, action)
+		console.log(newColors)
 
 	</script>
 </body>
