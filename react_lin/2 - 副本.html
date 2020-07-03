@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>7-3 高阶组件(HOC)</title>
+	<title>su-2 猪</title>
 	<!-- P172 -->
 </head>
 
@@ -19,29 +19,8 @@
 
 	<script type="text/babel">
 
+
 		const { createStore, combineReducers } = Redux
-		const initialState = {
-			colors: [{
-				id: 0,
-				title: "Rad Red",
-				color: "#FF0000",
-				rating: 13,
-				timestamp: "Sat Mar 12 2016 16:12:09 GMT-0800 (PST)"
-			}, {
-				id: 1,
-				title: "Crazy Green",
-				color: "#00FF00",
-				rating: 0,
-				timestamp: "Fri Mar 11 2016 12:00:00 GMT-0800 (PST)"
-			}, {
-				id: 2,
-				title: "Big Blue",
-				color: "#0000FF",
-				rating: 5,
-				timestamp: "Thu Mar 10 2016 01:11:12 GMT-0800 (PST)"
-			}],
-			sort: "SORTED_BY_TITLE"
-		}
 
 		const color = (state = {}, action) => {
 			switch (action.type) {
@@ -95,8 +74,13 @@
 		}
 
 		const store = createStore(
-			combineReducers({ colors, sort }),
-			initialState
+			combineReducers({ colors, sort })
+		)
+
+
+
+		const unsubscribeLogger = store.subscribe(() =>
+			console.log('next state', store.getState())
 		)
 
 		store.dispatch({
@@ -107,18 +91,26 @@
 			timestamp: "Thu Mar 10 2016 01:11:12 GMT-0800 (PST)"
 		})
 
-		console.log(store.getState().colors.length)
-		console.log(store.getState().colors[0].rating)
+		unsubscribeLogger()
+
+		store.dispatch({
+			type: "ADD_COLOR",
+			id: 2,
+			title: "Big Blue",
+			color: "#0000FF",
+			timestamp: "Thu Mar 10 2016 01:11:12 GMT-0800 (PST)"
+		})
 
 		store.dispatch({
 			type: "RATE_COLOR",
-			id: 0,
+			id: 1,
 			rating: 5
 		})
 
-		console.log(store.getState().colors[0].rating)
-
-		console.log(store.getState())
+		store.dispatch({
+			type: "REMOVE_COLOR",
+			id: 2
+		})
 
 	</script>
 </body>
