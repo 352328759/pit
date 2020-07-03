@@ -20,13 +20,12 @@
 	<script type="text/babel">
 
 		const { createStore, combineReducers } = Redux
-
 		const initialState = {
 			colors: [{
 				id: 0,
 				title: "Rad Red",
 				color: "#FF0000",
-				rating: 3,
+				rating: 13,
 				timestamp: "Sat Mar 12 2016 16:12:09 GMT-0800 (PST)"
 			}, {
 				id: 1,
@@ -99,6 +98,25 @@
 			combineReducers({ colors, sort }),
 			initialState
 		)
+
+		store.dispatch({
+			type: "ADD_COLOR",
+			id: 1,
+			title: "Party Pink",
+			color: "#F142FF",
+			timestamp: "Thu Mar 10 2016 01:11:12 GMT-0800 (PST)"
+		})
+
+		console.log(store.getState().colors.length)
+		console.log(store.getState().colors[0].rating)
+
+		store.dispatch({
+			type: "RATE_COLOR",
+			id: 0,
+			rating: 5
+		})
+
+		console.log(store.getState().colors[0].rating)
 
 		console.log(store.getState())
 
