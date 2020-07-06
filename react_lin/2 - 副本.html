@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>su-2 猪</title>
+	<title>7-4 高阶组件(HOC)</title>
 	<!-- P172 -->
 </head>
 
@@ -72,41 +72,29 @@
 		}
 
 		const store = createStore(
-			combineReducers({ colors, sort })
+			combineReducers({ colors, sort }),
+			(localStorage['redux-store']) ?
+				JSON.parse(localStorage['redux-store']) :
+				{}
 		)
 
+		store.subscribe(() => {
+			localStorage['redux-store'] = JSON.stringify(store.getState())
+		})
 
+		console.log('current color count', store.getState().colors.length)
+		console.log('current state', store.getState())
 
-		store.subscribe(() =>
-			console.log('next state', store.getState())
-		)
+		let uniqueId = 0
 
 		store.dispatch({
 			type: "ADD_COLOR",
-			id: 1,
+			id: uniqueId++,
 			title: "Party Pink",
 			color: "#F142FF",
-			timestamp: "Thu Mar 10 2016 01:11:12 GMT-0800 (PST)"
+			timestamp: new Date().toString()
 		})
 
-		store.dispatch({
-			type: "ADD_COLOR",
-			id: 2,
-			title: "Big Blue",
-			color: "#0000FF",
-			timestamp: "Thu Mar 10 2016 01:11:12 GMT-0800 (PST)"
-		})
-
-		store.dispatch({
-			type: "RATE_COLOR",
-			id: 1,
-			rating: 5
-		})
-
-		store.dispatch({
-			type: "REMOVE_COLOR",
-			id: 2
-		})
 
 	</script>
 </body>
