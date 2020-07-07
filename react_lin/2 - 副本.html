@@ -16,9 +16,18 @@
 	<script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
 	<script src="https://unpkg.com/redux@3.7.2/dist/redux.min.js"></script>
 	<script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+	<script src="https://unpkg.com/node-uuid@1.4.7/uuid.js"></script>
 
 	<script type="text/babel">
-		const { createStore, combineReducers } = Redux
+
+
+
+
+
+
+
+		const { createStore, combineReducers, compose } = Redux
+		const { v4 } = uuid
 
 		const color = (state = {}, action) => {
 			switch (action.type) {
@@ -72,28 +81,64 @@
 		}
 
 		const store = createStore(
-			combineReducers({ colors, sort }),
-			(localStorage['redux-store']) ?
-				JSON.parse(localStorage['redux-store']) :
-				{}
+			combineReducers({ colors, sort })
 		)
 
-		store.subscribe(() => {
-			localStorage['redux-store'] = JSON.stringify(store.getState())
-		})
+		const addColor = (title, color) =>
+			({
+				type: "ADD_COLOR",
+				id: v4(),
+				title,
+				color,
+				timestamp: new Date().toString()
+			})
 
-		console.log('current color count', store.getState().colors.length)
-		console.log('current state', store.getState())
+		const removeColor = id =>
+			({
+				type: "REMOVE_COLOR",
+				id
+			})
 
-		let uniqueId = 0
+		const rateColor = (id, rating) =>
+			({
+				type: "RATE_COLOR",
+				id,
+				rating
+			})
 
-		store.dispatch({
-			type: "ADD_COLOR",
-			id: uniqueId++,
-			title: "Party Pink",
-			color: "#F142FF",
-			timestamp: new Date().toString()
-		})
+		const sortColors = sortedBy =>
+			(sortedBy === "rating") ?
+				({
+					type: "SORT_COLORS",
+					sortBy: "SORTED_BY_RATING"
+				}) :
+				(sortedBy === "title") ?
+					({
+						type: "SORT_COLORS",
+						sortBy: "SORTED_BY_TITLE"
+					}) :
+					({
+						type: "SORT_COLORS",
+						sortBy: "SORTED_BY_DATE"
+					})
+
+		const populate = compose(
+			() => store.dispatch(addColor("Big Blue", "#0000FF")),
+			() => store.dispatch(addColor("Tomato", "#990000")),
+			() => store.dispatch(addColor("lawn", "#009900")),
+			() => store.dispatch(addColor("Party Pink", "#F142FF"))
+		)
+
+		const print = compose(
+			list => console.log(list),
+			titles => titles.join(", "),
+			map => map(c => c.title),
+			colors => colors.map.bind(colors),
+			state => state.colors
+		)
+
+		populate()
+		print(store.getState())
 
 
 	</script>
