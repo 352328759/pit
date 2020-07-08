@@ -20,13 +20,7 @@
 
 	<script type="text/babel">
 
-
-
-
-
-
-
-		const { createStore, combineReducers, compose } = Redux
+		const { createStore, combineReducers, compose, applyMiddleware } = Redux
 		const { v4 } = uuid
 
 		const color = (state = {}, action) => {
@@ -80,10 +74,6 @@
 			}
 		}
 
-		const store = createStore(
-			combineReducers({ colors, sort })
-		)
-
 		const addColor = (title, color) =>
 			({
 				type: "ADD_COLOR",
@@ -122,24 +112,52 @@
 						sortBy: "SORTED_BY_DATE"
 					})
 
+		// const logger = store => next => action => {
+		// 	let result
+		// 	console.groupCollapsed("dispatching", action.type)
+		// 	console.log('prev state', store.getState())
+		// 	console.log('action', action)
+		// 	result = next(action)
+		// 	console.log('next state', store.getState())
+		// 	console.groupEnd()
+		// 	return result
+		// }
+
+		const logger = function (store) {
+			return function (next) {
+				return function (action) {
+					let result
+					console.groupCollapsed("dispatching", action.type)
+					console.log('prev state', store.getState())
+					console.log('action', action)
+					result = next(action)
+					console.log('next state', store.getState())
+					console.groupEnd()
+					return result
+				}
+			}
+		}
+
+		const store = applyMiddleware(logger)(createStore)(
+			combineReducers({ colors, sort })
+		)
+
+		// const store1 = createStore(
+		// 	combineReducers({ colors, sort })
+		// )
+
+		// console.log(store)
+		// console.log(store)
+
 		const populate = compose(
+			() => console.log('color coung', store.getState().colors.length),
 			() => store.dispatch(addColor("Big Blue", "#0000FF")),
 			() => store.dispatch(addColor("Tomato", "#990000")),
 			() => store.dispatch(addColor("lawn", "#009900")),
 			() => store.dispatch(addColor("Party Pink", "#F142FF"))
 		)
 
-		const print = compose(
-			list => console.log(list),
-			titles => titles.join(", "),
-			map => map(c => c.title),
-			colors => colors.map.bind(colors),
-			state => state.colors
-		)
-
 		populate()
-		print(store.getState())
-
 
 	</script>
 </body>
