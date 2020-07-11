@@ -8,7 +8,7 @@ const options = {
     rating: "SORTED_BY_RATING"
 }
 
-const SortMenu = ({ store }) =>
+const SortMenu = (props, { store }) =>
     <nav className="menu">
         <h1>Sort Colors</h1>
         {Object.keys(options).map((item, i) =>
@@ -17,12 +17,12 @@ const SortMenu = ({ store }) =>
                className={(store.getState().sort === options[item]) ? "selected" : null}
                onClick={e => {
                    e.preventDefault()
-                   store.dispatch(sortColors(options[item]))
+                   store.dispatch( sortColors(options[item]) )
                }}>{item}</a>
         )}
     </nav>
 
-SortMenu.propTypes = {
+SortMenu.contextTypes = {
     store: PropTypes.object
 }
 

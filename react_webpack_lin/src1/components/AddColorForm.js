@@ -3,7 +3,7 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { addColor } from '../actions'
 
-const AddColorForm = ({ store }) => {
+const AddColorForm = (props, { store }) => {
 
     let _title, _color
 
@@ -18,17 +18,17 @@ const AddColorForm = ({ store }) => {
     return (
         <form className="add-color" onSubmit={submit}>
             <input ref={input => _title = input}
-                type="text"
-                placeholder="color title..." required />
+                   type="text"
+                   placeholder="color title..." required/>
             <input ref={input => _color = input}
-                type="color" required />
+                   type="color" required/>
             <button>ADD</button>
         </form>
     )
 
 }
 
-AddColorForm.propTypes = {
+AddColorForm.contextTypes = {
     store: PropTypes.object
 }
 
