@@ -20,14 +20,14 @@ class Color extends Component {
                     FaTrash
                 </button>
                 <div className="color"
-                     style={{ backgroundColor: color }}>
+                    style={{ backgroundColor: color }}>
                 </div>
                 <TimeAgo timestamp={timestamp} />
                 <div>
                     <StarRating starsSelected={rating}
-                                onRate={rating =>
-                                    store.dispatch(rateColor(id, rating))
-                                } />
+                        onRate={rating =>
+                            store.dispatch(rateColor(id, rating))
+                        } />
                 </div>
             </section>
         )
