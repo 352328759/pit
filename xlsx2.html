@@ -56,6 +56,7 @@
 						})
 				}
 			};
+			console.log(tmpWB)
 
 			//创建二进制对象写入转换好的字节流
 			tmpDown = new Blob([s2ab(XLSX.write(tmpWB,
@@ -68,6 +69,7 @@
 				// type: "application/octet-stream",
 				type: ""
 			});
+			console.log(tmpDown)
 
 			var href = URL.createObjectURL(tmpDown); //创建对象超链接
 			document.getElementById("downloadA").href = href; //绑定a标签
