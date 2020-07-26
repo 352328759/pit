@@ -49,7 +49,7 @@
 
 	<button id="btn" onclick="btn_export()">导出</button>
 </body>
-<script src="js/xlsx.full.min.js"></script>
+<script src="../js/xlsx.full.min.js"></script>
 <script>
 	// 将一个sheet转成最终的excel文件的blob对象，然后利用URL.createObjectURL下载
 	function sheet2blob(sheet, sheetName) {
@@ -98,7 +98,7 @@
 			event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
 		}
 		// 触发事件
-		// aLink.dispatchEvent(event);
+		aLink.dispatchEvent(event);
 	}
 
 </script>
