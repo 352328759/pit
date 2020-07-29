@@ -3,8 +3,8 @@ import { MainMenu, AboutMenu } from './menus'
 import './stylesheets/pages.css'
 
 const PageTemplate = ({
-		children
-	}) =>
+	children
+}) =>
 	<div className="page">
 		<MainMenu />
 		{children}
@@ -14,16 +14,24 @@ export const Home = () =>
 	<div className="home">
 		<h1>[Company Website]</h1>
 		<nav>
-			<Link to="about">[About]</Link>
+			<Link to="about">[About]Link</Link>
 			<Link to="events">[Events]</Link>
 			<Link to="products">[Products]</Link>
 			<Link to="contact">[Contact Us]</Link>
+
+			{/* <Link to={{
+				pathname: '/about',
+				search: '?sort=name',
+				hash: '#the-hash',
+				state: { swq: "swq" }
+			}}>[about]</Link> */}
+
 		</nav>
 	</div>
 
 export const Whoops404 = ({
-		location
-	}) =>
+	location
+}) =>
 	<div className="whoops-404">
 		<h1>Resource not found at '{location.pathname}'</h1>
 	</div>
@@ -50,8 +58,8 @@ export const Contact = () =>
 	</PageTemplate>
 
 export const About = ({
-		match
-	}) =>
+	match
+}) =>
 	<PageTemplate>
 		<section className="about">
 			<Route component={AboutMenu} />
