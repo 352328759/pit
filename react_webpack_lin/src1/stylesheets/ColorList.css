@@ -15,4 +15,10 @@ body {
 input {
   outline: none; }
 
-/*# sourceMappingURL=globals.css.map */
+div.color-list {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  overflow: scroll; }
+
+/*# sourceMappingURL=ColorList.css.map */
