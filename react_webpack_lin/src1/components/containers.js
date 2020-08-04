@@ -9,38 +9,32 @@ import { sortColors } from '../lib/array-helpers'
 
 export const NewColor = connect(
 	null,
-	dispatch =>
-	({
+	dispatch => ({
 		onNewColor(title, color) {
 			dispatch(addColor(title, color))
 		}
 	})
 )(AddColorForm)
 
-export const Colors = connect(
-	({
-		colors
-	}, {
-		match
-	}) =>
-	({
-		colors: sortColors(colors, match.params.sort)
-	}),
-	dispatch =>
-	({
-		onRemove(id) {
-			dispatch(removeColor(id))
-		},
-		onRate(id, rating) {
-			dispatch(rateColor(id, rating))
-		}
-	})
+export const Colors = connect(({
+	colors
+}, {
+	match
+}) => ({
+	colors: sortColors(colors, match.params.sort)
+}), dispatch => ({
+	onRemove(id) {
+		dispatch(removeColor(id))
+	},
+	onRate(id, rating) {
+		dispatch(rateColor(id, rating))
+	}
+})
 )(ColorList)
 
-export const Color = connect(
-	({
-		colors
-	}, {
-		match
-	}) => findById(colors, match.params.id)
+export const Color = connect(({
+	colors
+}, {
+	match
+}) => findById(colors, match.params.id)
 )(ColorDetails)
