@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>emoji</title>
+		<style>
+			* {
+				/*-moz-user-select: none;
+				-ms-user-select: none;
+				-webkit-user-select: none;
+				user-select: none;*/
+			}
+			
+			#timeLists {
+				width: 100%;
+			}
+			
+			#timeLists td {
+				padding: 5px;
+				text-align: center;
+			}
+			
+			#timeLists .timeList:hover {
+				outline: 1px solid #0f0;
+			}
+			
+			#timeLists .timeList.act {
+				outline: 1px solid #f00;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="swq">
+			<swq></swq>
+		</div>
+
+		<canvas id="canvas" width="23" height="23"></canvas>
+
+		<script type="text/x-template" id="swq-template">
+			<div>
+				<p>emoji 输出方法: Alt + 10进制编号</p>
+				<p>多个编号时 输出方法: Alt + 10进制编号1, Alt + 10进制编号2, Alt + 10进制编号n</p>
+				<input ref="imgFile" type="file" name="" accept="image/gif, image/jpg, image/png" value="" />
+				<div @click="imgFileSubmit" ref="submit">submit</div>
+
+				<button type="button" @click="updateData2">update data2</button>
+				<button type="button" @click="updateData3">update data3</button>
+				<button type="button" @click="setMergePlan">setMergePlan</button>
+				<button type="button" @click="getMergePlan">getMergePlan</button>
+				<div>{{renderOnMyself}}</div>
+
+				<table id="timeLists">
+					<tr class="timeList">
+						<th>emoji</th>
+						<th>文件名</th>
+						<th>10进制</th>
+						<th>解作</th>
+						<!--<th>16进制</th>-->
+					</tr>
+					<tr class="timeList" v-for="(item, index) in findLists">
+						<td>
+							<img :src="'img/emoji/' + item.src" :alt="item.src" :title="item.src" />
+							<template v-if="item.subspecies">
+								<img v-for="(_item, _index) in item.subspecies" :src="'img/subspecies/' + v_Escape(_item.src)" :alt="_item.src" :title="_item.src" />
+							</template>
+						</td>
+						<td><span @click="copyTxt(item.title)">{{item.title}}</span></td>
+						<td><span v-for="(_item, _index) in item.system"> {{_item}}, </span></td>
+						<td>
+							<span v-for="(_item, _index) in item.word"> {{_item}}, </span>
+							<input type="" name="" value="" @keyup.enter="updataMergePlan(item.title, $event)" />
+						</td>
+					</tr>
+					<tr class="timeList" v-for="(item, index) in emojiLists">
+						<td>
+							<img :src="'img/emoji/' + item.src" :alt="item.src" :title="item.src" />
+							<template v-if="item.subspecies">
+								<img v-for="(_item, _index) in item.subspecies" :src="'img/subspecies/' + v_Escape(_item.src)" :alt="_item.src" :title="_item.src" />
+							</template>
+						</td>
+						<td><span @click="copyTxt(item.title)">{{item.title}}</span></td>
+						<td><span v-for="(_item, _index) in item.system"> {{_item}}, </span></td>
+						<td>
+							<span v-for="(_item, _index) in item.word"> {{_item}}, </span>
+							<input type="" name="" value="" @keyup.enter="updataMergePlan(item.title, $event)" />
+						</td>
+						<!--<td><span v-for="(_item, _index) in item.hex"> {{_item}}, </span></td>-->
+					</tr>
+				</table>
+
+				<!-- <c1 /> -->
+				<!-- <c2 /> -->
+
+			</div>
+		</script>
+		<script type="text/x-template" id="c1-template">
+			<div id="">
+				c1-template
+			</div>
+		</script>
+		<script type="text/x-template" id="c2-template">
+			<div>c2-template</div>
+		</script>
+
+		<script src="../jvw/vue/vue.2.5.16.js"></script>
+		<script src="./js/data.js"></script>
+
+		<script type="text/javascript">
+			var c1 = {
+				template: "#c1-template",
+				props: [],
+				data: function() {
+					return {}
+				},
+				computed: {},
+				components: {},
+				watch: {},
+				methods: {},
+				created() {},
+				mounted() {},
+			}
+			var c2 = {
+				template: "#c2-template",
+				props: [],
+				data() {
+					return {};
+				},
+				computed: {},
+				components: {},
+				watch: {},
+				methods: {},
+				created() {},
+				mounted() {},
+			}
+			var swq = {
+				template: "#swq-template",
+				props: [],
+				data: function() {
+					return {
+						emojiLists: [],
+						findLists: [],
+						renderOnMyself: true,
+
+						canvas: document.getElementById('canvas'), //获取 canvas 节点
+						context: canvas.getContext('2d'), //返回一个用于在画布上绘图的环境
+					}
+				},
+				computed: {},
+				components: {
+					c1,
+					c2,
+				},
+				watch: {},
+				methods: {
+					copyTxt: function(txt) {
+						let textArea = document.createElement('textarea');
+						textArea.value = txt;
+						document.body.appendChild(textArea);
+						textArea.select();
+						try {
+							document.execCommand('Copy');
+						} catch(err) {
+							console.log('当前浏览器不支持复制功能');
+						}
+						document.body.removeChild(textArea);
+						console.log(txt)
+					},
+					meterDeviate: function(p1, p2) {
+						let deviate = 0; // 背离值
+						for(let i = 0; i < 23; i++) {
+							let i0 = i * 4
+							let i1 = i0 + 1
+							let i2 = i0 + 2
+							let i3 = i0 + 3
+							let minDeviate = Math.abs((p1[i0] - p2[i0])) +
+								Math.abs((p1[i1] - p2[i1])) +
+								Math.abs((p1[i2] - p2[i2]))
+
+							// 前三位的背离值之和 * 透明度
+							deviate += minDeviate * (p1[i3] + p2[i3])
+						}
+						return deviate / 510
+					},
+					imgFileSubmit: function() {
+						var _this = this
+						var _imgFile = _this.$refs.imgFile
+
+						if(_imgFile.files.length <= 0) {
+							console.warn("没有选择文件")
+							return false;
+						}
+						_this.findLists = []
+
+						_this.getPixel12(window.URL.createObjectURL(_imgFile.files[0]), function(pixel12) {
+							let pixel12Array = pixel12
+
+							let inSearch = _this.emojiLists.filter(function(item) {
+
+								if(item.hasOwnProperty("subspecies")) {
+									for(let j = 0; j < item.subspecies.length; j++) {
+
+										let deviate = _this.meterDeviate(item.subspecies[j].pixel12, pixel12Array)
+
+										if(deviate < 120) {
+											console.log(item.pixel12)
+											console.log(pixel12Array)
+											console.log("背离值:" + deviate)
+											console.log(item.subspecies[j].title)
+											return true;
+										} else {
+											return false;
+										}
+									}
+								}
+
+								let deviate = _this.meterDeviate(item.pixel12, pixel12Array)
+
+								// 背离值小于100
+								if(deviate < 120) {
+									console.log(item.pixel12)
+									console.log(pixel12Array)
+									console.log("背离值:" + deviate)
+									console.log(item.title)
+									return true;
+								} else {
+									return false;
+								}
+							})
+
+							if(inSearch.length > 0) {
+								for(let i = 0; i < inSearch.length; i++) {
+									console.log(inSearch[i].title)
+								}
+								_this.findLists = inSearch
+							} else {
+								console.log(pixel12Array)
+								console.warn("没有相似结果")
+							}
+						})
+
+					},
+					getPixel12: function(src, callback) {
+						let Img = new Image()
+						var _this = this
+						Img.onload = function() {
+							_this.context.clearRect(0, 0, 23, 23);
+							_this.context.drawImage(Img, 0, 0, 23, 23, 0, 0, 23, 23);
+							let pixel12 = _this.context.getImageData(0, 11, 23, 1).data;
+
+							// Uint8ClampedArray转换为常规数组
+							// Array.prototype.slice.call(pixel12)
+							// Array.from(pixel12)
+
+							callback(Array.from(pixel12))
+						}
+						Img.src = src
+					},
+					updateData2: function() {
+						// 以后用不到这段代码了吧
+						let times = 0
+						let _emojiLists = []
+						var _this = this
+
+						function insertPixel12(src, index) {
+							_this.getPixel12("img/emoji/" + src, function(pixel12) {
+								_emojiLists[index].pixel12 = pixel12
+								times++
+								if(times == _emojiLists.length) {
+									console.log(JSON.stringify(_emojiLists))
+								}
+							})
+						}
+
+						fileLists.split("\n").forEach(function(item, index, datas) {
+							// if(index > 10) {
+							// 	return true;
+							// }
+							if(item != "") {
+								let src = item
+								let title = item.split(".")[0]
+								let suffix = item.split(".")[1]
+								let system = []
+								let hex = title.split("0x").filter(function(a) {
+									if(a === "") {
+										return false
+									} else {
+										system.push(parseInt("0x" + a, 16))
+										return true
+									}
+								})
+
+								_emojiLists.push({
+									src,
+									title,
+									suffix,
+									system,
+									hex,
+									// word: [],
+									pixel12: []
+								})
+								insertPixel12(src, index)
+
+							}
+						})
+						// console.log(JSON.stringify(_emojiLists))
+					},
+					updateData3: function() {
+						// 以后用不到这段代码了吧
+						let times = 0
+						let _emojiLists = []
+						var _this = this
+
+						function insertPixel12(src, index) {
+							_this.getPixel12("img/subspecies/" + _this.v_Escape(src), function(pixel12) {
+								_emojiLists[index].pixel12 = pixel12
+								times++
+								if(times == _emojiLists.length) {
+									console.log(JSON.stringify(_emojiLists))
+								}
+							})
+						}
+
+						fileLists2.split(" ").forEach(function(item, index, datas) {
+							// if(index > 10) {
+							// 	return true;
+							// }
+							if(item != "") {
+								let src = item
+								let title = item.split(".")[0]
+
+								_emojiLists.push({
+									src,
+									title,
+									pixel12: []
+								})
+								insertPixel12(src, index)
+
+							}
+						})
+						// console.log(JSON.stringify(_emojiLists))
+					},
+					titleToIndex: function(array, title) {
+						var _this = this
+						for(let i = 0; i < array.length; i++) {
+							if(array[i].title === title) {
+								return i
+							}
+						}
+						return -1
+					},
+					v_Escape: function(_r) {
+						return escape(_r)
+					},
+					setMergePlan: function() {
+						sessionStorage.setItem("mergePlan", JSON.stringify(mergePlan));
+					},
+					getMergePlan: function() {
+						// mergePlan = sessionStorage.getItem("mergePlan")
+						console.log(mergePlan)
+					},
+					setEmojiLists: function() {
+						sessionStorage.setItem("emojiLists", JSON.stringify(this.emojiLists));
+					},
+					getEmojiLists: function() {
+						console.log(sessionStorage.getItem("emojiLists"))
+					},
+					updataMergePlan: function(title, $event) {
+						var _this = this
+						let word = $event.target.value
+
+						if(word.replace(/^\s*|\s*$/g, '') == "") {
+							console.warn("word 为空")
+							return false;
+						}
+
+						let index_emojiLists = _this.titleToIndex(_this.emojiLists, title)
+						let index_mergePlan = _this.titleToIndex(mergePlan, title)
+
+						if(index_mergePlan >= 0) {
+							if(mergePlan[index_mergePlan].word.indexOf(word) < 0) {
+								mergePlan[index_mergePlan].word.push(word)
+
+								_this.emojiLists[index_emojiLists].word.push(word)
+							} else {
+								//重复
+								return false
+							}
+						} else {
+							mergePlan.push({
+								title: title,
+								word: [word],
+							})
+
+							_this.emojiLists[index_emojiLists].word = [word]
+						}
+						_this.renderOnMyself = !_this.renderOnMyself
+						_this.setMergePlan()
+						_this.setEmojiLists()
+						return true
+					},
+				},
+				created() {
+					var _this = this
+					//					return false;
+
+					_this.emojiLists = JSON.parse(sessionStorage.getItem("emojiLists"))
+
+					if(_this.emojiLists == null) {
+						//复制 data2
+						_this.emojiLists = data2.concat()
+
+						for(let i = 0; i < mergePlan.length; i++) {
+							let index_d2 = _this.titleToIndex(_this.emojiLists, mergePlan[i].title)
+							let item_d2 = _this.emojiLists[index_d2]
+
+							if(index_d2 >= 0) {
+								if(mergePlan[i].hasOwnProperty("subspecies")) {
+									item_d2.subspecies = []
+									for(let j = 0; j < mergePlan[i].subspecies.length; j++) {
+										let index_d3 = _this.titleToIndex(data3, mergePlan[i].subspecies[j].split(".")[0])
+										if(index_d3 >= 0) {
+											item_d2.subspecies.push(data3[index_d3])
+										}
+									}
+								}
+								if(mergePlan[i].hasOwnProperty("word")) {
+									item_d2.word = mergePlan[i].word.concat()
+								}
+							}
+						}
+					}
+
+				},
+				mounted() {},
+			};
+			var vu = new Vue({
+				el: "#swq",
+				data: {},
+				methods: {},
+				components: {
+					swq: swq,
+				},
+				watch: {},
+				computed: {},
+				created() {},
+				mounted() {},
+			})
+		</script>
+	</body>
+
+</html>
