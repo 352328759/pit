@@ -36,7 +36,6 @@ class AddColorForm extends Component {
             </form>
 		)
 	}
-
 }
 
 AddColorForm.propTypes = {

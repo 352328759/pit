@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { colors } from './reducers'
-import stateData from '../initialState'
+import stateData from '../initialState.json'
 
 let console = window.console
 

@@ -20,9 +20,12 @@ export const Colors = connect(({
 	colors
 }, {
 	match
-}) => ({
-	colors: sortColors(colors, match.params.sort)
-}), dispatch => ({
+}) => {
+	console.log(colors)
+	return {
+		colors: sortColors(colors, match.params.sort)
+	}
+}, dispatch => ({
 	onRemove(id) {
 		dispatch(removeColor(id))
 	},
