@@ -2,8 +2,8 @@
 <html>
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UnicodeBig">
-		<meta charset="UnicodeBig">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title>unicode</title>
 		<style>
@@ -14,7 +14,6 @@
 	<body>
 		<!--<a href="https://apps.timwhitlock.info/emoji/tables/unicode">https://apps.timwhitlock.info/emoji/tables/unicode</a>-->
 		<!--<a href="https://blog.csdn.net/wy_97/article/details/77749405">https://blog.csdn.net/wy_97/article/details/77749405</a>-->
-
 		<div id="swq"></div>
 
 		<script src="./js/data.js"></script>
@@ -39,40 +38,59 @@
 
 			var html = ""
 			var begin = 1000 * 9 //100
+			var otherEmoji = []
 
-			//			for(var i = begin; i < (begin + 1000); i++) {
-			//				let b = i.toString(16)
-			//
-			//				if(b.length < 2) {
-			//					b = "000" + b.toString()
-			//				} else if(b.length < 3) {
-			//					b = "00" + b.toString()
-			//				} else if(b.length < 4) {
-			//					b = "0" + b.toString()
-			//				}
-			//
-			//				//				html += unescape("%u" + b)
-			//				html += "<span data=" + i + ">&#" + i + "</span>"
-			//			}
+			for(var i = begin; i < (begin + 1000); i++) {
+				otherEmoji[i] = true
+				/*let b = i.toString(16)
+
+				if(b.length < 2) {
+					b = "000" + b.toString()
+				} else if(b.length < 3) {
+					b = "00" + b.toString()
+				} else if(b.length < 4) {
+					b = "0" + b.toString()
+				}
+
+				//				html += unescape("%u" + b)
+				html += "<span data=" + i + ">&#" + i + "</span>"*/
+			}
 
 			for(var i = 0; i < data2.length; i++) {
 				for(var j = 0; j < data2[i].system.length; j++) {
-					html += "<span data=" + data2[i].system[j] + ">&#" + data2[i].system[j] + "</span>"
+					//					html += "<span data=" + data2[i].system[j] + ">&#" + data2[i].system[j] + "</span>"
+					if(otherEmoji[data2[i].system[j]]) {
+						otherEmoji[data2[i].system[j]] = false
+					}
 				}
+				//				html += " "
 			}
+
+			otherEmoji.map(function(item, index) {
+				if(item) {
+					html += "<span data-index=" + index + " data-x=0x" + index.toString(16) + ">&#" + index + "</span>"
+				} else {
+					console.log(index)
+				}
+			})
 
 			document.getElementById("swq").innerHTML = html
 
 			//			console.log("%u" + "2764")
-			//			console.log("%u2764")
-			//			console.log("\u2764")
-			//			console.log(unescape("\u2764"))
-			//			console.log(unescape("%u2764"))
+			//			console.log("%u2764") //%u2764
+			//			console.log("\u2764") //❤
+			//			console.log(unescape("\u2764")) //❤
+			//			console.log(unescape("%u2764")) //❤
 
 			//			unescape("%uD83D%uDC2B")// 1f42b 128043
-			//			console.log("\uD83D\uDC2B")
+			//			escape("🐫")
+			//			console.log("\uD83D\uDC2B") //🐫
 			//			
 			//			unescape("%uD83D%uDC2C")// 1f42c 128044
+
+			//			escape("🐼")				%uD83D%uDC3C
+			//			encodeURI("🐼")			%F0%9F%90%BC
+			//			encodeURIComponent("🐼")	%F0%9F%90%BC
 		</script>
 	</body>
 

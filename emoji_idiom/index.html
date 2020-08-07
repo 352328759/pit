@@ -43,7 +43,7 @@
 
 		<script type="text/x-template" id="swq-template">
 			<div>
-				<p>emoji 输出方法: Alt + 10进制编号</p>
+				<p>unicode emoji 输出方法: Alt + 10进制编号</p>
 				<p>多个编号时 输出方法: Alt + 10进制编号1, Alt + 10进制编号2, Alt + 10进制编号n</p>
 				<input ref="imgFile" type="file" name="" accept="image/gif, image/jpg, image/png" value="" />
 				<div @click="imgFileSubmit" ref="submit">submit</div>
@@ -69,7 +69,8 @@
 							</template>
 						</td>
 						<td><span @click="copyTxt(item.title)">{{item.title}}</span></td>
-						<td><span v-for="(_item, _index) in item.system"> {{_item}}, </span></td>
+						<td><span v-for="(_item, _index) in item.system"> {{_item}}(<span v-html="'&#' + _item"></span>), </span>
+						</td>
 						<td>
 							<span v-for="(_item, _index) in item.word"> {{_item}}, </span>
 							<input type="" name="" value="" @keyup.enter="updataMergePlan(item.title, $event)" />
@@ -83,7 +84,8 @@
 							</template>
 						</td>
 						<td><span @click="copyTxt(item.title)">{{item.title}}</span></td>
-						<td><span v-for="(_item, _index) in item.system"> {{_item}}, </span></td>
+						<td><span v-for="(_item, _index) in item.system"> {{_item}}(<span v-html="'&#' + _item"></span>), </span>
+						</td>
 						<td>
 							<span v-for="(_item, _index) in item.word"> {{_item}}, </span>
 							<input type="" name="" value="" @keyup.enter="updataMergePlan(item.title, $event)" />
@@ -279,10 +281,19 @@
 							// if(index > 10) {
 							// 	return true;
 							// }
-							if(item != "") {
-								let src = item
-								let title = item.split(".")[0]
-								let suffix = item.split(".")[1]
+							if(item == "") {
+								return false;
+							}
+							let src = item
+							let title = item.split(".")[0]
+							let suffix = item.split(".")[1]
+
+							let index_data2 = _this.titleToIndex(data2, title)
+							if(index_data2 >= 0) {
+								//重复
+								_emojiLists.push(data2[index_data2])
+								times++
+							} else {
 								let system = []
 								let hex = title.split("0x").filter(function(a) {
 									if(a === "") {
@@ -303,8 +314,8 @@
 									pixel12: []
 								})
 								insertPixel12(src, index)
-
 							}
+
 						})
 						// console.log(JSON.stringify(_emojiLists))
 					},
@@ -411,7 +422,8 @@
 
 					if(_this.emojiLists == null) {
 						//复制 data2
-						_this.emojiLists = data2.concat()
+						// _this.emojiLists = data2.concat()
+						_this.emojiLists = JSON.parse(JSON.stringify(data2))
 
 						for(let i = 0; i < mergePlan.length; i++) {
 							let index_d2 = _this.titleToIndex(_this.emojiLists, mergePlan[i].title)
