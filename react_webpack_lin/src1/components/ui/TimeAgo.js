@@ -4,8 +4,8 @@ const TimeAgo = ({
 	timestamp
 }) => {
 	return <div className="time-ago">
-        { ago(timestamp) }
-    </div>
+		{ago(timestamp)}
+	</div>
 }
 
 export default TimeAgo

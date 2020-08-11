@@ -21,7 +21,6 @@ export const Colors = connect(({
 }, {
 	match
 }) => {
-	console.log(colors)
 	return {
 		colors: sortColors(colors, match.params.sort)
 	}

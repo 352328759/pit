@@ -21,11 +21,8 @@ class Color extends Component {
 		} = this.props
 		return (
 			<section className="color" style={this.style}>
-				<h1 ref="title"
-					onClick={() => history.push(`/${id}`)}>{title}</h1>
-				<button onClick={onRemove}>
-					FaTrash
-                </button>
+				<h1 ref="title" onClick={() => history.push(`/${id}`)}>{title}</h1>
+				<button onClick={onRemove}>FaTrash</button>
 				<div className="color"
 					onClick={() => history.push(`/${id}`)}
 					style={{ backgroundColor: color }}>
@@ -37,7 +34,6 @@ class Color extends Component {
 			</section>
 		)
 	}
-
 }
 
 Color.propTypes = {

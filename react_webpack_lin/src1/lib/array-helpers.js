@@ -11,17 +11,17 @@ const sortByNumber = field =>
 
 const whichSort = (type, field) =>
 	(type === "date") ?
-	sortByDate(field) :
-	(type === "string") ?
-	sortByString(field) :
-	sortByNumber(field)
+		sortByDate(field) :
+		(type === "string") ?
+			sortByString(field) :
+			sortByNumber(field)
 
 export const sortFunction = sort =>
 	(sort === "SORTED_BY_TITLE") ?
-	whichSort("string", "title") :
-	(sort === "SORTED_BY_RATING") ?
-	whichSort("number", "rating") :
-	whichSort("date", "timestamp")
+		whichSort("string", "title") :
+		(sort === "SORTED_BY_RATING") ?
+			whichSort("number", "rating") :
+			whichSort("date", "timestamp")
 
 const getSortState = (sortBy = "date",
 	stateHash = {

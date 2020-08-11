@@ -25,15 +25,15 @@ class AddColorForm extends Component {
 	}
 
 	render() {
-		return(
+		return (
 			<form className="add-color" onSubmit={this.submit}>
-                <input ref="_title"
-                       type="text"
-                       placeholder="color title..." required/>
-                <input ref="_color"
-                       type="color" required/>
-                <button>ADD</button>
-            </form>
+				<input ref="_title"
+					type="text"
+					placeholder="color title..." required />
+				<input ref="_color"
+					type="color" required />
+				<button>ADD</button>
+			</form>
 		)
 	}
 }

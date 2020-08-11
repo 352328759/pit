@@ -28,21 +28,21 @@ const printResult = (result, timeframeName) =>
 
 const checkDate = (diff, timeframeName, underTime, timeframe) =>
 	(isUnderTime(diff, timeframe[timeframeName], underTime)) ?
-	printResult(diffOverTimeframe(diff, timeframe[timeframeName]), timeframeName) :
-	null
+		printResult(diffOverTimeframe(diff, timeframe[timeframeName]), timeframeName) :
+		null
 
 const printFullDate = dateTime =>
 	`${dateTime.getMonth() + 1}/${dateTime.getDate()}/${dateTime.getFullYear()}`
 
 const lessThanAMinute = timeString =>
 	(timeString.match(/seconds/)) ?
-	"less than a minute" :
-	timeString + ' ago'
+		"less than a minute" :
+		timeString + ' ago'
 
 const _checkNext = (result, callback) =>
 	(result) ?
-	lessThanAMinute(result) :
-	callback()
+		lessThanAMinute(result) :
+		callback()
 
 const checkNext = ([tfName, ...rest], timeframe, timestamp, now) =>
 	_checkNext(
@@ -52,8 +52,8 @@ const checkNext = ([tfName, ...rest], timeframe, timestamp, now) =>
 
 const howLongAgo = (remainingTimeframe, timeframe, timestamp, now) =>
 	(!remainingTimeframe.length) ?
-	printFullDate(toDate(timestamp)) :
-	checkNext(remainingTimeframe, timeframe, timestamp, now)
+		printFullDate(toDate(timestamp)) :
+		checkNext(remainingTimeframe, timeframe, timestamp, now)
 
 export const ago = (timestamp, now = new Date().toString()) =>
 	howLongAgo(Object.keys(timeframe), timeframe, timestamp, now)

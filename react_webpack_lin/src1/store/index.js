@@ -27,8 +27,8 @@ const storeFactory = (initialState = stateData) =>
 			colors
 		}),
 		(localStorage['redux-store']) ?
-		JSON.parse(localStorage['redux-store']) :
-		initialState
+			JSON.parse(localStorage['redux-store']) :
+			initialState
 	)
 
 export default storeFactory
