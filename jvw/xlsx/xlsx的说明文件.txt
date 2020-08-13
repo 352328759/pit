@@ -1,0 +1,11 @@
+npm install xlsx
+
+把
+node_modules\xlsx\dist\xlsx.full.min.js
+node_modules\xlsx\dist\xlsx.core.min.js
+两个文件拷出来用
+
+
+
+https://blog.csdn.net/tian_i/article/details/84327329
+http://blog.csdn.net/carcarrot/article/details/100705294

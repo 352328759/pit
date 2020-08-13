@@ -4,12 +4,12 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "node foo.js"
+		"start": "node dat-to-jpg.js"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"xlsx": "^0.16.4"
+		"async": "^3.2.0"
 	},
 	"devDependencies": {}
 }
