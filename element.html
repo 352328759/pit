@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<title>element</title>
-		<!--<link rel="stylesheet" href="https://keepfool.github.io/vue-tutorials/01.GettingStarted/styles/demo.css" />-->
-		<!--<link rel="stylesheet" href="./js/element-ui.2.4.0/element-ui.2.4.0.css">-->
-		<link rel="stylesheet" href="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.css">
-		<style>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>element</title>
+	<!--<link rel="stylesheet" href="https://keepfool.github.io/vue-tutorials/01.GettingStarted/styles/demo.css" />-->
+	<!--<link rel="stylesheet" href="./js/element-ui.2.4.0/element-ui.2.4.0.css">-->
+	<link rel="stylesheet" href="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.css">
+	<style>
 
-		</style>
-		<!--<meta http-equiv="refresh" content="30" />-->
-	</head>
+	</style>
+	<!--<meta http-equiv="refresh" content="30" />-->
+</head>
 
-	<body>
+<body>
 
-		<div id="swq">
+	<div id="swq">
 
-			<swq></swq>
+		<!-- <swq></swq> -->
+		<c1></c1>
 
-		</div>
+	</div>
 
-		<script type="text/x-template" id="swq-template">
+	<script type="text/x-template" id="swq-template">
 			<div>
 				<!--<c1></c1>-->
 				<!--<c2></c2>-->
@@ -79,157 +80,268 @@
 
 			</div>
 		</script>
-		<script type="text/x-template" id="c1-template">
-			<div>c1-template</div>
+	<script type="text/x-template" id="c1-template">
+			<div>
+				<!-- <el-input style="width: 10%;" v-model="costMin"></el-input>分
+				<el-input style="width: 10%;" v-model="costSnd"></el-input>秒 -->
+				<el-input style="width: 10%;" :value="costMin" @input="setTimeCost('min',$event)"></el-input>分
+				<el-input style="width: 10%;" :value="costSnd" @input="setTimeCost('snd',$event)"></el-input>秒
+				<div>{{form.timeCost}}</div>
+				<div>{{costMin}}</div>
+				<div>{{costSnd}}</div>
+			</div>
 		</script>
-		<script type="text/x-template" id="c2-template">
+	<script type="text/x-template" id="c2-template">
 			<div>c2-template</div>
 		</script>
 
-		<!--<script src="./js/vue/vue.js"></script>-->
-		<script src="./jvw/vue/vue.2.5.16.js"></script>
-		<script src="./jvw/element-ui/element-ui@2.4.0/1element-ui.2.4.0.js"></script>
-		<!--<script src="./js/element-ui.2.4.0/element-ui.2.4.0.js"></script>-->
-		<!--<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>-->
-		<!--<script src="./js/jquery.min.js"></script>-->
+	<!--<script src="./js/vue/vue.js"></script>-->
+	<script src="./jvw/vue/vue.2.5.16.js"></script>
+	<script src="./jvw/element-ui/element-ui@2.4.0/1element-ui.2.4.0.js"></script>
+	<!--<script src="./js/element-ui.2.4.0/element-ui.2.4.0.js"></script>-->
+	<!--<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>-->
+	<!--<script src="./js/jquery.min.js"></script>-->
 
-		<script type="text/javascript">
-			var c1 = {
-				template: "#c1-template",
-				props: [],
-				data: function() {
-					return {}
-				},
-				computed: {},
-				components: {},
-				watch: {},
-				methods: {},
-				created() {},
-				mounted() {},
-			}
-			var c2 = {
-				template: "#c2-template",
-				props: [],
-				data() {
-					return {};
-				},
-				computed: {},
-				components: {},
-				watch: {},
-				methods: {},
-				created() {},
-				mounted() {},
-			}
-			var swq = {
-				template: "#swq-template",
-				props: [],
-				data: function() {
-					return {
-						ruleForm: {
-							name: '',
-							region: '',
-							date1: '',
-							date2: '',
-							delivery: false,
-							type: [],
-							resource: '',
-							desc: ''
-						},
-						rules2: {
-							name: [{
-								required: true,
-								message: '请输入活动名称',
-								trigger: 'blur'
-							}, {
-								type: 'email',
-								message: '请输入正确的邮箱地址',
-								trigger: 'blur',
-							}],
-						},
-						rules: {
-							name: [{
-								required: true,
-								message: '请输入活动名称',
-								trigger: 'blur'
-							}, {
-								min: 3,
-								max: 5,
-								message: '长度在 3 到 5 个字符',
-								trigger: 'blur'
-							}],
-							region: [{
-								required: true,
-								message: '请选择活动区域',
-								trigger: 'change'
-							}],
-							date1: [{
-								type: 'date',
-								required: true,
-								message: '请选择日期',
-								trigger: 'change'
-							}],
-							date2: [{
-								type: 'date',
-								required: true,
-								message: '请选择时间',
-								trigger: 'change'
-							}],
-							type: [{
-								type: 'array',
-								required: true,
-								message: '请至少选择一个活动性质',
-								trigger: 'change'
-							}],
-							resource: [{
-								required: true,
-								message: '请选择活动资源',
-								trigger: 'change'
-							}],
-							desc: [{
-								required: true,
-								message: '请填写活动形式',
-								trigger: 'blur'
-							}]
-						}
-					};
-				},
-				computed: {},
-				components: {
-					c1,
-					c2,
-				},
-				watch: {},
-				methods: {
-					submitForm(formName) {
-						this.$refs[formName].validate((valid) => {
-							if(valid) {
-								alert('submit!');
-							} else {
-								console.log('error submit!!');
-								return false;
-							}
-						});
+	<script type="text/javascript">
+		var c1 = {
+			template: "#c1-template",
+			props: [],
+			data: function () {
+				return {
+					form: {
+						attachmentName: '', //附件名称
+						attachmentSize: 0, //附件大小
+						attachmentUrl: '', //附件url
+						cDesc: '', //课程名称
+						catName: '', //课程分类名称
+						catId: null, //课程分类id
+						timeCost: 0, //课程时长(单位秒)
+						coverUrl: '',
+						title: "", //标题
+						musicUrl: "", //背景音乐地址
 					},
-					resetForm(formName) {
-						this.$refs[formName].resetFields();
+					costMin: 0,
+					costSnd: 0,
+				}
+			},
+			computed: {
+				/*	costMin: {
+						set(min) {
+							console.log(this.costSnd)
+							console.log(min)
+							// this.form.timeCost = parseInt(parseInt((min || 0) * 60) + parseInt(this.costSnd))
+	
+	
+	
+	
+	
+	
+							let timeCost = this.form.timeCost || 0
+							this.form.timeCost = parseInt((min || 0) * 60) + parseInt(timeCost % 60)
+							this.$forceUpdate()
+	
+						},
+						get() {
+							let timeCost = this.form.timeCost || 0
+							return parseInt(timeCost / 60)
+						}
+					},
+					costSnd: {
+						set(snd) {
+							console.log("snd", snd)
+							let timeCost = this.form.timeCost || 0
+							console.log("timeCost", timeCost)
+	
+							let _1 = parseInt((timeCost / 60)) * 60
+							let _2 = parseInt(snd || 0)
+							console.log("costMin", this.costMin)
+							console.log("_1", _1)
+							console.log("_2", _2)
+	
+							this.form.timeCost = _1 + _2
+							this.$forceUpdate()
+						},
+						get() {
+							console.log("costSnd get")
+							let timeCost = this.form.timeCost || 0
+							console.log(timeCost)
+							return parseInt(timeCost % 60)
+						}
+					},*/
+
+				// costMin: {
+				// 	set(min) {
+				// 		// this.form.timeCost = (parseInt(min * 60) + parseInt(this.costSnd))
+				// 		let timeCost = this.form.timeCost || 0
+				// 		this.form.timeCost = parseInt((min || 0) * 60) + parseInt(timeCost % 60)
+				// 	},
+				// 	get() {
+				// 		let timeCost = this.form.timeCost || 0
+				// 		return parseInt(timeCost / 60)
+				// 	}
+				// },
+				// costSnd: {
+				// 	set(snd) {
+				// 		// this.form.timeCost = (parseInt(this.costMin * 60) + parseInt(snd))
+				// 		let timeCost = this.form.timeCost || 0
+				// 		this.form.timeCost = parseInt((timeCost / 60)) * 60 + parseInt(snd || 0)
+				// 	},
+				// 	get() {
+				// 		let timeCost = this.form.timeCost || 0
+				// 		return parseInt(timeCost % 60)
+				// 	}
+				// }
+			},
+			components: {},
+			watch: {
+				"form.timeCost"(val, oldVal) {
+					this.costMin = 0
+					this.costSnd = 0
+					this.$nextTick(function () {
+						this.costMin = parseInt(val / 60)
+						this.costSnd = parseInt(val % 60)
+					})
+				}
+			},
+			methods: {
+				setTimeCost(cost, num) {
+					console.log(num)
+					let timeCost = this.form.timeCost || 0
+					num = parseInt(num || 0)
+					if (cost == "snd") {
+						this.form.timeCost = parseInt((timeCost / 60)) * 60 + num
+					} else if (cost == "min") {
+						this.form.timeCost = num * 60 + parseInt(timeCost % 60)
 					}
+				}
+			},
+			created() { },
+			mounted() { },
+		}
+		var c2 = {
+			template: "#c2-template",
+			props: [],
+			data() {
+				return {};
+			},
+			computed: {},
+			components: {},
+			watch: {},
+			methods: {},
+			created() { },
+			mounted() { },
+		}
+		var swq = {
+			template: "#swq-template",
+			props: [],
+			data: function () {
+				return {
+					ruleForm: {
+						name: '',
+						region: '',
+						date1: '',
+						date2: '',
+						delivery: false,
+						type: [],
+						resource: '',
+						desc: ''
+					},
+					rules2: {
+						name: [{
+							required: true,
+							message: '请输入活动名称',
+							trigger: 'blur'
+						}, {
+							type: 'email',
+							message: '请输入正确的邮箱地址',
+							trigger: 'blur',
+						}],
+					},
+					rules: {
+						name: [{
+							required: true,
+							message: '请输入活动名称',
+							trigger: 'blur'
+						}, {
+							min: 3,
+							max: 5,
+							message: '长度在 3 到 5 个字符',
+							trigger: 'blur'
+						}],
+						region: [{
+							required: true,
+							message: '请选择活动区域',
+							trigger: 'change'
+						}],
+						date1: [{
+							type: 'date',
+							required: true,
+							message: '请选择日期',
+							trigger: 'change'
+						}],
+						date2: [{
+							type: 'date',
+							required: true,
+							message: '请选择时间',
+							trigger: 'change'
+						}],
+						type: [{
+							type: 'array',
+							required: true,
+							message: '请至少选择一个活动性质',
+							trigger: 'change'
+						}],
+						resource: [{
+							required: true,
+							message: '请选择活动资源',
+							trigger: 'change'
+						}],
+						desc: [{
+							required: true,
+							message: '请填写活动形式',
+							trigger: 'blur'
+						}]
+					}
+				};
+			},
+			computed: {},
+			components: {
+				c1,
+				c2,
+			},
+			watch: {},
+			methods: {
+				submitForm(formName) {
+					this.$refs[formName].validate((valid) => {
+						if (valid) {
+							alert('submit!');
+						} else {
+							console.log('error submit!!');
+							return false;
+						}
+					});
 				},
-				created() {},
-				mounted() {},
-			};
-			var vu = new Vue({
-				el: "#swq",
-				data: {},
-				methods: {},
-				components: {
-					swq: swq,
-				},
-				watch: {},
-				computed: {},
-				created() {},
-				mounted() {},
-			})
-		</script>
-	</body>
+				resetForm(formName) {
+					this.$refs[formName].resetFields();
+				}
+			},
+			created() { },
+			mounted() { },
+		};
+		var vu = new Vue({
+			el: "#swq",
+			data: {},
+			methods: {},
+			components: {
+				swq,
+				c1,
+			},
+			watch: {},
+			computed: {},
+			created() { },
+			mounted() { },
+		})
+	</script>
+</body>
 
 </html>
