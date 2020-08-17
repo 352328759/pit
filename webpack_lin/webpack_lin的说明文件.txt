@@ -1,0 +1,23 @@
+fs = require("fs");
+? 打包会报错
+: module.exports.node.fs = "empty"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+end
