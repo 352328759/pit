@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
-import { Button, Radio } from 'antd';
-import { DownloadOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
+import { SmileOutlined } from '@ant-design/icons';
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
 import zhCN from 'antd/es/locale/zh_CN';
@@ -9,74 +9,93 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import 'antd/dist/antd.css';
 import ColumnGroup from 'antd/lib/table/ColumnGroup';
-// import './index.css';
+import './stylesheets/antd.css';
 moment.locale('zh-cn');
 
-
+const { Paragraph, Text } = Typography;
 
 const App = () => {
 	return (
 		<>
-			<Button type="primary">Primary</Button>
-			<Button type="primary" disabled>Primary(disabled)</Button>
-			<br />
-			<Button>Default</Button>
-			<Button disabled>Default(disabled)</Button>
-			<br />
-			<Button type="dashed">Dashed</Button>
-			<Button type="dashed" disabled>Dashed(disabled)</Button>
-			<br />
-			<Button type="text">Text</Button>
-			<Button type="text" disabled>Text(disabled)</Button>
-			<br />
-			<Button type="link">Link</Button>
-			<Button type="link" disabled>Link(disabled)</Button>
-			<br />
-			<Button danger>Danger Default</Button>
-			<Button danger disabled>Danger Default(disabled)</Button>
-			<br />
-			<Button danger type="text">Danger Text</Button>
-			<Button danger type="text" disabled>Danger Text(disabled)</Button>
-			<br />
-			<Button type="link" danger>Danger Link</Button>
-			<Button type="link" danger disabled>Danger Link(disabled)</Button>
-			<div className="site-button-ghost-wrapper">
-				<Button ghost>Ghost</Button>
-				<Button ghost disabled>Ghost(disabled)</Button>
-			</div>
+			<Paragraph ellipsis>
+				Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
+				Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
+				a design language for background applications, is refined by Ant UED Team. Ant Design, a
+				design language for background applications, is refined by Ant UED Team. Ant Design, a design
+				language for background applications, is refined by Ant UED Team. Ant Design, a design
+				language for background applications, is refined by Ant UED Team.
+			</Paragraph>
+
+			<Paragraph ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}>
+				Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
+				Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
+				a design language for background applications, is refined by Ant UED Team. Ant Design, a
+				design language for background applications, is refined by Ant UED Team. Ant Design, a design
+				language for background applications, is refined by Ant UED Team. Ant Design, a design
+				language for background applications, is refined by Ant UED Team.
+			</Paragraph>
 		</>
 	);
 };
 
+class Cpp extends React.Component {
 
-
-
-
-class ButtonSize extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			size: 'default',
+			swq: "据贵州省气象台预报，受台风“海高斯”北部倒槽影响，未来两天贵州省有阵雨或雷雨天气。黔南、黔西南、黔东南等贵州省的南部地区有大雨或暴雨，个别乡镇有大暴雨。",
 		};
-		this.handleSizeChange = this.handleSizeChange.bind(this)
+		// this.onChange = this.onChange.bind(this)
 	}
 
-	handleSizeChange(e) {
-		this.setState({ size: e.target.value });
+	render() {
+		const { swq } = this.state
+		return (
+			<>
+				<Text>{swq}</Text><br />
+				<Text code>{swq}</Text><br />
+				<Text copyable>{swq}</Text><br />
+				<Text disabled>{swq}</Text><br />
+				<Text editable>{swq}</Text><br />
+			</>
+		);
+	}
+}
+
+class ButtonSize extends React.Component {
+
+	constructor(props) {
+		super(props)
+		this.state = {
+			str: 'This is an editable text.',
+		};
+		this.onChange = this.onChange.bind(this)
+	}
+
+	onChange(str) {
+		console.log('Content change:', str);
+		this.setState({ str });
 	};
 
 	render() {
-		const { size } = this.state;
 		return (
-			<></>
+			<>
+				<Paragraph editable={{ onChange: this.onChange }}>{this.state.str}</Paragraph>
+				<Paragraph copyable>This is a copyable text.</Paragraph>
+				<Paragraph copyable={{ text: 'Hello, Ant Design!' }}>Replace copy text.</Paragraph>
+				<Paragraph copyable={{ icon: <SmileOutlined /> }}>Custom icon.</Paragraph>
+				<Paragraph copyable={{ tooltips: ['click here', 'you clicked!!'] }}>Replace tooltips text.</Paragraph>
+			</>
 		);
 	}
 }
 
 
 
+
 render((<>
-	<a href="https://ant.design/components/button-cn/">https://ant.design/components/button-cn/</a>
+	<a href="https://ant.design/components/typography-cn/" target="_blank">https://ant.design/components/typography-cn/</a>
 	<br />
-	<App />
+	{/* <App /> */}
+	<Cpp />
 </>), document.getElementById('react-container'));

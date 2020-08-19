@@ -2,32 +2,34 @@
 <!-- saved from url=(0036)http://www.352328759a.site/lin/l.php -->
 <html>
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-	<title>nothing</title>
-	<style>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title>nothing</title>
+		<style>
 
-	</style>
-</head>
+		</style>
+	</head>
 
-<body>
+	<body>
 
-	<!-- <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script> -->
-	<!-- <script src="http://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script> -->
+		<textarea id="txt"></textarea>
 
-	<script type="text/javascript">
-		'use strict';
-		var a = { aa: 34 }
-		var b = 3;
-		(({ aa }, { b }) => {
-			console.log(aa)
-			console.log(b)
-		})(a, b)
+		<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+		<!-- <script src="http://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script> -->
 
-	</script>
+		<script type="text/javascript">
+			'use strict';
+			document.querySelector("#txt").onkeydown = function() {
+				console.log("开始")
+				setTimeout(function() {
+					console.log(document.querySelector("#txt").value.length)
+				}, 60 * 1000)
+				document.querySelector("#txt").onkeydown = null
+			}
+		</script>
 
-</body>
+	</body>
 
 </html>
