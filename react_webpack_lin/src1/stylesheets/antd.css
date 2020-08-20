@@ -1,0 +1,14 @@
+html,
+body {
+    width  : 100%;
+    padding: 0px;
+}
+
+.cpp {
+    width: 100%;
+}
+
+.cpp>div,
+.cpp .ant-typography {
+    width: 100%;
+}

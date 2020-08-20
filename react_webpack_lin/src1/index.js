@@ -12,7 +12,7 @@ import ColumnGroup from 'antd/lib/table/ColumnGroup';
 import './stylesheets/antd.css';
 moment.locale('zh-cn');
 
-const { Paragraph, Text } = Typography;
+const { Paragraph, Text, Title } = Typography;
 
 const App = () => {
 	return (
@@ -51,13 +51,20 @@ class Cpp extends React.Component {
 	render() {
 		const { swq } = this.state
 		return (
-			<>
-				<Text>{swq}</Text><br />
-				<Text code>{swq}</Text><br />
-				<Text copyable>{swq}</Text><br />
-				<Text disabled>{swq}</Text><br />
-				<Text editable>{swq}</Text><br />
-			</>
+			<div className="cpp">
+				<Paragraph>{swq}</Paragraph>
+				<Paragraph code>{swq}</Paragraph>
+				<Paragraph copyable>{swq}</Paragraph>
+				<Paragraph disabled>{swq}</Paragraph>
+				<Paragraph editable>{swq}</Paragraph>
+				<Paragraph ellipsis>{swq}</Paragraph>
+				<Paragraph mark>{swq}</Paragraph>
+				<Paragraph keyboard>{swq}</Paragraph>
+				<Paragraph type="secondary">{swq}</Paragraph>
+				<Paragraph type="warning">{swq}</Paragraph>
+				<Paragraph type="danger">{swq}</Paragraph>
+
+			</div>
 		);
 	}
 }
