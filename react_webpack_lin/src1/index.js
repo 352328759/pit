@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, {
+	useState
+} from 'react';
 import { render } from 'react-dom';
-import { Typography } from 'antd';
-import { SmileOutlined } from '@ant-design/icons';
+import { Grid, Tag } from 'antd'
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
 import zhCN from 'antd/es/locale/zh_CN';
@@ -12,97 +13,77 @@ import ColumnGroup from 'antd/lib/table/ColumnGroup';
 import './stylesheets/antd.css';
 moment.locale('zh-cn');
 
-const { Paragraph, Text, Title } = Typography;
+const {
+	useBreakpoint
+} = Grid;
 
 const App = () => {
 	return (
 		<>
-			<Paragraph ellipsis>
-				Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-				Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
-				a design language for background applications, is refined by Ant UED Team. Ant Design, a
-				design language for background applications, is refined by Ant UED Team. Ant Design, a design
-				language for background applications, is refined by Ant UED Team. Ant Design, a design
-				language for background applications, is refined by Ant UED Team.
-			</Paragraph>
-
-			<Paragraph ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}>
-				Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-				Design, a design language for background applications, is refined by Ant UED Team. Ant Design,
-				a design language for background applications, is refined by Ant UED Team. Ant Design, a
-				design language for background applications, is refined by Ant UED Team. Ant Design, a design
-				language for background applications, is refined by Ant UED Team. Ant Design, a design
-				language for background applications, is refined by Ant UED Team.
-			</Paragraph>
 		</>
 	);
 };
+
+class Bpp extends React.Component {
+
+	constructor(props) {
+		super(props)
+		this.state = {
+			// str: 'This is an editable text.',
+		};
+		// this.onChange = this.onChange.bind(this)
+	}
+
+	// onChange(str) {};
+
+	render() {
+		return (
+			<>
+			</>
+		);
+	}
+}
 
 class Cpp extends React.Component {
 
 	constructor(props) {
 		super(props)
 		this.state = {
-			swq: "据贵州省气象台预报，受台风“海高斯”北部倒槽影响，未来两天贵州省有阵雨或雷雨天气。黔南、黔西南、黔东南等贵州省的南部地区有大雨或暴雨，个别乡镇有大暴雨。",
+			// swq: "",
 		};
 		// this.onChange = this.onChange.bind(this)
 	}
 
 	render() {
-		const { swq } = this.state
-		return (
-			<div className="cpp">
-				<Paragraph>{swq}</Paragraph>
-				<Paragraph code>{swq}</Paragraph>
-				<Paragraph copyable>{swq}</Paragraph>
-				<Paragraph disabled>{swq}</Paragraph>
-				<Paragraph editable>{swq}</Paragraph>
-				<Paragraph ellipsis>{swq}</Paragraph>
-				<Paragraph mark>{swq}</Paragraph>
-				<Paragraph keyboard>{swq}</Paragraph>
-				<Paragraph type="secondary">{swq}</Paragraph>
-				<Paragraph type="warning">{swq}</Paragraph>
-				<Paragraph type="danger">{swq}</Paragraph>
-
-			</div>
-		);
-	}
-}
-
-class ButtonSize extends React.Component {
-
-	constructor(props) {
-		super(props)
-		this.state = {
-			str: 'This is an editable text.',
-		};
-		this.onChange = this.onChange.bind(this)
-	}
-
-	onChange(str) {
-		console.log('Content change:', str);
-		this.setState({ str });
-	};
-
-	render() {
+		// const { swq } = this.state
 		return (
 			<>
-				<Paragraph editable={{ onChange: this.onChange }}>{this.state.str}</Paragraph>
-				<Paragraph copyable>This is a copyable text.</Paragraph>
-				<Paragraph copyable={{ text: 'Hello, Ant Design!' }}>Replace copy text.</Paragraph>
-				<Paragraph copyable={{ icon: <SmileOutlined /> }}>Custom icon.</Paragraph>
-				<Paragraph copyable={{ tooltips: ['click here', 'you clicked!!'] }}>Replace tooltips text.</Paragraph>
 			</>
 		);
 	}
 }
 
+function UseBreakpointDemo() {
+	const screens = useBreakpoint();
+	console.log(Object.entries(screens))
+	return (
+		<>
+			Current break point:{' '}
+			{Object.entries(screens)
+				.filter(screen => !!screen[1])
+				.map(screen => (
+					<Tag color="blue" key={screen[0]}>
+						{screen[0]}
+					</Tag>
+				))}
+		</>
+	);
+}
 
-
-
-render((<>
-	<a href="https://ant.design/components/typography-cn/" target="_blank">https://ant.design/components/typography-cn/</a>
+render((< >
+	<a href="https://ant.design/components/layout-cn/" target="_blank" >https://ant.design/components/layout-cn/</a>
 	<br />
 	{/* <App /> */}
-	<Cpp />
+	{/* <Bpp /> */}
+	<UseBreakpointDemo />
 </>), document.getElementById('react-container'));
