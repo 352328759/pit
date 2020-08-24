@@ -2,7 +2,10 @@ import React, {
 	useState
 } from 'react';
 import { render } from 'react-dom';
-import { Grid, Tag } from 'antd'
+import { Button, Space, Upload, Popconfirm } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+
+
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
 import zhCN from 'antd/es/locale/zh_CN';
@@ -13,9 +16,7 @@ import ColumnGroup from 'antd/lib/table/ColumnGroup';
 import './stylesheets/antd.css';
 moment.locale('zh-cn');
 
-const {
-	useBreakpoint
-} = Grid;
+
 
 const App = () => {
 	return (
@@ -58,32 +59,28 @@ class Cpp extends React.Component {
 		// const { swq } = this.state
 		return (
 			<>
+				<Space>
+					Space
+					<Button type="primary">Button</Button>
+					<Upload>
+						<Button><UploadOutlined /> Click to Upload</Button>
+					</Upload>
+					<Popconfirm title="Are you sure delete this task?" okText="Yes" cancelText="No">
+						<Button>Confirm</Button>
+					</Popconfirm>
+				</Space>
 			</>
 		);
 	}
 }
 
-function UseBreakpointDemo() {
-	const screens = useBreakpoint();
-	console.log(Object.entries(screens))
-	return (
-		<>
-			Current break point:{' '}
-			{Object.entries(screens)
-				.filter(screen => !!screen[1])
-				.map(screen => (
-					<Tag color="blue" key={screen[0]}>
-						{screen[0]}
-					</Tag>
-				))}
-		</>
-	);
-}
 
-render((< >
-	<a href="https://ant.design/components/layout-cn/" target="_blank" >https://ant.design/components/layout-cn/</a>
-	<br />
-	{/* <App /> */}
-	{/* <Bpp /> */}
-	<UseBreakpointDemo />
-</>), document.getElementById('react-container'));
+render((
+	<>
+		<a href="https://ant.design/components/layout-cn/" target="_blank" >https://ant.design/components/layout-cn/</a>
+		<br />
+		{/* <App /> */}
+		{/* <Bpp /> */}
+		<Cpp />
+	</>),
+	document.getElementById('react-container'));
