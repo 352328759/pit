@@ -2,8 +2,7 @@ import React, {
 	useState
 } from 'react';
 import { render } from 'react-dom';
-import { Button, Space, Upload, Popconfirm } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { Affix, Button } from 'antd';
 
 
 
@@ -17,13 +16,55 @@ import './stylesheets/antd.css';
 moment.locale('zh-cn');
 
 
-
 const App = () => {
+	let refBpp;
+	const click1 = str => {
+		refBpp.refs.Cpp.onSomething("onSomething")
+	}
+	
 	return (
 		<>
+			<Bpp ref={i => refBpp = i}></Bpp>
+			<div onClick={click1}>click1</div>
 		</>
 	);
 };
+
+const Dpp = () => {
+	const [refName, setRefName] = useState(null);
+	const [swq, setSwq] = useState("swq");
+	const click1 = str => {
+		console.log(refName)
+	}
+	return (
+		<>
+			<div ref={setRefName}>
+				目标节点
+			</div>
+			<div onClick={click1}>click1</div>
+		</>
+	);
+};
+
+// class Dpp extends React.Component {
+
+// 	constructor(props) {
+// 		super(props)
+// 		this.state = {
+// 			// str: 'This is an editable text.',
+// 		};
+// 		// this.click1 = this.click1.bind(this)
+// 	}
+
+// 	// click1(str) { };
+
+// 	render() {
+// 		return (
+// 			<>
+// 			</>
+// 		);
+// 	}
+// }
 
 class Bpp extends React.Component {
 
@@ -40,6 +81,7 @@ class Bpp extends React.Component {
 	render() {
 		return (
 			<>
+				<Cpp ref="Cpp"></Cpp>
 			</>
 		);
 	}
@@ -52,36 +94,37 @@ class Cpp extends React.Component {
 		this.state = {
 			// swq: "",
 		};
-		// this.onChange = this.onChange.bind(this)
+		this.onSomething = this.onSomething.bind(this)
+	}
+
+	onSomething(params) {
+		console.log(params)
 	}
 
 	render() {
 		// const { swq } = this.state
 		return (
 			<>
-				<Space>
-					Space
-					<Button type="primary">Button</Button>
-					<Upload>
-						<Button><UploadOutlined /> Click to Upload</Button>
-					</Upload>
-					<Popconfirm title="Are you sure delete this task?" okText="Yes" cancelText="No">
-						<Button>Confirm</Button>
-					</Popconfirm>
-				</Space>
+				Cpp
 			</>
 		);
 	}
 }
 
-
+class NAME extends React.Component {
+	constructor(props) {/* *** */ }
+	FunctionA() {/* 调用的方法 */ }
+	render() {/* *** */ }
+}
 
 render((
 	<>
-		<a href="https://ant.design/components/space-cn/" target="_blank" >https://ant.design/components/space-cn/</a>
+		<a href="https://ant.design/components/breadcrumb-cn/" target="_blank" >https://ant.design/components/breadcrumb-cn/</a>
 		<br />
 		{/* <App /> */}
 		{/* <Bpp /> */}
-		<Cpp />
+		{/* <Cpp /> */}
+		<Dpp />
 	</>),
-	document.getElementById('react-container'));
+	document.getElementById('react-container')
+);

@@ -29,18 +29,18 @@
 			<a target="_blank" href="https://github.com/sendya/ant-design-pro-vue/blob/master/README.zh-CN.md">https://github.com/sendya/ant-design-pro-vue/blob/master/README.zh-CN.md</a>
 			<br />
 			<!---->
-			<swq></swq>
+			<swq ref="swq"></swq>
 			<!---->
-
+			<div @click="click">click</div>
 		</div>
 
 		<script type="text/x-template" id="swq-template">
 			<div>
 
 				<!--<c1 />-->
-				<!--<c2 />-->
+				<c2 ref="c2" />
 
-				<div style="width: 500px; margin: auto;">
+				<div v-if="false" style="width: 500px; margin: auto;">
 					<a-row>
 						<a-col span="8">
 							<input style="width: 100%;text-align: right;" type="number" v-model="price1" placeholder="总价" />
@@ -74,7 +74,8 @@
 		</script>
 		<script type="text/x-template" id="c1-template">
 			<div id="components-form-demo-vuex">
-				<a-form :form="form" @submit="handleSubmit">
+				c1
+				<a-form v-if="false" :form="form" @submit="handleSubmit">
 					<a-form-item label="Username">
 						<a-input v-decorator="['username',{rules: [{ required: true, message: 'Username is required!'}],}]"></a-input>
 					</a-form-item>
@@ -83,31 +84,35 @@
 			</div>
 		</script>
 		<script type="text/x-template" id="c2-template">
-			<a-form :form="form" @submit="handleSubmit">
-				<a-form-item label="Note" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-					<a-input v-decorator="['note', {rules: [{ required: true, message: 'Please input your note!' }]}]" />
-				</a-form-item>
-				<a-form-item label="Gender" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-					<a-select v-decorator="['gender', {rules: [{ required: true, message: 'Please select your gender!' }]}]" placeholder="Select a option and change input text above" @change="handleSelectChange">
-						<a-select-option value="male"> male </a-select-option>
-						<a-select-option value="female"> female </a-select-option>
-					</a-select>
-				</a-form-item>
-				<a-form-item :wrapper-col="{ span: 12, offset: 5 }">
-					<a-button type="primary" html-type="submit"> Submit </a-button>
-				</a-form-item>
-			</a-form>
+			<div>
+				<c1 ref="c1" />
+				<a-form v-if="false" :form="form" @submit="handleSubmit">
+					<a-form-item label="Note" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
+						<a-input v-decorator="['note', {rules: [{ required: true, message: 'Please input your note!' }]}]" />
+					</a-form-item>
+					<a-form-item label="Gender" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
+						<a-select v-decorator="['gender', {rules: [{ required: true, message: 'Please select your gender!' }]}]" placeholder="Select a option and change input text above" @change="handleSelectChange">
+							<a-select-option value="male"> male </a-select-option>
+							<a-select-option value="female"> female </a-select-option>
+						</a-select>
+					</a-form-item>
+					<a-form-item :wrapper-col="{ span: 12, offset: 5 }">
+						<a-button type="primary" html-type="submit"> Submit </a-button>
+					</a-form-item>
+				</a-form>
+			</div>
 		</script>
 
 		<!--<script src="./js/vue/vue.js"></script>-->
 		<script src="./jvw/vue/vue.2.5.16.js"></script>
-		<!--<script src="./jvw/antd/antd.js"></script>-->
-		<script src="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.js"></script>
+		<script src="./jvw/antd/antd.js"></script>
+		<!--<script src="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.js"></script>-->
 		<!--<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>-->
 		<!--<script src="./js/jquery.min.js"></script>-->
 
 		<script type="text/javascript">
-			var c1 = {
+			var c1, c2;
+			c1 = {
 				template: "#c1-template",
 				props: [],
 				data: function() {
@@ -140,6 +145,9 @@
 							}
 						});
 					},
+					consoleSomething(a){
+						console.log(a)
+					}
 				},
 				created() {
 					this.form = this.$form.createForm(this, {
@@ -162,7 +170,7 @@
 				},
 				mounted() {},
 			}
-			var c2 = {
+			c2 = {
 				template: "#c2-template",
 				props: [],
 				data() {
@@ -172,7 +180,9 @@
 					};
 				},
 				computed: {},
-				components: {},
+				components: {
+					c1,
+				},
 				watch: {},
 				methods: {
 					handleSubmit(e) {
@@ -229,7 +239,11 @@
 			var vu = new Vue({
 				el: "#swq",
 				data: {},
-				methods: {},
+				methods: {
+					click() {
+						this.$refs.swq.$refs.c2.$refs.c1.consoleSomething("fffff")
+					}
+				},
 				components: {
 					swq: swq,
 				},

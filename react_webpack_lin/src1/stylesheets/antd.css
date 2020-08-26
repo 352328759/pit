@@ -4,11 +4,15 @@ body {
     padding: 0px;
 }
 
-.cpp {
-    width: 100%;
+
+.scrollable-container {
+    height    : 100px;
+    overflow-y: scroll;
+
 }
 
-.cpp>div,
-.cpp .ant-typography {
-    width: 100%;
+.scrollable-container .background {
+    padding-top     : 60px;
+    height          : 300px;
+    background-image: url(https://zos.alipayobjects.com/rmsportal/RmjwQiJorKyobvI.jpg);
 }
