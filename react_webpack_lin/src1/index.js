@@ -3,7 +3,7 @@ import React, {
 } from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 import { HashRouter } from "react-router-dom";
 import { Affix, Button } from "antd";
 
@@ -18,7 +18,7 @@ moment.locale("zh-cn");
 
 
 
-function counter(state = 0, action) {
+function reducer(state = 0, action) {
 	switch (action.type) {
 		case 'INCREMENT':
 			return state + 1;
@@ -29,26 +29,59 @@ function counter(state = 0, action) {
 	}
 }
 
-let store = createStore(counter);
+// let store = createStore(reducer);
+
+// store.subscribe(() =>
+// 	console.log(store.getState())
+// );
+
+// store.dispatch({ type: 'INCREMENT' });
+// store.dispatch({ type: 'INCREMENT' });
+// store.dispatch({ type: 'DECREMENT' });
 
 
-store.subscribe(() =>
-	console.log(store.getState())
-);
+function visibilityFilter(state = 'SHOW_ALL', action) {
+	switch (action.type) {
+		case 'SET_VISIBILITY_FILTER':
+			return action.filter
+		default:
+			return state
+	}
+}
 
-store.dispatch({ type: 'INCREMENT' });
-store.dispatch({ type: 'INCREMENT' });
-store.dispatch({ type: 'DECREMENT' });
+function todos(state = [], action) {
+	switch (action.type) {
+		case 'ADD_TODO':
+			return [
+				...state,
+				{
+					text: action.text,
+					completed: false
+				}
+			]
+		case 'COMPLETE_TODO':
+			return state.map((todo, index) => {
+				if (index === action.index) {
+					return Object.assign({}, todo, {
+						completed: true
+					})
+				}
+				return todo
+			})
+		default:
+			return state
+	}
+}
+
+// let reducer2 = combineReducers({ visibilityFilter, todos })
+let reducer2 = combineReducers({ visibilityFilter })
+// let store2 = createStore(reducer2)
 
 
-
-
-
-
-
-
-
-
+console.log("%s", reducer)
+console.log("%s", reducer2)
+// console.log(reducer)
+// console.log(reducer2)
 
 
 const App = () => {
@@ -145,7 +178,8 @@ const Dpp = () => {
 
 render((
 	<>
-		<a href="https://ant.design/components/breadcrumb-cn/" target="_blank" >https://ant.design/components/breadcrumb-cn/</a>
+		<p><a href="https://www.redux.org.cn/docs/introduction/ThreePrinciples.html" target="_blank" >https://www.redux.org.cn/docs/introduction/ThreePrinciples.html</a></p>
+		<p><a href="https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf</a></p>
 		<br />
 		{/* <App /> */}
 		{/* <Bpp /> */}
