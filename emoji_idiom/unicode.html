@@ -36,45 +36,53 @@
 			console.log(b)
 			console.log(unescape("%u" + b))
 
-			var html = ""
-			var begin = 1000 * 9 //100
-			var otherEmoji = []
+			function innerNotInData2System() {
 
-			for(var i = begin; i < (begin + 1000); i++) {
-				otherEmoji[i] = true
-				/*let b = i.toString(16)
+				var html = ""
+				var begin = 1000 * 9 //100
+				var otherEmoji = []
 
-				if(b.length < 2) {
-					b = "000" + b.toString()
-				} else if(b.length < 3) {
-					b = "00" + b.toString()
-				} else if(b.length < 4) {
-					b = "0" + b.toString()
-				}
+				// 建一个全是 true 的数组
+				for(var i = begin; i < (begin + 1000); i++) {
+					otherEmoji[i] = true
+					/*let b = i.toString(16)
 
-				//				html += unescape("%u" + b)
-				html += "<span data=" + i + ">&#" + i + "</span>"*/
-			}
-
-			for(var i = 0; i < data2.length; i++) {
-				for(var j = 0; j < data2[i].system.length; j++) {
-					//					html += "<span data=" + data2[i].system[j] + ">&#" + data2[i].system[j] + "</span>"
-					if(otherEmoji[data2[i].system[j]]) {
-						otherEmoji[data2[i].system[j]] = false
+					if(b.length < 2) {
+						b = "000" + b.toString()
+					} else if(b.length < 3) {
+						b = "00" + b.toString()
+					} else if(b.length < 4) {
+						b = "0" + b.toString()
 					}
+
+					//				html += unescape("%u" + b)
+					html += "<span data=" + i + ">&#" + i + "</span>"*/
 				}
-				//				html += " "
+
+				// data2 中存在的, 标记为 false
+				for(var i = 0; i < data2.length; i++) {
+					for(var j = 0; j < data2[i].system.length; j++) {
+						//					html += "<span data=" + data2[i].system[j] + ">&#" + data2[i].system[j] + "</span>"
+						if(otherEmoji[data2[i].system[j]]) {
+							otherEmoji[data2[i].system[j]] = false
+						}
+					}
+					//				html += " "
+				}
+
+				// 记录 data2 中没有出现的 emoji 号码(十进制)
+				otherEmoji.map(function(item, index) {
+					if(item) {
+						html += "<span data-index=" + index + " data-x=0x" + index.toString(16) + ">&#" + index + "</span>"
+					} else {
+						console.log(index)
+					}
+				})
+
+				document.getElementById("swq").innerHTML = html
+
 			}
-
-			otherEmoji.map(function(item, index) {
-				if(item) {
-					html += "<span data-index=" + index + " data-x=0x" + index.toString(16) + ">&#" + index + "</span>"
-				} else {
-					console.log(index)
-				}
-			})
-
-			document.getElementById("swq").innerHTML = html
+			//	"\\u"+parseInt("❤".charCodeAt(0),10).toString(16)	//	"\u2764"
 
 			//			console.log("%u" + "2764")
 			//			console.log("%u2764") //%u2764
