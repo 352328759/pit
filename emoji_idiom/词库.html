@@ -7,6 +7,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 		<title>词库</title>
+		<link rel="stylesheet" href="../jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.css">
 		<style>
 			* {
 				/*-moz-user-select: none;
@@ -31,6 +32,11 @@
 			#timeLists .timeList.act {
 				outline: 1px solid #f00;
 			}
+			
+			.editWord {
+				border: #000000 1px solid;
+				padding: 10px;
+			}
 		</style>
 	</head>
 
@@ -42,6 +48,7 @@
 
 		<script type="text/x-template" id="swq-template">
 			<div>
+				<editWord @addword="addword"></editWord>
 				<div @click="checkRepeat">查重</div>
 				<table id="timeLists">
 					<tr class="timeList">
@@ -51,7 +58,7 @@
 					<tr class="timeList" v-for="(item, index) in lexiconSort">
 						<td>
 							{{lexicon.length - index}}
-							<img v-for="(_item, _index) in item.hex" :src="'messyCode/' + v_Escape(_item) + '.png'" :alt="_item.src" :title="_item.src" />
+							<img v-for="(_item, _index) in item.hex" :src="'messyCode/' + v_Escape(_item) + '.png'" :alt="_item" :title="_item" />
 						</td>
 						<td>
 							<input type="text" name="" :value="item.word" readonly="readonly" />
@@ -61,11 +68,59 @@
 				</table>
 			</div>
 		</script>
+		<script type="text/x-template" id="editWord-template">
+			<div class="editWord">
+				<el-upload action="" :file-list="fileList" :show-file-list="false" :auto-upload="false" :on-change="handleChange" multiple drag>
+					<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+				</el-upload>
+
+				<div v-for="(item, index) in fileList">
+					<img :src="item.url" :alt="item.name" :title="item.name" />
+					<div>{{item.name}}</div>
+				</div>
+
+				<input type="text" name="" :value="word" @input="word = $event.target.value" />
+
+				<div @click="addword">确定</div>
+			</div>
+		</script>
 
 		<script src="../jvw/vue/vue.2.5.16.js"></script>
+		<script src="../jvw/element-ui/element-ui@2.4.0/1element-ui.2.4.0.js"></script>
 		<script src="./js/lexicon.js"></script>
 
 		<script type="text/javascript">
+			var editWord = {
+				template: "#editWord-template",
+				props: [],
+				data: function() {
+					return {
+						fileList: [],
+						hex: ["", "", "", ""],
+						word: ""
+					}
+				},
+				computed: {},
+				components: {},
+				watch: {},
+				methods: {
+					addword: function() {
+						// 增加一个成语
+						console.log(this.word)
+						this.$emit("addword", {
+							hex: ["", "", "", ""],
+							word: this.word
+						})
+					},
+					handleChange: function(file, fileList) {
+						//						file.url
+						console.log(file, fileList)
+						this.fileList = fileList;
+					},
+				},
+				created() {},
+				mounted() {},
+			}
 			var swq = {
 				template: "#swq-template",
 				props: [],
@@ -86,9 +141,16 @@
 						}
 					}
 				},
-				components: {},
+				components: {
+					editWord,
+				},
 				watch: {},
 				methods: {
+					addword: function(item) {
+						// 增加一个成语
+						console.log(item)
+						console.log("增加一个成语")
+					},
 					v_Escape: function(_r) {
 						// 过滤图片地址特殊符号
 						return escape(_r)

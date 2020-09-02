@@ -17,6 +17,70 @@ var lexicon = [{
 	],
 	"word": ""
 }, {
+	"hex": [
+		"",
+		"",
+		"",
+		""
+	],
+	"word": ""
+}, {
+	"hex": [
+		"2%QUC6W)F0~4$@YI0D1_2UM",
+		"FR3WXQG71W_P7HSC%Q3}9TL",
+		"N~55(SH2R88N@PZ2P(XA$LS",
+		"3I7IF}4TKE@56{EYG%D63HF"
+	],
+	"word": "饮食男女"
+}, {
+	"hex": [
+		"V}JS(1~DIWZ}`{DKNN7FVCX",
+		"$8P3)ZLAZA{HX%[VDN8T%YA",
+		"T[MP6N[TJ%O]OF(YHSDNCOV",
+		"J{34WCZ65PYFJ`PC~M0BY`I"
+	],
+	"word": "掩耳盗铃"
+}, {
+	"hex": [
+		"QBHO~D%B_59OH5TDLN0$I5X",
+		"5`IG]4CLF7[EV~$04KJN2MT",
+		"1A2L{B}FUPY008~[20I014A",
+		"S~LW`Y7C8DV}Q91QC%Q`6HH"
+	],
+	"word": "喜上眉梢"
+}, {
+	"hex": [
+		"ZPH0$A6OV{2KGN1KU39@S`1",
+		"D4H6J(90(WSZZ%TRSGKHP$A",
+		"AMZ)2V[2HY5G_S[{Y}T(UJE",
+		"YY7V0_QB_T(D@[)%2[1T${6"
+	],
+	"word": "一事无成"
+}, {
+	"hex": [
+		"ZPH0$A6OV{2KGN1KU39@S`1",
+		"%Z4%@]JSA0%O[(N[}HTN7MJ",
+		"S8I1UYSA3E1_CZG9HMVW]QL",
+		"ZPH0$A6OV{2KGN1KU39@S`1"
+	],
+	"word": "一心一意"
+}, {
+	"hex": [
+		"]1$V5DDXRZ6QSQHTC5J}5`Q",
+		")_5VT22`8V5U9IQZ77(~_LP",
+		"HJ[KUDU4}DMJXB{FYL4`XJR",
+		"YY7V0_QB_T(D@[)%2[1T${6"
+	],
+	"word": "龙盘虎踞"
+}, {
+	"hex": [
+		"G7P32E%(P61T)I@1OTHJ)BX",
+		"%Z4%@]JSA0%O[(N[}HTN7MJ",
+		"P4P[MSA1(J2ZBDY29MI0(%O",
+		")ZFFI8_1[~00WG)JD[[MGUR"
+	],
+	"word": "有心无力"
+}, {
 	"hex": ["3`Z3CZ~LS7N2UJZH)25@4LK", "F68WXQMVZK6`S@[WFVJQ_KN", "%WLIU6QE1T[XIU~H%{TW%%7", "F68WXQMVZK6`S@[WFVJQ_KN"],
 	"word": "爱屋及乌"
 }, {
