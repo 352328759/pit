@@ -3,5 +3,6 @@ node_modules
 */node_modules
 *.bat
 emoji_idiom/img
+emoji_idiom/messyCode
 
 !/bat_lin/*.bat

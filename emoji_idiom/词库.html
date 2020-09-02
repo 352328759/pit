@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://www.352328759a.site/lin/l.php -->
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title>词库</title>
+		<style>
+			* {
+				/*-moz-user-select: none;
+			-ms-user-select: none;
+			-webkit-user-select: none;
+			user-select: none;*/
+			}
+			
+			#timeLists {
+				width: 100%;
+			}
+			
+			#timeLists td {
+				padding: 5px;
+				text-align: center;
+			}
+			
+			#timeLists .timeList:hover {
+				outline: 1px solid #0f0;
+			}
+			
+			#timeLists .timeList.act {
+				outline: 1px solid #f00;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="swq">
+			<swq></swq>
+		</div>
+
+		<script type="text/x-template" id="swq-template">
+			<div>
+				<div @click="checkRepeat">查重</div>
+				<table id="timeLists">
+					<tr class="timeList">
+						<th>emoji</th>
+						<th @click="isSort = !isSort">答案{{isSort ? "(排序)" : ""}}</th>
+					</tr>
+					<tr class="timeList" v-for="(item, index) in lexiconSort">
+						<td>
+							{{lexicon.length - index}}
+							<img v-for="(_item, _index) in item.hex" :src="'messyCode/' + v_Escape(_item) + '.png'" :alt="_item.src" :title="_item.src" />
+						</td>
+						<td>
+							<input type="text" name="" :value="item.word" readonly="readonly" />
+							<button class="" type="button" @click="copy($event)">复制</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</script>
+
+		<script src="../jvw/vue/vue.2.5.16.js"></script>
+		<script src="./js/lexicon.js"></script>
+
+		<script type="text/javascript">
+			var swq = {
+				template: "#swq-template",
+				props: [],
+				data() {
+					return {
+						lexicon: lexicon,
+						isSort: false,
+
+					};
+				},
+				computed: {
+					lexiconSort: function() {
+						// 排序后的数组
+						if(this.isSort) {
+							return this.sortFoWord(this.lexicon)
+						} else {
+							return this.lexicon
+						}
+					}
+				},
+				components: {},
+				watch: {},
+				methods: {
+					v_Escape: function(_r) {
+						// 过滤图片地址特殊符号
+						return escape(_r)
+					},
+					sortFoWord: function(_l) {
+						// 按 word 排序
+						let flexicon = JSON.parse(JSON.stringify(_l))
+						flexicon.sort(function(a, b) {
+							let _i = (a.word).localeCompare(b.word)
+							if(_i == 0) {
+								return(a.hex.join("")).localeCompare(b.hex.join(""))
+							} else {
+								return _i
+							}
+						})
+						// console.log(JSON.stringify(flexicon))
+						return flexicon
+					},
+					checkRepeat: function() {
+						// 查重
+						let flexicon = this.sortFoWord(this.lexicon)
+
+						for(var i = 0; i < flexicon.length - 1; i++) {
+							if(flexicon[i].word == flexicon[i + 1].word) {
+								if(
+									(flexicon[i].hex[0] == flexicon[i + 1].hex[0]) &&
+									(flexicon[i].hex[1] == flexicon[i + 1].hex[1]) &&
+									(flexicon[i].hex[2] == flexicon[i + 1].hex[2]) &&
+									(flexicon[i].hex[3] == flexicon[i + 1].hex[3])
+								) {
+									console.warn("重复项:", flexicon[i])
+								}
+							}
+						}
+						console.log("查重完毕")
+
+					},
+					copy: function($event) {
+						// 复制成语
+						let element = $event.currentTarget
+						let pre;
+
+						if(element.previousElementSibling) {
+							pre = element.previousElementSibling;
+						} else {
+							var prev = element.previousSibling; //上一个兄弟节点
+							while(prev && 1 !== prev.nodeType) { //有 并且 不是我想要的
+								prev = prev.previousSibling;
+							}
+							pre = prev;
+						}
+
+						pre.select();
+						document.execCommand("Copy");
+					},
+				},
+				created() {},
+				mounted() {},
+			};
+			var vu = new Vue({
+				el: "#swq",
+				data: {},
+				methods: {},
+				components: {
+					swq: swq,
+				},
+				watch: {},
+				computed: {},
+				created() {},
+				mounted() {},
+			})
+		</script>
+
+	</body>
+
+</html>
