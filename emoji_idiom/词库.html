@@ -33,9 +33,25 @@
 				outline: 1px solid #f00;
 			}
 			
-			.editWord {
+			.editTheWord {
 				border: #000000 1px solid;
 				padding: 10px;
+			}
+			
+			.editWord__fileList {
+				display: flex;
+			}
+			
+			.lexicon img {
+				display: inline-block;
+			}
+			
+			.lexiconSearch {
+				background: #ffffaa;
+			}
+			
+			.flip-list-move {
+				transition: transform 0.4s;
 			}
 		</style>
 	</head>
@@ -48,14 +64,18 @@
 
 		<script type="text/x-template" id="swq-template">
 			<div>
-				<editWord @addword="addword"></editWord>
-				<div @click="checkRepeat">查重</div>
+				<editTheWord @addword="addword" :editWord="editWord" :editHex="editHex" :editInd="editInd"></editTheWord>
+				<input type="text" name="" v-model="editWord" />
+				<el-button size="mini" type="primary" @click="checkRepeat">查重</el-button>
+				<el-button size="mini" type="primary" @click="checkOut">导出</el-button>
+				<el-button size="mini" type="primary" @click="upDate">更新</el-button>
+				<el-button size="mini" type="primary" @click="sortFoWord">排序</el-button>
 				<table id="timeLists">
 					<tr class="timeList">
 						<th>emoji</th>
-						<th @click="isSort = !isSort">答案{{isSort ? "(排序)" : ""}}</th>
+						<th>答案</th>
 					</tr>
-					<tr class="timeList" v-for="(item, index) in lexiconSort">
+					<tr class="timeList lexicon lexiconSearch" v-for="(item, index) in lexiconSearch">
 						<td>
 							{{lexicon.length - index}}
 							<img v-for="(_item, _index) in item.hex" :src="'messyCode/' + v_Escape(_item) + '.png'" :alt="_item" :title="_item" />
@@ -65,23 +85,42 @@
 							<button class="" type="button" @click="copy($event)">复制</button>
 						</td>
 					</tr>
+					<tr class="timeList lexicon" v-for="(item, index) in lexicon">
+						<td>
+							{{lexicon.length - index}}
+							<img v-for="(_item, _index) in item.hex" :src="'messyCode/' + v_Escape(_item) + '.png'" :alt="_item" :title="_item" />
+						</td>
+						<td>
+							<input type="text" name="" :value="item.word" readonly="readonly" />
+							<button class="" type="button" @click="copy($event)">复制</button>
+							<button class="" type="button" @click="editThis(item, index)">编辑</button>
+						</td>
+					</tr>
 				</table>
 			</div>
 		</script>
-		<script type="text/x-template" id="editWord-template">
-			<div class="editWord">
+		<script type="text/x-template" id="editTheWord-template">
+			<div class="editTheWord">
 				<el-upload action="" :file-list="fileList" :show-file-list="false" :auto-upload="false" :on-change="handleChange" multiple drag>
 					<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
 				</el-upload>
 
-				<div v-for="(item, index) in fileList">
-					<img :src="item.url" :alt="item.name" :title="item.name" />
-					<div>{{item.name}}</div>
-				</div>
+				<transition-group name="flip-list">
+					<div v-for="(item, index) in fileList" class="editWord__fileList" :key="item.uid">
+						<el-button-group>
+							<el-button type="primary" @click="moveUp(index)">上移</el-button>
+							<el-button type="primary" @click="moveDown(index)">下移</el-button>
+							<el-button type="primary" @click="addOne(index)">加一</el-button>
+							<el-button type="primary" @click="removeOne(index)">删除</el-button>
+						</el-button-group>
+						<div><img :src="item.url" :alt="item.name" :title="item.name" /></div>
+						<div>{{item.name}}</div>
+					</div>
+				</transition-group>
 
 				<input type="text" name="" :value="word" @input="word = $event.target.value" />
 
-				<div @click="addword">确定</div>
+				<el-button size="mini" type="success" @click="addword">确定</el-button>
 			</div>
 		</script>
 
@@ -90,32 +129,100 @@
 		<script src="./js/lexicon.js"></script>
 
 		<script type="text/javascript">
-			var editWord = {
-				template: "#editWord-template",
-				props: [],
+			var editTheWord = {
+				template: "#editTheWord-template",
+				props: ["editWord", "editHex", "editInd"],
 				data: function() {
 					return {
 						fileList: [],
-						hex: ["", "", "", ""],
-						word: ""
+						word: "",
 					}
 				},
 				computed: {},
 				components: {},
-				watch: {},
-				methods: {
-					addword: function() {
-						// 增加一个成语
-						console.log(this.word)
-						this.$emit("addword", {
-							hex: ["", "", "", ""],
-							word: this.word
+				watch: {
+					editWord: function(val) {
+						this.word = this.editWord
+					},
+					editInd: function(val) {
+						this.fileList = this.editHex.map(function(item, index) {
+							return {
+								name: item + '.png',
+								uid: index,
+								url: 'messyCode/' + escape(item) + '.png',
+							}
 						})
 					},
+				},
+				methods: {
+					moveUp: function(index) {
+						// 上移
+						let list = this.fileList;
+						if(index > 0) {
+							let lin = list.splice(index, 1)
+							list.splice(index - 1, 0, lin[0])
+							this.fileList = list
+						} else {
+							this.$message({
+								message: "已是首项",
+								type: "warning"
+							});
+						}
+					},
+					moveDown: function(index) {
+						// 下移
+						let list = this.fileList;
+						if(index < list.length - 1) {
+							let lin = list.splice(index, 1)
+							list.splice(index + 1, 0, lin[0])
+							this.fileList = list
+						} else {
+							this.$message({
+								message: "已是末项",
+								type: "warning"
+							});
+						}
+					},
+					addOne: function(index) {
+						// 加一
+						let list = this.fileList;
+						let lin = JSON.parse(JSON.stringify(list[index]))
+						lin.uid = new Date() * 1
+						list.splice(index, 0, lin)
+					},
+					removeOne: function(index) {
+						// 删除
+						let list = this.fileList;
+						list.splice(index, 1)
+					},
+					addword: function() {
+						// 增加一个成语
+						let hex = this.fileList.map(function(item) {
+							return item.name.split(".")[0]
+						})
+						console.log(hex)
+						if(this.word == "" || hex.length < 4) {
+							this.$message({
+								message: "数据缺失",
+								type: "warning"
+							});
+							return false;
+						} else {
+							this.$emit("addword", {
+								index: this.editInd,
+								hex: hex,
+								word: this.word
+							})
+							this.fileList = []
+							this.word = ""
+						}
+					},
 					handleChange: function(file, fileList) {
-						//						file.url
-						console.log(file, fileList)
-						this.fileList = fileList;
+						// file.url
+						// console.log(file, fileList)
+						// file.tid = "t" + fileList.length + "_" + ~~(Math.random() * 100)
+						this.fileList.push(file)
+						// this.fileList = fileList;
 					},
 				},
 				created() {},
@@ -126,39 +233,61 @@
 				props: [],
 				data() {
 					return {
-						lexicon: lexicon,
-						isSort: false,
-
+						lexicon: [],
+						//						isSort: false,
+						editWord: "",
+						editHex: [],
+						editInd: [],
 					};
 				},
 				computed: {
-					lexiconSort: function() {
-						// 排序后的数组
-						if(this.isSort) {
-							return this.sortFoWord(this.lexicon)
-						} else {
-							return this.lexicon
+					//					lexiconSort: function() {
+					//						// 排序后的数组
+					//						if(this.isSort) {
+					//							return this.sortFoWord(this.lexicon)
+					//						} else {
+					//							return this.lexicon
+					//						}
+					//					},
+					lexiconSearch: function() {
+						if(this.editWord == "") {
+							return []
 						}
-					}
+						let editWord = this.editWord.replace(/ +/g, ".*")
+						let rgExp = new RegExp(editWord)
+						return this.lexicon.filter(function(item) {
+							return !!(item.word.search(rgExp) >= 0);
+						})
+					},
 				},
 				components: {
-					editWord,
+					editTheWord,
 				},
 				watch: {},
 				methods: {
 					addword: function(item) {
 						// 增加一个成语
 						console.log(item)
-						console.log("增加一个成语")
+
+						if("index" in item) {
+							this.lexicon[item.index].word = item.word
+							this.lexicon[item.index].hex = item.hex
+						} else {
+							this.lexicon.unshift(item)
+						}
+						this.setItemLexicon()
 					},
 					v_Escape: function(_r) {
 						// 过滤图片地址特殊符号
 						return escape(_r)
 					},
+					setItemLexicon: function() {
+						sessionStorage.setItem("lexicon", JSON.stringify(this.lexicon));
+					},
 					sortFoWord: function(_l) {
 						// 按 word 排序
-						let flexicon = JSON.parse(JSON.stringify(_l))
-						flexicon.sort(function(a, b) {
+						//						let flexicon = JSON.parse(JSON.stringify(_l))
+						this.lexicon.sort(function(a, b) {
 							let _i = (a.word).localeCompare(b.word)
 							if(_i == 0) {
 								return(a.hex.join("")).localeCompare(b.hex.join(""))
@@ -166,12 +295,13 @@
 								return _i
 							}
 						})
-						// console.log(JSON.stringify(flexicon))
-						return flexicon
+						this.setItemLexicon()
+						//						return flexicon
 					},
 					checkRepeat: function() {
 						// 查重
-						let flexicon = this.sortFoWord(this.lexicon)
+						this.sortFoWord()
+						let flexicon = this.lexicon
 
 						for(var i = 0; i < flexicon.length - 1; i++) {
 							if(flexicon[i].word == flexicon[i + 1].word) {
@@ -187,6 +317,15 @@
 						}
 						console.log("查重完毕")
 
+					},
+					checkOut: function() {
+						// 导出
+						console.log(JSON.stringify(this.lexicon))
+					},
+					upDate: function() {
+						// 更新
+						sessionStorage.setItem("lexicon", JSON.stringify(lexicon));
+						this.lexicon = JSON.parse(sessionStorage.getItem("lexicon"))
 					},
 					copy: function($event) {
 						// 复制成语
@@ -206,8 +345,22 @@
 						pre.select();
 						document.execCommand("Copy");
 					},
+					editThis: function(item, index) {
+						// 编辑
+						this.editWord = item.word
+						this.editHex = item.hex
+						this.editInd = index
+					},
 				},
-				created() {},
+				created() {
+
+					if(sessionStorage.getItem("lexicon") == null) {
+						this.lexicon = lexicon
+					} else {
+						this.lexicon = JSON.parse(sessionStorage.getItem("lexicon"))
+					}
+
+				},
 				mounted() {},
 			};
 			var vu = new Vue({
