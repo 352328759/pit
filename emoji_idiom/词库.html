@@ -132,6 +132,14 @@
 			var editTheWord = {
 				template: "#editTheWord-template",
 				props: ["editWord", "editHex", "editInd"],
+				props: {
+					editWord: String,
+					editHex: Array,
+					editInd: {
+						type: Number,
+						default: null
+					},
+				},
 				data: function() {
 					return {
 						fileList: [],
@@ -237,7 +245,7 @@
 						//						isSort: false,
 						editWord: "",
 						editHex: [],
-						editInd: [],
+						editInd: null,
 					};
 				},
 				computed: {
@@ -269,7 +277,7 @@
 						// 增加一个成语
 						console.log(item)
 
-						if("index" in item) {
+						if(item.index != null) {
 							this.lexicon[item.index].word = item.word
 							this.lexicon[item.index].hex = item.hex
 						} else {

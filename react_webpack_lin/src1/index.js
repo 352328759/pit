@@ -18,11 +18,25 @@ moment.locale("zh-cn");
 
 
 
+//redux
+
+
 function reducer(state = 0, action) {
 	switch (action.type) {
 		case 'INCREMENT':
 			return state + 1;
 		case 'DECREMENT':
+			return state - 1;
+		default:
+			return state;
+	}
+}
+function reducer2(state = 0, action) {
+	switch (action.type) {
+		case 'case2_1':
+			console.log(action.index)
+			return state + 1;
+		case 'case2_2':
 			return state - 1;
 		default:
 			return state;
@@ -73,15 +87,22 @@ function todos(state = [], action) {
 	}
 }
 
-// let reducer2 = combineReducers({ visibilityFilter, todos })
-let reducer2 = combineReducers({ visibilityFilter })
-// let store2 = createStore(reducer2)
+let reducers = combineReducers({ reducer2, reducer, visibilityFilter, todos })
+let store2 = createStore(reducers)
 
+console.log(store2.getState())
+store2.dispatch({
+	type: 'case2_1',
+	index: 1
+})
+console.log(store2.getState())
 
-console.log("%s", reducer)
-console.log("%s", reducer2)
+// console.log("%s", reducer)
+// console.log("%s", reducers)
 // console.log(reducer)
-// console.log(reducer2)
+// console.log(reducers)
+
+//redux end
 
 
 const App = () => {
@@ -179,8 +200,10 @@ const Dpp = () => {
 render((
 	<>
 		<p><a target="_blank" href="https://ant.design/components/breadcrumb-cn/">https://ant.design/components/breadcrumb-cn/</a></p>
-		<p><a target="_blank" href="https://www.redux.org.cn/docs/introduction/ThreePrinciples.html">https://www.redux.org.cn/docs/introduction/ThreePrinciples.html</a></p>
+		<p><a target="_blank" href="https://www.redux.org.cn/docs/introduction/Examples.html">https://www.redux.org.cn/docs/introduction/Examples.html</a></p>
 		<p><a target="_blank" href="https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf</a></p>
+		<p><a target="_blank" href="https://naotu.baidu.com/file/ebb15bfab65c13e694195623af62899b">百度</a></p>
+		<p><a target="_blank" href="https://www.processon.com/diagraming/5c8a240ee4b02ce2e88e8466">processon</a></p>
 		<br />
 		{/* <App /> */}
 		{/* <Bpp /> */}
