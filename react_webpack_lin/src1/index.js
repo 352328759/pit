@@ -2,7 +2,7 @@ import React, {
 	useState
 } from "react";
 import { render } from "react-dom";
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
 import { combineReducers, createStore } from "redux";
 import { HashRouter } from "react-router-dom";
 import { Affix, Button } from "antd";
@@ -88,14 +88,14 @@ function todos(state = [], action) {
 }
 
 let reducers = combineReducers({ reducer2, reducer, visibilityFilter, todos })
-let store2 = createStore(reducers)
+let store = createStore(reducers)
 
-console.log(store2.getState())
-store2.dispatch({
-	type: 'case2_1',
-	index: 1
-})
-console.log(store2.getState())
+// console.log(store.getState())
+// store.dispatch({
+// 	type: 'case2_1',
+// 	index: 1
+// })
+// console.log(store.getState())
 
 // console.log("%s", reducer)
 // console.log("%s", reducers)
@@ -165,20 +165,67 @@ class Cpp extends React.Component {
 }
 
 const Dpp = () => {
-	const [refName, setRefName] = useState(null);
-	const [swq, setSwq] = useState("swq");
-	const click1 = str => {
-		console.log(refName)
-	}
 	return (
-		<>
-			<div ref={setRefName}>
-				目标节点
-			</div>
-			<div onClick={click1}>click1</div>
-		</>
-	);
+		<div>
+			<Epp filter={"SHOW_ALL1"}>
+				All
+			</Epp>
+		</div>
+	)
 };
+
+const mapStateToProps = (state, ownProps) => {
+	console.log(ownProps.filter)
+	console.log(state.visibilityFilter)
+	return {
+		active: ownProps.filter === state.visibilityFilter
+	}
+}
+
+const setVisibilityFilter = filter => ({
+	type: 'SET_VISIBILITY_FILTER',
+	filter
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+	onClick: () => {
+		console.log(ownProps.filter)
+		return dispatch(setVisibilityFilter(ownProps.filter))
+	}
+})
+
+const Link = ({ active, children, onClick }) => (
+	<button
+		onClick={onClick}
+		disabled={active}
+		style={{
+			marginLeft: '4px',
+		}}
+	>
+		{children}
+	</button>
+)
+
+const Epp = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Link)
+
+// const Dpp = () => {
+// 	const [refName, setRefName] = useState(null);
+// 	const [swq, setSwq] = useState("swq");
+// 	const click1 = str => {
+// 		console.log(refName)
+// 	}
+// 	return (
+// 		<>
+// 			<div ref={setRefName}>
+// 				目标节点
+// 			</div>
+// 			<div onClick={click1}>click1</div>
+// 		</>
+// 	);
+// };
 
 /* class Dpp extends React.Component {
 	constructor(props) {
@@ -198,7 +245,7 @@ const Dpp = () => {
 } */
 
 render((
-	<>
+	<Provider store={store}>
 		<p><a target="_blank" href="https://ant.design/components/breadcrumb-cn/">https://ant.design/components/breadcrumb-cn/</a></p>
 		<p><a target="_blank" href="https://www.redux.org.cn/docs/introduction/Examples.html">https://www.redux.org.cn/docs/introduction/Examples.html</a></p>
 		<p><a target="_blank" href="https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf</a></p>
@@ -209,6 +256,6 @@ render((
 		{/* <Bpp /> */}
 		{/* <Cpp /> */}
 		<Dpp />
-	</>),
+	</Provider>),
 	document.getElementById("react-container")
 );
