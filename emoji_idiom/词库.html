@@ -153,18 +153,26 @@
 						let editWord = this.editWord.replace(/ +/g, ".*")
 						let rgExp = new RegExp(editWord)
 						return this.lexicon.filter(function(item) {
+							let _boolean = true
 							if(_this.editHex.length > 0) {
 								for(let i = 0; i < _this.editHex.length; i++) {
 									if(item.hex[i] == _this.editHex[i].name.split(".")[0]) {} else {
-										return false;
+										_boolean = false;
+										break;
 									}
 								}
-								return true;
+								// return true;
 							}
 
-							if(_this.editWord !== "" && !!(item.word.search(rgExp) >= 0)) {
-								return true;
+							if(_this.editWord !== "") {
+								if(!!(item.word.search(rgExp) >= 0)) {
+									// return true;
+								} else {
+									_boolean = false;
+								}
 							}
+
+							return _boolean
 						})
 
 						// this.fileList
