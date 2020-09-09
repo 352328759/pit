@@ -64,14 +64,13 @@
 
 		<script type="text/x-template" id="swq-template">
 			<div>
-				<editTheWord @addword="addword" :editWord="editWord" :editHex="editHex" :editInd="editInd"></editTheWord>
 
 				<el-upload action="" :file-list="fileList" :show-file-list="false" :auto-upload="false" :on-change="handleChange" multiple drag>
 					<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
 				</el-upload>
 
 				<transition-group name="flip-list">
-					<div v-for="(item, index) in fileList" class="editWord__fileList" :key="item.uid">
+					<div v-for="(item, index) in editHex" class="editWord__fileList" :key="item.uid">
 						<el-button-group>
 							<el-button type="primary" @click="moveUp(index)">上移</el-button>
 							<el-button type="primary" @click="moveDown(index)">下移</el-button>
@@ -84,6 +83,16 @@
 				</transition-group>
 
 				<input type="text" name="" v-model="editWord" />
+
+				<template v-if="editInd">
+					<el-button size="mini" type="danger" @click="delWord">删除</el-button>
+					<el-button size="mini" type="success" @click="addWord">修改</el-button>
+					<el-button size="mini" @click="cancelEdit">取消</el-button>
+				</template>
+				<el-button size="mini" type="success" @click="addWord" v-else="">添加</el-button>
+
+				<br />
+
 				<el-button size="mini" type="primary" @click="checkRepeat">查重</el-button>
 				<el-button size="mini" type="primary" @click="checkOut">导出</el-button>
 				<el-button size="mini" type="primary" @click="upDate">更新</el-button>
@@ -117,176 +126,36 @@
 				</table>
 			</div>
 		</script>
-		<script type="text/x-template" id="editTheWord-template">
-			<div class="editTheWord">
-				<el-upload action="" :file-list="fileList" :show-file-list="false" :auto-upload="false" :on-change="handleChange" multiple drag>
-					<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-				</el-upload>
-
-				<transition-group name="flip-list">
-					<div v-for="(item, index) in fileList" class="editWord__fileList" :key="item.uid">
-						<el-button-group>
-							<el-button type="primary" @click="moveUp(index)">上移</el-button>
-							<el-button type="primary" @click="moveDown(index)">下移</el-button>
-							<el-button type="primary" @click="addOne(index)">加一</el-button>
-							<el-button type="primary" @click="removeOne(index)">删除</el-button>
-						</el-button-group>
-						<div><img :src="item.url" :alt="item.name" :title="item.name" /></div>
-						<div>{{item.name}}</div>
-					</div>
-				</transition-group>
-
-				<input type="text" name="" :value="word" @input="word = $event.target.value" />
-
-				<el-button size="mini" type="success" @click="addword">确定</el-button>
-			</div>
-		</script>
 
 		<script src="../jvw/vue/vue.2.5.16.js"></script>
 		<script src="../jvw/element-ui/element-ui@2.4.0/1element-ui.2.4.0.js"></script>
 		<script src="./js/lexicon.js"></script>
 
 		<script type="text/javascript">
-			var editTheWord = {
-				template: "#editTheWord-template",
-				//				props: ["editWord", "editHex", "editInd"],
-				props: {
-					editWord: String,
-					editHex: Array,
-					editInd: {
-						type: Number,
-						default: null
-					},
-				},
-				data: function() {
-					return {
-						fileList: [],
-						word: "",
-					}
-				},
-				computed: {},
-				components: {},
-				watch: {
-					editWord: function(val) {
-						this.word = this.editWord
-					},
-					editInd: function(val) {
-						this.fileList = this.editHex.map(function(item, index) {
-							return {
-								name: item + '.png',
-								uid: index,
-								url: 'messyCode/' + escape(item) + '.png',
-							}
-						})
-					},
-				},
-				methods: {
-					moveUp: function(index) {
-						// 上移
-						let list = this.fileList;
-						if(index > 0) {
-							let lin = list.splice(index, 1)
-							list.splice(index - 1, 0, lin[0])
-							this.fileList = list
-						} else {
-							this.$message({
-								message: "已是首项",
-								type: "warning"
-							});
-						}
-					},
-					moveDown: function(index) {
-						// 下移
-						let list = this.fileList;
-						if(index < list.length - 1) {
-							let lin = list.splice(index, 1)
-							list.splice(index + 1, 0, lin[0])
-							this.fileList = list
-						} else {
-							this.$message({
-								message: "已是末项",
-								type: "warning"
-							});
-						}
-					},
-					addOne: function(index) {
-						// 加一
-						let list = this.fileList;
-						let lin = JSON.parse(JSON.stringify(list[index]))
-						lin.uid = new Date() * 1
-						list.splice(index, 0, lin)
-					},
-					removeOne: function(index) {
-						// 删除
-						let list = this.fileList;
-						list.splice(index, 1)
-					},
-					addword: function() {
-						// 增加一个成语
-						let hex = this.fileList.map(function(item) {
-							return item.name.split(".")[0]
-						})
-						console.log(hex)
-						if(this.word == "" || hex.length < 4) {
-							this.$message({
-								message: "数据缺失",
-								type: "warning"
-							});
-							return false;
-						} else {
-							this.$emit("addword", {
-								index: this.editInd,
-								hex: hex,
-								word: this.word
-							})
-							this.fileList = []
-							this.word = ""
-						}
-					},
-					handleChange: function(file, fileList) {
-						// file.url
-						// console.log(file, fileList)
-						// file.tid = "t" + fileList.length + "_" + ~~(Math.random() * 100)
-						this.fileList.push(file)
-						// this.fileList = fileList;
-					},
-				},
-				created() {},
-				mounted() {},
-			}
 			var swq = {
 				template: "#swq-template",
 				props: [],
 				data() {
 					return {
 						lexicon: [],
-						fileList: [],
-						//						isSort: false,
+						fileList: [],// 上传文件列表, 不可操作
 						editWord: "",
-						editHex: [],
+						editHex: [],// 数据源同 fileList, 用于编辑图片信息
 						editInd: null,
 					};
 				},
 				computed: {
-					//					lexiconSort: function() {
-					//						// 排序后的数组
-					//						if(this.isSort) {
-					//							return this.sortFoWord(this.lexicon)
-					//						} else {
-					//							return this.lexicon
-					//						}
-					//					},
 					lexiconSearch: function() {
-						if(this.editWord == "" && this.fileList.length == 0) {
+						if(this.editWord == "" && this.editHex.length == 0) {
 							return []
 						}
 						let _this = this
 						let editWord = this.editWord.replace(/ +/g, ".*")
 						let rgExp = new RegExp(editWord)
 						return this.lexicon.filter(function(item) {
-							if(_this.fileList.length > 0) {
-								for(let i = 0; i < _this.fileList.length; i++) {
-									if(item.hex[i] == _this.fileList[i].name.split(".")[0]) {} else {
+							if(_this.editHex.length > 0) {
+								for(let i = 0; i < _this.editHex.length; i++) {
+									if(item.hex[i] == _this.editHex[i].name.split(".")[0]) {} else {
 										return false;
 									}
 								}
@@ -298,21 +167,21 @@
 							}
 						})
 
-						//						this.fileList
+						// this.fileList
 					},
 				},
 				components: {
-					editTheWord,
+					// editTheWord,
 				},
 				watch: {},
 				methods: {
 					moveUp: function(index) {
 						// 上移
-						let list = this.fileList;
+						let list = this.editHex;
 						if(index > 0) {
 							let lin = list.splice(index, 1)
 							list.splice(index - 1, 0, lin[0])
-							this.fileList = list
+							this.editHex = list
 						} else {
 							this.$message({
 								message: "已是首项",
@@ -322,11 +191,11 @@
 					},
 					moveDown: function(index) {
 						// 下移
-						let list = this.fileList;
+						let list = this.editHex;
 						if(index < list.length - 1) {
 							let lin = list.splice(index, 1)
 							list.splice(index + 1, 0, lin[0])
-							this.fileList = list
+							this.editHex = list
 						} else {
 							this.$message({
 								message: "已是末项",
@@ -336,14 +205,14 @@
 					},
 					addOne: function(index) {
 						// 加一
-						let list = this.fileList;
+						let list = this.editHex;
 						let lin = JSON.parse(JSON.stringify(list[index]))
 						lin.uid = new Date() * 1
 						list.splice(index, 0, lin)
 					},
 					removeOne: function(index) {
 						// 删除
-						let list = this.fileList;
+						let list = this.editHex;
 						list.splice(index, 1)
 					},
 					handleChange: function(file, fileList) {
@@ -351,22 +220,50 @@
 						// console.log(file, fileList)
 						// file.tid = "t" + fileList.length + "_" + ~~(Math.random() * 100)
 						this.fileList.push(file)
+						this.editHex.push(file)
 						// this.fileList = fileList;
 					},
-					addword: function(item) {
+					addWord: function() {
 						// 增加一个成语
-						console.log(item)
-
-						if(item.index != null) {
-							this.lexicon[item.index].word = item.word
-							this.lexicon[item.index].hex = item.hex
+						let _this = this
+						let hex = this.editHex.map(function(item) {
+							return item.name.split(".")[0]
+						})
+						console.log(hex)
+						if(this.editWord == "" || hex.length < 4) {
+							this.$message({
+								message: "数据缺失",
+								type: "warning"
+							});
+							return false;
 						} else {
-							this.lexicon.unshift({
-								word: item.word,
-								hex: item.hex
-							})
+							if(_this.editInd == null) {
+								this.lexicon.unshift({
+									word: _this.editWord,
+									hex: hex
+								})
+							} else {
+								this.lexicon[_this.editInd].word = _this.editWord
+								this.lexicon[_this.editInd].hex = hex
+							}
+
+							this.cancelEdit()
+							this.setItemLexicon()
 						}
+
+					},
+					delWord: function() {
+						// 删除成语
+						this.lexicon.splice(this.editInd, 1)
+
+						this.cancelEdit()
 						this.setItemLexicon()
+					},
+					cancelEdit: function() {
+						// 取消编辑
+						this.editWord = ""
+						this.editHex = []
+						this.editInd = null
 					},
 					v_Escape: function(_r) {
 						// 过滤图片地址特殊符号
@@ -377,7 +274,7 @@
 					},
 					sortFoWord: function(_l) {
 						// 按 word 排序
-						//						let flexicon = JSON.parse(JSON.stringify(_l))
+						// let flexicon = JSON.parse(JSON.stringify(_l))
 						this.lexicon.sort(function(a, b) {
 							let _i = (a.word).localeCompare(b.word)
 							if(_i == 0) {
@@ -387,7 +284,7 @@
 							}
 						})
 						this.setItemLexicon()
-						//						return flexicon
+						// return flexicon
 					},
 					checkRepeat: function() {
 						// 查重
@@ -438,9 +335,18 @@
 					},
 					editThis: function(item, index) {
 						// 编辑
+						let _this = this
 						this.editWord = item.word
-						this.editHex = item.hex
+						// this.editHex = item.hex
 						this.editInd = index
+
+						this.editHex = item.hex.map(function(_item, _index) {
+							return {
+								name: _item + '.png',
+								uid: _index,
+								url: 'messyCode/' + _this.v_Escape(_item) + '.png',
+							}
+						})
 					},
 				},
 				created() {
