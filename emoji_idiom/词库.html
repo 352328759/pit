@@ -131,7 +131,7 @@
 		<script type="text/javascript">
 			var editTheWord = {
 				template: "#editTheWord-template",
-				props: ["editWord", "editHex", "editInd"],
+				//				props: ["editWord", "editHex", "editInd"],
 				props: {
 					editWord: String,
 					editHex: Array,
@@ -281,7 +281,10 @@
 							this.lexicon[item.index].word = item.word
 							this.lexicon[item.index].hex = item.hex
 						} else {
-							this.lexicon.unshift(item)
+							this.lexicon.unshift({
+								word: item.word,
+								hex: item.hex
+							})
 						}
 						this.setItemLexicon()
 					},
