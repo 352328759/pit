@@ -65,6 +65,24 @@
 		<script type="text/x-template" id="swq-template">
 			<div>
 				<editTheWord @addword="addword" :editWord="editWord" :editHex="editHex" :editInd="editInd"></editTheWord>
+
+				<el-upload action="" :file-list="fileList" :show-file-list="false" :auto-upload="false" :on-change="handleChange" multiple drag>
+					<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+				</el-upload>
+
+				<transition-group name="flip-list">
+					<div v-for="(item, index) in fileList" class="editWord__fileList" :key="item.uid">
+						<el-button-group>
+							<el-button type="primary" @click="moveUp(index)">上移</el-button>
+							<el-button type="primary" @click="moveDown(index)">下移</el-button>
+							<el-button type="primary" @click="addOne(index)">加一</el-button>
+							<el-button type="primary" @click="removeOne(index)">删除</el-button>
+						</el-button-group>
+						<div><img :src="item.url" :alt="item.name" :title="item.name" /></div>
+						<div>{{item.name}}</div>
+					</div>
+				</transition-group>
+
 				<input type="text" name="" v-model="editWord" />
 				<el-button size="mini" type="primary" @click="checkRepeat">查重</el-button>
 				<el-button size="mini" type="primary" @click="checkOut">导出</el-button>
@@ -242,6 +260,7 @@
 				data() {
 					return {
 						lexicon: [],
+						fileList: [],
 						//						isSort: false,
 						editWord: "",
 						editHex: [],
@@ -258,14 +277,28 @@
 					//						}
 					//					},
 					lexiconSearch: function() {
-						if(this.editWord == "") {
+						if(this.editWord == "" && this.fileList.length == 0) {
 							return []
 						}
+						let _this = this
 						let editWord = this.editWord.replace(/ +/g, ".*")
 						let rgExp = new RegExp(editWord)
 						return this.lexicon.filter(function(item) {
-							return !!(item.word.search(rgExp) >= 0);
+							if(_this.fileList.length > 0) {
+								for(let i = 0; i < _this.fileList.length; i++) {
+									if(item.hex[i] == _this.fileList[i].name.split(".")[0]) {} else {
+										return false;
+									}
+								}
+								return true;
+							}
+
+							if(_this.editWord !== "" && !!(item.word.search(rgExp) >= 0)) {
+								return true;
+							}
 						})
+
+						//						this.fileList
 					},
 				},
 				components: {
@@ -273,6 +306,53 @@
 				},
 				watch: {},
 				methods: {
+					moveUp: function(index) {
+						// 上移
+						let list = this.fileList;
+						if(index > 0) {
+							let lin = list.splice(index, 1)
+							list.splice(index - 1, 0, lin[0])
+							this.fileList = list
+						} else {
+							this.$message({
+								message: "已是首项",
+								type: "warning"
+							});
+						}
+					},
+					moveDown: function(index) {
+						// 下移
+						let list = this.fileList;
+						if(index < list.length - 1) {
+							let lin = list.splice(index, 1)
+							list.splice(index + 1, 0, lin[0])
+							this.fileList = list
+						} else {
+							this.$message({
+								message: "已是末项",
+								type: "warning"
+							});
+						}
+					},
+					addOne: function(index) {
+						// 加一
+						let list = this.fileList;
+						let lin = JSON.parse(JSON.stringify(list[index]))
+						lin.uid = new Date() * 1
+						list.splice(index, 0, lin)
+					},
+					removeOne: function(index) {
+						// 删除
+						let list = this.fileList;
+						list.splice(index, 1)
+					},
+					handleChange: function(file, fileList) {
+						// file.url
+						// console.log(file, fileList)
+						// file.tid = "t" + fileList.length + "_" + ~~(Math.random() * 100)
+						this.fileList.push(file)
+						// this.fileList = fileList;
+					},
 					addword: function(item) {
 						// 增加一个成语
 						console.log(item)
