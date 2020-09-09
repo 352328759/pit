@@ -97,6 +97,9 @@ var lexicon = [{
 	"word": "愁眉苦脸",
 	"hex": ["O6ZF%W9MGN78_8{8_P9UBQ5", "1A2L{B}FUPY008~[20I014A", "__)KY`R7~N~6GK3D3`H7ZQJ", "BI]EBT7[F%0T%T$A3LZZWC3"]
 }, {
+	"word": "传道受业",
+	"hex": ["}@ZY1OKC7}]4JSXYI$6LYKR", "{9@JZA0[J7DBC452ZG~92AM", "WEHWKB]G582CZXBLTP}L3]1", "(FNXNDEG{NP}{J`D$VJ7ZZ4"]
+}, {
 	"word": "唇齿相依",
 	"hex": ["LLYXF9H612_TOKXXX}$`K@8", "}QQNUFQFC_}Q5M9)SBYO39H", ")87BIFAMB2[SCJDT6Q1478L", "ZPH0$A6OV{2KGN1KU39@S`1"]
 }, {
@@ -171,6 +174,9 @@ var lexicon = [{
 }, {
 	"word": "过眼云烟",
 	"hex": ["N9ZX}8Q9}7{@2)FSK`4)YD6", "H@ZU({0Q5VV](7D%KQ%(9}Q", "[LVE`85IMDE4JWP1U4@LY77", "ALJ4@UAID6IC4VGE4B4)IHK"]
+}, {
+	"word": "汗如雨下",
+	"hex": ["WK{C~[E(`I%TY@ILZKWW_TD", "8FR6P@U)7JSO}53C4VF~6XD", "8X{2XF@`KSE_`P2XB@ZADUY", "4W}[)MLG0FZP)}PCEI@1LK7"]
 }, {
 	"word": "红男绿女",
 	"hex": ["%Z4%@]JSA0%O[(N[}HTN7MJ", "9`2MO}ITWT5X2ZIKD3V(6GX", "TZT[YE~(`_8]DR24()2DPK4", "Y$LZ%FBUMI8%%{NQ`[WW1(G"]
@@ -373,6 +379,9 @@ var lexicon = [{
 	"word": "难以置信",
 	"hex": ["K5QCTA@FP[22%0ZZZ[{`~`O", "]IHIRB3O8_TXW)R_VQA04ME", "DI@YVYF9P`FG@Y[IHW4IKUI", "(L2IJHCN5I9(U`GSWKILR7W"]
 }, {
+	"word": "鸟语花香",
+	"hex": ["_WK@R[~_{97BBZW725)}0MB", "8X{2XF@`KSE_`P2XB@ZADUY", "FZK9(CP}P_K5@GCZ${{PW]B", "~GVC1(2_HZE@IEZYWL[}P0Q"]
+}, {
 	"word": "牛鬼蛇神",
 	"hex": ["SR68QL(U%TT_%VM[@)@~Q)I", "H`)[_ZAMAN0}0~AL[3$_LUJ", "~BC@S4$74D~{RV$3M5W~6(F", "%U~)P7%{DX]22C379~6)YQM"]
 }, {
@@ -429,6 +438,9 @@ var lexicon = [{
 }, {
 	"word": "人才济济",
 	"hex": ["Y$LZ%FBUMI8%%{NQ`[WW1(G", "5R5CSIFU0`)D~W@%_K4J76A", "%WLIU6QE1T[XIU~H%{TW%%7", "%WLIU6QE1T[XIU~H%{TW%%7"]
+}, {
+	"word": "人财两空",
+	"hex": ["BI]EBT7[F%0T%T$A3LZZWC3", "5R5CSIFU0`)D~W@%_K4J76A", "[OC)VVH6G[RVDWKN~@94[U4", "%PE{B8W}_YEGXHC_D_IK~(G"]
 }, {
 	"word": "人面兽心",
 	"hex": ["K5QCTA@FP[22%0ZZZ[{`~`O", "FR3WXQG71W_P7HSC%Q3}9TL", "A](3){YOPFTY@MF(7W6D394", "%Z4%@]JSA0%O[(N[}HTN7MJ"]
@@ -565,6 +577,9 @@ var lexicon = [{
 	"word": "望眼欲穿",
 	"hex": ["FL2S@0NM0N5CCF2S{HS(%T3", "H@ZU({0Q5VV](7D%KQ%(9}Q", "LTS`JKM)JC]GUEQ]PLFR9@8", "{ZG@H(GBBX8RZ48E()LMNAO"]
 }, {
+	"word": "危机四伏",
+	"hex": ["}G][OE]`UZNQ)7$[8Z6R_NL", "{_[QO$DW7DB_0YBWCYOYU_9", "C}}[~6B3~6[2O[(Y0$ALOPW", "_RTFARG(NUO_IULGEQZAU3C"]
+}, {
 	"word": "威风八面",
 	"hex": ["C48I@FQ(WKB[{)2@2U~`_{0", "2X5_U{YMX}]NGLP{8O5@B3F", "YH1KC7R`~78G}Y_49@4S3~9", "PT@NJ)3`Y@KOF64N0CORX}O"]
 }, {
@@ -588,6 +603,9 @@ var lexicon = [{
 }, {
 	"word": "五零四散",
 	"hex": ["[WLXVKQ2]XJ~JLCPV]Q))1R", "D}4]NX9L0UA91EMD$B{4KZO", "C}}[~6B3~6[2O[(Y0$ALOPW", "8X{2XF@`KSE_`P2XB@ZADUY"]
+}, {
+	"word": "五男二女",
+	"hex": ["[WLXVKQ2]XJ~JLCPV]Q))1R", "K5QCTA@FP[22%0ZZZ[{`~`O", "[OC)VVH6G[RVDWKN~@94[U4", "Y$LZ%FBUMI8%%{NQ`[WW1(G"]
 }, {
 	"word": "喜怒哀乐",
 	"hex": ["L)5W37U)B)%A3035JC{A_PT", "SS}BT@DYS1O}PTL_I~$~6L0", "X@DSHL)}4B_JVSR3I3FTNE0", "QBHO~D%B_59OH5TDLN0$I5X"]
@@ -630,6 +648,9 @@ var lexicon = [{
 }, {
 	"word": "星前月下",
 	"hex": ["T_ZKW6KJ_X{%[%P_AY$`(]X", "5R5CSIFU0`)D~W@%_K4J76A", "2}JB2}6{KGC{CX9)~WQ{%Z7", "4W}[)MLG0FZP)}PCEI@1LK7"]
+}, {
+	"word": "惺惺相惜",
+	"hex": ["T0W1F%X~NBVCQ$RG52L0EE6", "T0W1F%X~NBVCQ$RG52L0EE6", ")87BIFAMB2[SCJDT6Q1478L", "WS(EVLZ(ZL0LM[%FXEKY64P"]
 }, {
 	"word": "行尸走肉",
 	"hex": ["N~55(SH2R88N@PZ2P(XA$LS", "~2TW7Q@6@M7CNA7JLN`LMTF", ")PZ`J]2JBM~S@(EQ}O$}MM6", "`TI~~LS{(7UGEDPA$F5$1F4"]
@@ -703,6 +724,9 @@ var lexicon = [{
 	"word": "一事无成",
 	"hex": ["ZPH0$A6OV{2KGN1KU39@S`1", "D4H6J(90(WSZZ%TRSGKHP$A", "AMZ)2V[2HY5G_S[{Y}T(UJE", "YY7V0_QB_T(D@[)%2[1T${6"]
 }, {
+	"word": "一无所有",
+	"hex": ["UJY0X2Q52PI[2ACUWRW%$(R", "[WLXVKQ2]XJ~JLCPV]Q))1R", "TS}WEZ23S7YS~R`~ENJZQ37", "Y0%$7`7{K)LX}5C3R1Q65I8"]
+}, {
 	"word": "一心一意",
 	"hex": ["ZPH0$A6OV{2KGN1KU39@S`1", "%Z4%@]JSA0%O[(N[}HTN7MJ", "S8I1UYSA3E1_CZG9HMVW]QL", "ZPH0$A6OV{2KGN1KU39@S`1"]
 }, {
@@ -715,6 +739,12 @@ var lexicon = [{
 	"word": "衣食父母",
 	"hex": ["W{{EP)36E7LF_%G(M6AP_ZV", "W``GSE)8(Z75KX3%~0IR@IP", "]OPQAGC__XOKN7OR9Y_AS7W", "(]II5ZE)9K8UV0P2}17Y7{5"]
 }, {
+	"word": "依山傍水",
+	"hex": ["]IHIRB3O8_TXW)R_VQA04ME", "]OVVCH2HZO]H3)@)~{WL[NS", "7[R844}%0OFGK]5`{V[WK)N", "6WN]0%L%U{896C0I%H)$@QM"]
+}, {
+	"word": "依依不舍",
+	"hex": ["]IHIRB3O8_TXW)R_VQA04ME", "]IHIRB3O8_TXW)R_VQA04ME", "P4P[MSA1(J2ZBDY29MI0(%O", "_IO_RS]{~(%04NF]CUA5MU0"]
+}, {
 	"word": "以德报怨",
 	"hex": ["]IHIRB3O8_TXW)R_VQA04ME", "S1)M$FXSIM3K2ROB3LKY$$1", "6)ZIJ%_BVVE{0BO}V4020RM", "KGM`}K($2K1DIXW}A$J`YL6"]
 }, {
@@ -723,6 +753,9 @@ var lexicon = [{
 }, {
 	"word": "以观后效",
 	"hex": ["]IHIRB3O8_TXW)R_VQA04ME", "H@ZU({0Q5VV](7D%KQ%(9}Q", "H{DVOHBB@H_Y@%_~6SY@BLH", "QBHO~D%B_59OH5TDLN0$I5X"]
+}, {
+	"word": "以牙还牙",
+	"hex": ["]IHIRB3O8_TXW)R_VQA04ME", "LLYXF9H612_TOKXXX}$`K@8", "%PE{B8W}_YEGXHC_D_IK~(G", "LLYXF9H612_TOKXXX}$`K@8"]
 }, {
 	"word": "倚马可待",
 	"hex": ["UJY0X2Q52PI[2ACUWRW%$(R", "I8F[Y~8KB%J668[5JV6[)GI", "JS{H3PKBG[6_NFME4%FUH29", "6)ZIJ%_BVVE{0BO}V4020RM"]
@@ -738,6 +771,9 @@ var lexicon = [{
 }, {
 	"word": "鱼目混珠",
 	"hex": ["N[O{`WN5GLP4XJFBGQ@EVCV", "]$YF3_PJ~CE($48R0B3]B`4", "WA~65N(6K9F7UL$BL{91})4", "1$`748[M30P)YBX21P6L~3E"]
+}, {
+	"word": "语重心长",
+	"hex": ["8X{2XF@`KSE_`P2XB@ZADUY", "@XY]@EKJCOGR0}JAG2CD50J", "%Z4%@]JSA0%O[(N[}HTN7MJ", "[EX)AYH%VKFZVRVBG1{_A}1"]
 }, {
 	"word": "原原本本",
 	"hex": ["KGM`}K($2K1DIXW}A$J`YL6", "KGM`}K($2K1DIXW}A$J`YL6", "67OG8)Z0%_W09_X{D(9S%HU", "67OG8)Z0%_W09_X{D(9S%HU"]
