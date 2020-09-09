@@ -84,12 +84,12 @@
 
 				<input type="text" name="" v-model="editWord" />
 
-				<template v-if="editInd">
+				<el-button size="mini" type="success" @click="addWord" v-if="editInd == null">添加</el-button>
+				<template v-else="">
 					<el-button size="mini" type="danger" @click="delWord">删除</el-button>
 					<el-button size="mini" type="success" @click="addWord">修改</el-button>
 					<el-button size="mini" @click="cancelEdit">取消</el-button>
 				</template>
-				<el-button size="mini" type="success" @click="addWord" v-else="">添加</el-button>
 
 				<br />
 
@@ -138,9 +138,9 @@
 				data() {
 					return {
 						lexicon: [],
-						fileList: [],// 上传文件列表, 不可操作
+						fileList: [], // 上传文件列表, 不可操作
 						editWord: "",
-						editHex: [],// 数据源同 fileList, 用于编辑图片信息
+						editHex: [], // 数据源同 fileList, 用于编辑图片信息
 						editInd: null,
 					};
 				},
