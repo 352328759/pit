@@ -84,7 +84,10 @@
 
 				<input type="text" name="" v-model="editWord" />
 
-				<el-button size="mini" type="success" @click="addWord" v-if="editInd == null">添加</el-button>
+				<template v-if="editInd == null">
+					<el-button size="mini" type="success" @click="addWord">添加</el-button>
+					<el-button size="mini" type="danger" @click="clearAll">清空</el-button>
+				</template>
 				<template v-else="">
 					<el-button size="mini" type="danger" @click="delWord">删除</el-button>
 					<el-button size="mini" type="success" @click="addWord">修改</el-button>
@@ -259,6 +262,9 @@
 							this.setItemLexicon()
 						}
 
+					},
+					clearAll: function() {
+						this.cancelEdit()
 					},
 					delWord: function() {
 						// 删除成语
