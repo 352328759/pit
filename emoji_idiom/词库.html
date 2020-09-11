@@ -107,12 +107,12 @@
 					</tr>
 					<tr class="timeList lexicon lexiconSearch" v-for="(item, index) in lexiconSearch">
 						<td>
-							{{lexicon.length - index}}
+							{{index}}
 							<img v-for="(_item, _index) in item.hex" :src="'messyCode/' + v_Escape(_item) + '.png'" :alt="_item" :title="_item" />
 						</td>
 						<td>
 							<input type="text" name="" :value="item.word" readonly="readonly" />
-							<button class="" type="button" @click="copy($event)">复制</button>
+							<button class="" type="button" @click="copyWord($event)">复制</button>
 						</td>
 					</tr>
 					<tr class="timeList lexicon" v-for="(item, index) in lexicon">
@@ -122,7 +122,7 @@
 						</td>
 						<td>
 							<input type="text" name="" :value="item.word" readonly="readonly" />
-							<button class="" type="button" @click="copy($event)">复制</button>
+							<button class="" type="button" @click="copyWord($event)">复制</button>
 							<button class="" type="button" @click="editThis(item, index)">编辑</button>
 						</td>
 					</tr>
@@ -322,14 +322,16 @@
 					},
 					checkOut: function() {
 						// 导出
-						console.log(JSON.stringify(this.lexicon))
+						let lexiconString = JSON.stringify(this.lexicon)
+						this.copyString(lexiconString)
+						console.log(lexiconString)
 					},
 					upDate: function() {
 						// 更新
 						sessionStorage.setItem("lexicon", JSON.stringify(lexicon));
 						this.lexicon = JSON.parse(sessionStorage.getItem("lexicon"))
 					},
-					copy: function($event) {
+					copyWord: function($event) {
 						// 复制成语
 						let element = $event.currentTarget
 						let pre;
@@ -346,6 +348,20 @@
 
 						pre.select();
 						document.execCommand("Copy");
+					},
+					copyString: function(lexiconString) {
+						let textArea = document.createElement('textarea');
+						textArea.value = lexiconString;
+						document.body.appendChild(textArea);
+						textArea.select();
+
+						try {
+							document.execCommand('Copy');
+						} catch(err) {
+							console.log('当前浏览器不支持复制功能');
+						}
+
+						document.body.removeChild(textArea);
 					},
 					editThis: function(item, index) {
 						// 编辑
