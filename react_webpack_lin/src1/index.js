@@ -5,7 +5,8 @@ import { render } from "react-dom";
 import { Provider, connect } from "react-redux";
 import { combineReducers, createStore } from "redux";
 import { HashRouter } from "react-router-dom";
-import { Button } from "antd";
+import PropTypes from 'prop-types';
+// import { Button } from "antd";
 // import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
@@ -146,7 +147,7 @@ class Cpp extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			// swq: "",
+			swq: "cccc",
 		};
 		this.onSomething = this.onSomething.bind(this)
 	}
@@ -156,35 +157,92 @@ class Cpp extends React.Component {
 	}
 
 	render() {
-		// const { swq } = this.state
+		const { swq } = this.state
 		return (
 			<>
-				Cpp
+				Cpp {swq}
 			</>
 		);
 	}
 }
 
-const Dpp = () => {
-	const [refName, setRefName] = useState(null);
-	const [swq, setSwq] = useState("swq");
-	const click1 = str => {
-		console.log(refName)
+// const Dpp = () => {
+// 	const [refName, setRefName] = useState(null);
+// 	const [swq, setSwq] = useState("swq");
+// 	const click1 = str => {
+// 		console.log(refName)
+// 	}
+// 	return (
+// 		<>
+// 			<Button type="primary">Primary Button</Button>
+// 			<Button>Default Button</Button>
+// 			<Button type="dashed">Dashed Button</Button>
+// 			<br />
+// 			<Button type="text">Text Button</Button>
+// 			<Button type="link">Link Button</Button>
+// 		</>
+// 	);
+// };
+
+class Button extends React.Component {
+	render() {
+		console.log(this.context)
+		return (
+			<button style={{ background: this.context.color }}>
+				{this.props.children}
+			</button>
+		);
 	}
-	return (
-		<>
-			<Button type="primary">Primary Button</Button>
-			<Button>Default Button</Button>
-			<Button type="dashed">Dashed Button</Button>
-			<br />
-			<Button type="text">Text Button</Button>
-			<Button type="link">Link Button</Button>
-		</>
-	);
+}
+
+Button.contextTypes = {
+	color: PropTypes.string
+};
+
+class Message extends React.Component {
+	render() {
+		console.log(this.context)
+		return (
+			<div>
+				{this.props.text}-{this.context.color} <Button>Delete</Button>
+			</div>
+		);
+	}
+}
+Message.contextTypes = {
+	color: PropTypes.string
+};
+
+// https://blog.csdn.net/qq_33323469/article/details/90207216
+class MessageList extends React.Component {
+	getChildContext() {
+		return {
+			color: "purple"
+			// color: "red"
+		};
+	}
+
+	render() {
+		const children = this.props.messages.map((message) => (
+			<div key={message.id}>
+				<Message text={message.text} />
+				<Button>Delete</Button>
+			</div>
+		));
+		return (
+			<>
+				<div>{children}</div>
+			</>
+		);
+	}
+}
+
+MessageList.childContextTypes = {
+	color: PropTypes.string
 };
 
 render((
-	<Provider store={store}>
+	<>
 		<p><a target="_blank" href="https://ant.design/components/dropdown-cn/">https://ant.design/components/dropdown-cn/</a></p>
 		<p><a target="_blank" href="https://www.redux.org.cn/docs/basics/Store.html">https://www.redux.org.cn/docs/basics/Store.html</a></p>
 		<p><a target="_blank" href="https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf</a></p>
@@ -193,8 +251,15 @@ render((
 		<br />
 		{/* <App /> */}
 		{/* <Bpp /> */}
-		{/* <Cpp /> */}
-		<Dpp />
-	</Provider>),
+		<Cpp swq={"d"} />
+		{/* <Dpp /> */}
+		<MessageList messages={[{
+			text: "aaa",
+			id: 1
+		}, {
+			text: "bbb",
+			id: 2
+		}]} />
+	</>),
 	document.getElementById("react-container")
 );
