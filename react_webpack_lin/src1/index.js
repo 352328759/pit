@@ -2,11 +2,11 @@ import React, {
 	useState
 } from "react";
 import { render } from "react-dom";
-import { Provider, connect } from "react-redux";
+// import { Provider, connect } from "react-redux";
 import { combineReducers, createStore } from "redux";
 import { HashRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
-// import { Button } from "antd";
+import { Button, Dropdown } from "antd";
 // import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
@@ -121,6 +121,7 @@ const App = () => {
 	);
 };
 
+
 class Bpp extends React.Component {
 
 	constructor(props) {
@@ -166,80 +167,24 @@ class Cpp extends React.Component {
 	}
 }
 
-// const Dpp = () => {
-// 	const [refName, setRefName] = useState(null);
-// 	const [swq, setSwq] = useState("swq");
-// 	const click1 = str => {
-// 		console.log(refName)
-// 	}
-// 	return (
-// 		<>
-// 			<Button type="primary">Primary Button</Button>
-// 			<Button>Default Button</Button>
-// 			<Button type="dashed">Dashed Button</Button>
-// 			<br />
-// 			<Button type="text">Text Button</Button>
-// 			<Button type="link">Link Button</Button>
-// 		</>
-// 	);
-// };
-
-class Button extends React.Component {
-	render() {
-		console.log(this.context)
-		return (
-			<button style={{ background: this.context.color }}>
-				{this.props.children}
-			</button>
-		);
+const Dpp = () => {
+	const [refName, setRefName] = useState(null);
+	const [swq, setSwq] = useState("swq");
+	const click1 = str => {
+		console.log(refName)
 	}
-}
-
-Button.contextTypes = {
-	color: PropTypes.string
+	return (
+		<>
+			<Button type="primary">Primary Button</Button>
+			<Button>Default Button</Button>
+			<Button type="dashed">Dashed Button</Button>
+			<br />
+			<Button type="text">Text Button</Button>
+			<Button type="link">Link Button</Button>
+		</>
+	);
 };
 
-class Message extends React.Component {
-	render() {
-		console.log(this.context)
-		return (
-			<div>
-				{this.props.text}-{this.context.color} <Button>Delete</Button>
-			</div>
-		);
-	}
-}
-Message.contextTypes = {
-	color: PropTypes.string
-};
-
-// https://blog.csdn.net/qq_33323469/article/details/90207216
-class MessageList extends React.Component {
-	getChildContext() {
-		return {
-			color: "purple"
-			// color: "red"
-		};
-	}
-
-	render() {
-		const children = this.props.messages.map((message) => (
-			<div key={message.id}>
-				<Message text={message.text} />
-				<Button>Delete</Button>
-			</div>
-		));
-		return (
-			<>
-				<div>{children}</div>
-			</>
-		);
-	}
-}
-
-MessageList.childContextTypes = {
-	color: PropTypes.string
-};
 
 render((
 	<>
@@ -251,15 +196,8 @@ render((
 		<br />
 		{/* <App /> */}
 		{/* <Bpp /> */}
-		<Cpp swq={"d"} />
-		{/* <Dpp /> */}
-		<MessageList messages={[{
-			text: "aaa",
-			id: 1
-		}, {
-			text: "bbb",
-			id: 2
-		}]} />
+		{/* <Cpp swq={"d"} /> */}
+		<Dpp />
 	</>),
 	document.getElementById("react-container")
 );
