@@ -6,7 +6,8 @@ import { render } from "react-dom";
 import { combineReducers, createStore } from "redux";
 import { HashRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
-import { Button, Dropdown } from "antd";
+// import { Button } from "antd";
+import { Button } from "./myAntd";
 // import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
@@ -17,6 +18,12 @@ import "antd/dist/antd.css";
 import ColumnGroup from "antd/lib/table/ColumnGroup";
 import "./stylesheets/antd.css";
 moment.locale("zh-cn");
+
+/**
+ * 
+ */
+
+
 
 function learnRedux() {
 
@@ -107,6 +114,18 @@ function learnRedux() {
 }
 // learnRedux()
 
+const Spp = () => {
+	return (
+		<div>
+			<p><a target="_blank" href="https://ant.design/components/dropdown-cn/">https://ant.design/components/dropdown-cn/</a></p>
+			<p><a target="_blank" href="https://www.redux.org.cn/docs/basics/Store.html">https://www.redux.org.cn/docs/basics/Store.html</a></p>
+			<p><a target="_blank" href="https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf</a></p>
+			<p><a target="_blank" href="https://naotu.baidu.com/file/ebb15bfab65c13e694195623af62899b">百度</a></p>
+			<p><a target="_blank" href="https://www.processon.com/diagraming/5c8a240ee4b02ce2e88e8466">processon</a></p>
+		</div>
+	);
+};
+
 const App = () => {
 	let refBpp;
 	const click1 = str => {
@@ -175,12 +194,12 @@ const Dpp = () => {
 	}
 	return (
 		<>
-			<Button type="primary">Primary Button</Button>
 			<Button>Default Button</Button>
+			{/* <Button type="primary">Primary Button</Button>
 			<Button type="dashed">Dashed Button</Button>
 			<br />
 			<Button type="text">Text Button</Button>
-			<Button type="link">Link Button</Button>
+			<Button type="link">Link Button</Button> */}
 		</>
 	);
 };
@@ -188,12 +207,8 @@ const Dpp = () => {
 
 render((
 	<>
-		<p><a target="_blank" href="https://ant.design/components/dropdown-cn/">https://ant.design/components/dropdown-cn/</a></p>
-		<p><a target="_blank" href="https://www.redux.org.cn/docs/basics/Store.html">https://www.redux.org.cn/docs/basics/Store.html</a></p>
-		<p><a target="_blank" href="https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf</a></p>
-		<p><a target="_blank" href="https://naotu.baidu.com/file/ebb15bfab65c13e694195623af62899b">百度</a></p>
-		<p><a target="_blank" href="https://www.processon.com/diagraming/5c8a240ee4b02ce2e88e8466">processon</a></p>
-		<br />
+		{/* <Spp /> */}
+
 		{/* <App /> */}
 		{/* <Bpp /> */}
 		{/* <Cpp swq={"d"} /> */}

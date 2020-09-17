@@ -1,0 +1,17 @@
+q 824989431
+2020年8月27日8:49:54
+
+this.refs 写法过时了
+和 connect 一起用会出现问题
+
+新 onRef 什么的
+
+16.3 以后不能用 this.refs "不建议"
+
+通过 props 传递 this
+
+this.props.onRef(this)
+
+
+
+end
