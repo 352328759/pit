@@ -348,6 +348,7 @@
 
 						pre.select();
 						document.execCommand("Copy");
+						this.cancelEdit()
 					},
 					copyString: function(lexiconString) {
 						let textArea = document.createElement('textarea');
