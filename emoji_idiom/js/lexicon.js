@@ -130,6 +130,9 @@ var lexicon = [{
 	"word": "传道受业",
 	"hex": ["2N{DEO%YOZB6Z8G`X_Q0[OI", "VG$6@OTYR@QD4(6D%%7O]EL", "`_SB61HBN$~TEIIV(1LLHTP", "~8W08NY29@MGSF15J$H)%VE"]
 }, {
+	"word": "吹吹打打",
+	"hex": ["EK2V}S}QSJ@2K004S602JJA", "EK2V}S}QSJ@2K004S602JJA", "0OK@COF(`VT)077NK`2~DO3", "0OK@COF(`VT)077NK`2~DO3"]
+}, {
 	"word": "唇齿相依",
 	"hex": ["LLYXF9H612_TOKXXX}$`K@8", "}QQNUFQFC_}Q5M9)SBYO39H", ")87BIFAMB2[SCJDT6Q1478L", "ZPH0$A6OV{2KGN1KU39@S`1"]
 }, {
