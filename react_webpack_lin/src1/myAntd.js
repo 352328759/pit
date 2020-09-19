@@ -1,8 +1,6 @@
 // export { default as Button } from 'antd/es/button';
-export { default as Button } from './button/index.js';
-function name(params) {
-	var d
-}
+export { default as Button } from './button';
+export { default as Avatar } from './avatar';
 
 
 // export { default as Affix } from './affix';
