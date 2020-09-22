@@ -104,12 +104,81 @@ var InternalAvatar = function InternalAvatar(props, ref) {
 		alt = props.alt,
 		draggable = props.draggable,
 		children = props.children,
-		others = __rest(props, ["prefixCls", "shape", "size", "src", "srcSet", "icon", "className", "alt", "draggable", "children"]);
+		others = __rest(
+			props,
+			[
+				"prefixCls",
+				"shape",
+				"size",
+				"src",
+				"srcSet",
+				"icon",
+				"className",
+				"alt",
+				"draggable",
+				"children"
+			]
+		);
 
-	devWarning(!(typeof icon === 'string' && icon.length > 2), 'Avatar', "`icon` is using ReactNode instead of string naming in v4. Please check `".concat(icon, "` at https://ant.design/components/icon"));
+	devWarning(
+		!(typeof icon === 'string' && icon.length > 2),
+		'Avatar',
+		"`icon` is using ReactNode instead of string naming in v4. Please check `".concat(
+			icon,
+			"` at https://ant.design/components/icon"
+		)
+	);
 	var prefixCls = getPrefixCls('avatar', customizePrefixCls);
-	var sizeCls = classNames((_classNames = {}, _defineProperty(_classNames, "".concat(prefixCls, "-lg"), size === 'large'), _defineProperty(_classNames, "".concat(prefixCls, "-sm"), size === 'small'), _classNames));
-	var classString = classNames(prefixCls, className, sizeCls, (_classNames2 = {}, _defineProperty(_classNames2, "".concat(prefixCls, "-").concat(shape), shape), _defineProperty(_classNames2, "".concat(prefixCls, "-image"), src && isImgExist), _defineProperty(_classNames2, "".concat(prefixCls, "-icon"), icon), _classNames2));
+
+	var sizeCls = classNames(
+		(
+			_classNames = {},
+			_defineProperty(
+				_classNames,
+				"".concat(prefixCls, "-lg"),
+				size === 'large'
+			),
+			_defineProperty(
+				_classNames,
+				"".concat(prefixCls,
+					"-sm"
+				),
+				size === 'small'),
+			_classNames
+		)
+	);
+	var classString = classNames(
+		prefixCls,
+		className,
+		sizeCls,
+		(
+			_classNames2 = {},
+			_defineProperty(
+				_classNames2,
+				"".concat(prefixCls, "-").concat(shape),
+				shape
+			),
+			_defineProperty(
+				_classNames2,
+				"".concat(prefixCls, "-image"),
+				src && isImgExist
+			),
+			_defineProperty(
+				_classNames2,
+				"".concat(prefixCls, "-icon"),
+				icon
+			),
+			_classNames2
+		)
+	);
+
+	console.log(prefixCls)
+	console.log(className)
+	console.log(sizeCls)
+
+	console.log(classString)
+	// debugger
+
 	var sizeStyle = typeof size === 'number' ? {
 		width: size,
 		height: size,
@@ -162,9 +231,10 @@ var InternalAvatar = function InternalAvatar(props, ref) {
 	delete others.onError;
 	delete others.gap;
 
-	console.log(others)
-	console.log(sizeStyle)
+	// console.log(others)
+	// console.log(sizeStyle)
 	console.log(classString)
+	// debugger
 	console.log(avatarNodeMergeRef)
 
 	console.log(childrenToRender)
