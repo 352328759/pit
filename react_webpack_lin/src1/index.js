@@ -7,7 +7,6 @@ import { combineReducers, createStore } from "redux";
 import { HashRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 // import { Button } from "antd";
-import { Button, Avatar } from "./myAntd";
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
@@ -23,7 +22,7 @@ moment.locale("zh-cn");
  * 
  */
 
-
+import { Button, Avatar } from "./myAntd";
 
 function learnRedux() {
 
@@ -199,9 +198,9 @@ const Dpp = () => {
 	}
 	return (
 		<>
-			<Avatar icon="5t" />
+			<Avatar icon="5t" size="large" />
 			{/* <Avatar icon={<UserOutlined />} /> */}
-			<Button>Default Button</Button>
+			{/* <Button>Default Button</Button> */}
 			{/* <Button type="primary">Primary Button</Button>
 			<Button type="dashed">Dashed Button</Button>
 			<br />

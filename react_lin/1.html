@@ -36,6 +36,7 @@
 	<script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
 
 	<script type="text/babel">
+		"use strict"
 		const List = ({ items }) =>
 			<div className="list">
 				{items.map((x, i) => <li key={i}>{x}</li>)}

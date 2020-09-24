@@ -140,10 +140,9 @@ var InternalAvatar = function InternalAvatar(props, ref) {
 			),
 			_defineProperty(
 				_classNames,
-				"".concat(prefixCls,
-					"-sm"
-				),
-				size === 'small'),
+				"".concat(prefixCls, "-sm"),
+				size === 'small'
+			),
 			_classNames
 		)
 	);
@@ -172,8 +171,12 @@ var InternalAvatar = function InternalAvatar(props, ref) {
 		)
 	);
 
-	console.log(prefixCls)
-	console.log(className)
+	console.log("here")
+
+	// console.log(prefixCls)	// ant-avatar
+	// console.log(className)
+
+	console.log(props)
 	console.log(sizeCls)
 
 	console.log(classString)
