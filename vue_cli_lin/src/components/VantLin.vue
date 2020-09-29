@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<a href="https://cli.vuejs.org/zh/guide/plugins-and-presets.html#%E6%8F%92%E4%BB%B6">https://cli.vuejs.org/zh/guide/plugins-and-presets.html#%E6%8F%92%E4%BB%B6</a>
+		<a href="https://cli.vuejs.org/zh/guide/plugins-and-presets.html#%E6%8F%92%E4%BB%B6" target="_blank">https://cli.vuejs.org/zh/guide/plugins-and-presets.html#%E6%8F%92%E4%BB%B6</a>
 		<van-button type="primary">主要按钮</van-button>
 	</div>
 </template>
