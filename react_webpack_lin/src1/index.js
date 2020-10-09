@@ -194,13 +194,28 @@ const Dpp = () => {
 	const [refName, setRefName] = useState(null);
 	const [swq, setSwq] = useState("swq");
 	const click1 = str => {
-		console.log(refName)
+		console.log(refBpp)
+		// console.log(refName)
+		// debugger
 	}
+	let refBpp;
 	return (
 		<>
+			{/* <Avatar icon="5t" size="large" /> */}
+			{/* <Avatar icon="5t" size="large" ref={i => refBpp = i} /> */}
+			{/* <Avatar icon="5t" size={40} /> */}
+			{/* <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size="large" /> */}
+			{/* <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size={40} /> */}
 			<Avatar icon="5t" size="large" />
 			{/* <Avatar icon={<UserOutlined />} /> */}
-			{/* <Button>Default Button</Button> */}
+			{/* <Avatar.Group>
+				<Avatar icon="5t" size="large" />
+				<Avatar icon="5t" size="large" />
+				<Avatar icon="5t" size="large" />
+			</Avatar.Group> */}
+
+
+			{/* <Button onClick={click1}>Default Button</Button> */}
 			{/* <Button type="primary">Primary Button</Button>
 			<Button type="dashed">Dashed Button</Button>
 			<br />

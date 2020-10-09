@@ -2,6 +2,7 @@ import _extends from "@babel/runtime/helpers/extends";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 import _slicedToArray from "@babel/runtime/helpers/slicedToArray";
 
+
 var __rest = this && this.__rest || function (s, e) {
 	var t = {};
 
@@ -14,6 +15,7 @@ var __rest = this && this.__rest || function (s, e) {
 	}
 	return t;
 };
+
 
 import * as React from 'react';
 import classNames from 'classnames';
@@ -94,6 +96,7 @@ var InternalAvatar = function InternalAvatar(props, ref) {
 		}
 	};
 
+
 	var customizePrefixCls = props.prefixCls,
 		shape = props.shape,
 		size = props.size,
@@ -171,17 +174,10 @@ var InternalAvatar = function InternalAvatar(props, ref) {
 		)
 	);
 
-	console.log("here")
-
 	// console.log(prefixCls)	// ant-avatar
-	// console.log(className)
-
-	console.log(props)
-	console.log(sizeCls)
-
-	console.log(classString)
-	// debugger
-
+	// console.log(className)	// undefined
+	// console.log(sizeCls)		// ant-avatar-lg
+	
 	var sizeStyle = typeof size === 'number' ? {
 		width: size,
 		height: size,
@@ -235,12 +231,11 @@ var InternalAvatar = function InternalAvatar(props, ref) {
 	delete others.gap;
 
 	// console.log(others)
-	// console.log(sizeStyle)
+	console.log("here 图片会减20px?")
+	console.log(sizeStyle)
+	
 	console.log(classString)
-	// debugger
-	console.log(avatarNodeMergeRef)
-
-	console.log(childrenToRender)
+	// console.log(childrenToRender)
 
 	return /*#__PURE__*/React.createElement("span", _extends({}, others, {
 		style: _extends(_extends({}, sizeStyle), others.style),
