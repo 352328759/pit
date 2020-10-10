@@ -96,7 +96,6 @@ var InternalAvatar = function InternalAvatar(props, ref) {
 		}
 	};
 
-
 	var customizePrefixCls = props.prefixCls,
 		shape = props.shape,
 		size = props.size,
@@ -226,16 +225,13 @@ var InternalAvatar = function InternalAvatar(props, ref) {
 	} // The event is triggered twice from bubbling up the DOM tree.
 	// see https://codesandbox.io/s/kind-snow-9lidz
 
-
 	delete others.onError;
 	delete others.gap;
 
-	// console.log(others)
-	console.log("here 图片会减20px?")
+	console.log(others)
+	// console.log(classString)
 	console.log(sizeStyle)
-	
-	console.log(classString)
-	// console.log(childrenToRender)
+	console.log(childrenToRender)
 
 	return /*#__PURE__*/React.createElement("span", _extends({}, others, {
 		style: _extends(_extends({}, sizeStyle), others.style),
