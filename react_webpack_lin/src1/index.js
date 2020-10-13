@@ -121,6 +121,7 @@ const Spp = () => {
 			<p><a target="_blank" href="https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf</a></p>
 			<p><a target="_blank" href="https://naotu.baidu.com/file/ebb15bfab65c13e694195623af62899b">百度</a></p>
 			<p><a target="_blank" href="https://www.processon.com/diagraming/5c8a240ee4b02ce2e88e8466">processon</a></p>
+			<p><a target="_blank" href="https://www.cnblogs.com/lanpang9661/p/12611087.html">React.forwardRef</a></p>
 		</div>
 	);
 };
@@ -206,14 +207,14 @@ const Dpp = () => {
 			{/* <Avatar icon="5t" size={40} /> */}
 			{/* <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size={40} /> */}
 			{/* <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size="large" /> */}
-			<Avatar gap={25} size={80}>apple</Avatar>
-
-			{/* <Avatar icon={<UserOutlined />} /> */}
-			{/* <Avatar.Group>
-				<Avatar icon="5t" size="large" />
-				<Avatar icon="5t" size="large" />
-				<Avatar icon="5t" size="large" />
+			{/* <Avatar gap={25} size={80}>apple</Avatar> */}
+			{/* <Avatar.Group maxCount={2}>
+				<Avatar>5t</Avatar>
 			</Avatar.Group> */}
+			<p><a target="_blank" href="https://zh-hans.reactjs.org/docs/react-api.html#createelement">也可以是 React 组件 类型</a></p>
+
+			<Button type="primary">Primary Button</Button>
+			
 
 			{/* <Button onClick={click1}>Default Button</Button> */}
 			{/* <Button type="primary">Primary Button</Button>

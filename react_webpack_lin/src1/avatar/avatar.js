@@ -228,10 +228,10 @@ var InternalAvatar = function InternalAvatar(props, ref) {
 	delete others.onError;
 	delete others.gap;
 
-	console.log(others)
+	// console.log(others)
 	// console.log(classString)
-	console.log(sizeStyle)
-	console.log(childrenToRender)
+	// console.log(sizeStyle)
+	// console.log(childrenToRender)
 
 	return /*#__PURE__*/React.createElement("span", _extends({}, others, {
 		style: _extends(_extends({}, sizeStyle), others.style),

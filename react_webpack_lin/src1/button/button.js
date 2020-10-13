@@ -252,6 +252,8 @@ var InternalButton = function InternalButton(props, ref) {
 	if (isUnborderedButtonType(type)) {
 		return buttonNode;
 	}
+	console.log(Wave)
+	console.log(buttonNode)
 
 	return /*#__PURE__*/React.createElement(Wave, null, buttonNode);
 };
