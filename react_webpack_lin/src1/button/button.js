@@ -256,6 +256,7 @@ var InternalButton = function InternalButton(props, ref) {
 	console.log(buttonNode)
 
 	return /*#__PURE__*/React.createElement(Wave, null, buttonNode);
+	// return /*#__PURE__*/buttonNode;
 };
 
 var Button = /*#__PURE__*/React.forwardRef(InternalButton);

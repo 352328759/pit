@@ -184,9 +184,10 @@ class Cpp extends React.Component {
 	render() {
 		const { swq } = this.state
 		return (
-			<>
-				Cpp {swq}
-			</>
+			<div>
+				<div>Cpp {swq}</div>
+				{this.props.children ? <div>{this.props.children}</div> : null}
+			</div>
 		);
 	}
 }
@@ -200,8 +201,10 @@ const Dpp = () => {
 		// debugger
 	}
 	let refBpp;
+
 	return (
 		<>
+
 			{/* <Avatar icon="5t" size="large" /> */}
 			{/* <Avatar icon="5t" size="large" ref={i => refBpp = i} /> */}
 			{/* <Avatar icon="5t" size={40} /> */}
@@ -211,10 +214,10 @@ const Dpp = () => {
 			{/* <Avatar.Group maxCount={2}>
 				<Avatar>5t</Avatar>
 			</Avatar.Group> */}
-			<p><a target="_blank" href="https://zh-hans.reactjs.org/docs/react-api.html#createelement">也可以是 React 组件 类型</a></p>
+			{/* <p><a target="_blank" href="https://zh-hans.reactjs.org/docs/react-api.html#createelement">createElement() 也可以是 React 组件 类型</a></p> */}
 
 			<Button type="primary">Primary Button</Button>
-			
+
 
 			{/* <Button onClick={click1}>Default Button</Button> */}
 			{/* <Button type="primary">Primary Button</Button>
