@@ -18,35 +18,154 @@
 	<script src="./bower_components/react@16.12.0/react-dom.development.js"></script>
 	<script src="./bower_components/babel-browser/browser.js"></script>
 
-	<script type="text/babel" src="js1.js"></script>
+	<script type="text/babel">
+		class OuterClickExample extends React.Component {
+			constructor(props) {
+				super(props);
+
+				this.state = { isOpen: false };
+				this.toggleContainer = React.createRef();
+
+				this.onClickHandler = this.onClickHandler.bind(this);
+				this.onClickOutsideHandler = this.onClickOutsideHandler.bind(this);
+			}
+
+			componentDidMount() {
+				window.addEventListener("click", this.onClickOutsideHandler);
+			}
+
+			componentWillUnmount() {
+				window.removeEventListener("click", this.onClickOutsideHandler);
+			}
+
+			onClickHandler() {
+				this.setState(currentState => ({
+					isOpen: !currentState.isOpen
+				}));
+			}
+
+			onClickOutsideHandler(event) {
+				if (this.state.isOpen && !this.toggleContainer.current.contains(event.target)) {
+					this.setState({ isOpen: false });
+				}
+			}
+
+			render() {
+				return (
+					<div ref={this.toggleContainer}>
+						<button onClick={this.onClickHandler}>Select an option</button>
+						{this.state.isOpen && (
+							<ul>
+								<li>Option 1</li>
+								<li>Option 2</li>
+								<li>Option 3</li>
+							</ul>
+						)}
+					</div>
+				);
+			}
+		}
+
+		class BlurExample extends React.Component {
+			constructor(props) {
+				super(props);
+
+				this.state = { isOpen: false };
+				this.timeOutId = null;
+
+				this.onClickHandler = this.onClickHandler.bind(this);
+				this.onBlurHandler = this.onBlurHandler.bind(this);
+				this.onFocusHandler = this.onFocusHandler.bind(this);
+			}
+
+			onClickHandler() {
+				this.setState(currentState => {
+					console.log(currentState)
+					return {
+						isOpen: !currentState.isOpen
+					}
+				});
+			}
+
+			// 我们在下一个时间点使用 setTimeout 关闭弹窗。
+			// 这是必要的，因为失去焦点事件会在新的焦点事件前被触发，
+			// 我们需要通过这个步骤确认这个元素的一个子节点
+			// 是否得到了焦点。
+			onBlurHandler() {
+				this.timeOutId = setTimeout(() => {
+					this.setState({
+						isOpen: false
+					});
+				});
+			}
+
+			// 如果一个子节点获得了焦点，不要关闭弹窗。
+			onFocusHandler() {
+				clearTimeout(this.timeOutId);
+			}
+
+			render() {
+				// React 通过把失去焦点和获得焦点事件传输给父节点
+				// 来帮助我们。
+				return (
+					<div onBlur={this.onBlurHandler}
+						onFocus={this.onFocusHandler}>
+
+						<button onClick={this.onClickHandler}
+							aria-haspopup="true"
+							aria-expanded={this.state.isOpen}>
+							Select an option
+						</button>
+						{this.state.isOpen && (
+							<ul>
+								<li>Option 1</li>
+								<li>Option 2</li>
+								<li>Option 3</li>
+							</ul>
+						)}
+					</div>
+				);
+			}
+		}
+
+		ReactDOM.render(
+			<BlurExample />,
+			document.getElementById("root")
+		);
+	</script>
 	<script>
-		window.addEventListener('mousedown', function (e) {
-			document.body.classList.add('mouse-navigation');
-			document.body.classList.remove('kbd-navigation');
-		});
-		window.addEventListener('keydown', function (e) {
-			if (e.keyCode === 9) {
-				document.body.classList.add('kbd-navigation');
-				document.body.classList.remove('mouse-navigation');
-			}
-		});
-		window.addEventListener('click', function (e) {
-			if (e.target.tagName === 'A' && e.target.getAttribute('href') === '#') {
-				e.preventDefault();
-			}
-		});
-		window.onerror = function (message, source, line, col, error) {
-			var text = error ? error.stack || error : message + ' (at ' + source + ':' + line + ':' + col + ')';
-			errors.textContent += text + '\n';
-			errors.style.display = '';
-		};
-		console.error = (function (old) {
-			return function error() {
-				errors.textContent += Array.prototype.slice.call(arguments).join(' ') + '\n';
-				errors.style.display = '';
-				old.apply(this, arguments);
-			}
-		})(console.error);
+		// window.addEventListener("mousedown", function (e) {
+		// 	console.log("mousedown")
+		// 	document.body.classList.add("mouse-navigation");
+		// 	document.body.classList.remove("kbd-navigation");
+		// });
+		// window.addEventListener("keydown", function (e) {
+		// 	console.log("keydown")
+		// 	console.log(e.keyCode)
+		// 	if (e.keyCode === 9) {
+		// 		document.body.classList.add("kbd-navigation");
+		// 		document.body.classList.remove("mouse-navigation");
+		// 	}
+		// });
+		// window.addEventListener("click", function (e) {
+		// 	console.log("click")
+		// 	if (e.target.tagName === "A" && e.target.getAttribute("href") === "#") {
+		// 		e.preventDefault();
+		// 	}
+		// });
+		// window.onerror = function (message, source, line, col, error) {
+		// 	console.log("onerror")
+		// 	var text = error ? error.stack || error : message + " (at " + source + ":" + line + ":" + col + ")";
+		// 	errors.textContent += text + "\n";
+		// 	errors.style.display = "";
+		// };
+		// console.error = (function (old) {
+		// 	return function error() {
+		// 		errors.textContent += Array.prototype.slice.call(arguments).join(" ") + "\n";
+		// 		errors.style.display = "";
+		// 		old.apply(this, arguments);
+		// 	}
+		// })(console.error);
 	</script>
 </body>
 
