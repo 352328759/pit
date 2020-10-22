@@ -78,6 +78,11 @@
 				this.onFocusHandler = this.onFocusHandler.bind(this);
 			}
 
+			componentDidMount() {
+				var dom = ReactDOM.findDOMNode(this)
+				console.log(dom)
+			}
+
 			onClickHandler() {
 				this.setState(currentState => {
 					console.log(currentState)
