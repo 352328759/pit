@@ -4,6 +4,7 @@
 		<!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
 		<VantLin/>
 		<!-- <Swq></Swq> -->
+		<el-button>1</el-button>
 	</div>
 </template>
 

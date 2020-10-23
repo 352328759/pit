@@ -24,6 +24,14 @@ moment.locale("zh-cn");
 
 import { Button, Avatar } from "./myAntd";
 
+// import * as Utils from "../js/Utils/index";
+// import { DateFormat } from "../js/Utils/index";
+
+// console.log(DateFormat("yyy-MM-dd hh:mm", 1603445164684));
+// console.log(DateFormat("yy-MM-dd hh:mm", new Date()));
+// console.log(Utils.ArgDiv);
+// console.log(ArgDiv);
+
 function learnRedux() {
 
 	//redux
@@ -231,12 +239,12 @@ const Dpp = () => {
 
 render((
 	<>
-		{/* <Spp /> */}
+		<Spp />
 
 		{/* <App /> */}
 		{/* <Bpp /> */}
 		{/* <Cpp swq={"d"} /> */}
-		<Dpp />
+		{/* <Dpp /> */}
 	</>),
 	document.getElementById("react-container")
 );

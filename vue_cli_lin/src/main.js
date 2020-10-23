@@ -1,9 +1,14 @@
 import Vue from 'vue'
-import App from './App.vue'
+
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
 import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
+
+import App from './App.vue'
 
 // import axios from 'axios';
 // Vue.prototype.$http = axios;
