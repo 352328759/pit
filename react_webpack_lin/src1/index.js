@@ -23,14 +23,16 @@ moment.locale("zh-cn");
  */
 
 import { Button, Avatar } from "./myAntd";
+// import _ from "Lodash";
+
 
 // import * as Utils from "../js/Utils/index";
-// import { DateFormat } from "../js/Utils/index";
+// import { LocationSearchData } from "../js/Utils/index";
 
-// console.log(DateFormat("yyy-MM-dd hh:mm", 1603445164684));
+// console.log(LocationSearchData("ff"));
 // console.log(DateFormat("yy-MM-dd hh:mm", new Date()));
 // console.log(Utils.ArgDiv);
-// console.log(ArgDiv);
+// console.log();
 
 function learnRedux() {
 
