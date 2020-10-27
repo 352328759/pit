@@ -27,12 +27,26 @@ import { Button, Avatar } from "./myAntd";
 
 
 // import * as Utils from "../js/Utils/index";
-// import { LocationSearchData } from "../js/Utils/index";
+import { ArgAdd } from "../js/Utils/index";
 
-// console.log(LocationSearchData("ff"));
-// console.log(DateFormat("yy-MM-dd hh:mm", new Date()));
-// console.log(Utils.ArgDiv);
-// console.log();
+
+// 类型判断
+// Object.prototype.toString.call(data) !== "[object Array]"
+// console.log(Object.prototype.toString.call(/[hbc]at/gi))
+console.log(Object.prototype)
+// [object Array]
+// [object Object]
+// [object Number]
+// [object String]
+// [object Null]
+// [object Date]
+// [object RegExp]
+// [object Function]
+
+
+
+
+
 
 function learnRedux() {
 
