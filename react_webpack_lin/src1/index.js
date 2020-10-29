@@ -29,24 +29,7 @@ import { Button, Avatar } from "./myAntd";
 // import * as Utils from "../js/Utils/index";
 import { ArgAdd } from "../js/Utils/index";
 
-
-// 类型判断
-// Object.prototype.toString.call(data) !== "[object Array]"
-// console.log(Object.prototype.toString.call(/[hbc]at/gi))
-console.log(Object.prototype)
-// [object Array]
-// [object Object]
-// [object Number]
-// [object String]
-// [object Null]
-// [object Date]
-// [object RegExp]
-// [object Function]
-
-
-
-
-
+console.log(ArgAdd(0.1, 0.2))
 
 function learnRedux() {
 
