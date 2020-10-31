@@ -1,17 +1,19 @@
 ﻿<html>
 
 	<head>
-		<title>JavaScript原型链的个人理解记录</title>
+		<title>defineProperty</title>
 	</head>
 
 	<body>
-		<a href="https://blog.csdn.net/liwusen/article/details/79387083">https://blog.csdn.net/liwusen/article/details/79387083</a>
-		<br>
-		<a href="https://www.dazhuanlan.com/2020/02/02/5e36e8ffdcf48/">https://www.dazhuanlan.com/2020/02/02/5e36e8ffdcf48/</a>
+		<!-- <a href="https://blog.csdn.net/liwusen/article/details/79387083">https://blog.csdn.net/liwusen/article/details/79387083</a> -->
+		<!-- <br> -->
+		<a href="https://www.dazhuanlan.com/2020/02/02/5e36e8ffdcf48/">2、define property，setter，getter</a>
 		<br>
 		<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty</a>
 		<br>
 		<p>百度 defineProperty prototype</p>
+
+		<p>Object.getOwnPropertyDescriptor() 方法返回指定对象上一个自有属性对应的属性描述符.(自有属性指的是直接赋予该对象的属性,不需要从原型链上进行查找的属性)</p>
 
 		<script type="text/javascript">
 			//Object.defineProperty(String.prototype, 'myLength', {
@@ -23,59 +25,6 @@
 			//var a = "12345"
 			//
 			//console.log(a.myLength)
-
-			var Father = function Father(name) {
-				this.name = name
-			}
-			Father.prototype.p1 = "实例化前 Father.prototype"
-			var son = new Father("1")
-			var son2 = new Father("2")
-			Father.prototype.p2 = "实例化后 Father.prototype"
-			son.__proto__.p3 = "实例化后 son.__proto__"
-
-			/* *** */
-
-			// 这两个不是计算结果, 而是工作原理
-			console.log(Father.prototype === son.__proto__); //true
-			console.log(Father.prototype.constructor === Father); //true
-
-			// Father 本质是 Function new 出来的对象, 就像 son 由 Father new 出来一样
-			console.log(Function.prototype === Father.__proto__); //true
-
-			// son 本身没有 constructor, 没有就会沿原型链向上找, 也就是 son.__proto__[.__proto__ ...], 直到 "找到" 或 "没有更多的.__proto__"
-			// 本例 son.constructor 实际上是沿原型链往上一层的 son.__proto__.constructor
-			console.log(son === son.__proto__); //false
-			console.log(son.constructor === son.__proto__.constructor); //true
-			console.log(son.constructor === son.__proto__.__proto__.constructor); //false
-			console.log(Object === son.__proto__.__proto__.constructor); //true
-
-			console.log(Object.prototype.toString.call(Father) === "[object Function]"); //true
-			console.log(Object.prototype.toString.call(Function) === "[object Function]"); //true
-			console.log(Object.prototype.toString.call(Object) === "[object Function]"); //true
-
-			// 根据以上条件, 结合简单的换算可以发现以下及更多全等关系
-			console.log(Father.prototype === son.constructor.prototype); //true
-			console.log(Father.prototype.constructor === son.__proto__.constructor); //true
-
-			console.log(Object.__proto__ === Function.__proto__); //true
-			console.log(Object.__proto__ === Father.__proto__); //true
-			console.log(Object.__proto__ === Function.prototype); //true
-
-			/* *** */
-
-			console.log(Father.prototype.p1); // 实例化前 Father.prototype
-			console.log(son.p1); // 实例化前 Father.prototype
-			console.log(son2.p1); // 实例化前 Father.prototype
-
-			console.log(Father.prototype.p2); // 实例化后 Father.prototype
-			console.log(son.p2); // 实例化后 Father.prototype
-			console.log(son2.p2); // 实例化后 Father.prototype
-
-			console.log(Father.prototype.p3); // 实例化后 son.__proto__
-			console.log(son.p3); // 实例化后 son.__proto__
-			console.log(son2.p3); // 实例化后 son.__proto__
-
-			// end
 		</script>
 	</body>
 
