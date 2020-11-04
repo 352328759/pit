@@ -1,0 +1,47 @@
+﻿<html>
+
+<head>
+    <title>function* 表达式</title>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        "use strict"
+
+
+
+
+
+
+
+
+
+
+
+        function* foo() {
+            yield 'a';
+            yield 'b';
+            yield 'c';
+        }
+
+        let str = '';
+        for (const val of foo()) {
+            str = str + val;
+        }
+
+        console.log(str);
+        // expected output: "abc"
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
