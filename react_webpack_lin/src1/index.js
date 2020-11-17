@@ -2,34 +2,43 @@ import React, {
 	useState
 } from "react";
 import { render } from "react-dom";
-// import { Provider, connect } from "react-redux";
-import { combineReducers, createStore } from "redux";
 import { HashRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
+
+// redux
+import { Provider, connect } from "react-redux";
+import { combineReducers, createStore } from "redux";
+
+// antd
 // import { Button } from "antd";
-import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+// import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
-import zhCN from "antd/es/locale/zh_CN";
-import moment from "moment";
-import "moment/locale/zh-cn";
-import "antd/dist/antd.css";
-import ColumnGroup from "antd/lib/table/ColumnGroup";
+// import zhCN from "antd/es/locale/zh_CN";
+// import moment from "moment";
+// import "moment/locale/zh-cn";
+// import "antd/dist/antd.css";
+// import ColumnGroup from "antd/lib/table/ColumnGroup";
+// moment.locale("zh-cn");
+
+// other
+// import _ from "Lodash";
+
+// my style
 import "./stylesheets/antd.css";
-moment.locale("zh-cn");
 
 /**
  * 
  */
 
-import { Button, Avatar } from "./myAntd";
-// import _ from "Lodash";
+// import { Button, Avatar } from "./myAntd";
 
 
 // import * as Utils from "../js/Utils/index";
-import { ArgAdd } from "../js/Utils/index";
+// import { ArgAdd } from "../js/Utils/index";
+// console.log(ArgAdd(0.1, 0.2))
+var store
 
-console.log(ArgAdd(0.1, 0.2))
 
 function learnRedux() {
 
@@ -100,11 +109,20 @@ function learnRedux() {
 		}
 	}
 
+
 	let reducers2 = combineReducers({ reducer2, reducer })
 	let reducers = combineReducers({ reducers2, visibilityFilter, todos })
-	let store = createStore(reducers)
+	store = createStore(reducers)
 
-	// console.log(store.getState())
+	console.log(store.getState())
+
+	console.log(store.getState().reducers2.reducer)
+	// store.dispatch({
+	// 	type: 'INCREMENT',
+	// 	someData: "someData"
+	// })
+	console.log(store.getState().reducers2.reducer)
+
 	// store.dispatch({
 	// 	type: 'case2_1',
 	// 	index: 1
@@ -118,7 +136,7 @@ function learnRedux() {
 
 	//redux end
 }
-// learnRedux()
+learnRedux()
 
 const Spp = () => {
 	return (
@@ -129,6 +147,9 @@ const Spp = () => {
 			<p><a target="_blank" href="https://naotu.baidu.com/file/ebb15bfab65c13e694195623af62899b">百度</a></p>
 			<p><a target="_blank" href="https://www.processon.com/diagraming/5c8a240ee4b02ce2e88e8466">processon</a></p>
 			<p><a target="_blank" href="https://www.cnblogs.com/lanpang9661/p/12611087.html">React.forwardRef</a></p>
+
+			<p><a target="_blank" href="https://www.cnblogs.com/sanhuamao/p/13773556.html">https://www.cnblogs.com/sanhuamao/p/13773556.html</a></p>
+			<p><a target="_blank" href=""></a></p>
 		</div>
 	);
 };
@@ -190,14 +211,47 @@ class Cpp extends React.Component {
 
 	render() {
 		const { swq } = this.state
+		const { reducers2, visibilityFilter, todos, case2_1 } = this.props
 		return (
 			<div>
+				<div>{reducers2.reducer}</div>
+				<div onClick={case2_1}>{reducers2.reducer2}</div>
+				<div>{visibilityFilter}</div>
+				<div>{todos}</div>
+				<hr />
 				<div>Cpp {swq}</div>
 				{this.props.children ? <div>{this.props.children}</div> : null}
 			</div>
 		);
 	}
 }
+
+function mapStateToProps(state, ownProps) {
+	// state === store.getState() // true
+	// console.log(state)
+	// console.log(ownProps)
+	return {
+		reducers2: state.reducers2,
+		visibilityFilter: state.visibilityFilter,
+		todos: state.todos,
+	}
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+	console.log(dispatch)
+	console.log(ownProps)
+
+	return {
+		case2_1: () => {
+			dispatch({
+				type: 'case2_1',
+				index: 1
+			})
+		},
+	}
+}
+
+// const Connect_Cpp = connect(mapStateToProps, mapDispatchToProps)(Cpp)
 
 const Dpp = () => {
 	const [refName, setRefName] = useState(null);
@@ -237,13 +291,17 @@ const Dpp = () => {
 };
 
 render((
-	<>
-		<Spp />
+	<Provider store={store}>
+		<>
+			<Spp />
 
-		{/* <App /> */}
-		{/* <Bpp /> */}
-		{/* <Cpp swq={"d"} /> */}
-		{/* <Dpp /> */}
-	</>),
-	document.getElementById("react-container")
-);
+			{/* <App /> */}
+			{/* <Bpp /> */}
+
+			{/* <Cpp swq={"d"} /> */}
+			{/* <Connect_Cpp /> */}
+
+			{/* <Dpp /> */}
+		</>
+	</Provider>
+), document.getElementById("react-container"));
