@@ -3,7 +3,7 @@ import React, {
 } from "react";
 import { render } from "react-dom";
 import { HashRouter } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // redux
 import { Provider, connect } from "react-redux";
@@ -11,7 +11,7 @@ import { combineReducers, createStore } from "redux";
 
 // antd
 // import { Button } from "antd";
-// import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+// import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
 // import zhCN from "antd/es/locale/zh_CN";
@@ -39,6 +39,11 @@ import "./stylesheets/antd.css";
 // console.log(ArgAdd(0.1, 0.2))
 var store
 
+function nameSwq(params) {
+	var d = params
+	return d
+}
+
 
 function learnRedux() {
 
@@ -46,9 +51,9 @@ function learnRedux() {
 
 	function reducer(state = 0, action) {
 		switch (action.type) {
-			case 'INCREMENT':
+			case "INCREMENT":
 				return state + 1;
-			case 'DECREMENT':
+			case "DECREMENT":
 				return state - 1;
 			default:
 				return state;
@@ -56,10 +61,10 @@ function learnRedux() {
 	}
 	function reducer2(state = 0, action) {
 		switch (action.type) {
-			case 'case2_1':
+			case "case2_1":
 				console.log(action.index)
 				return state + 1;
-			case 'case2_2':
+			case "case2_2":
 				return state - 1;
 			default:
 				return state;
@@ -68,17 +73,15 @@ function learnRedux() {
 
 	// let store = createStore(reducer);
 
-	// store.subscribe(() =>
-	// 	console.log(store.getState())
-	// );
 
-	// store.dispatch({ type: 'INCREMENT' });
-	// store.dispatch({ type: 'INCREMENT' });
-	// store.dispatch({ type: 'DECREMENT' });
 
-	function visibilityFilter(state = 'SHOW_ALL', action) {
+	// store.dispatch({ type: "INCREMENT" });
+	// store.dispatch({ type: "INCREMENT" });
+	// store.dispatch({ type: "DECREMENT" });
+
+	function visibilityFilter(state = "SHOW_ALL", action) {
 		switch (action.type) {
-			case 'SET_VISIBILITY_FILTER':
+			case "SET_VISIBILITY_FILTER":
 				return action.filter
 			default:
 				return state
@@ -87,7 +90,7 @@ function learnRedux() {
 
 	function todos(state = [], action) {
 		switch (action.type) {
-			case 'ADD_TODO':
+			case "ADD_TODO":
 				return [
 					...state,
 					{
@@ -95,7 +98,7 @@ function learnRedux() {
 						completed: false
 					}
 				]
-			case 'COMPLETE_TODO':
+			case "COMPLETE_TODO":
 				return state.map((todo, index) => {
 					if (index === action.index) {
 						return Object.assign({}, todo, {
@@ -113,18 +116,21 @@ function learnRedux() {
 	let reducers2 = combineReducers({ reducer2, reducer })
 	let reducers = combineReducers({ reducers2, visibilityFilter, todos })
 	store = createStore(reducers)
+	store.subscribe(() =>
+		console.log(store.getState())
+	);
 
 	console.log(store.getState())
-
-	console.log(store.getState().reducers2.reducer)
-	// store.dispatch({
-	// 	type: 'INCREMENT',
-	// 	someData: "someData"
-	// })
 	console.log(store.getState().reducers2.reducer)
 
+	store.dispatch({
+		type: "INCREMENT",
+		someData: "someData"
+	})
+	console.log(store.getState().reducers2.reducer)
+
 	// store.dispatch({
-	// 	type: 'case2_1',
+	// 	type: "case2_1",
 	// 	index: 1
 	// })
 	// console.log(store.getState())
@@ -142,7 +148,7 @@ const Spp = () => {
 	return (
 		<div>
 			<p><a target="_blank" href="https://ant.design/components/dropdown-cn/">https://ant.design/components/dropdown-cn/</a></p>
-			<p><a target="_blank" href="https://www.redux.org.cn/docs/basics/Store.html">https://www.redux.org.cn/docs/basics/Store.html</a></p>
+			<p><a target="_blank" href="https://www.redux.org.cn/docs/basics/UsageWithReact.html">实现容器组件</a></p>
 			<p><a target="_blank" href="https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf</a></p>
 			<p><a target="_blank" href="https://naotu.baidu.com/file/ebb15bfab65c13e694195623af62899b">百度</a></p>
 			<p><a target="_blank" href="https://www.processon.com/diagraming/5c8a240ee4b02ce2e88e8466">processon</a></p>
@@ -150,6 +156,7 @@ const Spp = () => {
 
 			<p><a target="_blank" href="https://www.cnblogs.com/sanhuamao/p/13773556.html">https://www.cnblogs.com/sanhuamao/p/13773556.html</a></p>
 			<p><a target="_blank" href=""></a></p>
+
 		</div>
 	);
 };
@@ -244,7 +251,7 @@ function mapDispatchToProps(dispatch, ownProps) {
 	return {
 		case2_1: () => {
 			dispatch({
-				type: 'case2_1',
+				type: "case2_1",
 				index: 1
 			})
 		},
