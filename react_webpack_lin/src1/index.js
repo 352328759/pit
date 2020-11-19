@@ -14,14 +14,14 @@ import { combineReducers, createStore } from "redux";
 // import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
-// import zhCN from "antd/es/locale/zh_CN";
-// import moment from "moment";
-// import "moment/locale/zh-cn";
-// import "antd/dist/antd.css";
-// import ColumnGroup from "antd/lib/table/ColumnGroup";
-// moment.locale("zh-cn");
+import zhCN from "antd/es/locale/zh_CN";
+import moment from "moment";
+import "moment/locale/zh-cn";
+import "antd/dist/antd.css";
+import ColumnGroup from "antd/lib/table/ColumnGroup";
+moment.locale("zh-cn");
 
-// other
+// 其它
 // import _ from "Lodash";
 
 // my style
@@ -31,7 +31,7 @@ import "./stylesheets/antd.css";
  * 
  */
 
-// import { Button, Avatar } from "./myAntd";
+import { Button, Avatar } from "./myAntd";
 
 
 // import * as Utils from "../js/Utils/index";
@@ -39,10 +39,7 @@ import "./stylesheets/antd.css";
 // console.log(ArgAdd(0.1, 0.2))
 var store
 
-function nameSwq(params) {
-	var d = params
-	return d
-}
+
 
 
 function learnRedux() {
@@ -116,19 +113,14 @@ function learnRedux() {
 	let reducers2 = combineReducers({ reducer2, reducer })
 	let reducers = combineReducers({ reducers2, visibilityFilter, todos })
 	store = createStore(reducers)
-	store.subscribe(() =>
-		console.log(store.getState())
-	);
 
-	console.log(store.getState())
-	console.log(store.getState().reducers2.reducer)
-
-	store.dispatch({
-		type: "INCREMENT",
-		someData: "someData"
-	})
-	console.log(store.getState().reducers2.reducer)
-
+	// store.subscribe(() =>
+	// 	console.log(store.getState())
+	// );
+	// store.dispatch({
+	// 	type: "INCREMENT",
+	// 	someData: "someData"
+	// })
 	// store.dispatch({
 	// 	type: "case2_1",
 	// 	index: 1
@@ -163,15 +155,18 @@ const Spp = () => {
 
 const App = () => {
 	let refBpp;
-	const click1 = str => {
-		refBpp.refs.Cpp.onSomething("onSomething")
+	const [refName, setRefName] = useState(101);
+
+	const click1 = (event) => {
+		setRefName(refName + 1)
+		console.log(event)
 	}
 
 	return (
-		<>
-			<Bpp ref={i => refBpp = i}></Bpp>
-			<div onClick={click1}>click1</div>
-		</>
+		<div>
+			<div onClick={click1.bind(this, 'add')}>click1</div>
+			<div>{refName}</div>
+		</div>
 	);
 };
 
@@ -194,7 +189,7 @@ class Bpp extends React.Component {
 	render() {
 		return (
 			<>
-				<Cpp ref="Cpp"></Cpp>
+				<div>Bpp</div>
 			</>
 		);
 	}
@@ -207,24 +202,26 @@ class Cpp extends React.Component {
 		this.state = {
 			swq: "cccc",
 		};
-		this.onSomething = this.onSomething.bind(this)
+		// this.onSomething = this.onSomething.bind(this)
 	}
 
-	onSomething(params) {
-		console.log(params)
-	}
+	// onSomething(params) { }
 
 	componentDidMount() { }
 
 	render() {
 		const { swq } = this.state
 		const { reducers2, visibilityFilter, todos, case2_1 } = this.props
+
+		console.log(this)
+		console.log(this.props)
+
 		return (
 			<div>
-				<div>{reducers2.reducer}</div>
+				{/* <div>{reducers2.reducer}</div>
 				<div onClick={case2_1}>{reducers2.reducer2}</div>
 				<div>{visibilityFilter}</div>
-				<div>{todos}</div>
+				<div>{todos}</div> */}
 				<hr />
 				<div>Cpp {swq}</div>
 				{this.props.children ? <div>{this.props.children}</div> : null}
@@ -245,8 +242,8 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-	console.log(dispatch)
-	console.log(ownProps)
+	// console.log(dispatch)
+	// console.log(ownProps)
 
 	return {
 		case2_1: () => {
@@ -258,6 +255,7 @@ function mapDispatchToProps(dispatch, ownProps) {
 	}
 }
 
+const Connect_Cpp = connect()(Cpp)
 // const Connect_Cpp = connect(mapStateToProps, mapDispatchToProps)(Cpp)
 
 const Dpp = () => {
@@ -284,7 +282,7 @@ const Dpp = () => {
 			</Avatar.Group> */}
 			{/* <p><a target="_blank" href="https://zh-hans.reactjs.org/docs/react-api.html#createelement">createElement() 也可以是 React 组件 类型</a></p> */}
 
-			<Button type="primary">Primary Button</Button>
+			{/* <Button type="primary">Primary Button</Button> */}
 
 
 			{/* <Button onClick={click1}>Default Button</Button> */}
@@ -302,7 +300,7 @@ render((
 		<>
 			<Spp />
 
-			{/* <App /> */}
+			<App />
 			{/* <Bpp /> */}
 
 			{/* <Cpp swq={"d"} /> */}
