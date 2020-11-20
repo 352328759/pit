@@ -14,15 +14,16 @@ import { combineReducers, createStore } from "redux";
 // import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
-import zhCN from "antd/es/locale/zh_CN";
-import moment from "moment";
-import "moment/locale/zh-cn";
-import "antd/dist/antd.css";
-import ColumnGroup from "antd/lib/table/ColumnGroup";
-moment.locale("zh-cn");
+// import zhCN from "antd/es/locale/zh_CN";
+// import moment from "moment";
+// import "moment/locale/zh-cn";
+// import "antd/dist/antd.css";
+// import ColumnGroup from "antd/lib/table/ColumnGroup";
+// moment.locale("zh-cn");
 
 // 其它
 // import _ from "Lodash";
+import ProviderApp from "./components/ProviderApp";
 
 // my style
 import "./stylesheets/antd.css";
@@ -37,104 +38,8 @@ import { Button, Avatar } from "./myAntd";
 // import * as Utils from "../js/Utils/index";
 // import { ArgAdd } from "../js/Utils/index";
 // console.log(ArgAdd(0.1, 0.2))
-var store
 
 
-
-
-function learnRedux() {
-
-	//redux
-
-	function reducer(state = 0, action) {
-		switch (action.type) {
-			case "INCREMENT":
-				return state + 1;
-			case "DECREMENT":
-				return state - 1;
-			default:
-				return state;
-		}
-	}
-	function reducer2(state = 0, action) {
-		switch (action.type) {
-			case "case2_1":
-				console.log(action.index)
-				return state + 1;
-			case "case2_2":
-				return state - 1;
-			default:
-				return state;
-		}
-	}
-
-	// let store = createStore(reducer);
-
-
-
-	// store.dispatch({ type: "INCREMENT" });
-	// store.dispatch({ type: "INCREMENT" });
-	// store.dispatch({ type: "DECREMENT" });
-
-	function visibilityFilter(state = "SHOW_ALL", action) {
-		switch (action.type) {
-			case "SET_VISIBILITY_FILTER":
-				return action.filter
-			default:
-				return state
-		}
-	}
-
-	function todos(state = [], action) {
-		switch (action.type) {
-			case "ADD_TODO":
-				return [
-					...state,
-					{
-						text: action.text,
-						completed: false
-					}
-				]
-			case "COMPLETE_TODO":
-				return state.map((todo, index) => {
-					if (index === action.index) {
-						return Object.assign({}, todo, {
-							completed: true
-						})
-					}
-					return todo
-				})
-			default:
-				return state
-		}
-	}
-
-
-	let reducers2 = combineReducers({ reducer2, reducer })
-	let reducers = combineReducers({ reducers2, visibilityFilter, todos })
-	store = createStore(reducers)
-
-	// store.subscribe(() =>
-	// 	console.log(store.getState())
-	// );
-	// store.dispatch({
-	// 	type: "INCREMENT",
-	// 	someData: "someData"
-	// })
-	// store.dispatch({
-	// 	type: "case2_1",
-	// 	index: 1
-	// })
-	// console.log(store.getState())
-
-	// console.log("%s", reducer)
-	// console.log("%s", reducers)
-	// console.log(reducer)
-	// console.log(reducers)
-
-	//redux end
-}
-learnRedux()
 
 const Spp = () => {
 	return (
@@ -211,17 +116,13 @@ class Cpp extends React.Component {
 
 	render() {
 		const { swq } = this.state
-		const { reducers2, visibilityFilter, todos, case2_1 } = this.props
 
 		console.log(this)
 		console.log(this.props)
 
 		return (
 			<div>
-				{/* <div>{reducers2.reducer}</div>
-				<div onClick={case2_1}>{reducers2.reducer2}</div>
-				<div>{visibilityFilter}</div>
-				<div>{todos}</div> */}
+
 				<hr />
 				<div>Cpp {swq}</div>
 				{this.props.children ? <div>{this.props.children}</div> : null}
@@ -230,33 +131,8 @@ class Cpp extends React.Component {
 	}
 }
 
-function mapStateToProps(state, ownProps) {
-	// state === store.getState() // true
-	// console.log(state)
-	// console.log(ownProps)
-	return {
-		reducers2: state.reducers2,
-		visibilityFilter: state.visibilityFilter,
-		todos: state.todos,
-	}
-}
 
-function mapDispatchToProps(dispatch, ownProps) {
-	// console.log(dispatch)
-	// console.log(ownProps)
 
-	return {
-		case2_1: () => {
-			dispatch({
-				type: "case2_1",
-				index: 1
-			})
-		},
-	}
-}
-
-const Connect_Cpp = connect()(Cpp)
-// const Connect_Cpp = connect(mapStateToProps, mapDispatchToProps)(Cpp)
 
 const Dpp = () => {
 	const [refName, setRefName] = useState(null);
@@ -296,17 +172,17 @@ const Dpp = () => {
 };
 
 render((
-	<Provider store={store}>
-		<>
-			<Spp />
+	// <Provider store={store}>
+	<>
+		{/* <Spp /> */}
 
-			<App />
-			{/* <Bpp /> */}
+		{/* <App /> */}
+		{/* <Bpp /> */}
 
-			{/* <Cpp swq={"d"} /> */}
-			{/* <Connect_Cpp /> */}
+		{/* <Cpp swq={"d"} /> */}
+		<ProviderApp />
 
-			{/* <Dpp /> */}
-		</>
-	</Provider>
+		{/* <Dpp /> */}
+	</>
+	// </Provider>
 ), document.getElementById("react-container"));
