@@ -46,12 +46,15 @@ const Spp = () => {
 		<div>
 			<p><a target="_blank" href="https://ant.design/components/dropdown-cn/">https://ant.design/components/dropdown-cn/</a></p>
 			<p><a target="_blank" href="https://www.redux.org.cn/docs/basics/UsageWithReact.html">实现容器组件</a></p>
-			<p><a target="_blank" href="https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf</a></p>
+			<p><a target="_blank" href="https://blog.csdn.net/Chris__wang/article/details/97390279?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">react-redux使用时利用ref调用子组件方法不可用报错</a></p>
+
 			<p><a target="_blank" href="https://naotu.baidu.com/file/ebb15bfab65c13e694195623af62899b">百度</a></p>
 			<p><a target="_blank" href="https://www.processon.com/diagraming/5c8a240ee4b02ce2e88e8466">processon</a></p>
-			<p><a target="_blank" href="https://www.cnblogs.com/lanpang9661/p/12611087.html">React.forwardRef</a></p>
 
-			<p><a target="_blank" href="https://www.cnblogs.com/sanhuamao/p/13773556.html">https://www.cnblogs.com/sanhuamao/p/13773556.html</a></p>
+			<p><a target="_blank" href="https://www.cnblogs.com/lanpang9661/p/12611087.html">React.forwardRef</a></p>
+			<p><a target="_blank" href="https://zh-hans.reactjs.org/docs/react-api.html#reactforwardref">https://zh-hans.reactjs.org/docs/react-api.html#reactforwardref</a></p>
+			<p><a target="_blank" href="https://www.cnblogs.com/crazycode2/p/10023493.html">https://www.cnblogs.com/crazycode2/p/10023493.html</a></p>
+
 			<p><a target="_blank" href=""></a></p>
 
 		</div>
@@ -60,18 +63,32 @@ const Spp = () => {
 
 const App = () => {
 	let refBpp;
+	let refDiv1;
+	let refDiv2 = React.createRef();
 	const [refName, setRefName] = useState(101);
 
 	const click1 = (event) => {
 		setRefName(refName + 1)
-		console.log(event)
+		// console.log(event)
+
+		// refBpp.refs.Cpp.onSomething("onSomething")
+
+		console.log(refBpp)
+		console.log(refDiv1)
+		console.log(refDiv2.current)
+		// refDiv2.current.style.color = "red"
 	}
 
 	return (
-		<div>
-			<div onClick={click1.bind(this, 'add')}>click1</div>
+		<>
+			<div onClick={click1.bind(this, 'add')}>App click1</div>
 			<div>{refName}</div>
-		</div>
+
+			<div ref={i => refDiv1 = i}>refDiv1</div>
+			<div ref={refDiv2}>refDiv2</div>
+
+			<Bpp ref={i => refBpp = i}></Bpp>
+		</>
 	);
 };
 
@@ -84,16 +101,27 @@ class Bpp extends React.Component {
 		this.state = {
 			// str: "This is an editable text.",
 		};
+		this.refDiv1;
+		this.refDiv2 = React.createRef();
 		// this.onChange = this.onChange.bind(this)
-		// this.onClick = this.onClick.bind(this)
+		this.click1 = this.click1.bind(this)
 	}
 
-	onClick() { }
+	click1() {
+		console.log(this.refDiv1)
+		console.log(this.refDiv2.current)
+		this.refDiv2.current.style.color = "red"
+	}
 	componentDidMount() { }
 
 	render() {
 		return (
 			<>
+				<div ref={i => this.refDiv1 = i}>refDiv1</div>
+				<div ref={this.refDiv2}>refDiv2</div>
+				<Cpp ref="Cpp"></Cpp>
+
+				<div onClick={this.click1}>Bpp click1</div>
 				<div>Bpp</div>
 			</>
 		);
@@ -107,18 +135,17 @@ class Cpp extends React.Component {
 		this.state = {
 			swq: "cccc",
 		};
-		// this.onSomething = this.onSomething.bind(this)
+		this.onSomething = this.onSomething.bind(this)
 	}
 
-	// onSomething(params) { }
+	onSomething(params) {
+		console.log(params)
+	}
 
 	componentDidMount() { }
 
 	render() {
 		const { swq } = this.state
-
-		console.log(this)
-		console.log(this.props)
 
 		return (
 			<div>
@@ -176,11 +203,11 @@ render((
 	<>
 		{/* <Spp /> */}
 
-		{/* <App /> */}
+		<App />
 		{/* <Bpp /> */}
 
 		{/* <Cpp swq={"d"} /> */}
-		<ProviderApp />
+		{/* <ProviderApp /> */}
 
 		{/* <Dpp /> */}
 	</>

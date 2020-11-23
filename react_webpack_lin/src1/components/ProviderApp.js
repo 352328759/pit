@@ -60,9 +60,9 @@ function val3(state = [], action) {
 let val1 = combineReducers({ val1_1, val1_2 })
 let reducers = combineReducers({ val1, val2, val3 })
 var store = createStore(reducers)
-store.subscribe(() =>
+store.subscribe(() => {
 	console.log(store.getState())
-);
+});
 
 
 // 展示组件
