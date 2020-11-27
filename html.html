@@ -1,7 +1,7 @@
 ﻿<html>
 
 <head>
-	<title>700 - 111</title>
+	<title>700 - 202</title>
 </head>
 
 <body>
@@ -12,16 +12,47 @@
 
 
 
-
 	<!-- <script src="./jvw/mock/mock-min.js"></script> -->
 	<!-- <script src="./jvw/axios/axios.0.18.0.min.js"></script> -->
 	<script type="text/javascript">
 		"use strict"
 
-		// Node 中包的查询顺序
+		// p202
+		// 写一个获取非行间样式的函数
+		// 不是标签上的样式
+		// 应该是指头部 css, 或 css 文件的样式内容
 
+		function getStyle(obj, attr, value) {
+			if (!value) {
+				if (obj.currentStyle) {
+					return obj.currentStyle(attr)
+				}
+				else {
+					obj.getComputedStyle(attr, false)
+				}
+			}
+			else {
+				obj.style[attr] = value
+			}
+		}
 
+		function swq(params) {
+			// p205
+			// 取消冒泡
 
+			// w3c
+			e.stopPropagation();
+			// ie
+			window.event.cancelBubble = true;
+
+			// 取消默认事件
+
+			// w3c
+			e.preventDefault()
+			// ie
+			e.returnValue = false
+
+		}
 
 
 	</script>
