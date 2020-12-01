@@ -2,15 +2,37 @@
 
 <head>
 	<title>700 - 202</title>
+	<style>
+		* {
+			outline: 1px red solid;
+		}
+
+		#box1 {
+			font-size: 30px;
+		}
+
+		#swq {
+			font-size: 20px;
+			height: 100px;
+			width: 300px;
+		}
+
+		#swq::after {
+			height: 50px;
+			content: "content";
+			font-size: 12px;
+		}
+	</style>
 </head>
 
 <body>
 
+	<div id="box1">
+		<div id="swq" style="width: 200px;">swq</div>
+	</div>
+
 	<br /><br />
 	<br /><br />
-
-
-
 
 	<!-- <script src="./jvw/mock/mock-min.js"></script> -->
 	<!-- <script src="./jvw/axios/axios.0.18.0.min.js"></script> -->
@@ -26,12 +48,10 @@
 			if (!value) {
 				if (obj.currentStyle) {
 					return obj.currentStyle(attr)
-				}
-				else {
+				} else {
 					obj.getComputedStyle(attr, false)
 				}
-			}
-			else {
+			} else {
 				obj.style[attr] = value
 			}
 		}
@@ -54,7 +74,40 @@
 
 		}
 
+		window.onload = function (params) {
+			var ele = document.getElementById("swq")
 
+			// getComputedStyle 能取到所有作用在该元素上的样式, 包括行内样式和非行内样式
+			// getComputedStyle 只读, 不能修改
+			console.log(window.getComputedStyle(ele, null).width)
+			console.log(window.getComputedStyle(ele, null).fontSize)
+			// getPropertyValue 中可以用字符串, 否则要用驼峰体
+			console.log(window.getComputedStyle(ele, null).getPropertyValue("font-size"))
+			// 针对伪类
+			console.log(window.getComputedStyle(ele, "::after").content)
+			console.log(window.getComputedStyle(ele, "::after").height)
+			console.log(window.getComputedStyle(ele, "::after").getPropertyValue("font-size"))
+
+			console.log("-----------------")
+
+			// style 只能取到行内样式
+			// style 可以修改样式, 修改的样式作用在行内
+			console.log(ele.style.width)
+			console.log(ele.style.height)
+			console.log(ele.style.fontSize)
+			console.log(ele.getAttribute("data-beforeData"))
+
+			if (ele.currentStyle) {
+				console.log("ie")
+				console.log(ele.currentStyle.fontSize)
+				// currentStyle 取不到伪类的数据
+			}
+		}
+
+		// https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getComputedStyle
+		// https://blog.csdn.net/sandaray/article/details/78029763
+		// document.styleSheets
+		// 样式表
 	</script>
 </body>
 
