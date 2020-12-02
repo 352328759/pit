@@ -23,6 +23,11 @@
 			font-size: 12px;
 		}
 	</style>
+	<style>
+		#swq {
+			color: red;
+		}
+	</style>
 </head>
 
 <body>
@@ -30,6 +35,130 @@
 	<div id="box1">
 		<div id="swq" style="width: 200px;">swq</div>
 	</div>
+
+	<br /><br />
+
+
+	<table>
+		<tr>
+			<th>数据</th>
+			<th>数据类型</th>
+			<th>注释</th>
+		</tr>
+		<tr>
+			<td>document.styleSheets</td>
+			<td>StyleSheetList</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>document.styleSheets[0]</td>
+			<td>CSSStyleSheet</td>
+			<td>CSSStyleSheet 继承自 StyleSheet</td>
+		</tr>
+		<tr>
+			<td>document.styleSheets[0].cssRules</td>
+			<td>CSSRuleList</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>document.styleSheets[0].cssRules[1]</td>
+			<td>CSSStyleRule</td>
+			<td>CSSStyleRule 继承自 CSSRule</td>
+		</tr>
+		<tr>
+			<td>document.styleSheets[0].cssRules[1].cssText</td>
+			<td>String</td>
+			<td>第0个样式表的第1条规则的文本</td>
+		</tr>
+		<tr>
+			<td>document.styleSheets[0].cssRules[0].style.outline</td>
+		</tr>
+	</table>
+
+
+
+	<h1>CSSStyleSheet</h1>
+	<table>
+		<tr>
+			<td>方法/属性</td>
+			<td>说明</td>
+			<td>语法</td>
+		</tr>
+		<tr>
+			<td>cssRules</td>
+			<td>返回一个实时的 CSSRuleList，其中包含组成样式表的 CSSRule 对象的一个最新列表</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>ownerRule</td>
+			<td>如果一个样式表示通过@import 规则引入文档，那么 ownerRule 属性会返回相应的CSSImportRule对象，否则返回 null</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>deleteRule(index)</td>
+			<td>从样式表中删除特定位置的一条规则</td>
+			<td>index: 位置;</td>
+		</tr>
+		<tr>
+			<td>insertRule(rule [, index])</td>
+			<td>向样式表的特定位置插入一条新规则，需要提供新规则的完整文本</td>
+			<td>rule: 规则; index: 位置;</td>
+		</tr>
+	</table>
+
+
+
+	<h1>StyleSheet</h1>
+	<table>
+		<tr>
+			<td>方法/属性</td>
+			<td>说明</td>
+		</tr>
+		<tr>
+			<td>disabled</td>
+			<td>返回Boolean表示当前样式表是否可用</td>
+		</tr>
+		<tr>
+			<td>href</td>
+			<td>返回 DOMString 表示样式表的位置</td>
+		</tr>
+		<tr>
+			<td>media</td>
+			<td>返回 MediaList 表示样式的预期目标媒体</td>
+		</tr>
+		<tr>
+			<td>ownerNode</td>
+			<td>返回 Node 将此样式表与当前文档相关联</td>
+		</tr>
+		<tr>
+			<td>parentStyleSheet</td>
+			<td>返回 StyleSheet 如果有的话; 返回 null 如果没有</td>
+		</tr>
+		<tr>
+			<td>title</td>
+			<td>返回 DOMString 表示当前样式表的顾问标题</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>返回 DOMString 表示当前样式表的语言</td>
+		</tr>
+	</table>
+
+	<div>注意：尽管 insertRule() 是 CSSStyleSheet 的一个方法，但它实际插入的地方是 CSSStyleSheet.cssRules 的内部 CSSRuleList。</div>
+	<div>document.styleSheets[0].rules === document.styleSheets[0].cssRules</div>
+
+
+
+	样式表
+
+
+
+	<br /><br />
+
+	<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getComputedStyle">https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getComputedStyle</a>
+	<br />
+	<a href="https://blog.csdn.net/sandaray/article/details/78029763">https://blog.csdn.net/sandaray/article/details/78029763</a>
+	<br />
 
 	<br /><br />
 	<br /><br />
@@ -74,7 +203,7 @@
 
 		}
 
-		window.onload = function (params) {
+		function fun1(params) {
 			var ele = document.getElementById("swq")
 
 			// getComputedStyle 能取到所有作用在该元素上的样式, 包括行内样式和非行内样式
@@ -104,10 +233,44 @@
 			}
 		}
 
-		// https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getComputedStyle
-		// https://blog.csdn.net/sandaray/article/details/78029763
-		// document.styleSheets
-		// 样式表
+		function fun2(params) {
+
+			console.log(document.styleSheets)
+			// console.log(document.styleSheets[0])
+			// console.log(document.styleSheets[0].cssRules[0])
+			// console.log(document.styleSheets[0].cssRules[0].cssText)
+
+
+			// document.styleSheets[1].deleteRule(0)
+			// document.styleSheets[1].insertRule("#swq{color:#000}", 1)
+
+			console.log(document.styleSheets[1].cssRules)
+
+
+			// var allCSS = [].slice.call(document.styleSheets).reduce(function (prev, styleSheet) {
+			// 	if (styleSheet.cssRules) {
+			// 		return prev + [].slice.call(styleSheet.cssRules).reduce(function (prev, cssRule) {
+			// 			return prev + cssRule.cssText;
+			// 		}, '');
+			// 	} else {
+			// 		return prev;
+			// 	}
+			// }, '');
+
+			// console.log(allCSS)
+
+		}
+
+
+
+		window.onload = fun2
+
+		// https://developer.mozilla.org/zh-CN/docs/Web/API/CSSStyleSheet
+		// https://developer.mozilla.org/zh-CN/docs/Web/API/Document/styleSheets
+		// https://developer.mozilla.org/zh-CN/docs/Web/API/StyleSheet
+		// https://www.jb51.net/shouce/dhtml/objects/obj_styleSheet.html
+
+
 	</script>
 </body>
 
