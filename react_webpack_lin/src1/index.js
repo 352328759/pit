@@ -178,9 +178,9 @@ const Dpp = () => {
 render((
 	// <Provider store={store}>
 	<React.Fragment>
-		<Spp />
+		{/* <Spp /> */}
 
-		{/* <ComponentApp /> */}
+		<ComponentApp />
 
 		{/* <App /> */}
 		{/* <Bpp /> */}

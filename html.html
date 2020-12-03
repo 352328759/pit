@@ -3,9 +3,12 @@
 <head>
 	<title>700 - 202</title>
 	<style>
+		@import url("./css/scss.css");
+
 		* {
 			outline: 1px red solid;
 		}
+
 
 		#box1 {
 			font-size: 30px;
@@ -18,8 +21,10 @@
 		}
 
 		#swq::after {
+			display: block;
+			outline: 1px green solid;
 			height: 50px;
-			content: "content";
+			content: "attr()";
 			font-size: 12px;
 		}
 	</style>
@@ -36,6 +41,10 @@
 		<div id="swq" style="width: 200px;">swq</div>
 	</div>
 
+	<div class="s">
+		<div class="swq">.s .swq</div>
+	</div>
+
 	<br /><br />
 
 
@@ -48,30 +57,53 @@
 		<tr>
 			<td>document.styleSheets</td>
 			<td>StyleSheetList</td>
-			<td></td>
+			<td>相当于 style 标签的集合</td>
 		</tr>
 		<tr>
 			<td>document.styleSheets[0]</td>
 			<td>CSSStyleSheet</td>
-			<td>CSSStyleSheet 继承自 StyleSheet</td>
+			<td>
+				<div>CSSStyleSheet 继承自 StyleSheet</div>
+				<div>相当于某个 style 标签; 也就是传说中的[样式表]</div>
+			</td>
 		</tr>
 		<tr>
 			<td>document.styleSheets[0].cssRules</td>
 			<td>CSSRuleList</td>
-			<td></td>
+			<td>相当于某个 style 标签的规则的集合</td>
 		</tr>
 		<tr>
-			<td>document.styleSheets[0].cssRules[1]</td>
+			<td>document.styleSheets[0].cssRules[0](@import)</td>
+			<td>CSSImportRule</td>
+			<td>这里只能取到 [@import url()] 的文本内容, 并不能取到规则内容</td>
+		</tr>
+		<tr>
+			<td>document.styleSheets[0].cssRules[0].styleSheet</td>
+			<td>CSSStyleSheet</td>
+			<td>@import 的情况, 下一层 styleSheet 又是 CSSStyleSheet 类型; @import 只对应一个样式表, 所以 styleSheet 没有 s, 也不用指定下标</td>
+		</tr>
+		<tr>
+			<td>document.styleSheets[0].cssRules[1](常规的{})</td>
 			<td>CSSStyleRule</td>
-			<td>CSSStyleRule 继承自 CSSRule</td>
+			<td>
+				<div>CSSStyleRule 继承自 CSSRule</div>
+				<div>相当于某个 style 标签的某条规则; 一个 @import 或者一对{}对应的内容</div>
+			</td>
 		</tr>
 		<tr>
 			<td>document.styleSheets[0].cssRules[1].cssText</td>
 			<td>String</td>
-			<td>第0个样式表的第1条规则的文本</td>
+			<td>第0个样式表的第1条规则的文本;cssText 是只读, 没有修改功能</td>
 		</tr>
 		<tr>
-			<td>document.styleSheets[0].cssRules[0].style.outline</td>
+			<td>document.styleSheets[0].cssRules[0].style</td>
+			<td>CSSStyleDeclaration</td>
+			<td>数字下标的是"非初始值"的完整属性名(outline 会被拆分成 color, style, width)</td>
+		</tr>
+		<tr>
+			<td>document.styleSheets[0].cssRules[0].style.属性名</td>
+			<td>String</td>
+			<td>用属性名可以直接取到属性值;在style可以修改样式</td>
 		</tr>
 	</table>
 
@@ -102,7 +134,12 @@
 		<tr>
 			<td>insertRule(rule [, index])</td>
 			<td>向样式表的特定位置插入一条新规则，需要提供新规则的完整文本</td>
-			<td>rule: 规则; index: 位置;</td>
+			<td>rule: 规则; index: 位置(默认最前);</td>
+		</tr>
+		<tr>
+			<td>addRule(selector, styleBlock, index)</td>
+			<td>跟 insertRule() 功能相似, 用法不同; 过时方法</td>
+			<td>selector: 选择器; styleBlock: 规则正文; index: 位置(默认最后);</td>
 		</tr>
 	</table>
 
@@ -149,24 +186,39 @@
 
 
 
-	样式表
+
+
+	<br /><br />
+
+
+	<a target="_blank" href="https://www.jb51.net/shouce/dhtml/objects/obj_styleSheet.html">https://www.jb51.net/shouce/dhtml/objects/obj_styleSheet.html</a>
+	<br />
+	<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/API/StyleSheet">https://developer.mozilla.org/zh-CN/docs/Web/API/StyleSheet</a>
+	<br />
+	<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/styleSheets">https://developer.mozilla.org/zh-CN/docs/Web/API/Document/styleSheets</a>
+	<br />
+	<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CSSStyleSheet">https://developer.mozilla.org/zh-CN/docs/Web/API/CSSStyleSheet</a>
+	<br />
+
+	<hr />
+
+	<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getComputedStyle">https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getComputedStyle</a>
+	<br />
+
+	<hr />
 
 
 
 	<br /><br />
 
-	<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getComputedStyle">https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getComputedStyle</a>
-	<br />
-	<a href="https://blog.csdn.net/sandaray/article/details/78029763">https://blog.csdn.net/sandaray/article/details/78029763</a>
-	<br />
-
-	<br /><br />
 	<br /><br />
 
 	<!-- <script src="./jvw/mock/mock-min.js"></script> -->
 	<!-- <script src="./jvw/axios/axios.0.18.0.min.js"></script> -->
 	<script type="text/javascript">
 		"use strict"
+
+
 
 		// p202
 		// 写一个获取非行间样式的函数
@@ -224,6 +276,7 @@
 			console.log(ele.style.width)
 			console.log(ele.style.height)
 			console.log(ele.style.fontSize)
+			// 针对用 data beforeData 控制伪类 content 的情况
 			console.log(ele.getAttribute("data-beforeData"))
 
 			if (ele.currentStyle) {
@@ -235,16 +288,22 @@
 
 		function fun2(params) {
 
-			console.log(document.styleSheets)
+			// console.log(document.styleSheets)
 			// console.log(document.styleSheets[0])
 			// console.log(document.styleSheets[0].cssRules[0])
 			// console.log(document.styleSheets[0].cssRules[0].cssText)
 
 
+
+			// console.log(document.styleSheets[1].cssRules)
+
 			// document.styleSheets[1].deleteRule(0)
 			// document.styleSheets[1].insertRule("#swq{color:#000}", 1)
+			// document.styleSheets[1].addRule("#swq", "color:#000", 1)
 
-			console.log(document.styleSheets[1].cssRules)
+			console.log(Object.prototype.toString.call(
+				document.styleSheets[0].cssRules[0].styleSheet
+			))
 
 
 			// var allCSS = [].slice.call(document.styleSheets).reduce(function (prev, styleSheet) {
@@ -263,12 +322,11 @@
 
 
 
+
+
 		window.onload = fun2
 
-		// https://developer.mozilla.org/zh-CN/docs/Web/API/CSSStyleSheet
-		// https://developer.mozilla.org/zh-CN/docs/Web/API/Document/styleSheets
-		// https://developer.mozilla.org/zh-CN/docs/Web/API/StyleSheet
-		// https://www.jb51.net/shouce/dhtml/objects/obj_styleSheet.html
+
 
 
 	</script>
