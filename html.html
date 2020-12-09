@@ -4,19 +4,82 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>700 - 205</title>
+	<title>700 - 295</title>
 	<style>
+
 	</style>
 </head>
 
 <body>
-
+	<table>
+		<tbody>
+			<tr>
+				<td>&lt;</td>
+				<td>&amp;lt;</td>
+				<td>&amp;#60; </td>
+				<td>小于号</td>
+			</tr>
+			<tr>
+				<td>&gt;</td>
+				<td>&amp;gt; </td>
+				<td>&amp;#62;</td>
+				<td>大于号</td>
+			</tr>
+			<tr>
+				<td>≤</td>
+				<td>&amp;le;</td>
+				<td>&amp;#8804;</td>
+				<td>小于等于号</td>
+			</tr>
+			<tr>
+				<td>≥</td>
+				<td>&amp;ge;</td>
+				<td>&amp;#8805;</td>
+				<td>大于等于号</td>
+			</tr>
+			<tr>
+				<td>"</td>
+				<td>&amp;quot;</td>
+				<td>&amp;#34;</td>
+				<td>引号</td>
+			</tr>
+			<tr>
+				<td>“</td>
+				<td>&amp;ldquo;</td>
+				<td>&amp;#147;</td>
+				<td>左双引号</td>
+			</tr>
+			<tr>
+				<td>”</td>
+				<td>&amp;rdquo;</td>
+				<td>&amp;#148;</td>
+				<td>右双引号</td>
+			</tr>
+			<tr>
+				<td>‘</td>
+				<td>&amp;lsquo;</td>
+				<td>&amp;#145;</td>
+				<td>
+					<p><span>左单引号</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td>’</td>
+				<td>&amp;rsquo;</td>
+				<td>&amp;#146;</td>
+				<td>右单引号</td>
+			</tr>
+		</tbody>
+	</table>
 
 	<!-- <script src="./jvw/jquery.min.js"></script> -->
 	<!-- <script src="./jvw/mock/mock-min.js"></script> -->
 	<!-- <script src="./jvw/axios/axios.0.18.0.min.js"></script> -->
 	<script type="text/javascript">
 		"use strict"
+
+		parseInt(escape("&").substr(1), 16) // 38
+		parseInt(escape("≤").substr(2), 16) // 8804
 
 	</script>
 </body>
