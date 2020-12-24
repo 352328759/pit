@@ -78,20 +78,20 @@
 
 
 
-<a href="http://www.hongweipeng.com/index.php/archives/1512/">http://www.hongweipeng.com/index.php/archives/1512/</a>
-<a href="https://developer.mozilla.org/zh-cn/docs/web/html/element/img">https://developer.mozilla.org/zh-cn/docs/web/html/element/img</a>
-<a href="https://segmentfault.com/a/1190000022329179">https://segmentfault.com/a/1190000022329179</a>
-<a href="https://www.cnblogs.com/dogxgod/p/5994183.html">https://www.cnblogs.com/dogxgod/p/5994183.html</a>
-<a href="https://www.cnblogs.com/flicat/p/4381089.html">https://www.cnblogs.com/flicat/p/4381089.html</a>
-<a href="https://www.cnntt.com/archives/2635">https://www.cnntt.com/archives/2635</a>
+	<a href="http://www.hongweipeng.com/index.php/archives/1512/">http://www.hongweipeng.com/index.php/archives/1512/</a>
+	<a href="https://developer.mozilla.org/zh-cn/docs/web/html/element/img">https://developer.mozilla.org/zh-cn/docs/web/html/element/img</a>
+	<a href="https://segmentfault.com/a/1190000022329179">https://segmentfault.com/a/1190000022329179</a>
+	<a href="https://www.cnblogs.com/dogxgod/p/5994183.html">https://www.cnblogs.com/dogxgod/p/5994183.html</a>
+	<a href="https://www.cnblogs.com/flicat/p/4381089.html">https://www.cnblogs.com/flicat/p/4381089.html</a>
+	<a href="https://www.cnntt.com/archives/2635">https://www.cnntt.com/archives/2635</a>
 
-
+	<br /><br /><br />
 
 	<!-- <img src="./img/2.jpg" alt=""> -->
 
 	<!-- <img src="" sizes=" (max-width: 360px) 200px,(max-width: 480px) 300px,400px" srcset="./img/1.jpg 400w, ./img/2.jpg 300w" alt="" id="img"> -->
 
-	<img src="./img/1.jpg" srcset="./img/1.jpg 500w, ./img/2.jpg 1000w" sizes="(max-width: 600px) 500px, 80vw">
+	<img id="img" srcset="./img/1.jpg 100w, ./img/4.jpg 700w" sizes="(max-width: 600px) 400px, 100vw">
 	<!-- <img src="./img/1.jpg" srcset="./img/1.jpg 200w, ./img/2.jpg 400w" sizes="(max-width: 600px) 300px, 80vw"> -->
 
 	<!-- <img src="https://developer.mozilla.org/static/img/favicon72.png"
@@ -108,6 +108,28 @@
 	<div>使用 width、height 和 intrinsicsize 设置 原始分辨率：这将设置图像应占用的空间，以确保图像被加载之前页面的布局是稳定的</div>
 	<div>使用 sizes 和 srcset 设置响应式图像（亦可参考 <picture> 元素和我们的响应式图像教程）。</div>
 
+
+<pre>
+srcset_w / sizes_vw = 图片宽(px) / 100
+> 图片宽(px) * 1(sizes_vw) = srcset_w
+> 100vw = 100%
+
+sizes_px * 图片宽(px) = (wpx)
+
+srcset_w * img(px) = (wpx)
+
+srcset_x * img(px) = 图片宽(px)
+
+
+
+sizes(px) 默认 500px
+
+
+
+
+//end
+</pre>
+
 	<!-- <script src="./jvw/jquery.min.js"></script> -->
 	<!-- <script src="./jvw/mock/mock-min.js"></script> -->
 	<!-- <script src="./jvw/axios/axios.0.18.0.min.js"></script> -->
@@ -119,11 +141,150 @@
 			;
 		// 字符转编码, 编码为16进制, 16进制转10进制
 
+		var Utils = {
+			argAdd: function (arg1, arg2) {
+				// 加法函数
+				var _this = this,
+					r1 = 0,
+					r2 = 0,
+					m = 0;
+				try {
+					r1 = arg1.toString().split(".")[1].length
+				} catch (e) { }
+				try {
+					r2 = arg2.toString().split(".")[1].length
+				} catch (e) { }
+				m = Math.pow(10, Math.max(r1, r2))
+				return _this.argDiv((_this.argMul(arg1, m) + _this.argMul(arg2, m)), m)
+			},
+			argSubtr: function (arg1, arg2) {
+				// 减法函数
+				var _this = this,
+					r1 = 0,
+					r2 = 0,
+					m = 0;
+				try {
+					r1 = arg1.toString().split(".")[1].length
+				} catch (e) { }
+				try {
+					r2 = arg2.toString().split(".")[1].length
+				} catch (e) { }
+				m = Math.pow(10, Math.max(r1, r2));
+				return _this.argDiv((_this.argMul(arg1, m) - _this.argMul(arg2, m)), m)
+			},
+			argMul: function (arg1, arg2) {
+				// 乘法函数
+				var _this = this,
+					m = 0,
+					s1 = arg1.toString(),
+					s2 = arg2.toString();
+				try {
+					m += s1.split(".")[1].length
+				} catch (e) { }
+				try {
+					m += s2.split(".")[1].length
+				} catch (e) { }
+				return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
+			},
+			argDiv: function (arg1, arg2) {
+				// 除法函数
+				var _this = this,
+					t1 = 0,
+					t2 = 0,
+					r1, r2;
+				try {
+					t1 = arg1.toString().split(".")[1].length
+				} catch (e) { }
+				try {
+					t2 = arg2.toString().split(".")[1].length
+				} catch (e) { }
+				r1 = Number(arg1.toString().replace(".", ""))
+				r2 = Number(arg2.toString().replace(".", ""))
+				return _this.argMul((r1 / r2), Math.pow(10, t2 - t1));
+			}
+		}
+		// console.log(Utils.argAdd(0.1, 0.2))
+		// console.log(0.1 + 0.2)
+		// console.log(Utils.argSubtr(0.3, 0.2))
+		// console.log(0.3 - 0.2)
+		// console.log(Utils.argMul(0.55, 100))
+		// console.log(0.55 * 100)
+		// console.log(Utils.argDiv(0.55, 100))
+		// console.log(0.55 / 100)
+
+		// console.log("%O", document.getElementById("img"))
+
+		function testImg(obj) {
+
+			var { file_width, img_width, srcset_w, srcset_x, sizes_px, sizes_vw } = obj;
 
 
-		console.log("%O", document.getElementById("img"))
+
+			if (sizes_vw && srcset_w) {
+				if (Utils.argDiv(srcset_w, sizes_vw) === Utils.argDiv(file_width, 100)) {
+					console.log("1 success")
+				} else {
+					console.error("srcset_w / sizes_vw = 图片宽(px) / 100");
+					console.log("图片宽为100%?")
+				}
+			}
 
 
+			if (sizes_px && srcset_w && img_width) {
+				if (Utils.argMul(sizes_px, file_width) === Utils.argMul(srcset_w, img_width)) {
+					console.log("2 success")
+				} else {
+					console.error("sizes_px * 图片宽(px) === srcset_w * img(px)");
+					console.log(Utils.argMul(sizes_px, file_width), Utils.argMul(srcset_w, img_width))
+				}
+			}
+
+
+			if (srcset_x && img_width) {
+				if (Utils.argMul(srcset_x, img_width) === file_width) {
+					console.log("3 success")
+				} else {
+					console.error("srcset_x * img(px) = 图片宽(px)")
+				}
+			}
+
+
+
+
+
+		};
+		// w + px
+		// testImg({
+		// 	file_width: 300,
+		// 	img_width: 400,
+		// 	srcset_w: 300,
+		// 	sizes_px: 400,
+		// });
+
+		// x + px
+		// testImg({
+		// 	file_width: 300,
+		// 	img_width: 300,
+		// 	srcset_x: 1,
+		// 	sizes_px: 400,
+		// });
+
+		// w + vw
+		// testImg({
+		// 	file_width: 300,
+		// 	srcset_w: 300,
+		// 	sizes_vw: 100,
+		// });
+
+		testImg({
+			file_width: 700,
+			img_width: 400,
+			srcset_w: 700,
+			// 	srcset_x: 1,
+			sizes_px: 400,
+			sizes_vw: 100,
+
+		});
 
 
 
