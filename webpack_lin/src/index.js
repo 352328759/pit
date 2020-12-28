@@ -9,6 +9,12 @@
 //     document.getElementById('react-container')
 // )
 
-console.log(1)
-console.log(1)
-console.log(1)
+import * as Utils from "./Utils/index";
+
+window.Utils = Utils
+
+// console.log(Utils.DateFormat("yyyy-MM-dd hh:mm", 1603445164684))
+
+// console.log(1)
+// console.log(1)
+// console.log(1)
