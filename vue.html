@@ -270,7 +270,101 @@
 				computed: {},
 				created() {},
 				mounted() {},
-			})
+			});
+
+			function true_fun() {
+				console.log("true")
+				return 1
+			}
+
+			function false_fun() {
+				console.log("false")
+				return 0
+			}
+
+			function statement1_fun() {
+				console.log("statement1_fun")
+				return "statement1_fun"
+			}
+
+			function statement2_fun() {
+				console.log("statement2_fun")
+				return "statement2_fun"
+			}
+
+			function statement3_fun() {
+				console.log("statement3_fun")
+				return "statement3_fun"
+			}
+
+			var _true = 1;
+			var _false = 0;
+
+			function step1() {
+
+				console.log(_true && true_fun());
+				// 执行 true_fun()
+				// 返回 true_fun() 的执行结果
+
+				console.log(_false && true_fun());
+				// 不执行 true_fun()
+				// 返回 _false
+
+				console.log(true_fun() && _true);
+				// 执行 true_fun()
+				// 返回 _true
+
+				console.log(true_fun() && false_fun());
+				// 执行 true_fun() 后执行 false_fun()
+				// 返回 false_fun() 的执行结果
+
+				console.log(false_fun() && true_fun());
+				// 执行 false_fun()
+				// 不执行 true_fun()
+				// 返回 false_fun() 的执行结果
+
+			};
+
+			function step2() {
+				console.log(_true ? true_fun() : false_fun());
+				// 执行 true_fun()
+				// 返回 true_fun() 的执行结果
+
+				console.log(_false ? true_fun() : false_fun());
+				// 执行 false_fun()
+				// 返回 false_fun() 的执行结果
+			};
+
+			function step3() {
+				var condition = 0
+				console.log([statement1_fun, statement2_fun, statement3_fun][condition]())
+				// 返回 statement1_fun 方法本身
+				// 返回结果后, 用 () 实现执行方法
+
+				console.log(["男", "女", "未知"][condition])
+
+				condition = 1
+				console.log([statement1_fun, statement2_fun, statement3_fun][condition]())
+				console.log(["男", "女", "未知"][condition])
+				condition = 2
+				console.log([statement1_fun, statement2_fun, statement3_fun][condition]())
+				console.log(["男", "女", "未知"][condition])
+				// 与前例同理
+			}
+
+			function step4() {
+				var condition = "a"
+				console.log({
+					a: "a",
+					b: "b",
+					c: "c"
+				}[condition])
+				// 代码变得复杂了, 不利于阅读, 可能你最后会觉得 switch_case 或 多层 if_else 反而更好用
+			}
+			step1()
+			step2()
+			step3()
+			step4()
 		</script>
 	</body>
 
