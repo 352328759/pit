@@ -1,6 +1,7 @@
 ﻿<html>
 
 <!DOCTYPE html>
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
@@ -72,7 +73,34 @@
 	</table>
 
 
+	<p>UTC() 方法可根据世界时返回 1970 年 1 月 1 日 到指定日期的毫秒数。</p>
+	<p>Date.UTC(year,month,day,hours,minutes,seconds,ms)</p>
 
+	<div>GMT: 格林尼治时间</div>
+	<div>UTC: 协调世界时</div>
+	<div>GMT 与 UTC 不完全相同, 但都是 0 时区时间, 一般情况可以视作同义词</div>
+
+	<div>new Date().getTimezoneOffset() 格林威治时间和本地时间之间的时差(以分钟为单位)</div>
+	<div>UTC + 8 = GMT + 8 = 北京时间</div>
+	<div>格林威治时间 + 8 = 北京时间</div>
+	<div>格林威治时间 - 北京时间 = -8</div>
+	<div>格林威治时间 - 本地时间 = 时差</div>
+	<div>GMT+2 -120</div>
+	<div>GMT+8 -480</div>
+
+	<div>new Date(本地时间)</div>
+	<div>Date.UTC(格林威治时间)</div>
+
+	<div>受本地设置的时间影响</div>
+
+	<a href="http://bjtime.cn/info/view.asp?id=223">http://bjtime.cn/info/view.asp?id=223</a>
+	<br>
+	<a href="https://www.cnblogs.com/goloving/p/10514914.html">https://www.cnblogs.com/goloving/p/10514914.html</a>
+	<br>
+	<a href="https://www.w3school.com.cn/jsref/jsref_utc.asp">https://www.w3school.com.cn/jsref/jsref_utc.asp</a>
+	<br>
+	<a href="https://www.runoob.com/jsref/jsref-gettimezoneoffset.html">https://www.runoob.com/jsref/jsref-gettimezoneoffset.html</a>
+	<br>
 
 	<!-- <script src="./jvw/jquery.min.js"></script> -->
 	<!-- <script src="./jvw/mock/mock-min.js"></script> -->
@@ -86,7 +114,28 @@
 		// 字符转编码, 编码为16进制, 16进制转10进制
 
 
+		// console.log(Date.UTC(2005, 7, 8));
+		// console.log(Date.UTC(1970, 0, 1, 0, 0, 2, 1));
+		// console.log(Date.UTC(1970, 0, 1));
 
+		var _date = new Date();
+
+		var _UTC = Date.UTC(_date.getFullYear(), _date.getMonth(), _date.getDate(), _date.getHours(), _date.getMinutes(), _date.getSeconds(), _date.getMilliseconds());
+		var _BJ = _date * 1;
+		var _timeDifference = new Date().getTimezoneOffset() * 60 * 1000
+
+
+
+		// console.log(_UTC)
+		// console.log(_BJ)
+		// console.log(_BJ - _UTC)
+		// console.log(_timeDifference)
+		// console.log(_BJ - _UTC === _timeDifference)
+
+
+		console.log(_date.getHours())
+		console.log(_date.getUTCHours())
+		console.log(_date.getUTCHours() - _date.getHours() === _timeDifference / 1000 / 60 / 60)
 
 	</script>
 </body>
