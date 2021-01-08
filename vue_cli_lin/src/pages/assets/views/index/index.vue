@@ -1,8 +1,19 @@
 <template>
 	<div class="hello">
 		<a href="https://www.cnblogs.com/yuyujuan/p/9839705.html">https://www.cnblogs.com/yuyujuan/p/9839705.html</a>
-		<a href="https://router.vuejs.org/zh/guide/#html">https://router.vuejs.org/zh/guide/#html</a>
+		<br />
+		<a href="https://router.vuejs.org/zh/guide/essentials/navigation.html">https://router.vuejs.org/zh/guide/essentials/navigation.html</a>
+		<br />
 		<a href="https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create">https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create</a>
+		<br />
+
+		<div>this.$router 访问路由器，也可以通过 this.$route 访问当前路由</div>
+		<div>router.beforeEach</div>
+		<div>component.beforeRouteUpdate 怎么用?</div>
+		<div>含有通配符(*)的路由应该放在最后</div>
+		<div>匹配优先级 有时候，同一个路径可以匹配多个路由，此时，匹配的优先级就按照路由的定义顺序：谁先定义的，谁的优先级就最高。</div>
+		<div>children 配置就是像 routes 配置一样的路由配置数组</div>
+
 
 		<h1>{{ msg }}</h1>
 		<p>
@@ -39,7 +50,9 @@
 		name: 'HelloWorld',
 		props: {
 			msg: String
-		}
+		},
+		mounted: function () {
+		},
 	}
 </script>
 
