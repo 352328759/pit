@@ -21,9 +21,6 @@ import App from './App.vue'
 Vue.config.productionTip = false
 
 const router = new VueRouter(routerConfig)
-// this.$router === router
-
-
 
 new Vue({
 	router,

@@ -7,15 +7,32 @@
 		<a href="https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create">https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create</a>
 		<br />
 
-		<div>this.$router 访问路由器，也可以通过 this.$route 访问当前路由</div>
+		<!-- <div>this.$router 访问路由器，也可以通过 this.$route 访问当前路由</div> -->
+		<!-- <div>name 注意不要重复</div> -->
+		<!-- <div>匹配优先级 有时候，同一个路径可以匹配多个路由，此时，匹配的优先级就按照路由的定义顺序：谁先定义的，谁的优先级就最高。</div> -->
+		<!-- <div>含有通配符(*)的路由应该放在最后</div> -->
+		<!-- <div>&lt;router-link :to="..."&gt;&lt;/router-link&gt; this.$router.push(...)</div> -->
+		<!-- <div>children 配置就是像 routes 配置一样的路由配置数组</div> -->
+		<!-- <div>要注意，以 / 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径。</div> -->
+		
+		<div>{{ $route.params.id }}</div>
 		<div>router.beforeEach</div>
 		<div>component.beforeRouteUpdate 怎么用?</div>
-		<div>含有通配符(*)的路由应该放在最后</div>
-		<div>匹配优先级 有时候，同一个路径可以匹配多个路由，此时，匹配的优先级就按照路由的定义顺序：谁先定义的，谁的优先级就最高。</div>
-		<div>children 配置就是像 routes 配置一样的路由配置数组</div>
+		<div>addRouteRecord ?</div>
+
+		<router-link to="/">首页</router-link> | <router-link to="/assets">资产汇总</router-link>
+		<br>
+		<router-link to="/assets/assetsIndex/view1">view1</router-link> | 
+		<router-link to="/assets/assetsIndex/view2">view2</router-link> | 
+		<router-link to="/assets/assetsIndex/view3">view3</router-link>
+
+		<hr>
+
+		<router-view></router-view>
+		<router-view name="view1"></router-view>
 
 
-		<h1>{{ msg }}</h1>
+		<!-- <h1>{{ msg }}</h1>
 		<p>
 			For a guide and recipes on how to configure / customize this project,<br>
 			check out the
@@ -41,13 +58,13 @@
 			<li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
 			<li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
 			<li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-		</ul>
+		</ul> -->
 	</div>
 </template>
 
 <script>
 	export default {
-		name: 'HelloWorld',
+		name: 'assetsIndex',
 		props: {
 			msg: String
 		},
@@ -57,7 +74,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<!-- <style scoped>
 	h3 {
 		margin: 40px 0 0;
 	}
@@ -75,4 +92,4 @@
 	a {
 		color: #42b983;
 	}
-</style>
+</style> -->

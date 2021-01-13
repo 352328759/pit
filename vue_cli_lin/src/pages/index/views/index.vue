@@ -48,8 +48,6 @@
 		</div>
 		<div class="foot">© sotemall.com 版权所有</div>
 
-		<router-link to="/assets">资产汇总</router-link>
-
 	</div>
 </template>
 <script type="text/javascript">
@@ -66,14 +64,14 @@
 			// }
 		},
 		computed: {
-			Irole: function() {
+			Irole: function () {
 				// if(this.$store.getters.userInfo.data.role == null) {
-					return "ADMIN"
+				return "ADMIN"
 				// } else {
-					// return this.$store.getters.userInfo.data.role
+				// return this.$store.getters.userInfo.data.role
 				// }
 			}
 		},
-		mounted: function() {},
+		mounted: function () { },
 	};
 </script>
