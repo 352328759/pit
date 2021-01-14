@@ -6,6 +6,9 @@
 		<br />
 		<a href="https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create">https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create</a>
 		<br />
+		<a href="https://juejin.cn/post/6844903813606801422">https://juejin.cn/post/6844903813606801422</a>
+		<br />
+		<a href="https://segmentfault.com/a/1190000018902037">https://segmentfault.com/a/1190000018902037</a>
 
 		<!-- <div>this.$router 访问路由器，也可以通过 this.$route 访问当前路由</div> -->
 		<!-- <div>name 注意不要重复</div> -->
@@ -14,22 +17,13 @@
 		<!-- <div>&lt;router-link :to="..."&gt;&lt;/router-link&gt; this.$router.push(...)</div> -->
 		<!-- <div>children 配置就是像 routes 配置一样的路由配置数组</div> -->
 		<!-- <div>要注意，以 / 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径。</div> -->
-		
-		<div>{{ $route.params.id }}</div>
+
 		<div>router.beforeEach</div>
 		<div>component.beforeRouteUpdate 怎么用?</div>
 		<div>addRouteRecord ?</div>
+		<div @click="getRouter">getRouter</div>
 
 		<router-link to="/">首页</router-link> | <router-link to="/assets">资产汇总</router-link>
-		<br>
-		<router-link to="/assets/assetsIndex/view1">view1</router-link> | 
-		<router-link to="/assets/assetsIndex/view2">view2</router-link> | 
-		<router-link to="/assets/assetsIndex/view3">view3</router-link>
-
-		<hr>
-
-		<router-view></router-view>
-		<router-view name="view1"></router-view>
 
 
 		<!-- <h1>{{ msg }}</h1>
@@ -68,8 +62,13 @@
 		props: {
 			msg: String
 		},
-		mounted: function () {
+		methods: {
+			getRouter: function () {
+				console.log(this.$router)
+				console.log(this.$router.matcher.match)
+			},
 		},
+		mounted: function () { },
 	}
 </script>
 

@@ -1,21 +1,6 @@
 <template>
 	<div>
-		<h1>Assets 模块</h1>
-
-		<div>
-			<h2>router-view: default</h2>
-			<router-view></router-view>
-		</div>
-
-		<div>
-			<h2>router-view: view1</h2>
-			<router-view name="view1"></router-view>
-		</div>
-
-		<div>
-			<h2>router-view: view2</h2>
-			<router-view name="view2"></router-view>
-		</div>
+		<router-view></router-view>
 	</div>
 </template>
 <script type="text/javascript">
@@ -23,7 +8,7 @@
 	// import container from "@/components/Container/Container";
 
 	export default {
-		name: "elearningLayout",
+		name: "assetsLayout",
 		components: {
 			// container: container
 		},

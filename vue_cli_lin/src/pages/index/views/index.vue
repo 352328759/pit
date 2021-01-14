@@ -29,11 +29,11 @@
 						</router-link>-->
 
 						<!-- 在线教育 -->
-						<router-link tag="li" class="dp-item" title="在线教育" :to="{name:'elearning'}" v-if="Irole == 'ADMIN' || Irole == 'LEARNING'">
+						<!-- <router-link tag="li" class="dp-item" title="在线教育" :to="{name:'elearning'}" v-if="Irole == 'ADMIN' || Irole == 'LEARNING'">
 							<div class="dp-title"><span class="dp-text">在线教育</span></div>
 							<p>主体信息：在线教育</p>
 							<span class="type">管理</span>
-						</router-link>
+						</router-link> -->
 
 						<!-- 物料申请 -->
 						<!--<router-link tag="li" class="dp-item" title="物料申请" :to="{name:'materielApply'}" v-if="Irole == 'ADMIN' || Irole == 'MATERIEL'">
@@ -54,7 +54,7 @@
 	// import '@/assets/style/index/index.css';
 	export default {
 		'name': 'Index',
-		'methods': {
+		methods: {
 			// handleLogout: function() {
 			// 	this.$http.get('/logout').then(() => {
 			// 		this.$store.dispatch('StoreUser/removeUser').then(() => {
