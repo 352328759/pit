@@ -15,15 +15,12 @@ const router = new VueRouter({
 		// },
 
 		indexRouter,
-		// assetsRouter,
+		assetsRouter,
 		// sendCarRouter,
 		// elearning,
 		// materielApply,
 
 	]
 });
-// router.addRoutes 动态添加更多的路由规则。参数必须是一个符合 routes 选项要求的数组
-// router.addRoutes([assetsRouter])
-// console.log(router)
 
 export default router;
