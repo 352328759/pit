@@ -16,12 +16,11 @@
 		<!-- <div>含有通配符(*)的路由应该放在最后</div> -->
 		<!-- <div>&lt;router-link :to="..."&gt;&lt;/router-link&gt; this.$router.push(...)</div> -->
 		<!-- <div>children 配置就是像 routes 配置一样的路由配置数组</div> -->
+		<!-- <div>addRouteRecord ?</div> -->
 		<!-- <div>要注意，以 / 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径。</div> -->
 
 		<div>router.beforeEach</div>
 		<div>component.beforeRouteUpdate 怎么用?</div>
-		<div>addRouteRecord ?</div>
-		<div @click="getRouter">getRouter</div>
 
 		<router-link to="/">首页</router-link> | <router-link to="/assets">资产汇总</router-link>
 
@@ -62,12 +61,7 @@
 		props: {
 			msg: String
 		},
-		methods: {
-			getRouter: function () {
-				console.log(this.$router)
-				console.log(this.$router.matcher.match)
-			},
-		},
+		methods: {},
 		mounted: function () { },
 	}
 </script>
