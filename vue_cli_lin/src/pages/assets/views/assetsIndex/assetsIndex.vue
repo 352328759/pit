@@ -4,7 +4,7 @@
 		<br />
 		<a href="https://router.vuejs.org/zh/guide/essentials/navigation.html">https://router.vuejs.org/zh/guide/essentials/navigation.html</a>
 		<br />
-		<a href="https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create">https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create</a>
+		<a href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html">https://cli.vuejs.org/zh/guide/html-and-static-assets.html</a>
 		<br />
 		<a href="https://juejin.cn/post/6844903813606801422">https://juejin.cn/post/6844903813606801422</a>
 		<br />
