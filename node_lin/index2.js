@@ -12,8 +12,8 @@ let path = require("path");
 let async = require("async");
 
 //值是多少自己算。
-let base = 0xFF;
-let next = 0xD8;
+let jpgA = 0xFF;
+let jpgB = 0xD8;
 let gifA = 0x47;
 let gifB = 0x49;
 let pngA = 0x89;
@@ -42,10 +42,10 @@ async.mapLimit(arr, 50, function(item, cb) {
 function convert(item, cb) {
 	let absPath = path.join(scanDir, item);
 	// let imgPath = path.join(imgDir, item + ".jpg");
-	
+
 	// .dat
 	//	let imgPath = path.join(imgDir, item.split(".").slice(0, -1).join("."))
-	
+
 	// 无格式
 	let imgPath = path.join(imgDir, item)
 	fs.readFile(absPath, (err, content) => {
@@ -53,21 +53,27 @@ function convert(item, cb) {
 			console.log(err);
 			cb(err);
 		}
-		console.log(content)
-		console.log(content[0])
-		console.log(content[1])
-		
+		console.log(content.length)
+		//		console.log(content)
+		if(content[0] == 86 || content[0] == 111) {
+			//			console.log(content.slice(6))
+			console.log(content.slice(1023 + 7))
+		} else {
+			//			console.log(content)
+			console.log(content.slice(1023))
+		}
 		return 1
 
 		let firstV = content[0],
 			nextV = content[1],
-			jT = firstV ^ base,
-			jB = nextV ^ next,
+			jT = firstV ^ jpgA,
+			jB = nextV ^ jpgB,
 			gT = firstV ^ gifA,
 			gB = nextV ^ gifB,
 			pT = firstV ^ pngA,
 			pB = nextV ^ pngB;
-		var v = firstV ^ base;
+		//		var v = firstV ^ jpgA;
+		var v = 0;
 		if(jT == jB) {
 			v = jT;
 			imgPath += ".jpg"
@@ -79,7 +85,10 @@ function convert(item, cb) {
 			imgPath += ".png"
 		}
 
+		console.log(v)
 		let bb = content.map(br => {
+			//			console.log(br ^ v)
+			//			return br
 			return br ^ v
 		})
 		console.log(imgPath)
