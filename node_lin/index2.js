@@ -53,16 +53,8 @@ function convert(item, cb) {
 			console.log(err);
 			cb(err);
 		}
-		console.log(content.length)
 		//		console.log(content)
-		if(content[0] == 86 || content[0] == 111) {
-			//			console.log(content.slice(6))
-			console.log(content.slice(1023 + 7))
-		} else {
-			//			console.log(content)
-			console.log(content.slice(1023))
-		}
-		return 1
+		//		return 1
 
 		let firstV = content[0],
 			nextV = content[1],
