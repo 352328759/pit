@@ -2,16 +2,17 @@
 	<div class="hello">
 		<a href="https://www.cnblogs.com/yuyujuan/p/9839705.html">https://www.cnblogs.com/yuyujuan/p/9839705.html</a>
 		<br />
-		<a href="https://router.vuejs.org/zh/guide/essentials/navigation.html">https://router.vuejs.org/zh/guide/essentials/navigation.html</a>
-		<br />
 		<a href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html">https://cli.vuejs.org/zh/guide/html-and-static-assets.html</a>
 		<br />
 		<a href="https://juejin.cn/post/6844903813606801422">https://juejin.cn/post/6844903813606801422</a>
 		<br />
 		<a href="https://segmentfault.com/a/1190000018902037">https://segmentfault.com/a/1190000018902037</a>
 
-		<section>
+		<section style="display: none;">
 			<h1>router</h1>
+
+			<a href="https://router.vuejs.org/zh/guide/essentials/navigation.html">https://router.vuejs.org/zh/guide/essentials/navigation.html</a>
+			<br />
 
 			<!-- <div>this.$router 访问路由器，也可以通过 this.$route 访问当前路由</div> -->
 			<!-- <div>name 注意不要重复</div> -->
@@ -32,8 +33,20 @@
 		<section>
 			<h1>store</h1>
 
-			<div>mutations 方法名不能重复</div>
 			<a href="https://vuex.vuejs.org/zh/guide/getters.html">https://vuex.vuejs.org/zh/guide/getters.html</a>
+			<br />
+
+			<div>mutations 方法名不能重复</div>
+
+			<div>getter 的优势在于将 state 计算后返回, 类似于计算属性</div>
+			<div>让 getter 返回一个函数，来实现给 getter 传参; getter 在通过方法访问时，每次都会去进行调用，而不会缓存结果</div>
+
+			<div>actions 方法名不能重复</div>
+			<div>store.dispatch() 是 [object Promise]</div>
+			<div>就 Promise 的角度讲, actions 执行完会调用 resolve()</div>
+			<div>actions return Promise 和不 return Promise 有什么区别?</div>
+			<div>return Promise 可以触发 reject-catch, 不 return Promise 只能触发 resolve-then</div>
+
 
 			<div>{{$store.state.StoreUser.count}}</div>
 			<div>{{$store.state.StoreUser2.count2}}</div>
@@ -51,9 +64,22 @@
 		},
 		methods: {},
 		mounted: function () {
-			// this.$store.commit("increment")
-			console.log(this.$store)
-			console.log(this.$store.getters.StoreUser_count.count)
+			var _this = this
+			// console.log(this.$store)
+			// console.log(this.$store.getters.StoreUserNum("ed"))
+
+
+			var _a = _this.$store.dispatch("increment1").then(function (params) {
+				console.log("in then")
+			}).catch(function (params) {
+				console.log("in catch")
+			}).then(function (params) {
+				console.log("in 2 the")
+			})
+
+			console.log("end")
+			console.log(Object.prototype.toString.call(_a))
+
 		},
 	}
 </script>
