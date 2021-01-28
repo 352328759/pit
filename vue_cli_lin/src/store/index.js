@@ -7,6 +7,7 @@ Vue.use(Vuex);
 var store = new Vuex.Store({
 	modules: {
 		StoreUser: {
+			namespaced: true,
 			state: {
 				count: 0
 			},
@@ -21,6 +22,9 @@ var store = new Vuex.Store({
 					context.commit("increment")
 				},
 			},
+			getters: {
+				StoreUser_count: state => state.count,
+			},
 		},
 		StoreUser2: {
 			state: {
@@ -32,25 +36,25 @@ var store = new Vuex.Store({
 				}
 			},
 			actions: {
-				increment1(context) {
+				increment(context) {
 					console.log("in 1");
 					// return 1;
-					return new Promise(function (resolve, reject) {
-						console.log("in Promise")
-						setTimeout(() => {
-							console.log("in setTimeout")
-							// commit('someMutation')
-							reject()
-						}, 1000)
-					}).catch(function (params) {
-						console.log("in 1 catch")
-					});
+					// return new Promise(function (resolve, reject) {
+					// 	console.log("in Promise")
+					// 	setTimeout(() => {
+					// 		console.log("in setTimeout")
+					// 		// commit('someMutation')
+					// 		reject()
+					// 	}, 1000)
+					// }).catch(function (params) {
+					// 	console.log("in 1 catch")
+					// });
 				},
 			},
 		},
 	},
 	getters: {
-		StoreUser_count: state => state.StoreUser,
+		StoreUser_count: state => state.StoreUser2.count2,
 		// $store.getters.StoreUser_count === $store.state.StoreUser
 		StoreUserNum: function (state) {
 			return function (id) {
