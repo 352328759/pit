@@ -33,7 +33,7 @@
 		<section>
 			<h1>store</h1>
 
-			<a href="https://vuex.vuejs.org/zh/guide/getters.html">https://vuex.vuejs.org/zh/guide/getters.html</a>
+			<a href="https://vuex.vuejs.org/zh/guide/structure.html">https://vuex.vuejs.org/zh/guide/structure.html</a>
 			<br />
 
 			<div>mutations 方法名不能重复</div>
@@ -49,9 +49,12 @@
 			
 			<div>模块内部的 action、mutation 和 getter 是注册在全局命名空间的——这样使得多个模块能够对同一 mutation 或 action 作出响应</div>
 			<div>action, mutation, getter 方法名不应该重复</div>
-			<div>namespaced: true; 方法名前面要加上模块名</div>
+			<div>namespaced: true; 方法名前面要加上模块名 "模块名/方法名"</div>
 			<div>namespaced 对模块生效, 默认 false</div>
 			<div>getters 用 []; dispatch, commit 用 ()</div>
+			<div>store.registerModule 方法注册模块</div>
+			<div>store.unregisterModule(moduleName) 来动态卸载模块, 不能卸载静态模块</div>
+
 
 
 			<div>{{$store.state.StoreUser.count}}</div>
