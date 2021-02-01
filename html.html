@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>700 - 336</title>
+	<title>700 - 348</title>
 </head>
 
 <body>
@@ -85,6 +85,22 @@
 			;
 		// 字符转编码, 编码为16进制, 16进制转10进制
 
+		function add(a) {
+			var temp = function (b) {
+				return add(a + b)
+			}
+
+			console.log(temp.toString)
+
+			temp.valueOf = temp.toString = function () {
+				return a
+			}
+
+			return temp
+		}
+
+		var s = add(2)(3)(4)
+		console.log(s)
 
 	</script>
 </body>
