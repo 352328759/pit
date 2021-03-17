@@ -162,7 +162,7 @@ const Dpp = () => {
 			</Avatar.Group> */}
 			{/* <p><a target="_blank" href="https://zh-hans.reactjs.org/docs/react-api.html#createelement">createElement() 也可以是 React 组件 类型</a></p> */}
 
-			{/* <Button type="primary">Primary Button</Button> */}
+			<Button type="primary">Primary Button</Button>
 
 
 			{/* <Button onClick={click1}>Default Button</Button> */}
@@ -180,6 +180,7 @@ render((
 	<React.Fragment>
 		{/* <Spp /> */}
 
+		{/* antd 组件的实验场所 */}
 		<ComponentApp />
 
 		{/* <App /> */}
