@@ -39,7 +39,7 @@
 
 				<!--<c1 />-->
 				<c2 ref="c2" />
-				<UnitPriceCounter></UnitPriceCounter>
+				<!--<UnitPriceCounter></UnitPriceCounter>-->
 
 			</div>
 		</script>
@@ -106,14 +106,16 @@
 		</script>
 
 		<!--<script src="./js/vue/vue.js"></script>-->
-		<script src="./jvw/vue/vue@2.5.16.js"></script>
+		<!--<script src="./jvw/vue/vue@2.5.16.js"></script>-->
+		<script src="./jvw/vue/vue.global@3.0.7.js"></script>
 		<!--<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.6/vue.min.js"></script>-->
-		<script src="./jvw/antd/antd.js"></script>
+		<!--<script src="./jvw/antd/antd.js"></script>-->
 		<!--<script src="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.js"></script>-->
 		<!--<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>-->
 		<!--<script src="./jvw/jquery.min.js"></script>-->
 
 		<script type="text/javascript">
+			console.log(Vue.version)
 			var c1, c2, UnitPriceCounter;
 			c1 = {
 				template: "#c1-template",
@@ -255,7 +257,8 @@
 				created() {},
 				mounted() {},
 			};
-			var vu = new Vue({
+			//			var vu = new Vue({
+			var vu = Vue.createApp({
 				el: "#swq",
 				data: {},
 				methods: {
@@ -270,7 +273,7 @@
 				computed: {},
 				created() {},
 				mounted() {},
-			});
+			}) //.$mount('#swq');
 
 			function true_fun() {
 				console.log("true")

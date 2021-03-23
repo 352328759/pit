@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
+console.log(Vue.version)
+
 import router from './router/index.js';
 
 import store from './store/index.js';

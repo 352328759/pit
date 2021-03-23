@@ -88,6 +88,23 @@
 			;
 		// 字符转编码, 编码为16进制, 16进制转10进制
 
+
+		const module = {
+			x: 42,
+			getX: function () {
+				console.log(this)
+				return this.x;
+			}
+		};
+
+		const unboundGetX = module.getX;
+		// console.log(unboundGetX());
+
+		const boundGetX = unboundGetX.bind(module);
+		console.log(boundGetX());
+
+		// https://blog.csdn.net/Faremax/article/details/72738285
+
 	</script>
 </body>
 
