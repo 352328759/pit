@@ -10,9 +10,11 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
-import { DatePicker } from 'ant-design-vue';
+import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
-Vue.use(DatePicker);
+Vue.use(Antd);
+
+console.log(Antd.version)
 
 // import Vant from 'vant';
 // import 'vant/lib/index.css';

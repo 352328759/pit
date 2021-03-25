@@ -1,11 +1,9 @@
 <template>
-	<div class="aff" ref="aff">
-		dd
-		<div class="ant-modal-title">.ant-modal-title</div>
+	<div ref="aff">
 		<a-button type="primary" @click="showModal">
 			Open Modal with async logic
 		</a-button>
-		<a-modal title="Title" :getContainer="getRefsAff" :visible="visible" :confirm-loading="confirmLoading" @ok="handleOk" @cancel="handleCancel">
+		<a-modal title="Title" :getContainer="() => $refs.aff" :visible="visible" :confirm-loading="confirmLoading" @ok="handleOk" @cancel="handleCancel">
 			<p>{{ ModalText }}</p>
 		</a-modal>
 	</div>
@@ -22,12 +20,6 @@
 </style>
 <script type="text/javascript">
 	// import '@/assets/style/index/index.css';
-
-	// import { Button, message } from 'ant-design-vue';
-	import Vue from 'vue'
-	import { Button, Modal } from 'ant-design-vue';
-	Vue.use(Button);
-	Vue.use(Modal);
 
 	export default {
 		'name': 'Test',
