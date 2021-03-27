@@ -106,6 +106,7 @@ export function convertLegacyProps(type) {
 }
 
 var InternalButton = function InternalButton(props, ref) {
+	console.log(props, ref)
 	var _classNames;
 
 	var loading = props.loading,

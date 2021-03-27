@@ -8,6 +8,7 @@
 		<el-menu :default-active="$route.path" mode="horizontal" @select="handleSelect" :router="true">
 			<el-menu-item index="/">首页</el-menu-item>
 			<el-menu-item index="/assets/assetsIndex" :route="{ name: 'assets'}">资产汇总</el-menu-item>
+			<el-menu-item index="/test/testAntdV" :route="{ name: 'testAntdV'}">test AntdV</el-menu-item>
 		</el-menu>
 		<!-- route 优先于 index -->
 

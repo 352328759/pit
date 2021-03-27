@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
+console.log(Vue.version)
+
 import router from './router/index.js';
 
 import store from './store/index.js';
@@ -7,6 +9,12 @@ import store from './store/index.js';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
+
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+Vue.use(Antd);
+
+console.log(Antd.version)
 
 // import Vant from 'vant';
 // import 'vant/lib/index.css';

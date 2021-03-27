@@ -1,31 +1,15 @@
 import Vue from 'vue';
 //引入状态管理
 import Vuex from 'vuex';
-
 Vue.use(Vuex);
+
+import assets from "./modules/assets/assets";
+import storeUser from "./modules/storeUser/storeUser";
 
 var store = new Vuex.Store({
 	modules: {
-		StoreUser: {
-			namespaced: true,
-			state: {
-				count: 0
-			},
-			mutations: {
-				increment(state) {
-					state.count++
-				},
-			},
-			actions: {
-				increment(context) {
-					// console.log("StoreUser")
-					context.commit("increment")
-				},
-			},
-			getters: {
-				StoreUser_count: state => state.count,
-			},
-		},
+		assets,
+		storeUser,
 		StoreUser2: {
 			state: {
 				count2: 3
