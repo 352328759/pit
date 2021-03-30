@@ -129,8 +129,8 @@
 				"冷饮": 30,
 				"冰结晶": 60,
 				"冻肉": 30,
-				"特产蘑菇": 999,
 				"特产蘑菇泡菜": 54,
+				"特产蘑菇": 999,
 				"冰结草莓": 54,
 				"热带草莓": 999,
 				"解冰剂": 10,
@@ -250,7 +250,7 @@
 				"火炎弹": 2,
 				"水冷弹": 2,
 				"切味鱼": 45,
-				"电击弹": 2	,
+				"电击弹": 2,
 				"冰結弹": 2,
 				"灭龙弹": 10,
 				"杀龙果": 78,
@@ -273,6 +273,7 @@
 				"睡眠瓶": 2,
 				"强击瓶": 3,
 				"接击瓶": 3,
+				"染色瓶": 0,
 				"捕获用麻醉药": 15,
 				"捕获用麻醉小刀": 999,
 				"捕获用麻醉玉": 35,
@@ -1142,12 +1143,11 @@
 				var q3 = []
 				var q4 = 0
 				var msg = ""
-				if (lock == undefined){
+				if(lock == undefined) {
 					lock = 5
-				}else if(lock <=0){
+				} else if(lock <= 0) {
 					return "溢出"
 				}
-
 
 				console.log(name, "单品售价:", quotation[name])
 				if(alchemy.hasOwnProperty(name)) {
@@ -1158,10 +1158,10 @@
 					q3 = [mp1, mp2]
 					console.log(name, "素材总价:", q3)
 
-					if(q1>q2){
+					if(q1 > q2) {
 						q4 = q2
 						msg = mp1.msg + "+" + mp2.msg
-					}else{
+					} else {
 						q4 = q1
 						msg = name
 					}
@@ -1173,8 +1173,6 @@
 					msg = name
 				}
 
-				
-
 				return {
 					name,
 					q1,
@@ -1184,7 +1182,7 @@
 					msg
 				}
 			}
-//			console.log(money("药草"))
+			//			console.log(money("药草"))
 			console.log(money("回复药"))
 		</script>
 	</body>
