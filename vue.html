@@ -7,8 +7,8 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title>vue2</title>
 		<!--<link rel="stylesheet" href="https://keepfool.github.io/vue-tutorials/01.GettingStarted/styles/demo.css" />-->
-		<!--<link rel="stylesheet" href="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.css">-->
-		<link rel="stylesheet" href="./jvw/antd/antd.min.css">
+		<link rel="stylesheet" href="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.css">
+		<!--<link rel="stylesheet" href="./jvw/antd/antd.min.css">-->
 		<style>
 
 		</style>
@@ -18,29 +18,26 @@
 	<body>
 
 		<div id="swq">
-
-			<!---->
-			<a target="_blank" href="https://cn.vuejs.org/v2/api/#el">vue2</a>
-			<br />
-			<a target="_blank" href="https://github.com/vueComponent/ant-design-vue/tree/1.3.9">https://github.com/vueComponent/ant-design-vue/tree/1.3.9</a>
-			<br />
-			<a target="_blank" href="https://vue.ant.design/components/affix-cn/">https://vue.ant.design/components/affix-cn/</a>
-			<br />
-			<a target="_blank" href="https://pro.loacg.com/docs/getting-started">https://pro.loacg.com/docs/getting-started</a>
-			<br />
-			<a target="_blank" href="https://github.com/sendya/ant-design-pro-vue/blob/master/README.zh-CN.md">https://github.com/sendya/ant-design-pro-vue/blob/master/README.zh-CN.md</a>
-			<br />
-			<!---->
-			<div>Web 组件规范</div>
-			<App ref="swq"></App>
-			<!---->
-			<div @click="click">click</div>
+			<App></App>
 		</div>
 
 		<script type="text/x-template" id="App-template">
 			<div>
-				App
-				<c3 />
+				<!---->
+				<a target="_blank" href="https://cn.vuejs.org/v2/api/#el">vue2</a>
+				<br />
+				<a target="_blank" href="https://github.com/vueComponent/ant-design-vue/tree/1.3.9">https://github.com/vueComponent/ant-design-vue/tree/1.3.9</a>
+				<br />
+				<a target="_blank" href="https://vue.ant.design/components/affix-cn/">https://vue.ant.design/components/affix-cn/</a>
+				<br />
+				<a target="_blank" href="https://pro.loacg.com/docs/getting-started">https://pro.loacg.com/docs/getting-started</a>
+				<br />
+				<a target="_blank" href="https://github.com/sendya/ant-design-pro-vue/blob/master/README.zh-CN.md">https://github.com/sendya/ant-design-pro-vue/blob/master/README.zh-CN.md</a>
+				<br />
+				<div>Web 组件规范</div>
+				<!---->
+
+				<c1 />
 				<!--<c2 ref="c2" />-->
 				<!--<UnitPriceCounter></UnitPriceCounter>-->
 
@@ -78,10 +75,14 @@
 			</div>
 		</script>
 		<script type="text/x-template" id="c1-template">
-			<div>c1</div>
-		</script>
-		<script type="text/x-template" id="c3-template">
-			<div>c3</div>
+			<div>
+				<el-table :data="tableData" style="width: 100%">
+					<el-table-column prop="date" label="日期"></el-table-column>
+					<el-table-column prop="_2" label="2:00"></el-table-column>
+					<el-table-column prop="_7" label="7:00"></el-table-column>
+					<el-table-column prop="_12" label="12:00"></el-table-column>
+				</el-table>
+			</div>
 		</script>
 		<script type="text/x-template" id="c2-template">
 			<div>
@@ -102,6 +103,9 @@
 				</a-form>
 			</div>
 		</script>
+		<script type="text/x-template" id="c3-template">
+			<div>c3</div>
+		</script>
 
 		<script src="./jvw/vue/vue@2.5.16.js"></script>
 		<!--<script src="./jvw/vue/vue.global@3.0.7.js"></script>-->
@@ -109,7 +113,7 @@
 		<!--<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.6/vue.min.js"></script>-->
 
 		<!--<script src="./jvw/antd/antd.js"></script>-->
-		<!--<script src="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.js"></script>-->
+		<script src="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.js"></script>
 		<!--<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>-->
 		<!--<script src="./jvw/jquery.min.js"></script>-->
 
@@ -120,15 +124,28 @@
 				template: "#c1-template",
 				props: [],
 				data: function() {
+					var arr = []
+					var offset = 25;
+
+					for(var i = 0; i < 7; i++) {
+						arr.push({
+							date: 1 + (i + offset),
+							_2: "[种]支付" + (1 + (i + offset)),
+							_7: "",
+							_12: "",
+						})
+					}
+
+					for(var i = 1; i < 7; i++) {
+						arr[i]._2 += ";[收]支付" + (i + offset)
+						arr[i]._7 = "[收]运动" + (i + offset)
+					}
+
+					arr[30 - 1 - offset]._12 = "[收]停驶"
+					arr[31 - 1 - offset]._12 = "now"
+
 					return {
-						u: {
-							c1: "c1-1",
-							c2: "c1-2",
-							c3: "c1-3",
-						},
-						c1: "c1-1",
-						c2: "c1-2",
-						c3: "c1-3",
+						tableData: arr,
 					}
 				},
 				computed: {},
@@ -172,31 +189,16 @@
 				mounted() {},
 			};
 			c3 = {
-				//				mixins: [c1],
-				extends: new function() {
-					this.d = 2
-				},
 				template: "#c3-template",
 				props: [],
 				data: function() {
-					return {
-						u: {
-							c1: "c3-1",
-							//							c2: "c3-2",
-							//							c3: "c3-3",
-						},
-						c1: "c3-1",
-						//							c2: "c3-2",
-						//							c3: "c3-3",
-					}
+					return {}
 				},
 				computed: {},
 				components: {},
 				watch: {},
 				methods: {},
-				created() {
-					console.log(JSON.stringify(this.$data))
-				},
+				created() {},
 				mounted() {},
 			};
 			UnitPriceCounter = {
@@ -256,29 +258,21 @@
 			var vu = new Vue({
 				el: "#swq",
 				data() {
-					return {
-						s: 23
-					}
+					return {}
 				},
-				methods: {
-					click() {
-						this.s++
-					}
-				},
+				methods: {},
 				components: {
 					App: App,
 				},
-				updated(a) {
-					console.log(a)
-				},
+				updated() {},
 				watch: {},
 				computed: {},
 				created() {},
 				mounted() {},
 			})
-			console.log(vu.s)
-			console.log(vu)
-			console.log(vu.$children)
+			//			console.log(vu.s)
+			//			console.log(vu)
+			//			console.log(vu.$children)
 			//			vu.$mount("#swq");
 		</script>
 	</body>
