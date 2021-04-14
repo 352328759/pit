@@ -8,13 +8,17 @@ const router = {
 	'path': '/test',
 	'name': 'test',
 	'component': layout,
-		redirect: { name: 'testAntdV' },
-		children: [{
+	redirect: {
+		name: 'testAntdV'
+	},
+	children: [{
 		// path: "",
 		path: "testAntdV",
 		name: "testAntdV",
 		// component: assetsIndex,
-		components: { default: testAntdV },
+		components: {
+			default: testAntdV
+		},
 		meta: {
 			title: "test AntdV",
 		},
