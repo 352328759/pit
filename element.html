@@ -1,267 +1,253 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>element</title>
-	<!--<link rel="stylesheet" href="https://keepfool.github.io/vue-tutorials/01.GettingStarted/styles/demo.css" />-->
-	<!--<link rel="stylesheet" href="./js/element-ui.2.4.0/element-ui.2.4.0.css">-->
-	<link rel="stylesheet" href="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.css">
-	<style></style>
-	<!--<meta http-equiv="refresh" content="30" />-->
-</head>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>element</title>
+		<!--<link rel="stylesheet" href="https://keepfool.github.io/vue-tutorials/01.GettingStarted/styles/demo.css" />-->
+		<!--<link rel="stylesheet" href="./js/element-ui.2.4.0/element-ui.2.4.0.css">-->
+		<link rel="stylesheet" href="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.css">
+		<style></style>
+		<!--<meta http-equiv="refresh" content="30" />-->
+	</head>
 
-<body>
+	<body>
 
-	<div id="swq">
-		<swq></swq>
-	</div>
-
-	<script type="text/x-template" id="swq-template">
-		<div>
-			<!--<c1></c1>-->
-			<!--<c2></c2>-->
-
-			<el-form :model="ruleForm" :rules="rules2" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-				<el-form-item label="活动名称" prop="name">
-					<el-input v-model="ruleForm.name"></el-input>
-				</el-form-item>
-				<el-form-item label="活动区域" prop="region">
-					<el-select v-model="ruleForm.region" placeholder="请选择活动区域">
-						<el-option label="区域一" value="shanghai"></el-option>
-						<el-option label="区域二" value="beijing"></el-option>
-					</el-select>
-				</el-form-item>
-				<el-form-item label="活动时间" required>
-					<el-col :span="11">
-						<el-form-item prop="date1">
-							<el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
-						</el-form-item>
-					</el-col>
-					<el-col class="line" :span="2">-</el-col>
-					<el-col :span="11">
-						<el-form-item prop="date2">
-							<el-time-picker placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;"></el-time-picker>
-						</el-form-item>
-					</el-col>
-				</el-form-item>
-				<el-form-item label="即时配送" prop="delivery">
-					<el-switch v-model="ruleForm.delivery"></el-switch>
-				</el-form-item>
-				<el-form-item label="活动性质" prop="type">
-					<el-checkbox-group v-model="ruleForm.type">
-						<el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-						<el-checkbox label="地推活动" name="type"></el-checkbox>
-						<el-checkbox label="线下主题活动" name="type"></el-checkbox>
-						<el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
-					</el-checkbox-group>
-				</el-form-item>
-				<el-form-item label="特殊资源" prop="resource">
-					<el-radio-group v-model="ruleForm.resource">
-						<el-radio label="线上品牌商赞助"></el-radio>
-						<el-radio label="线下场地免费"></el-radio>
-					</el-radio-group>
-				</el-form-item>
-				<el-form-item label="活动形式" prop="desc">
-					<el-input type="textarea" v-model="ruleForm.desc"></el-input>
-				</el-form-item>
-				<el-form-item>
-					<el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-					<el-button @click="resetForm('ruleForm')">重置</el-button>
-				</el-form-item>
-			</el-form>
-
+		<div id="swq">
+			<!-- <swq></swq> -->
+			<c1></c1>
 		</div>
-	</script>
-	<script type="text/x-template" id="c1-template">
-		<div>c1-template</div>
-	</script>
-	<script type="text/x-template" id="c2-template">
-		<div>c2-template</div>
-	</script>
 
-	<!--<script src="./js/vue/vue.js"></script>-->
-	<script src="./jvw/vue/vue@2.5.16.js"></script>
-	<script src="./jvw/element-ui/element-ui@2.4.0/1element-ui.2.4.0.js"></script>
-	<!--<script src="./js/element-ui.2.4.0/element-ui.2.4.0.js"></script>-->
-	<!--<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>-->
-	<!--<script src="./js/jquery.min.js"></script>-->
+		<script type="text/x-template" id="swq-template">
+			<div>
+				<!--<c1></c1>-->
+				<!--<c2></c2>-->
 
-	<script type="text/javascript">
-		var c1 = {
-			template: "#c1-template",
-			props: [],
-			data: function () {
-				return {
-					form: {
-						attachmentName: '', //附件名称
-						attachmentSize: 0, //附件大小
-						attachmentUrl: '', //附件url
-						cDesc: '', //课程名称
-						catName: '', //课程分类名称
-						catId: null, //课程分类id
-						timeCost: 0, //课程时长(单位秒)
-						coverUrl: '',
-						title: "", //标题
-						musicUrl: "", //背景音乐地址
-					},
-					costMin: 0,
-					costSnd: 0,
-				}
-			},
-			computed: {},
-			components: {},
-			watch: {
-				"form.timeCost"(val, oldVal) {
-					this.costMin = 0
-					this.costSnd = 0
-					this.$nextTick(function () {
-						this.costMin = parseInt(val / 60)
-						this.costSnd = parseInt(val % 60)
-					})
-				}
-			},
-			methods: {
-				setTimeCost(cost, num) {
-					console.log(num)
-					let timeCost = this.form.timeCost || 0
-					num = parseInt(num || 0)
-					if (cost == "snd") {
-						this.form.timeCost = parseInt((timeCost / 60)) * 60 + num
-					} else if (cost == "min") {
-						this.form.timeCost = num * 60 + parseInt(timeCost % 60)
+				<el-form :model="ruleForm" :rules="rules2" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+					<el-form-item label="活动名称" prop="name">
+						<el-input v-model="ruleForm.name"></el-input>
+					</el-form-item>
+					<el-form-item label="活动区域" prop="region">
+						<el-select v-model="ruleForm.region" placeholder="请选择活动区域">
+							<el-option label="区域一" value="shanghai"></el-option>
+							<el-option label="区域二" value="beijing"></el-option>
+						</el-select>
+					</el-form-item>
+					<el-form-item label="活动时间" required>
+						<el-col :span="11">
+							<el-form-item prop="date1">
+								<el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
+							</el-form-item>
+						</el-col>
+						<el-col class="line" :span="2">-</el-col>
+						<el-col :span="11">
+							<el-form-item prop="date2">
+								<el-time-picker placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;"></el-time-picker>
+							</el-form-item>
+						</el-col>
+					</el-form-item>
+					<el-form-item label="即时配送" prop="delivery">
+						<el-switch v-model="ruleForm.delivery"></el-switch>
+					</el-form-item>
+					<el-form-item label="活动性质" prop="type">
+						<el-checkbox-group v-model="ruleForm.type">
+							<el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
+							<el-checkbox label="地推活动" name="type"></el-checkbox>
+							<el-checkbox label="线下主题活动" name="type"></el-checkbox>
+							<el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
+						</el-checkbox-group>
+					</el-form-item>
+					<el-form-item label="特殊资源" prop="resource">
+						<el-radio-group v-model="ruleForm.resource">
+							<el-radio label="线上品牌商赞助"></el-radio>
+							<el-radio label="线下场地免费"></el-radio>
+						</el-radio-group>
+					</el-form-item>
+					<el-form-item label="活动形式" prop="desc">
+						<el-input type="textarea" v-model="ruleForm.desc"></el-input>
+					</el-form-item>
+					<el-form-item>
+						<el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+						<el-button @click="resetForm('ruleForm')">重置</el-button>
+					</el-form-item>
+				</el-form>
+
+			</div>
+		</script>
+		<script type="text/x-template" id="c1-template">
+			<div>
+				<el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
+
+				<el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+					<div>这是一段信息</div>
+					<div slot="footer" class="dialog-footer">
+						<el-button @click="dialogVisible = false">取 消</el-button>
+						<el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+					</div>
+				</el-dialog>
+			</div>
+		</script>
+		<script type="text/x-template" id="c2-template">
+			<div>c2-template</div>
+		</script>
+
+		<!--<script src="./js/vue/vue.js"></script>-->
+		<script src="./jvw/vue/vue@2.5.16.js"></script>
+		<script src="./jvw/element-ui/element-ui@2.4.0/1element-ui.2.4.0.js"></script>
+		<!--<script src="./js/element-ui.2.4.0/element-ui.2.4.0.js"></script>-->
+		<!--<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>-->
+		<!--<script src="./js/jquery.min.js"></script>-->
+
+		<script type="text/javascript">
+			var c1 = {
+				template: "#c1-template",
+				props: [],
+				data: function() {
+					return {
+						dialogVisible: false
 					}
-				}
-			},
-			created() { },
-			mounted() { },
-		}
-		var c2 = {
-			template: "#c2-template",
-			props: [],
-			data() {
-				return {};
-			},
-			computed: {},
-			components: {},
-			watch: {},
-			methods: {},
-			created() { },
-			mounted() { },
-		}
-		var swq = {
-			template: "#swq-template",
-			props: [],
-			data: function () {
-				return {
-					ruleForm: {
-						name: '',
-						region: '',
-						date1: '',
-						date2: '',
-						delivery: false,
-						type: [],
-						resource: '',
-						desc: ''
-					},
-					rules2: {
-						name: [{
-							required: true,
-							message: '请输入活动名称',
-							trigger: 'blur'
-						}, {
-							type: 'email',
-							message: '请输入正确的邮箱地址',
-							trigger: 'blur',
-						}],
-					},
-					rules: {
-						name: [{
-							required: true,
-							message: '请输入活动名称',
-							trigger: 'blur'
-						}, {
-							min: 3,
-							max: 5,
-							message: '长度在 3 到 5 个字符',
-							trigger: 'blur'
-						}],
-						region: [{
-							required: true,
-							message: '请选择活动区域',
-							trigger: 'change'
-						}],
-						date1: [{
-							type: 'date',
-							required: true,
-							message: '请选择日期',
-							trigger: 'change'
-						}],
-						date2: [{
-							type: 'date',
-							required: true,
-							message: '请选择时间',
-							trigger: 'change'
-						}],
-						type: [{
-							type: 'array',
-							required: true,
-							message: '请至少选择一个活动性质',
-							trigger: 'change'
-						}],
-						resource: [{
-							required: true,
-							message: '请选择活动资源',
-							trigger: 'change'
-						}],
-						desc: [{
-							required: true,
-							message: '请填写活动形式',
-							trigger: 'blur'
-						}]
-					}
-				};
-			},
-			computed: {},
-			components: {
-				c1,
-				c2,
-			},
-			watch: {},
-			methods: {
-				submitForm(formName) {
-					this.$refs[formName].validate((valid) => {
-						if (valid) {
-							alert('submit!');
-						} else {
-							console.log('error submit!!');
-							return false;
-						}
-					});
 				},
-				resetForm(formName) {
-					this.$refs[formName].resetFields();
-				}
-			},
-			created() { },
-			mounted() { },
-		};
-		var vu = new Vue({
-			el: "#swq",
-			data: {},
-			methods: {},
-			components: {
-				swq,
-				c1,
-			},
-			watch: {},
-			computed: {},
-			created() { },
-			mounted() { },
-		})
-	</script>
-</body>
+				computed: {},
+				components: {},
+				watch: {},
+				methods: {
+					handleClose(done) {
+						this.$confirm('确认关闭？')
+							.then(_ => {
+								done();
+							})
+							.catch(_ => {});
+					}
+				},
+				created() {},
+				mounted() {},
+			}
+			var c2 = {
+				template: "#c2-template",
+				props: [],
+				data() {
+					return {};
+				},
+				computed: {},
+				components: {},
+				watch: {},
+				methods: {},
+				created() {},
+				mounted() {},
+			}
+			var swq = {
+				template: "#swq-template",
+				props: [],
+				data: function() {
+					return {
+						ruleForm: {
+							name: '',
+							region: '',
+							date1: '',
+							date2: '',
+							delivery: false,
+							type: [],
+							resource: '',
+							desc: ''
+						},
+						rules2: {
+							name: [{
+								required: true,
+								message: '请输入活动名称',
+								trigger: 'blur'
+							}, {
+								type: 'email',
+								message: '请输入正确的邮箱地址',
+								trigger: 'blur',
+							}],
+						},
+						rules: {
+							name: [{
+								required: true,
+								message: '请输入活动名称',
+								trigger: 'blur'
+							}, {
+								min: 3,
+								max: 5,
+								message: '长度在 3 到 5 个字符',
+								trigger: 'blur'
+							}],
+							region: [{
+								required: true,
+								message: '请选择活动区域',
+								trigger: 'change'
+							}],
+							date1: [{
+								type: 'date',
+								required: true,
+								message: '请选择日期',
+								trigger: 'change'
+							}],
+							date2: [{
+								type: 'date',
+								required: true,
+								message: '请选择时间',
+								trigger: 'change'
+							}],
+							type: [{
+								type: 'array',
+								required: true,
+								message: '请至少选择一个活动性质',
+								trigger: 'change'
+							}],
+							resource: [{
+								required: true,
+								message: '请选择活动资源',
+								trigger: 'change'
+							}],
+							desc: [{
+								required: true,
+								message: '请填写活动形式',
+								trigger: 'blur'
+							}]
+						}
+					};
+				},
+				computed: {},
+				components: {
+					c1,
+					c2,
+				},
+				watch: {},
+				methods: {
+					submitForm(formName) {
+						this.$refs[formName].validate((valid) => {
+							if(valid) {
+								alert('submit!');
+							} else {
+								console.log('error submit!!');
+								return false;
+							}
+						});
+					},
+					resetForm(formName) {
+						this.$refs[formName].resetFields();
+					}
+				},
+				created() {},
+				mounted() {},
+			};
+			var vu = new Vue({
+				el: "#swq",
+				data: {},
+				methods: {},
+				components: {
+					swq,
+					c1,
+				},
+				watch: {},
+				computed: {},
+				created() {},
+				mounted() {},
+			})
+		</script>
+	</body>
 
 </html>
