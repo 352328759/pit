@@ -7,7 +7,9 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,shrink-to-fit=no" />
 		<title>vue2</title>
 		<!--<link rel="stylesheet" href="https://keepfool.github.io/vue-tutorials/01.GettingStarted/styles/demo.css" />-->
-		<link rel="stylesheet" href="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.css">
+		<!--<link rel="stylesheet" href="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.css">-->
+		<link rel="stylesheet" href="./jvw/element-ui/element-ui@2.15.1/index.css">
+
 		<!--<link rel="stylesheet" href="./jvw/antd/antd.min.css">-->
 		<style>
 
@@ -76,11 +78,23 @@
 		</script>
 		<script type="text/x-template" id="c1-template">
 			<div>
-				<el-table :data="tableData" style="width: 100%">
+				<!--<el-table :data="tableData" style="width: 100%">
 					<el-table-column prop="date" label="日期"></el-table-column>
 					<el-table-column prop="_2" label="2:00"></el-table-column>
 					<el-table-column prop="_7" label="7:00"></el-table-column>
 					<el-table-column prop="_12" label="12:00"></el-table-column>
+				</el-table>-->
+
+				<el-table :data="tableData" style="width: 100%;margin-bottom: 20px;" row-key="id" border default-expand-all :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
+					<el-table-column type="selection" width="55">
+					</el-table-column>
+
+					<el-table-column prop="date" label="日期" sortable width="180">
+					</el-table-column>
+					<el-table-column prop="name" label="姓名" sortable width="180">
+					</el-table-column>
+					<el-table-column prop="address" label="地址">
+					</el-table-column>
 				</el-table>
 			</div>
 		</script>
@@ -113,7 +127,9 @@
 		<!--<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.6/vue.min.js"></script>-->
 
 		<!--<script src="./jvw/antd/antd.js"></script>-->
-		<script src="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.js"></script>
+		<!--<script src="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.js"></script>-->
+		<script src="./jvw/element-ui/element-ui@2.15.1/index.js"></script>
+
 		<!--<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>-->
 		<!--<script src="./jvw/jquery.min.js"></script>-->
 
@@ -145,7 +161,51 @@
 					arr[31 - 1 - offset]._12 = "now"
 
 					return {
-						tableData: arr,
+						// tableData: arr,
+						tableData: [{
+							id: 1,
+							date: '2016-05-02',
+							name: '王小虎',
+							address: '上海市普陀区金沙江路 1518 弄'
+						}, {
+							id: 2,
+							date: '2016-05-04',
+							name: '王小虎',
+							address: '上海市普陀区金沙江路 1517 弄'
+						}, {
+							id: 3,
+							date: '2016-05-01',
+							name: '王小虎',
+							address: '上海市普陀区金沙江路 1519 弄',
+							children: [{
+								id: 31,
+								date: '2016-05-01',
+								name: '王小虎',
+								address: '上海市普陀区金沙江路 1519 弄'
+							}, {
+								id: 32,
+								date: '2016-05-01',
+								name: '王小虎',
+								address: '上海市普陀区金沙江路 1519 弄',
+								children: [{
+									id: 38,
+									date: '2016-05-01',
+									name: '王小虎',
+									address: '上海市普陀区金沙江路 1519 弄'
+								}, {
+									id: 39,
+									date: '2016-05-01',
+									name: '王小虎',
+									address: '上海市普陀区金沙江路 1519 弄'
+								}],
+							}],
+						}, {
+							id: 4,
+							date: '2016-05-03',
+							name: '王小虎',
+							address: '上海市普陀区金沙江路 1516 弄'
+						}],
+
 					}
 				},
 				computed: {},
