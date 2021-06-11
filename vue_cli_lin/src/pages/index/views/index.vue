@@ -1,5 +1,40 @@
 <template>
 	<div class="shop">
+		<div @click="fixed('processStatements')">fixed</div>
+
+		<el-table ref="processStatements" :data="tableData" style="width: 100%">
+			<el-table-column prop="date" label="日期" width="" :fixed="true" />
+			<el-table-column prop="name" label="姓名" :fixed="true" />
+			<el-table-column prop="address" label="地址" />
+			<el-table-column prop="vu1" label="vu1-qqwwee" />
+			<el-table-column prop="vu2" label="vu2-qqwwee" />
+			<el-table-column prop="vu3" label="vu3-qqwwee" />
+			<el-table-column prop="vu4" label="vu4-qqwwee" />
+			<el-table-column prop="vu5" label="vu5-qqwwee" />
+			<el-table-column prop="vu6" label="vu6-qqwwee" />
+			<el-table-column prop="vu7" label="vu7-qqwwee" />
+			<el-table-column prop="vu8" label="vu8-qqwwee" />
+			<el-table-column prop="vu9" label="vu9-qqwwee" />
+			<el-table-column prop="vu1" label="vu1-qqwwee" />
+			<el-table-column prop="vu2" label="vu2-qqwwee" />
+			<el-table-column prop="vu3" label="vu3-qqwwee" />
+			<el-table-column prop="vu4" label="vu4-qqwwee" />
+			<el-table-column prop="vu5" label="vu5-qqwwee" />
+			<el-table-column prop="vu6" label="vu6-qqwwee" />
+			<el-table-column prop="vu7" label="vu7-qqwwee" />
+			<el-table-column prop="vu8" label="vu8-qqwwee" />
+			<el-table-column prop="vu9" label="vu9-qqwwee" />
+			<el-table-column prop="vu1" label="vu1-qqwwee" />
+			<el-table-column prop="vu2" label="vu2-qqwwee" />
+			<el-table-column prop="vu3" label="vu3-qqwwee" />
+			<el-table-column prop="vu4" label="vu4-qqwwee" />
+			<el-table-column prop="vu5" label="vu5-qqwwee" />
+			<el-table-column prop="vu6" label="vu6-qqwwee" />
+			<el-table-column prop="vu7" label="vu7-qqwwee" />
+			<el-table-column prop="vu8" label="vu8-qqwwee" />
+			<el-table-column prop="vu9" label="vu9-qqwwee" />
+		</el-table>
+
 		<!-- <div class="head">
 			<a class="logon_link" href="hjavascript:void(0);">
 				<div class="logo"></div>
@@ -52,8 +87,18 @@
 </template>
 <script type="text/javascript">
 	// import '@/assets/style/index/index.css';
+	import dTable from './table';
+
 	export default {
 		'name': 'Index',
+		components: {
+			dTable
+		},
+		data() {
+			return {
+				tableData: [],
+			}
+		},
 		methods: {
 			// handleLogout: function() {
 			// 	this.$http.get('/logout').then(() => {
@@ -62,6 +107,29 @@
 			// 		});
 			// 	});
 			// }
+			fixed(tab) {
+				var _this = this
+				var _tab = this.$refs[tab]
+				var _headerHeight = _tab.$refs.headerWrapper.offsetHeight + "px"
+				_tab.$refs.bodyWrapper.style.marginTop = _headerHeight
+				_tab.$refs.headerWrapper.style.position = "fixed"
+				_tab.$refs.headerWrapper.style.zIndex = "9"
+				_tab.$refs.headerWrapper.style.top = "0px"
+
+				var hasFixedWrapper = Object.prototype.hasOwnProperty.call(_tab.$refs, "fixedWrapper")
+
+				if (hasFixedWrapper) {
+					var _fixedWidth = _tab.$refs.fixedWrapper.offsetWidth + "px"
+					_tab.$refs.fixedHeaderWrapper.style.position = "fixed"
+					_tab.$refs.fixedHeaderWrapper.style.zIndex = "10"
+					_tab.$refs.fixedHeaderWrapper.style.top = "0px"
+					_tab.$refs.fixedHeaderWrapper.style.width = _fixedWidth
+					_tab.$refs.fixedHeaderWrapper.style.overflow = "hidden"
+				} else {
+					console.log("not fixedWrapper")
+				}
+
+			},
 		},
 		computed: {
 			Irole: function () {
@@ -72,6 +140,31 @@
 				// }
 			}
 		},
-		mounted: function () { },
+		beforeMount() { },
+		mounted: function () {
+
+			for (var i = 0; i < 3; i++) {
+				this.tableData.push({
+					date: '2016-05-03',
+					name: '王小虎',
+					address: '上海市普陀区金沙江路 1516 弄',
+					vu1: '在龙珠超的最新话当中，地球',
+					vu2: '兰诺拉的强大已经有了心理准备',
+					vu3: '仅一击就将悟空打到半死',
+					vu4: '了让比鲁斯引以为傲的破坏能',
+					vu5: '贝吉塔的谈话中我们知道，破坏能量不仅是',
+					vu6: '传统的招式只是用能量把物体打碎',
+					vu7: '传统的招式只是用能量把物体打碎',
+					vu8: '传统的招式只是用能量把物体打碎',
+					vu9: '传统的招式只是用能量把物体打碎',
+				})
+			}
+
+
+			// this.$nextTick(function () {
+			// 	this.fixed("processStatements")
+			// })
+
+		},
 	};
 </script>
