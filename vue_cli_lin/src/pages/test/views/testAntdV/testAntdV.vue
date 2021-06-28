@@ -22,7 +22,7 @@
 	// import '@/assets/style/index/index.css';
 
 	export default {
-		'name': 'Test',
+		'name': 'TestAntdV',
 		data() {
 			return {
 				ModalText: 'Content of the modal',

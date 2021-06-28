@@ -2,6 +2,7 @@ const layout = resolve => require(["@/pages/test/layout"], resolve);
 //组织设置
 
 const testAntdV = resolve => require(['@/pages/test/views/testAntdV/testAntdV'], resolve);
+const testVue = resolve => require(['@/pages/test/views/testVue/testVue'], resolve);
 //首页
 
 const router = {
@@ -21,6 +22,17 @@ const router = {
 		},
 		meta: {
 			title: "test AntdV",
+		},
+	}, {
+		// path: "",
+		path: "testVue",
+		name: "testVue",
+		// component: assetsIndex,
+		components: {
+			default: testVue
+		},
+		meta: {
+			title: "test Vue",
 		},
 	}],
 };

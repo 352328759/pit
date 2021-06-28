@@ -87,12 +87,10 @@
 </template>
 <script type="text/javascript">
 	// import '@/assets/style/index/index.css';
-	import dTable from './table';
 
 	export default {
 		'name': 'Index',
 		components: {
-			dTable
 		},
 		data() {
 			return {
