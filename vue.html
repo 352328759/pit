@@ -210,6 +210,12 @@
 				},
 				computed: {},
 				components: {},
+				beforeUpdate() {
+					console.log("beforeUpdate")
+				},
+				updated() {
+					console.log("updated")
+				},
 				watch: {},
 				methods: {},
 				created() {},
@@ -246,6 +252,12 @@
 					},
 				},
 				created() {},
+				beforeUpdate() {
+					console.log("beforeUpdate")
+				},
+				updated() {
+					console.log("updated")
+				},
 				mounted() {},
 			};
 			c3 = {
@@ -258,6 +270,12 @@
 				components: {},
 				watch: {},
 				methods: {},
+				beforeUpdate() {
+					console.log("beforeUpdate")
+				},
+				updated() {
+					console.log("updated")
+				},
 				created() {},
 				mounted() {},
 			};
@@ -289,6 +307,12 @@
 				watch: {},
 				methods: {},
 				created() {},
+				beforeUpdate() {
+					console.log("beforeUpdate")
+				},
+				updated() {
+					console.log("updated")
+				},
 				mounted() {},
 			};
 			var App = {
@@ -309,6 +333,12 @@
 				watch: {},
 				methods: {},
 				created() {},
+				beforeUpdate() {
+					console.log("beforeUpdate")
+				},
+				updated() {
+					console.log("updated")
+				},
 				mounted() {},
 			};
 			Vue.component("c1", c1);
@@ -328,6 +358,8 @@
 				watch: {},
 				computed: {},
 				created() {},
+				beforeUpdate() {},
+				updated() {},
 				mounted() {},
 			})
 			//			console.log(vu.s)
