@@ -6,7 +6,9 @@ module.exports = {
 		path: path.join(__dirname, "dist", "assets"),
 		filename: "bundle.js",
 	},
-	node: {
-		fs: "empty"
+	resolve: {
+		fallback: {
+			fs: false
+		},
 	},
 }
