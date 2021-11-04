@@ -1,0 +1,20 @@
+卷 OS 的文件夹 PATH 列表
+卷序列号为 3A2A-91C3
+C:.
+│  txt.txt
+│  
+├─FileStorage
+	  ├─Cache
+	  │  ├─2021-10
+	  │  │      fbb5c7497db31c79d08e696e8bf46573.jpg
+	  │  │      
+	  │  └─2021-11
+	  │          25f9a1f983d73fbd5c479adfc872084a_t.jpg
+	  │          
+	  └─Sns
+	  	  └─Cache
+	  	      ├─2021-10
+	  	      │      0123a80327dbd87a5c4e65adcb0ac192
+	  	      │      
+	  	      └─2021-11
+	  	              0015a76692bae997df19c4429ae6bb47
