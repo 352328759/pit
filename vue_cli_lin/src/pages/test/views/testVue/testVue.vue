@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="swq" ref="swq" v-d-infinite-scroll="load" :infinite-scroll-distance="10" style="overflow: auto;">
+		<div class="swq" ref="swq" style="overflow: auto;" v-d-infinite-scroll="load" :infinite-scroll-disabled="isScroll" :infinite-scroll-distance="15">
 			<ul ref="ul">
 				<li v-for="item in count" :key="item.key">{{ item.value }}</li>
 			</ul>
@@ -10,6 +10,7 @@
 			<span @click="fun2">fun2</span>
 			<span @click="fun3">fun3</span>
 			<span @click="fun4">fun4</span>
+			<span @click="fun5">fun5</span>
 		</div>
 	</div>
 </template>
@@ -126,16 +127,17 @@
 		let shouldTrigger = false;
 
 		if(container === el) {
-			// be aware of difference between clientHeight & offsetHeight & window.getComputedStyle().height
 			//			const scrollBottom = container.scrollTop + getClientHeight(container);
 			//			shouldTrigger = container.scrollHeight - scrollBottom <= distance;
 
 			shouldTrigger = container.scrollTop <= distance;
 		} else {
-			const heightBelowTop = getOffsetHeight(el) + getElementTop(el) - getElementTop(container);
-			const offsetHeight = getOffsetHeight(container);
-			const borderBottom = Number.parseFloat(getStyleComputedProperty(container, 'borderBottomWidth'));
-			shouldTrigger = heightBelowTop - offsetHeight + borderBottom <= distance;
+			//			const heightBelowTop = getOffsetHeight(el) + getElementTop(el) - getElementTop(container);
+			//			const offsetHeight = getOffsetHeight(container);
+			//			const borderBottom = Number.parseFloat(getStyleComputedProperty(container, 'borderBottomWidth'));
+			//			shouldTrigger = heightBelowTop - offsetHeight + borderBottom <= distance;
+
+			shouldTrigger = container.scrollTop <= distance;
 		}
 
 		if(shouldTrigger && isFunction(cb)) {
@@ -153,6 +155,7 @@
 			return {
 				count: [],
 				thisId: 0,
+				loading: false,
 			}
 		},
 		directives: {
@@ -201,13 +204,37 @@
 			},
 		},
 		components: {},
+		computed: {
+			noMore() {
+				return this.count >= 20
+			},
+			isScroll() {
+				return this.loading || this.noMore
+			}
+		},
 		methods: {
 			load() {
 				console.log("load")
+
+				let _this = this
+				let t1 = this.$refs.ul.getBoundingClientRect().height
+
 				if(this.count.length > 100) {
 					return
 				}
-				this.addItem()
+				this.loading = true
+				setTimeout(() => {
+					this.addItem()
+					this.addItem()
+					this.addItem()
+					this.addItem()
+					this.addItem()
+					this.loading = false
+					this.$nextTick(function() {
+						let t2 = _this.$refs.ul.getBoundingClientRect().height
+						this.$refs.swq.scrollTop = this.$refs.swq.scrollTop + (t2 - t1)
+					})
+				}, 1000)
 			},
 			addItem() {
 				let id = this.getId()
@@ -240,6 +267,9 @@
 			fun4() {
 				console.log(this.$refs.ul.getBoundingClientRect().height)
 				console.log(this.$refs.swq.scrollTop)
+			},
+			fun5() {
+				this.isScroll = !this.isScroll
 			},
 			getId() {
 				return Date.now() + "+" + this.thisId++
