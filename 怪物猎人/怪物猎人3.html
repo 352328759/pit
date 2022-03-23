@@ -1,0 +1,2183 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,shrink-to-fit=no" />
+		<title>怪物猎人3 兵器谱</title>
+		<!--<link rel="stylesheet" href="https://keepfool.github.io/vue-tutorials/01.GettingStarted/styles/demo.css" />-->
+		<!--<link rel="stylesheet" href="./jvw/element-ui/element-ui@2.4.0/element-ui.2.4.0.css">-->
+		<link rel="stylesheet" href="../jvw/element-ui/element-ui@2.15.1/index.css">
+
+		<!--<link rel="stylesheet" href="./jvw/antd/antd.min.css">-->
+		<style>
+
+		</style>
+		<!--<meta http-equiv="refresh" content="30" />-->
+	</head>
+
+	<body>
+
+		<div id="swq">
+			<App></App>
+		</div>
+
+		<script type="text/x-template" id="App-template">
+			<div>
+				<weapon />
+			</div>
+		</script>
+		<script type="text/x-template" id="weapon-template">
+			<div>
+				<el-collapse v-model="activeNames">
+					<el-collapse-item v-for="(item, index) in tableData" :title="item.name" :name="index" :key="index">
+						<el-table :data="item.data" :indent="32" row-key="id" border default-expand-all :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
+							<!--<el-table-column type="selection" width="55"> </el-table-column>-->
+
+							<el-table-column prop="name" label="名称" width="500" />
+							<el-table-column prop="price" label="价格" />
+							<el-table-column prop="aggressivity" label="攻击力" />
+							<el-table-column label="特殊效果">
+								<template slot-scope="scope">
+									{{ scope.row.attribute? scope.row.attribute +" " + scope.row.attributeValue :"" }}
+								</template>
+							</el-table-column>
+							<el-table-column prop="produce" label="生产">
+								<template slot-scope="scope">
+									{{ scope.row.produce?"生产":"" }}
+								</template>
+							</el-table-column>
+						</el-table>
+					</el-collapse-item>
+				</el-collapse>
+
+			</div>
+		</script>
+
+		<script src="../jvw/vue/vue@2.5.16.js"></script>
+		<script src="../jvw/element-ui/element-ui@2.15.1/index.js"></script>
+		<script type="text/javascript">
+			console.log(Vue.version)
+			var weapon;
+			weapon = {
+				template: "#weapon-template",
+				props: [],
+				data: function() {
+					var tableData = [{
+						name: "大剑",
+						data: [{
+							name: "浴云大剑",
+							price: 750,
+							aggressivity: 70,
+							produce: true,
+							children: [{
+								name: "浴云大剑改",
+								price: 1000,
+								aggressivity: 90,
+								produce: false,
+								children: [{
+									name: "浴云巨剑",
+									price: 2000,
+									aggressivity: 130,
+									produce: false,
+								}, {
+									name: "41式对飞龙大剑",
+									price: 5900,
+									aggressivity: 140,
+									attribute: "水、防",
+									attributeValue: "20、16",
+									produce: false,
+									children: [{
+										name: "41式对飞龙大剑改",
+										price: 40000,
+										aggressivity: 190,
+										attribute: "水、防",
+										attributeValue: "25、20",
+										produce: false,
+										children: [{
+											name: "军神甲刃",
+											price: 60000,
+											aggressivity: 210,
+											attribute: "水、防",
+											attributeValue: "32、24",
+											produce: false,
+										}]
+									}]
+								}]
+							}, {
+								name: "巨剑",
+								price: 1500,
+								aggressivity: 80,
+								produce: true,
+								children: [{
+									name: "巨剑改",
+									price: 2500,
+									aggressivity: 110,
+									produce: false,
+									children: [{
+										name: "巨刃",
+										price: 4000,
+										aggressivity: 130,
+										produce: false,
+										children: [{
+											name: "爆裂刀",
+											price: 7350,
+											aggressivity: 140,
+											attribute: "防",
+											attributeValue: 12,
+											produce: true,
+											children: [{
+												name: "爆裂刀改",
+												price: 8200,
+												aggressivity: 170,
+												produce: false,
+												children: [{
+													name: "灵雀大剑",
+													price: 30000,
+													aggressivity: 180,
+													produce: true,
+													children: [{
+														name: "灵雀大剑改",
+														price: 35000,
+														aggressivity: 200,
+														produce: false,
+													}]
+												}, {
+													name: "爆锤大剑",
+													price: 52500,
+													aggressivity: 200,
+													attribute: "防",
+													attributeValue: 30,
+													produce: true,
+													children: [{
+														name: "爆锤大剑改",
+														price: 45000,
+														aggressivity: 220,
+														attribute: "防",
+														attributeValue: 35,
+														produce: false,
+														children: [{
+															name: "红莲爆锤大剑",
+															price: 65000,
+															aggressivity: 240,
+															attribute: "防",
+															attributeValue: 40,
+															produce: false,
+														}]
+													}]
+												}]
+											}, {
+												name: "红莲炎魄剑",
+												price: 22500,
+												aggressivity: 150,
+												produce: true,
+												children: [{
+													name: "暗夜剑【宵暗】",
+													price: 65000,
+													aggressivity: 190,
+													produce: false,
+												}]
+											}]
+										}]
+									}]
+								}]
+							}, {
+								name: "狂暴大剑",
+								price: 2850,
+								aggressivity: 100,
+								produce: true,
+								children: [{
+									name: "族长大剑",
+									price: 3200,
+									aggressivity: 120,
+									produce: false,
+									children: [{
+										name: "族长大剑【我王】",
+										price: 35000,
+										aggressivity: 190,
+										produce: false,
+									}]
+								}, {
+									name: "土砂龙大剑",
+									price: 5900,
+									aggressivity: 150,
+									produce: false,
+									children: [{
+										name: "土砂龙巨刃",
+										price: 9500,
+										aggressivity: 190,
+										produce: false,
+										children: [{
+											name: "土砂龙巨刃改",
+											price: 55000,
+											aggressivity: 220,
+											produce: false,
+											children: [{
+												name: "土砂龙巨剑",
+												price: 35000,
+												aggressivity: 200,
+												attribute: "冰",
+												attributeValue: 20,
+												produce: false,
+												children: [{
+													name: "极光大剑",
+													price: 55000,
+													aggressivity: 220,
+													attribute: "冰",
+													attributeValue: 25,
+													produce: false,
+												}]
+											}]
+										}]
+									}, {
+										name: "轰龙鄂刀",
+										price: 30000,
+										aggressivity: 170,
+										produce: true,
+										children: [{
+											name: "轰龙鄂刀改",
+											price: 40000,
+											aggressivity: 180,
+											produce: false,
+											children: [{
+												name: "轰大剑【王虎】",
+												price: 70000,
+												aggressivity: 220,
+												produce: false,
+											}, {
+												name: "暴君大剑",
+												price: 50000,
+												aggressivity: 200,
+												produce: false,
+												children: [{
+													name: "吼大剑【荒咬】",
+													price: 70000,
+													aggressivity: 230,
+													produce: false,
+												}]
+											}]
+										}]
+									}]
+								}]
+							}]
+						}, {
+							name: "巨骨刀",
+							price: 2100,
+							aggressivity: 90,
+							produce: true,
+							children: [{
+								name: "巨骨刀改",
+								price: 3200,
+								aggressivity: 120,
+								produce: false,
+								children: [{
+									name: "大骨剑",
+									price: 4900,
+									aggressivity: 140,
+									produce: false,
+									children: [{
+										name: "巨像刀",
+										price: 8850,
+										aggressivity: 150,
+										produce: true,
+										children: [{
+											name: "巨像刀改",
+											price: 9500,
+											aggressivity: 180,
+											produce: false,
+											children: [{
+												name: "刚剑塔罗斯",
+												price: 50000,
+												aggressivity: 210,
+												produce: false,
+											}, {
+												name: "鄂刀",
+												price: 30000,
+												aggressivity: 190,
+												produce: true,
+												children: [{
+													name: "大鄂刀",
+													price: 35000,
+													aggressivity: 210,
+													produce: false,
+													children: [{
+														name: "龙之鄂刀",
+														price: 45000,
+														aggressivity: 220,
+														produce: false,
+													}]
+												}]
+											}]
+										}, {
+											name: "瓦尔基里之刃",
+											price: 8850,
+											aggressivity: 140,
+											attribute: "毒",
+											attributeValue: 24,
+											produce: true,
+											children: [{
+												name: "吉克琳达",
+												price: 15000,
+												aggressivity: 160,
+												attribute: "毒",
+												attributeValue: 28,
+												produce: false,
+												children: [{
+													name: "高阶吉克琳达",
+													price: 60000,
+													aggressivity: 200,
+													attribute: "毒",
+													attributeValue: 32,
+													produce: false,
+												}]
+											}, {
+												name: "齐格蒙大剑",
+												price: 50000,
+												aggressivity: 200,
+												produce: false,
+												children: [{
+													name: "高阶齐格蒙大剑",
+													price: 65000,
+													aggressivity: 220,
+													produce: false,
+												}]
+											}]
+										}]
+									}, {
+										name: "红翼",
+										price: 7000,
+										aggressivity: 160,
+										attribute: "火",
+										attributeValue: 30,
+										produce: false,
+										children: [{
+											name: "炎剑雄火龙",
+											price: 50000,
+											aggressivity: 180,
+											attribute: "火",
+											attributeValue: 38,
+											produce: false,
+											children: [{
+												name: "焰剑雄火龙",
+												price: 65000,
+												aggressivity: 190,
+												attribute: "火",
+												attributeValue: 42,
+												produce: false,
+												children: [{
+													name: "辉剑雄火龙",
+													price: 75000,
+													aggressivity: 200,
+													attribute: "火",
+													attributeValue: 56,
+													produce: false,
+												}]
+											}]
+										}]
+									}]
+								}]
+							}, {
+								name: "水流大剑",
+								price: 3750,
+								aggressivity: 110,
+								produce: true,
+								children: [{
+									name: "暴雨大剑",
+									price: 5900,
+									aggressivity: 130,
+									attribute: "水",
+									attributeValue: 32,
+									produce: false,
+									children: [{
+										name: "暴雨大剑改",
+										price: 15000,
+										aggressivity: 150,
+										attribute: "水",
+										attributeValue: 38,
+										produce: false,
+										children: [{
+											name: "暴雨巨刃",
+											price: 55000,
+											aggressivity: 180,
+											attribute: "水",
+											attributeValue: 45,
+											produce: false,
+										}]
+									}]
+								}, {
+									name: "喧闹之角",
+									price: 20000,
+									aggressivity: 190,
+									attribute: "防",
+									attributeValue: 8,
+									produce: false,
+									children: [{
+										name: "喧闹之角改",
+										price: 50000,
+										aggressivity: 210,
+										attribute: "防",
+										attributeValue: 12,
+										produce: false,
+										children: [{
+											name: "刚角剑角龙",
+											price: 70000,
+											aggressivity: 230,
+											attribute: "防",
+											attributeValue: 16,
+											produce: false,
+										}]
+									}]
+								}, {
+									name: "冰霜巨牙",
+									price: 7000,
+									aggressivity: 140,
+									attribute: "冰",
+									attributeValue: 30,
+									produce: false,
+									children: [{
+										name: "冰霜巨牙改",
+										price: 45000,
+										aggressivity: 160,
+										attribute: "冰",
+										attributeValue: 45,
+										produce: false,
+										children: [{
+											name: "冰霜骑士巨剑",
+											price: 65000,
+											aggressivity: 180,
+											attribute: "冰",
+											attributeValue: 55,
+											produce: false,
+										}]
+									}, {
+										name: "盖亚冲击",
+										price: 45000,
+										aggressivity: 170,
+										produce: false,
+										children: [{
+											name: "暴砂剑蛮砂吞噬",
+											price: 65000,
+											aggressivity: 190,
+											produce: false,
+										}]
+									}]
+								}]
+							}]
+						}, {
+							name: "熔岩烈剑",
+							price: 9999,
+							aggressivity: 130,
+							produce: true,
+							children: [{
+								name: "熔岩烈剑改",
+								price: 20000,
+								aggressivity: 140,
+								produce: false,
+								children: [{
+									name: "爆裂熔岩烈剑",
+									price: 43500,
+									aggressivity: 190,
+									produce: false,
+								}]
+							}]
+						}, {
+							name: "毒素之刃",
+							price: 3750,
+							aggressivity: 100,
+							attribute: "毒",
+							attributeValue: 30,
+							produce: true,
+							children: [{
+								name: "毒断马修罗格巨刃",
+								price: 25000,
+								aggressivity: 150,
+								attribute: "毒",
+								attributeValue: 50,
+								produce: false,
+							}]
+						}, {
+							name: "真浴云大剑",
+							price: 15000,
+							aggressivity: 160,
+							produce: true,
+							children: [{
+								name: "真浴云大剑改",
+								price: 30000,
+								aggressivity: 190,
+								produce: false,
+								children: [{
+									name: "浴云大斩剑【云散】",
+									price: 50000,
+									aggressivity: 210,
+									produce: false,
+								}]
+							}]
+						}, {
+							name: "番伞【秋雨】",
+							price: 7350,
+							aggressivity: 130,
+							produce: true,
+							children: [{
+								name: "番伞【斩雨】",
+								price: 45000,
+								aggressivity: 180,
+								produce: false,
+							}]
+						}, {
+							name: "王大剑风雷",
+							price: 24000,
+							aggressivity: 160,
+							attribute: "雷",
+							attributeValue: 30,
+							produce: true,
+							children: [{
+								name: "王牙大剑【黑雷】",
+								price: 80000,
+								aggressivity: 210,
+								attribute: "雷",
+								attributeValue: 35,
+								produce: false,
+							}]
+						}, {
+							name: "封魔剑",
+							price: 30000,
+							aggressivity: 140,
+							attribute: "雷、防",
+							attributeValue: "50、8",
+							produce: true,
+							children: [{
+								name: "天魔剑",
+								price: 50000,
+								aggressivity: 180,
+								attribute: "雷、防",
+								attributeValue: "60、10",
+								produce: false,
+							}]
+						}, {
+							name: "狂战士之剑",
+							price: 66666,
+							aggressivity: 180,
+							attribute: "龙",
+							attributeValue: 12,
+							produce: true,
+							children: [{
+								name: "悲恸",
+								price: 85000,
+								aggressivity: 210,
+								attribute: "龙",
+								attributeValue: 20,
+								produce: false,
+							}]
+						}, {
+							name: "煌黑大剑",
+							price: 75000,
+							aggressivity: 170,
+							attribute: "龙",
+							attributeValue: 40,
+							produce: true,
+							children: [{
+								name: "煌黑大剑·凶天煞",
+								price: 100000,
+								aggressivity: 190,
+								attribute: "龙",
+								attributeValue: 45,
+								produce: false,
+							}]
+						}, {
+							name: "真·轰断剑",
+							price: 60000,
+							aggressivity: 210,
+							produce: true,
+						}, {
+							name: "霸剑·黑帝裂荆",
+							price: 99999,
+							aggressivity: 250,
+							produce: true,
+						}, {
+							name: "崩剑·天怒冰川",
+							price: 99999,
+							aggressivity: 250,
+							attribute: "冰、防",
+							attributeValue: "20、15",
+							produce: true,
+						}, {
+							name: "凶剑【丛云】",
+							price: 120000,
+							aggressivity: 240,
+							attribute: "水",
+							attributeValue: 16,
+							produce: true,
+						}]
+					}, {
+						name: "太刀",
+						data: [{
+							name: "浴云太刀",
+							price: 750,
+							aggressivity: 70,
+							produce: true,
+							children: [{
+								name: "浴云太刀改",
+								price: 1000,
+								aggressivity: 90,
+								produce: false,
+								children: [{
+									name: "浴云大太刀",
+									price: 2000,
+									aggressivity: 130,
+									produce: false,
+								}, {
+									name: "鲜血十字刃",
+									price: 7350,
+									aggressivity: 120,
+									attribute: "毒",
+									attributeValue: 30,
+									produce: true,
+									children: [{
+										name: "鲜血十字刃改",
+										price: 15000,
+										aggressivity: 150,
+										attribute: "毒",
+										attributeValue: 35,
+										produce: false,
+										children: [{
+											name: "毒刀甘毒十字",
+											price: 60000,
+											aggressivity: 170,
+											attribute: "毒",
+											attributeValue: 40,
+											produce: false,
+										}, {
+											name: "深红十字刃",
+											price: 40000,
+											aggressivity: 170,
+											attribute: "雷",
+											attributeValue: 26,
+											produce: false,
+											children: [{
+												name: "失落伊甸",
+												price: 60000,
+												aggressivity: 190,
+												attribute: "雷",
+												attributeValue: 30,
+												produce: false,
+											}]
+										}]
+									}]
+								}]
+							}, {
+								name: "铁刀",
+								price: 1000,
+								aggressivity: 80,
+								produce: true,
+								children: [{
+									name: "铁刀【楔】",
+									price: 1900,
+									aggressivity: 100,
+									produce: false,
+									children: [{
+										name: "铁刀【神乐】",
+										price: 3200,
+										aggressivity: 140,
+										produce: false,
+										children: [{
+											name: "迅影军刀",
+											price: 22500,
+											aggressivity: 140,
+											produce: true,
+											children: [{
+												name: "迅影军刀改",
+												price: 35000,
+												aggressivity: 160,
+												produce: false,
+												children: [{
+													name: "夜刀【月影】",
+													price: 65000,
+													aggressivity: 180,
+													produce: false,
+												}, {
+													name: "梦魇军刀",
+													price: 45000,
+													aggressivity: 180,
+													produce: false,
+													children: [{
+														name: "疾风刀【里月影】",
+														price: 65000,
+														aggressivity: 200,
+														produce: false,
+													}]
+												}]
+											}]
+										}, {
+											name: "一虎刀",
+											price: 30000,
+											aggressivity: 170,
+											produce: true,
+											children: [{
+												name: "一虎刀【饿刃】",
+												price: 40000,
+												aggressivity: 190,
+												produce: false,
+												children: [{
+													name: "轰刀【饿虎】",
+													price: 70000,
+													aggressivity: 220,
+													produce: false,
+												}]
+											}]
+										}]
+									}, {
+										name: "电锯",
+										price: 6000,
+										aggressivity: 120,
+										attribute: "雷",
+										attributeValue: 10,
+										produce: true,
+										children: [{
+											name: "电锯改",
+											price: 15000,
+											aggressivity: 170,
+											attribute: "雷",
+											attributeValue: 12,
+											produce: false,
+											children: [{
+												name: "改良电锯",
+												price: 45000,
+												aggressivity: 200,
+												attribute: "雷",
+												attributeValue: 14,
+												produce: false,
+											}]
+										}]
+									}]
+								}, {
+									name: "冻刃",
+									price: 4900,
+									aggressivity: 120,
+									attribute: "冰",
+									attributeValue: 15,
+									produce: false,
+									children: [{
+										name: "冻刃【冰华】",
+										price: 8200,
+										aggressivity: 150,
+										attribute: "冰",
+										attributeValue: 22,
+										produce: false,
+										children: [{
+											name: "六花垂冰丸",
+											price: 45000,
+											aggressivity: 200,
+											attribute: "冰",
+											attributeValue: 30,
+											produce: false,
+										}]
+									}]
+								}]
+							}, {
+								name: "青熊剃",
+								price: 2500,
+								aggressivity: 110,
+								produce: false,
+								children: [{
+									name: "青熊剃改",
+									price: 5900,
+									aggressivity: 150,
+									produce: false,
+									children: [{
+										name: "青熊长笔【留跳】",
+										price: 35000,
+										aggressivity: 200,
+										produce: false,
+									}, {
+										name: "断牙太刀",
+										price: 30000,
+										aggressivity: 160,
+										attribute: "龙、防",
+										attributeValue: "10、8",
+										produce: true,
+										children: [{
+											name: "断牙刀【一太刀】",
+											price: 65000,
+											aggressivity: 210,
+											attribute: "龙、防",
+											attributeValue: "15、16",
+											produce: false,
+										}]
+									}, {
+										name: "山刈镰",
+										price: 20000,
+										aggressivity: 180,
+										produce: false,
+										children: [{
+											name: "山刈大镰",
+											price: 50000,
+											aggressivity: 200,
+											produce: false,
+											children: [{
+												name: "山剃巨槌刀",
+												price: 70000,
+												aggressivity: 220,
+												produce: false,
+											}]
+										}]
+									}]
+								}, {
+									name: "水溺刀",
+									price: 7350,
+									aggressivity: 130,
+									attribute: "水、防",
+									attributeValue: "14、8",
+									produce: true,
+									children: [{
+										name: "水溺刀改",
+										price: 9500,
+										aggressivity: 170,
+										attribute: "水、防",
+										attributeValue: "16、10",
+										produce: false,
+										children: [{
+											name: "巨蛇禅杖",
+											price: 55000,
+											aggressivity: 190,
+											attribute: "水、防",
+											attributeValue: "27、12",
+											produce: false,
+										}, {
+											name: "毒蛇禅杖",
+											price: 35000,
+											aggressivity: 190,
+											attribute: "毒",
+											attributeValue: 18,
+											produce: false,
+											children: [{
+												name: "碎流毒液禅杖",
+												price: 55000,
+												aggressivity: 210,
+												attribute: "毒",
+												attributeValue: 25,
+												produce: false,
+											}]
+										}]
+									}]
+								}]
+							}, {
+								name: "骨刀【犬牙】",
+								price: 1400,
+								aggressivity: 90,
+								produce: true,
+								children: [{
+									name: "骨刀【豺牙】",
+									price: 3200,
+									aggressivity: 120,
+									produce: false,
+									children: [{
+										name: "骨刀无限",
+										price: 6000,
+										aggressivity: 110,
+										attribute: "麻",
+										attributeValue: 15,
+										produce: true,
+										children: [{
+											name: "骨刀无限改",
+											price: 5900,
+											aggressivity: 130,
+											attribute: "麻",
+											attributeValue: 21,
+											produce: false,
+											children: [{
+												name: "骨缚刀【影缝】",
+												price: 35000,
+												aggressivity: 150,
+												attribute: "麻",
+												attributeValue: 28,
+												produce: false,
+											}, {
+												name: "骨刀极限",
+												price: 30000,
+												aggressivity: 190,
+												produce: true,
+												children: [{
+													name: "骨断刀【影鼬】",
+													price: 35000,
+													aggressivity: 210,
+													produce: false,
+												}]
+											}]
+										}, {
+											name: "炎舞者",
+											price: 20000,
+											aggressivity: 140,
+											attribute: "火",
+											attributeValue: 25,
+											produce: false,
+											children: [{
+												name: "地狱炎舞者",
+												price: 70000,
+												aggressivity: 180,
+												attribute: "火",
+												attributeValue: 35,
+												produce: false,
+											}]
+										}]
+									}, {
+										name: "飞龙刀【双火】",
+										price: 30000,
+										aggressivity: 160,
+										attribute: "火",
+										attributeValue: 18,
+										produce: true,
+										children: [{
+											name: "飞龙刀【双炎】",
+											price: 50000,
+											aggressivity: 170,
+											attribute: "火",
+											attributeValue: 22,
+											produce: false,
+											children: [{
+												name: "飞龙刀【双红莲】",
+												price: 65000,
+												aggressivity: 190,
+												attribute: "火",
+												attributeValue: 24,
+												produce: false,
+												children: [{
+													name: "飞龙刀【银】",
+													price: 75000,
+													aggressivity: 210,
+													attribute: "火",
+													attributeValue: 26,
+													produce: false,
+												}]
+											}]
+										}]
+									}, {
+										name: "爆锤刀",
+										price: 15000,
+										aggressivity: 170,
+										attribute: "防",
+										attributeValue: 20,
+										produce: false,
+										children: [{
+											name: "爆锤刀改",
+											price: 40000,
+											aggressivity: 200,
+											attribute: "防",
+											attributeValue: 30,
+											produce: false,
+											children: [{
+												name: "红莲钢锤刀",
+												price: 65000,
+												aggressivity: 230,
+												attribute: "防",
+												attributeValue: 40,
+												produce: false,
+											}, {
+												name: "铬合金刀",
+												price: 45000,
+												aggressivity: 210,
+												attribute: "防",
+												attributeValue: 20,
+												produce: false,
+												children: [{
+													name: "铬合金名刀",
+													price: 65000,
+													aggressivity: 240,
+													attribute: "防",
+													attributeValue: 20,
+													produce: false,
+												}]
+											}]
+										}]
+									}]
+								}, {
+									name: "毒狗太刀",
+									price: 2500,
+									aggressivity: 100,
+									attribute: "毒",
+									attributeValue: 18,
+									produce: false,
+									children: [{
+										name: "毒狗太刀改",
+										price: 5900,
+										aggressivity: 130,
+										attribute: "毒",
+										attributeValue: 20,
+										produce: false,
+										children: [{
+											name: "猛毒太刀",
+											price: 30000,
+											aggressivity: 180,
+											attribute: "毒",
+											attributeValue: 24,
+											produce: false,
+										}]
+									}]
+								}]
+							}]
+						}, {
+							name: "疾风残噬者",
+							price: 9999,
+							aggressivity: 130,
+							produce: true,
+							children: [{
+								name: "绝音吞噬者",
+								price: 20000,
+								aggressivity: 130,
+								produce: false,
+								children: [{
+									name: "风语者",
+									price: 43500,
+									aggressivity: 140,
+									produce: false,
+								}]
+							}]
+						}, {
+							name: "太刀鱼刃",
+							price: 2100,
+							aggressivity: 70,
+							attribute: "水",
+							attributeValue: 22,
+							produce: true,
+							children: [{
+								name: "太刀鱼刃改",
+								price: 4900,
+								aggressivity: 110,
+								attribute: "水",
+								attributeValue: 30,
+								produce: false,
+								children: [{
+									name: "鲜鱼带刀",
+									price: 25000,
+									aggressivity: 160,
+									attribute: "水",
+									attributeValue: 40,
+									produce: false,
+								}]
+							}]
+						}, {
+							name: "真浴云太刀",
+							price: 15000,
+							aggressivity: 160,
+							produce: true,
+							children: [{
+								name: "真浴云太刀改",
+								price: 30000,
+								aggressivity: 190,
+								produce: false,
+								children: [{
+									name: "灵刀浴云·真打",
+									price: 50000,
+									aggressivity: 210,
+									produce: false,
+								}]
+							}]
+						}, {
+							name: "南蛮刀",
+							price: 24000,
+							aggressivity: 160,
+							attribute: "水",
+							attributeValue: 18,
+							produce: true,
+							children: [{
+								name: "南蛮刀改",
+								price: 35000,
+								aggressivity: 180,
+								attribute: "水",
+								attributeValue: 21,
+								produce: false,
+								children: [{
+									name: "南蛮太刀【鲛斩】",
+									price: 60000,
+									aggressivity: 200,
+									attribute: "水",
+									attributeValue: 25,
+									produce: false,
+								}]
+							}]
+						}, {
+							name: "王牙雷切",
+							price: 24000,
+							aggressivity: 160,
+							attribute: "雷",
+							attributeValue: 20,
+							produce: true,
+							children: [{
+								name: "王牙刀【伏雷】",
+								price: 80000,
+								aggressivity: 210,
+								attribute: "雷",
+								attributeValue: 24,
+								produce: false,
+							}]
+						}, {
+							name: "铁碎牙",
+							price: 30000,
+							aggressivity: 150,
+							produce: true,
+							children: [{
+								name: "铁碎牙D",
+								price: 50000,
+								aggressivity: 200,
+								produce: false,
+							}]
+						}, {
+							name: "恐暴惩罚牙",
+							price: 66666,
+							aggressivity: 180,
+							attribute: "龙",
+							attributeValue: 18,
+							produce: true,
+							children: [{
+								name: "灾厄绞杀牙",
+								price: 85000,
+								aggressivity: 200,
+								attribute: "龙",
+								attributeValue: 23,
+								produce: false,
+							}]
+						}, {
+							name: "漆黑之爪",
+							price: 75000,
+							aggressivity: 170,
+							attribute: "龙",
+							attributeValue: 28,
+							produce: true,
+							children: [{
+								name: "漆黑爪【终焉】",
+								price: 100000,
+								aggressivity: 190,
+								attribute: "龙",
+								attributeValue: 34,
+								produce: false,
+							}]
+						}, {
+							name: "琥珀万雷",
+							price: 60000,
+							aggressivity: 190,
+							attribute: "雷",
+							attributeValue: 35,
+							produce: true,
+						}, {
+							name: "霸王剑",
+							price: 60000,
+							aggressivity: 160,
+							attribute: "龙",
+							attributeValue: 40,
+							produce: true,
+						}, {
+							name: "霸刀·末日陨落",
+							price: 99999,
+							aggressivity: 250,
+							produce: true,
+						}, {
+							name: "崩刀·斩空沧影",
+							price: 99999,
+							aggressivity: 250,
+							attribute: "冰、防",
+							attributeValue: "14、15",
+							produce: true,
+						}, {
+							name: "凶刀【催花雨】",
+							price: 120000,
+							aggressivity: 240,
+							attribute: "水",
+							attributeValue: 12,
+							produce: true,
+						}]
+					}, {
+						name: "斩斧",
+						data: [{
+							name: "浴云斩斧",
+							price: 750,
+							aggressivity: 70,
+							produce: true,
+							children: [{
+								name: "浴云斩斧改",
+								price: 1000,
+								aggressivity: 90,
+								produce: false,
+								children: [{
+									name: "浴云大斧",
+									price: 2000,
+									aggressivity: 130,
+									produce: false,
+								}, {
+									name: "龙姬之斩斧",
+									price: 8850,
+									aggressivity: 130,
+									attribute: "毒",
+									attributeValue: 10,
+									produce: true,
+									children: [{
+										name: "龙姬之斩斧改",
+										price: 15000,
+										aggressivity: 150,
+										attribute: "毒",
+										attributeValue: 16,
+										produce: false,
+										children: [{
+											name: "大地女王",
+											price: 45000,
+											aggressivity: 170,
+											attribute: "毒",
+											attributeValue: 20,
+											produce: false,
+											children: [{
+												name: "高阶大地女王",
+												price: 60000,
+												aggressivity: 190,
+												attribute: "毒",
+												attributeValue: 24,
+												produce: false,
+											}]
+										}]
+									}, {
+										name: "重型尾槌裂斧",
+										price: 30000,
+										aggressivity: 180,
+										produce: true,
+										children: [{
+											name: "重型尾槌裂斧改",
+											price: 50000,
+											aggressivity: 210,
+											produce: false,
+											children: [{
+												name: "山溃恸哭",
+												price: 70000,
+												aggressivity: 220,
+												produce: false,
+											}]
+										}]
+									}]
+								}]
+							}, {
+								name: "青熊斧",
+								price: 3750,
+								aggressivity: 110,
+								produce: true,
+								children: [{
+									name: "青熊斧改",
+									price: 5900,
+									aggressivity: 150,
+									produce: false,
+									children: [{
+										name: "青熊豪斧【山祭】",
+										price: 35000,
+										aggressivity: 200,
+										produce: false,
+									}, {
+										name: "琥珀风牙",
+										price: 22500,
+										aggressivity: 150,
+										attribute: "冰",
+										attributeValue: 20,
+										produce: true,
+										children: [{
+											name: "琥珀风牙改",
+											price: 35000,
+											aggressivity: 170,
+											attribute: "冰",
+											attributeValue: 25,
+											produce: false,
+											children: [{
+												name: "寒冰琥珀",
+												price: 65000,
+												aggressivity: 190,
+												attribute: "冰",
+												attributeValue: 28,
+												produce: false,
+											}, {
+												name: "蓝铜冲击",
+												price: 45000,
+												aggressivity: 170,
+												produce: false,
+												children: [{
+													name: "风暴蓝铜冲击",
+													price: 65000,
+													aggressivity: 190,
+													produce: false,
+												}]
+											}]
+										}]
+									}]
+								}, {
+									name: "彩鸟斩斧",
+									price: 6000,
+									aggressivity: 120,
+									produce: true,
+									children: [{
+										name: "彩鸟斩斧改",
+										price: 7000,
+										aggressivity: 160,
+										produce: false,
+										children: [{
+											name: "冷酷彩鸟斩斧",
+											price: 55000,
+											aggressivity: 190,
+											attribute: "火",
+											attributeValue: 20,
+											produce: false,
+										}, {
+											name: "温泉彩鸟",
+											price: 35000,
+											aggressivity: 170,
+											attribute: "雷",
+											attributeValue: 28,
+											produce: false,
+											children: [{
+												name: "暴雷彩鸟斧",
+												price: 55000,
+												aggressivity: 190,
+												attribute: "雷",
+												attributeValue: 32,
+												produce: false,
+											}]
+										}]
+									}]
+								}]
+							}, {
+								name: "骨斧",
+								price: 1500,
+								aggressivity: 80,
+								produce: true,
+								children: [{
+									name: "骨斧改",
+									price: 1900,
+									aggressivity: 100,
+									produce: false,
+									children: [{
+										name: "突击斧",
+										price: 4900,
+										aggressivity: 140,
+										produce: false,
+										children: [{
+											name: "突击斧改",
+											price: 8200,
+											aggressivity: 170,
+											produce: false,
+											children: [{
+												name: "土砂破坏者",
+												price: 35000,
+												aggressivity: 200,
+												produce: false,
+												children: [{
+													name: "荒神震碎者",
+													price: 55000,
+													aggressivity: 230,
+													produce: false,
+												}]
+											}, {
+												name: "骨骇斩",
+												price: 30000,
+												aggressivity: 180,
+												produce: true,
+												children: [{
+													name: "骨骇斩改",
+													price: 35000,
+													aggressivity: 200,
+													produce: false,
+													children: [{
+														name: "行刑斩者",
+														price: 45000,
+														aggressivity: 210,
+														produce: false,
+													}]
+												}]
+											}]
+										}, {
+											name: "迅影斧",
+											price: 15000,
+											aggressivity: 140,
+											produce: false,
+											children: [{
+												name: "迅影斧改",
+												price: 35000,
+												aggressivity: 160,
+												produce: false,
+												children: [{
+													name: "暗夜斩斧【弦月】",
+													price: 65000,
+													aggressivity: 180,
+													produce: false,
+												}]
+											}]
+										}]
+									}]
+								}]
+							}, {
+								name: "骨钝斧",
+								price: 1900,
+								aggressivity: 100,
+								produce: false,
+								children: [{
+									name: "骨钝斧改",
+									price: 3200,
+									aggressivity: 120,
+									produce: false,
+									children: [{
+										name: "大地冲击",
+										price: 7000,
+										aggressivity: 170,
+										produce: false,
+										children: [{
+											name: "暴君斧",
+											price: 30000,
+											aggressivity: 190,
+											produce: true,
+											children: [{
+												name: "暴君斧改",
+												price: 40000,
+												aggressivity: 210,
+												produce: false,
+												children: [{
+													name: "大地混沌",
+													price: 70000,
+													aggressivity: 230,
+													produce: false,
+												}, {
+													name: "黑色暴君之斧",
+													price: 50000,
+													aggressivity: 220,
+													produce: false,
+													children: [{
+														name: "恶魔斧",
+														price: 70000,
+														aggressivity: 240,
+														produce: false,
+													}]
+												}]
+											}]
+										}, {
+											name: "火焰飓风",
+											price: 30000,
+											aggressivity: 150,
+											attribute: "火",
+											attributeValue: 23,
+											produce: true,
+											children: [{
+												name: "火焰飓风改",
+												price: 40000,
+												aggressivity: 180,
+												attribute: "火",
+												attributeValue: 25,
+												produce: false,
+												children: [{
+													name: "火爆狂风",
+													price: 70000,
+													aggressivity: 200,
+													attribute: "火",
+													attributeValue: 28,
+													produce: false,
+												}, {
+													name: "水流风暴",
+													price: 50000,
+													aggressivity: 180,
+													attribute: "水",
+													attributeValue: 15,
+													produce: false,
+													children: [{
+														name: "暴水狂风",
+														price: 70000,
+														aggressivity: 200,
+														attribute: "水",
+														attributeValue: 18,
+														produce: false,
+													}]
+												}]
+											}]
+										}]
+									}, {
+										name: "赤甲滚动者",
+										price: 5900,
+										aggressivity: 130,
+										attribute: "麻",
+										attributeValue: 12,
+										produce: false,
+										children: [{
+											name: "赤甲滚动者改",
+											price: 30000,
+											aggressivity: 150,
+											attribute: "麻",
+											attributeValue: 15,
+											produce: false,
+											children: [{
+												name: "赤色战斧",
+												price: 35000,
+												aggressivity: 170,
+												attribute: "麻",
+												attributeValue: 18,
+												produce: false,
+											}]
+										}]
+									}]
+								}]
+							}]
+						}, {
+							name: "D·巨斧",
+							price: 9999,
+							aggressivity: 130,
+							produce: true,
+							children: [{
+								name: "D·破坏者",
+								price: 20000,
+								aggressivity: 140,
+								produce: false,
+								children: [{
+									name: "烈日毁灭者",
+									price: 43500,
+									aggressivity: 140,
+									produce: false,
+								}]
+							}]
+						}, {
+							name: "格林白猫斧",
+							price: 2850,
+							aggressivity: 80,
+							attribute: "麻",
+							attributeValue: 20,
+							produce: true,
+							children: [{
+								name: "格林白猫斧改",
+								price: 4000,
+								aggressivity: 110,
+								attribute: "麻",
+								attributeValue: 22,
+								produce: false,
+								children: [{
+									name: "双面猫战斧",
+									price: 45000,
+									aggressivity: 140,
+									attribute: "麻",
+									attributeValue: 25,
+									produce: false,
+								}]
+							}]
+						}, {
+							name: "真浴云斩斧",
+							price: 15000,
+							aggressivity: 160,
+							produce: true,
+							children: [{
+								name: "真浴云斩斧改",
+								price: 30000,
+								aggressivity: 190,
+								produce: false,
+								children: [{
+									name: "开山斩斧浴云",
+									price: 50000,
+									aggressivity: 210,
+									produce: false,
+								}]
+							}]
+						}, {
+							name: "魔锁狩",
+							price: 30000,
+							aggressivity: 150,
+							attribute: "水、防",
+							attributeValue: "20、8",
+							produce: true,
+							children: [{
+								name: "魔锁狩改",
+								price: 45000,
+								aggressivity: 170,
+								attribute: "水、防",
+								attributeValue: "24、12",
+								produce: false,
+								children: [{
+									name: "大魔锁狩",
+									price: 65000,
+									aggressivity: 190,
+									attribute: "水、防",
+									attributeValue: "26、16",
+									produce: false,
+								}]
+							}]
+						}, {
+							name: "王斩斧雷电",
+							price: 24000,
+							aggressivity: 160,
+							attribute: "雷",
+							attributeValue: 22,
+							produce: true,
+							children: [{
+								name: "王牙斩斧【裂雷】",
+								price: 80000,
+								aggressivity: 210,
+								attribute: "雷",
+								attributeValue: 25,
+								produce: false,
+							}]
+						}, {
+							name: "黑色斩斧",
+							price: 75000,
+							aggressivity: 170,
+							attribute: "龙",
+							attributeValue: 28,
+							produce: true,
+							children: [{
+								name: "黑域诛心者",
+								price: 100000,
+								aggressivity: 190,
+								attribute: "龙",
+								attributeValue: 32,
+								produce: false,
+							}]
+						}, {
+							name: "海盗J霸者",
+							price: 60000,
+							aggressivity: 200,
+							produce: true,
+						}, {
+							name: "霸斩斧·涅绝魄炼",
+							price: 99999,
+							aggressivity: 250,
+							produce: true,
+						}, {
+							name: "凶斩斧【白雨】",
+							price: 120000,
+							aggressivity: 240,
+							attribute: "水",
+							attributeValue: 12,
+							produce: true,
+						}]
+					}, {
+						name: "轻弩",
+						data: [{
+							name: "浴云弩",
+							price: 900,
+							aggressivity: 70,
+							attribute: "通常1",
+							attributeValue: 5,
+							produce: true,
+						}]
+					}, {
+						name: "弓",
+						data: [{
+							name: "浴云弓",
+							price: 1035,
+							aggressivity: 70,
+							produce: true,
+							children: [{
+								"name": "浴云弓改",
+								"price": 1480,
+								"aggressivity": 100,
+								"attribute": "",
+								"attributeValue": 0,
+								"produce": false,
+								children: [{
+									name: "毒狗左轮弓I",
+									price: 3630,
+									aggressivity: 120,
+									produce: true,
+									children: [{
+										name: "毒狗左轮弓II",
+										price: 3500,
+										aggressivity: 140,
+										produce: false,
+										children: [{
+											name: "毒狗左轮弓III",
+											price: 7350,
+											aggressivity: 150,
+											produce: true,
+											children: [{
+												name: "污浊左轮弓",
+												price: 38000,
+												aggressivity: 210,
+												produce: false,
+											}]
+										}]
+									}]
+								}, {
+									name: "彩鸟喇叭",
+									price: 4980,
+									aggressivity: 120,
+									attribute: "火",
+									attributeValue: 16,
+									produce: true,
+									children: [{
+										name: "彩鸟大喇叭",
+										price: 8900,
+										aggressivity: 130,
+										attribute: "火",
+										attributeValue: 22,
+										produce: false,
+										children: [{
+											name: "彩鸟超大喇叭",
+											price: 30000,
+											aggressivity: 150,
+											attribute: "火",
+											attributeValue: 27,
+											produce: false,
+											children: [{
+												name: "心灵破坏者",
+												price: 55000,
+												aggressivity: 160,
+												attribute: "火",
+												attributeValue: 33,
+												produce: false,
+											}]
+										}]
+									}]
+								}]
+							}, {
+								"name": "水齿轮弓I",
+								"price": 2030,
+								"aggressivity": 90,
+								"attribute": "水",
+								"attributeValue": 12,
+								"produce": false,
+								children: [{
+									name: "水齿轮弓II",
+									price: 5220,
+									aggressivity: 120,
+									attribute: "水",
+									attributeValue: 18,
+									produce: true,
+									children: [{
+										name: "水齿轮弓III",
+										price: 9210,
+										aggressivity: 140,
+										attribute: "水",
+										attributeValue: 25,
+										produce: false,
+										children: [{
+											"name": "紫色齿轮弓I",
+											"price": 45000,
+											"aggressivity": 170,
+											"attribute": "水",
+											"attributeValue": 26,
+											"produce": true,
+											children: [{
+												"name": "紫色齿轮弓II",
+												"price": 45000,
+												"aggressivity": 180,
+												"attribute": "水",
+												"attributeValue": 28,
+												"produce": false,
+												children: [{
+													"name": "紫水桃弓",
+													"price": 65000,
+													"aggressivity": 190,
+													"attribute": "水",
+													"attributeValue": 30,
+													"produce": false
+												}]
+											}]
+										}]
+									}]
+								}]
+							}]
+						}, {
+							name: "飞甲虫弓",
+							price: 1455,
+							aggressivity: 90,
+							produce: true,
+							children: [{
+								name: "飞虫竖弓",
+								price: 1950,
+								aggressivity: 110,
+								produce: false,
+								children: [{
+									name: "飞甲虫弓红",
+									price: 4350,
+									aggressivity: 120,
+									attribute: "火",
+									attributeValue: 12,
+									produce: true,
+									children: [{
+										name: "飞虫竖弓红",
+										price: 4710,
+										aggressivity: 130,
+										attribute: "火",
+										attributeValue: 24,
+										produce: false,
+										children: [{
+											"name": "火红飞虫强弓",
+											"price": 52500,
+											"aggressivity": 170,
+											"attribute": "火",
+											"attributeValue": 35,
+											"produce": true
+										}]
+									}]
+								}, {
+									name: "飞甲虫弓灰",
+									price: 4350,
+									aggressivity: 120,
+									attribute: "冰",
+									attributeValue: 10,
+									produce: true,
+									children: [{
+										name: "飞虫竖弓灰",
+										price: 4710,
+										aggressivity: 130,
+										attribute: "冰",
+										attributeValue: 20,
+										produce: false,
+										children: [{
+											"name": "冰蓝飞虫强弓",
+											"price": 52500,
+											"aggressivity": 170,
+											"attribute": "冰",
+											"attributeValue": 29,
+											"produce": true
+										}]
+									}]
+								}, {
+									name: "飞甲虫弓黄",
+									price: 4350,
+									aggressivity: 120,
+									attribute: "雷",
+									attributeValue: 8,
+									produce: true,
+									children: [{
+										name: "飞虫竖弓黄",
+										price: 4710,
+										aggressivity: 130,
+										attribute: "雷",
+										attributeValue: 16,
+										produce: false,
+										children: [{
+											"name": "雷光飞虫强弓",
+											"price": 52500,
+											"aggressivity": 170,
+											"attribute": "雷",
+											"attributeValue": 24,
+											"produce": true
+										}]
+									}]
+								}]
+							}]
+						}, {
+							name: "猎弓I",
+							price: 1155,
+							aggressivity: 80,
+							attribute: "防",
+							attributeValue: 5,
+							produce: true,
+							children: [{
+								name: "猎弓II",
+								price: 1720,
+								aggressivity: 100,
+								attribute: "防",
+								attributeValue: 8,
+								produce: false,
+								children: [{
+									name: "猎弓III",
+									price: 3020,
+									aggressivity: 130,
+									attribute: "防",
+									attributeValue: 10,
+									produce: false,
+									children: [{
+										name: "女王光线炮I",
+										price: 7275,
+										aggressivity: 160,
+										produce: true,
+										children: [{
+											name: "女王光线炮II",
+											price: 8200,
+											aggressivity: 170,
+											produce: false,
+											children: [{
+												name: "女王光线炮III",
+												price: 45000,
+												aggressivity: 220,
+												produce: false,
+												children: [{
+													"name": "射月女神",
+													"price": 112500,
+													"aggressivity": 230,
+													"attribute": "火",
+													"attributeValue": 20,
+													"produce": true
+												}]
+											}]
+										}]
+									}, {
+										name: "64式连装弓I",
+										price: 7950,
+										aggressivity: 140,
+										attribute: "水",
+										attributeValue: 16,
+										produce: true,
+										children: [{
+											name: "64式连装弓II",
+											price: 13500,
+											aggressivity: 150,
+											attribute: "水",
+											attributeValue: 20,
+											produce: false,
+											children: [{
+												"name": "64式连装弓Ⅲ",
+												"price": 67500,
+												"aggressivity": 180,
+												"attribute": "水",
+												"attributeValue": 24,
+												"produce": true,
+												children: [{
+													"name": "破城钻击弓",
+													"price": 65000,
+													"aggressivity": 200,
+													"attribute": "水",
+													"attributeValue": 29,
+													"produce": false
+												}]
+											}]
+										}]
+									}, {
+										"name": "力量猎弓I",
+										"price": 30000,
+										"aggressivity": 210,
+										"attribute": "防",
+										"attributeValue": 16,
+										"produce": true,
+										children: [{
+											"name": "力量猎弓II",
+											"price": 45000,
+											"aggressivity": 220,
+											"attribute": "防",
+											"attributeValue": 20,
+											"produce": false,
+										}]
+									}]
+								}]
+							}]
+						}, {
+							name: "竹取弓",
+							price: 3300,
+							aggressivity: 70,
+							attribute: "水",
+							attributeValue: 20,
+							produce: true,
+							children: [{
+								"name": "竹取弓【翁】",
+								"price": 5000,
+								"aggressivity": 70,
+								"attribute": "水",
+								"attributeValue": 27,
+								"produce": false,
+							}]
+						}, {
+							name: "强狩猎弓",
+							price: 4200,
+							aggressivity: 130,
+							produce: true,
+						}, {
+							name: "真浴云弓",
+							price: 12000,
+							aggressivity: 170,
+							produce: true,
+						}, {
+							name: "王弓圆雷I",
+							price: 16200,
+							aggressivity: 150,
+							attribute: "雷",
+							attributeValue: 23,
+							produce: true,
+						}, {
+							name: "冰锥发射者I",
+							price: 14400,
+							aggressivity: 140,
+							attribute: "冰",
+							attributeValue: 24,
+							produce: true,
+						}, {
+							name: "爆锤震弓I",
+							price: 12120,
+							aggressivity: 170,
+							attribute: "火、防",
+							attributeValue: "10、10",
+							produce: true,
+						}, {
+							name: "迅影弓I",
+							price: 12825,
+							aggressivity: 150,
+							attribute: "",
+							attributeValue: 0,
+							produce: true,
+						}, {
+							name: "轰龙弓",
+							price: 15900,
+							aggressivity: 180,
+							attribute: "",
+							attributeValue: 0,
+							produce: true,
+						}, {
+							name: "角骨猎弓I",
+							price: 16650,
+							aggressivity: 190,
+							attribute: "防",
+							attributeValue: 6,
+							produce: true,
+						}, {
+							name: "鹿角弹弓",
+							price: 15000,
+							aggressivity: 170,
+							attribute: "",
+							attributeValue: 0,
+							produce: true,
+						}, {
+							name: "漠浪弓",
+							price: 27000,
+							aggressivity: 150,
+							attribute: "龙",
+							attributeValue: 23,
+							produce: true,
+						}, {
+							name: "彩鸟超大喇呗",
+							price: 45000,
+							aggressivity: 150,
+							attribute: "火",
+							attributeValue: 27,
+							produce: true,
+						}, {
+							"name": "冰锥发射者Ⅱ",
+							"price": 67500,
+							"aggressivity": 170,
+							"attribute": "冰",
+							"attributeValue": 23,
+							"produce": true
+						}, {
+							"name": "迅敏军弓",
+							"price": 67500,
+							"aggressivity": 210,
+							"attribute": "",
+							"attributeValue": 0,
+							"produce": true
+						}, {
+							"name": "爆锤震弓III",
+							"price": 67500,
+							"aggressivity": 220,
+							"attribute": "火、防",
+							"attributeValue": "22、16",
+							"produce": true
+						}, {
+							"name": "绿迅弓",
+							"price": 67500,
+							"aggressivity": 210,
+							"attribute": "",
+							"attributeValue": 0,
+							"produce": true
+						}, {
+							"name": "王牙弓【稚雷】",
+							"price": 120000,
+							"aggressivity": 200,
+							"attribute": "雷",
+							"attributeValue": 31,
+							"produce": true
+						}, {
+							"name": "角王弓·泰坦巨角",
+							"price": 105000,
+							"aggressivity": 270,
+							"attribute": "防",
+							"attributeValue": 16,
+							"produce": true
+						}, {
+							"name": "漠浪弓【砂纹】",
+							"price": 75000,
+							"aggressivity": 180,
+							"attribute": "龙",
+							"attributeValue": 25,
+							"produce": true
+						}, {
+							"name": "霸弓·逆天轰鸣",
+							"price": 99999,
+							"aggressivity": 210,
+							"attribute": "龙",
+							"attributeValue": 23,
+							"produce": true
+						}, {
+							"name": "崩弓·灭空寒星",
+							"price": 99999,
+							"aggressivity": 270,
+							"attribute": "冰",
+							"attributeValue": 9,
+							"produce": true
+						}, {
+							"name": "凶弓【小夜岚】",
+							"price": 120000,
+							"aggressivity": 250,
+							"attribute": "水",
+							"attributeValue": 11,
+							"produce": true
+						}]
+					}]
+
+					let repeat = [];
+
+					function addId(arr, ind) {
+						arr.map(function(item, index) {
+							item.id = ind + index
+							if(item.hasOwnProperty("children") && Object.prototype.toString.call(item.children) === "[object Array]") {
+								addId(item.children, item.id + "-")
+							}
+
+							if(repeat.indexOf(item.name) > -1) {
+								console.warn(item.name)
+							}
+							repeat.push(item.name)
+						})
+					}
+
+					tableData.map(function(item, index) {
+						repeat = []
+						addId(item.data, "")
+					})
+
+					return {
+						activeNames: [4],
+						tableData: tableData,
+					}
+				},
+				computed: {},
+				components: {},
+				beforeUpdate() {},
+				updated() {},
+				watch: {},
+				methods: {},
+				created() {},
+				mounted() {},
+			};
+			var App = {
+				template: "#App-template",
+				props: [],
+				data: function() {
+					return {
+
+					}
+				},
+				computed: {},
+				components: {
+					//					weapon,
+				},
+				watch: {},
+				methods: {},
+				created() {},
+				beforeUpdate() {},
+				updated() {},
+				mounted() {},
+			};
+			Vue.component("weapon", weapon);
+			var vu = new Vue({
+				el: "#swq",
+				data() {
+					return {}
+				},
+				methods: {},
+				components: {
+					App: App,
+				},
+				updated() {},
+				watch: {},
+				computed: {},
+				created() {},
+				beforeUpdate() {},
+				updated() {},
+				mounted() {},
+			})
+		</script>
+	</body>
+
+</html>
