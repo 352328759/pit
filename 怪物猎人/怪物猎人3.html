@@ -58,11 +58,8 @@
 		<script src="../jvw/vue/vue@2.5.16.js"></script>
 		<script src="../jvw/element-ui/element-ui@2.15.1/index.js"></script>
 		<script type="text/javascript">
-			console.log(Vue.version)
-			var weapon;
-			weapon = {
+			var weapon = {
 				template: "#weapon-template",
-				props: [],
 				data: function() {
 					var tableData = [{
 						name: "大剑",
@@ -2236,7 +2233,7 @@
 								attributeValue: 5,
 								produce: false,
 								children: [{
-									name: "吐炎狗龙",
+									name: "+吐炎狗龙",
 									price: 3300,
 									aggressivity: 100,
 									attribute: "1贯通",
@@ -2368,7 +2365,7 @@
 									attributeValue: 3,
 									produce: false,
 									children: [{
-										name: "女武神之礼",
+										name: "+女武神之礼",
 										price: 6600,
 										aggressivity: 150,
 										attribute: "1散、2散",
@@ -2493,7 +2490,7 @@
 							attributeValue: 3,
 							produce: true,
 							children: [{
-								name: "瓢弹【百成】",
+								name: "+瓢弹【百成】",
 								price: 4820,
 								aggressivity: 150,
 								attribute: "2通常",
@@ -2697,6 +2694,21 @@
 							attribute: "火、水、电、冰",
 							attributeValue: "3、3、3、3",
 							produce: true
+						}, {
+							name: "+鬼岛",
+							price: 0,
+							aggressivity: 130,
+							attribute: "1彻甲",
+							attributeValue: 2,
+							produce: false,
+							children: [{
+								name: "大鬼岛",
+								price: 44444,
+								aggressivity: 180,
+								attribute: "1彻甲",
+								attributeValue: 2,
+								produce: false,
+							}]
 						}]
 					}, {
 						name: "弓",
@@ -3276,55 +3288,20 @@
 					})
 
 					return {
-						activeNames: [4],
+						activeNames: [],
 						tableData: tableData,
 					}
 				},
-				computed: {},
-				components: {},
-				beforeUpdate() {},
-				updated() {},
-				watch: {},
-				methods: {},
-				created() {},
-				mounted() {},
 			};
 			var App = {
 				template: "#App-template",
-				props: [],
-				data: function() {
-					return {
-
-					}
-				},
-				computed: {},
-				components: {
-					//					weapon,
-				},
-				watch: {},
-				methods: {},
-				created() {},
-				beforeUpdate() {},
-				updated() {},
-				mounted() {},
 			};
 			Vue.component("weapon", weapon);
 			var vu = new Vue({
 				el: "#swq",
-				data() {
-					return {}
-				},
-				methods: {},
 				components: {
 					App: App,
 				},
-				updated() {},
-				watch: {},
-				computed: {},
-				created() {},
-				beforeUpdate() {},
-				updated() {},
-				mounted() {},
 			})
 		</script>
 	</body>
